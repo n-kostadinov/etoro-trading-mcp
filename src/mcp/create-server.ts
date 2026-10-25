@@ -3,8 +3,12 @@ import { fromJsonSchema, McpServer } from "@modelcontextprotocol/server";
 import { addFormats, AjvJsonSchemaValidator } from "@modelcontextprotocol/server/validators/ajv";
 import { Ajv2020 } from "ajv/dist/2020.js";
 import type { CatalogOperation } from "../catalog/types.js";
-import type { EtoroTransport } from "../transport/fetch-transport.js";
-import { failedCallResult, type EtoroCallResult, type ToolArguments } from "../transport/types.js";
+import {
+  failedCallResult,
+  type EtoroCallResult,
+  type EtoroTransport,
+  type ToolArguments,
+} from "../transport/types.js";
 
 const inputSchemaValidator = createInputSchemaValidator();
 

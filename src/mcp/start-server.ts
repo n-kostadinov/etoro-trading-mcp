@@ -2,17 +2,12 @@ import { createRequire } from "node:module";
 import type { Readable, Writable } from "node:stream";
 import type { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
-import catalogModule from "../generated/tool-catalog.js";
 import type { ToolCatalog } from "../catalog/types.js";
-import { loadConfiguration } from "../config/configuration.js";
 import type { RuntimeSettings } from "../config/types.js";
 import { resolveToolRegistry } from "../registry/tool-registry.js";
-import { FetchEtoroTransport, type EtoroTransport } from "../transport/fetch-transport.js";
-import {
-  readCredentialConfiguration,
-  type CredentialConfiguration,
-} from "../transport/credentials.js";
-import type { DiagnosticSink } from "../transport/types.js";
+import { FetchEtoroTransport } from "../transport/fetch-transport.js";
+import type { CredentialConfiguration } from "../transport/credentials.js";
+import type { DiagnosticSink, EtoroTransport } from "../transport/types.js";
 import { createMcpServer } from "./create-server.js";
 import { createStderrDiagnosticSink } from "./stderr-logger.js";
 
@@ -26,9 +21,9 @@ export type TransportFactory = (
 ) => EtoroTransport;
 
 export interface StartServerOptions {
-  env?: Record<string, string | undefined>;
-  readFile?: ((path: string) => Promise<string>) | undefined;
-  catalog?: ToolCatalog;
+  settings: RuntimeSettings;
+  catalog: ToolCatalog;
+  credentials: CredentialConfiguration;
   transportFactory?: TransportFactory;
   stdin?: Readable;
   stdout?: Writable;
@@ -50,25 +45,16 @@ const defaultTransportFactory: TransportFactory = (credentials, settings, onDiag
   });
 
 export async function startMcpServer(options: StartServerOptions): Promise<ServerHandle> {
-  const env = options.env ?? process.env;
-  const credentials = readCredentialConfiguration(env);
-  const configuration = await loadConfiguration({
-    env,
-    cli: {},
-    cliConfigPath: null,
-    readFile: options.readFile,
-  });
-  const catalog = options.catalog ?? catalogModule;
-  const registry = resolveToolRegistry(catalog, configuration.settings);
-  const diagnosticSink = createStderrDiagnosticSink(configuration.settings.logLevel);
+  const registry = resolveToolRegistry(options.catalog, options.settings);
+  const diagnosticSink = createStderrDiagnosticSink(options.settings.logLevel);
   for (const warning of registry.warnings) {
     diagnosticSink({ level: "warn", message: warning });
   }
   const transport = (options.transportFactory ?? defaultTransportFactory)(
-    credentials,
+    options.credentials,
     {
-      requestTimeoutMs: configuration.settings.requestTimeoutMs,
-      maxResponseBytes: configuration.settings.maxResponseBytes,
+      requestTimeoutMs: options.settings.requestTimeoutMs,
+      maxResponseBytes: options.settings.maxResponseBytes,
     },
     diagnosticSink,
   );
@@ -80,32 +66,47 @@ export async function startMcpServer(options: StartServerOptions): Promise<Serve
   const stdioTransport = new StdioServerTransport(options.stdin, options.stdout);
   await server.connect(stdioTransport);
 
+  const shouldInstallSignalHandlers = options.installSignalHandlers ?? true;
+  const shutdown = () => {
+    void close();
+  };
   let resolveClosed: (() => void) | undefined;
   const closed = new Promise<void>((resolve) => {
     resolveClosed = resolve;
   });
-  let closing = false;
-  const close = async (): Promise<void> => {
-    if (closing) {
+  let closeFinished = false;
+  let closeOperation: Promise<void> | undefined;
+  const finishClose = () => {
+    if (closeFinished) {
       return;
     }
-    closing = true;
-    try {
-      await server.close();
-    } finally {
-      resolveClosed?.();
+    closeFinished = true;
+    if (shouldInstallSignalHandlers) {
+      process.removeListener("SIGINT", shutdown);
+      process.removeListener("SIGTERM", shutdown);
     }
+    resolveClosed?.();
+  };
+  const close = (): Promise<void> => {
+    closeOperation ??= (async () => {
+      try {
+        await server.close();
+      } finally {
+        finishClose();
+      }
+    })();
+    return closeOperation;
   };
   const previousOnClose = stdioTransport.onclose;
   stdioTransport.onclose = () => {
-    previousOnClose?.();
-    resolveClosed?.();
+    try {
+      previousOnClose?.();
+    } finally {
+      finishClose();
+    }
   };
 
-  if (options.installSignalHandlers ?? true) {
-    const shutdown = () => {
-      void close();
-    };
+  if (shouldInstallSignalHandlers) {
     process.once("SIGINT", shutdown);
     process.once("SIGTERM", shutdown);
   }

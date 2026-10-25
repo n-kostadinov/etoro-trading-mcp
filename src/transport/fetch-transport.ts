@@ -14,20 +14,13 @@ import {
   type DiagnosticEvent,
   type DiagnosticSink,
   type EtoroCallResult,
+  type EtoroTransport,
   type RateLimitSnapshot,
   type ToolArguments,
   type TransportErrorDetails,
 } from "./types.js";
 
 export const ETORO_API_ORIGIN = "https://public-api.etoro.com";
-
-export interface EtoroTransport {
-  execute(
-    operation: CatalogOperation,
-    args: ToolArguments,
-    signal?: AbortSignal,
-  ): Promise<EtoroCallResult>;
-}
 
 export interface FetchTransportOptions {
   credentials: CredentialConfiguration;

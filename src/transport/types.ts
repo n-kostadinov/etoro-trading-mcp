@@ -1,3 +1,5 @@
+import type { CatalogOperation } from "../catalog/types.js";
+
 export interface ToolArguments {
   path?: Record<string, unknown>;
   query?: Record<string, unknown>;
@@ -38,6 +40,14 @@ export interface EtoroCallResult {
   contentType: string | null;
   rateLimit: RateLimitSnapshot;
   error: TransportErrorDetails | null;
+}
+
+export interface EtoroTransport {
+  execute(
+    operation: CatalogOperation,
+    args: ToolArguments,
+    signal?: AbortSignal,
+  ): Promise<EtoroCallResult>;
 }
 
 export type DiagnosticLevel = "debug" | "info" | "warn" | "error";
