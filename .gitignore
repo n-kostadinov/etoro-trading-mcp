@@ -1,0 +1,23 @@
+# Contains personal eToro API keys (x-user-key / x-api-key)
+.zcode/config.json
+docs/internal
+
+# Local credentials and editor state
+.env
+.env.*
+!.env.example
+.idea/
+
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+test-results/
+artifacts/
+*.tgz
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+plan/

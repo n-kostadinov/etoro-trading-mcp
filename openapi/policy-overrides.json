@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "defaultToolsets": ["market-data", "trading-demo"],
+  "toolsets": {
+    "Agent Portfolios": "agent-portfolios",
+    "App Data": "app-data",
+    "Balances": "balances",
+    "Cash Accounts": "cash-accounts",
+    "Clubs": "clubs",
+    "Copy Trading": "copy-trading",
+    "Copy Trading - Demo": "copy-trading-demo",
+    "Data": "data",
+    "Identity": "identity",
+    "Market Data": "market-data",
+    "Notifications": "notifications",
+    "PI Data": "pi-data",
+    "PortfolioSearch": "portfolio-search",
+    "Price Alerts": "price-alerts",
+    "Rankings": "rankings",
+    "Social Feeds": "social-feeds",
+    "SSO - Applications": "sso-applications",
+    "SSO - Scopes": "sso-scopes",
+    "Sub-Accounts": "sub-accounts",
+    "Sub-Accounts - eToro Trading": "sub-accounts-etoro-trading",
+    "Top Assets": "top-assets",
+    "Trading - Demo": "trading-demo",
+    "Trading - Real": "trading-real",
+    "Transfer": "transfer",
+    "User Stats": "user-stats",
+    "Users Info": "users-info",
+    "Watchlists": "watchlists"
+  },
+  "readOnlyOperations": [
+    "postAggregatedPortfolio",
+    "postAggregatedPortfolioDemo"
+  ],
+  "realMoneyMutationOperations": [
+    "postMoneyTransfer",
+    "createSubAccountMoneyTransfer",
+    "createTradingExecutionOrdersV3",
+    "deleteTradingExecutionOrdersByOrderIdV3"
+  ],
+  "replacements": {
+    "createAgentPortfolios": "createAgentPortfoliosV2",
+    "createAgentPortfoliosByAgentPortfolioIdUserTokens": "createAgentPortfoliosByAgentPortfolioIdUserTokensV2",
+    "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenId": "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenIdV2",
+    "getFeedsInstrumentByMarketId": "getFeedsMarketsByMarketId",
+    "getFeedsUserByUserId": "getFeedsUsersByUserId",
+    "postFeedsPost": "postPosts",
+    "postReactionsByPostIdComment": "postPostsByPostIdComments"
+  }
+}

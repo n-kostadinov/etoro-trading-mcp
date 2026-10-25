@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-24T10:13:50.463Z",
+  "sources": {
+    "swagger": {
+      "id": "swagger",
+      "file": "etoro.swagger.json",
+      "url": "https://public-api.etoro.com/swagger/swagger.json",
+      "apiVersion": "v1.400.0",
+      "openApiVersion": "3.0.1",
+      "operations": 197,
+      "rawSha256": "88a7e0b3d4271e2172972390f490a8793128abce281733297ce41134502e4e98",
+      "canonicalSha256": "f4243522d5c4407feee7141846095f9ee80fc2ef1b3da64b320354510b2a8858"
+    },
+    "core": {
+      "id": "core",
+      "file": "etoro.core.json",
+      "url": "https://api-portal.etoro.com/api-reference/openapi.json",
+      "apiVersion": "v1.400.0",
+      "openApiVersion": "3.0.1",
+      "operations": 178,
+      "rawSha256": "549e77e8f37dc167dfb6295e4771faf1f9bb71f62d0e925109cd6aa9a5d299a0",
+      "canonicalSha256": "0ae67c94ddc744f003f274446eae32321bd2f70f286af672435bdd8b844eba51"
+    },
+    "deprecated": {
+      "id": "deprecated",
+      "file": "etoro.deprecated.json",
+      "url": "https://api-portal.etoro.com/api-reference/deprecated-openapi.json",
+      "apiVersion": "v1.400.0",
+      "openApiVersion": "3.0.1",
+      "operations": 19,
+      "rawSha256": "2a59859997a752b51663b9d7cf5fd82abc0c4cc525210ad4c5f6074c083710eb",
+      "canonicalSha256": "e5b3779c2be3b7083a280c2dcdb8a1b2645a3773c64242c860d01000a8cd8333"
+    }
+  }
+}

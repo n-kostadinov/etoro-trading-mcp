@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "etoro-trading-mcp configuration",
+  "description": "Non-secret tool selection and runtime settings. Credentials are supplied only through environment variables.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "enabledToolsets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "disabledToolsets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "enabledTools": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "disabledTools": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "includeDeprecated": {
+      "type": "boolean",
+      "default": false
+    },
+    "allowRealMoney": {
+      "type": "boolean",
+      "default": false
+    },
+    "requestTimeoutMs": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 600000
+    },
+    "maxResponseBytes": {
+      "type": "integer",
+      "minimum": 1024,
+      "maximum": 268435456
+    },
+    "logLevel": {
+      "enum": ["error", "warn", "info", "debug"]
+    }
+  }
+}
