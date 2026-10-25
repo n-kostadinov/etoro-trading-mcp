@@ -186,6 +186,23 @@ describe("request serialization", () => {
     expect(await readFile(filePath)).toEqual(png);
   });
 
+  it("rejects attachments larger than the 8 MiB upstream limit", async () => {
+    const pngMagic = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+    const oversizedPath = path.join(temporaryDirectory, "oversized.png");
+    await writeFile(oversizedPath, Buffer.concat([pngMagic, Buffer.alloc(8 * 1024 * 1024)]));
+    await expect(
+      serializeRequest(
+        operation("postAttachments"),
+        {
+          query: { client_request_id: "22222222-2222-4222-8222-222222222222" },
+          body: { file: { filePath: oversizedPath } },
+        },
+        credentials,
+        "test-agent",
+      ),
+    ).rejects.toThrow(/exceeds the 8 MiB attachment limit/u);
+  });
+
   it("wraps serialization failures in a transport-specific error type", async () => {
     await expect(
       serializeRequest(operation("getRates"), {}, credentials, "test-agent"),

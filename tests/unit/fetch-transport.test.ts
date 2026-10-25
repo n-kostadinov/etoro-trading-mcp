@@ -151,6 +151,26 @@ describe("fetch transport behavior", () => {
     expect(mutation.calls).toHaveLength(1);
   });
 
+  it("maps an aborted MCP cancellation signal to a cancelled error without retrying", async () => {
+    const controller = new AbortController();
+    const { calls, transport } = createTransport({
+      responder: (call) =>
+        new Promise<Response>((_, reject) => {
+          call.init.signal?.addEventListener("abort", () => reject(new Error("aborted")));
+          controller.abort();
+        }),
+    });
+    const result = await transport.execute(
+      operation("getRates"),
+      { query: { instrumentIds: [1] } },
+      controller.signal,
+    );
+    expect(result.ok).toBe(false);
+    expect(result.error).toMatchObject({ code: "cancelled", retryAfterMs: null });
+    expect(result.error?.message).toBe("MCP client cancelled the tool call");
+    expect(calls).toHaveLength(1);
+  });
+
   it("supports documented empty and multi-status success responses", async () => {
     for (const status of [202, 204, 206, 207]) {
       const { transport } = createTransport({
