@@ -24,9 +24,11 @@ Every release is cut from a reviewed commit on `main`:
    ```
 
 4. The **Release** workflow now runs automatically:
-   - **verify** — checks the tag is strictly `vX.Y.Z`, matches `package.json` and the lockfile, has a real changelog section, is an ancestor of `origin/main`, then runs the full `npm run verify` suite and builds the release notes artifact.
-   - **publish** — runs in the `production` environment: creates a draft GitHub release with the generated notes, publishes the package to npm with `--provenance --access public`, then flips the GitHub release to published.
+   - **verify** — checks the tag is strictly `vX.Y.Z`, matches `package.json` and the lockfile, has a real changelog section, is an ancestor of `origin/main`, and is not already published on npm, then runs the full `npm run verify` suite and uploads the release notes plus the freshly packed tarball as workflow artifacts.
+   - **publish** — runs only for pushed tags, inside the `production` environment: creates a draft GitHub release with the generated notes and the tested tarball, publishes exactly that tarball to npm with `--provenance --access public`, verifies the published npm metadata, then flips the GitHub release to published.
 5. Check the draft release and the npm page, then announce.
+
+Manual dispatch from _Actions → Release → Run workflow_ is a dry run: it repeats the full validation and uploads the notes and tarball artifacts without publishing anything.
 
 Never publish from a feature branch and never run `npm publish` locally; the workflow is the only publish path.
 
@@ -34,9 +36,9 @@ Never publish from a feature branch and never run `npm publish` locally; the wor
 
 - **verify fails:** nothing was published. Fix the reported problem on `main`, delete the local tag, re-tag the new commit, push again. A tag already on the remote must be deleted first (`git push origin :refs/tags/vX.Y.Z`) — prefer a new commit over rewriting a tag.
 - **npm publish fails:** a draft GitHub release is left behind; inspect it, delete it (`gh release delete vX.Y.Z --yes`), and retry after fixing the cause. If npm reports the publish partially succeeded, check `npm view etoro-trading-mcp versions` before retrying — a version, once published, is immutable and needs a version bump.
-- **GitHub release publishing fails after npm succeeded:** the package is live. Publish the release manually from the left-over draft or via `gh release edit vX.Y.Z --draft=false`; do not re-run npm.
-- **Re-running for an existing tag** (verify passed, publish fixed): trigger the workflow manually from _Actions → Release → Run workflow_ with the tag name; the same validation runs again.
+- **npm publish succeeded but a later step failed** (for example the metadata verification): the version is immutable on npm, and the registry pre-existence check deliberately blocks another run for the same tag. Confirm `npm view etoro-trading-mcp@vX.Y.Z`, then flip the left-over draft manually (`gh release edit vX.Y.Z --draft=false`); do not re-run npm.
+- **Re-running for an existing tag:** dispatch the workflow with the tag name for a dry-run validation. To retry a failed publish for a pushed tag, re-run the failed workflow run from the Actions UI instead.
 
 ## Daily Swagger synchronization
 
-The **Swagger sync** workflow (03:17 UTC daily) downloads eToro's current OpenAPI documents, regenerates everything, runs the full verification, and opens a pull request on the deterministic `swagger-sync/<version>-<hash>` branch when upstream changed. It never merges, tags, or publishes on its own. Review such a PR like any other change, paying extra attention to real-money classification diffs, then cut a normal release if it should ship.
+The **Swagger sync** workflow (03:17 UTC daily) downloads eToro's current OpenAPI documents, regenerates everything, runs the full verification, and opens a pull request on the deterministic `swagger-sync/<version>-<hash>` branch when upstream changed. It never merges, tags, or publishes on its own. A manual dry run uploads the diff report and the verification log as workflow artifacts instead of creating a branch. Review such a PR like any other change, paying extra attention to real-money classification diffs, then cut a normal release if it should ship.

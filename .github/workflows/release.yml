@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing strict tag to release (vX.Y.Z)
+        description: Existing strict tag to validate in a dry run (nothing is published)
         required: true
         type: string
 
@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   verify:
-    name: Validate tag and verify release
+    name: Validate tag, verify, and pack the tested tarball
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -38,20 +38,29 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Validate tag, changelog, and main ancestry, then verify everything
+      - name: Validate tag, changelog, registry freshness, and main ancestry, then verify everything
         run: npm run release:validate -- "$RELEASE_TAG"
       - name: Build release notes
         run: npm run release:notes -- --tag "$RELEASE_TAG" --output release-notes.md
+      - name: Pack the verified tarball
+        run: npm pack --silent
       - name: Upload release notes
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: release-notes
           path: release-notes.md
           if-no-files-found: error
+      - name: Upload the tested tarball
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: release-tarball
+          path: etoro-trading-mcp-*.tgz
+          if-no-files-found: error
 
   publish:
-    name: Publish npm package and GitHub release
+    name: Publish the tested tarball and GitHub release
     needs: verify
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment: production
@@ -75,16 +84,29 @@ jobs:
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
         with:
           name: release-notes
+      - name: Download the tested tarball
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
+        with:
+          name: release-tarball
       - name: Install dependencies
         run: npm ci
-      - name: Create draft GitHub release
+      - name: Record the tested tarball path
+        run: echo "TARBALL=$(ls etoro-trading-mcp-*.tgz)" >> "$GITHUB_ENV"
+      - name: Create or update the draft GitHub release with the tested tarball
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$RELEASE_TAG" --title "$RELEASE_TAG" --notes-file release-notes.md --draft
-      - name: Publish to npm with provenance
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "$TARBALL" --clobber
+          else
+            gh release create "$RELEASE_TAG" --title "$RELEASE_TAG" --notes-file release-notes.md --draft "$TARBALL"
+          fi
+      - name: Publish the tested tarball to npm with provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --provenance --access public
+        run: npm publish "$TARBALL" --provenance --access public
+      - name: Verify the published npm metadata
+        run: npm run publication:verify -- "$RELEASE_TAG"
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}

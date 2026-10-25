@@ -3,18 +3,10 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { extractChangelogSection, normalizeReleaseTag } from "./lib/release-notes.js";
+import { assertVersionUnpublished, registryViewArguments } from "./lib/npm-registry.js";
 
 const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
 const arguments_ = process.argv.slice(2);
-
-function valueFor(flag: string): string {
-  const index = arguments_.indexOf(flag);
-  const value = index === -1 ? undefined : arguments_[index + 1];
-  if (value === undefined || value.startsWith("--")) {
-    throw new Error(`Missing value for ${flag}`);
-  }
-  return value;
-}
 
 function run(command: string, arguments_: string[]): string {
   const result = spawnSync(command, arguments_, {
@@ -41,7 +33,7 @@ const [packageJson, lockfile, changelog] = await Promise.all([
   readFile(path.join(repositoryRoot, "package-lock.json"), "utf8"),
   readFile(path.join(repositoryRoot, "CHANGELOG.md"), "utf8"),
 ]);
-const parsedPackage = JSON.parse(packageJson) as { version: string };
+const parsedPackage = JSON.parse(packageJson) as { name: string; version: string };
 const parsedLockfile = JSON.parse(lockfile) as {
   version: string;
   packages: Record<string, { version?: string }>;
@@ -56,6 +48,18 @@ if (parsedLockfile.version !== version || lockRoot !== version) {
   );
 }
 const changelogSection = extractChangelogSection(changelog, version);
+
+// The registry verdict arrives through exit code and stderr, not the run() helper.
+const registryView = spawnSync("npm", registryViewArguments(parsedPackage.name, version), {
+  cwd: repositoryRoot,
+  encoding: "utf8",
+  shell: process.platform === "win32",
+});
+assertVersionUnpublished(parsedPackage.name, version, {
+  status: registryView.status,
+  stdout: String(registryView.stdout ?? ""),
+  stderr: String(registryView.stderr ?? ""),
+});
 
 run("git", ["fetch", "--no-tags", "origin", "+refs/heads/main:refs/remotes/origin/main"]);
 const head = run("git", ["rev-parse", "HEAD"]).trim();
@@ -87,6 +91,7 @@ console.log(
       changelogDate: changelogSection.date,
       previousVersion: changelogSection.previousVersion,
       checks: [
+        "registry",
         "format",
         "lint",
         "types",

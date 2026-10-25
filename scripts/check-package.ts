@@ -3,8 +3,18 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import catalogModule from "../src/generated/tool-catalog.js";
 
 const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
+const expectedVersion = (
+  JSON.parse(await readFile(path.join(repositoryRoot, "package.json"), "utf8")) as {
+    version: string;
+  }
+).version;
+const expectedEnabledTools = catalogModule.operations.filter(
+  (operation) => operation.defaultEnabled,
+).length;
+const expectedCatalogOperations = catalogModule.operations.length;
 const requiredFiles = [
   "dist/cli.js",
   "dist/generated/tool-catalog.js",
@@ -108,6 +118,7 @@ try {
     return result.stdout;
   };
   const version = (await runCli(["--version"])).trim();
+  const help = await runCli(["--help"]);
   const tools = JSON.parse(await runCli(["tools", "list", "--json"])) as {
     enabledCount: number;
     catalogOperationCount: number;
@@ -117,10 +128,11 @@ try {
   };
   const installGuide = await readFile(path.join(installedRoot, "INSTALL.md"), "utf8");
   if (
-    version !== "1.0.0" ||
-    tools.enabledCount !== 28 ||
-    tools.catalogOperationCount !== 197 ||
+    version !== expectedVersion ||
+    tools.enabledCount !== expectedEnabledTools ||
+    tools.catalogOperationCount !== expectedCatalogOperations ||
     !configuration.valid ||
+    !help.includes("Usage:") ||
     !installGuide.includes("Agent rules")
   ) {
     throw new Error(
