@@ -46,9 +46,18 @@ jobs:
       - name: Synchronize official OpenAPI documents
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
         run: |
           if [ "$DRY_RUN" = "true" ]; then
-            npm run sync:swagger -- --dry-run
+            mkdir -p artifacts
+            npm run sync:swagger -- --dry-run 2>&1 | tee artifacts/dry-run.log
           else
             npm run sync:swagger
           fi
+      - name: Upload dry-run report and verification log
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: swagger-dry-run
+          path: artifacts/
+          if-no-files-found: warn

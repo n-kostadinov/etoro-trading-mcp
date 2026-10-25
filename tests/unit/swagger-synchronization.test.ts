@@ -220,4 +220,16 @@ describe("Swagger synchronization workflow", () => {
     expect(workflow).toContain("cancel-in-progress: false");
     expect(workflow).toContain("--dry-run");
   });
+
+  it("persists dry-run reports and verification logs as workflow artifacts", async () => {
+    const workflow = await readFile(
+      new URL("../../.github/workflows/swagger-sync.yml", import.meta.url),
+      "utf8",
+    );
+    expect(workflow).toContain("tee artifacts/dry-run.log");
+    expect(workflow).toContain("shell: bash");
+    expect(workflow).toContain("actions/upload-artifact@");
+    expect(workflow).toContain("name: swagger-dry-run");
+    expect(workflow).toContain("path: artifacts/");
+  });
 });
