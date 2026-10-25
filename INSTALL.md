@@ -1,6 +1,6 @@
 # Install and configure eToro Trading MCP
 
-This guide is written for an AI agent or a human following it step by step. It configures the default, demo-safe setup: eToro market data plus current demo-trading tools.
+This guide is written for an AI agent or a human following it step by step. It configures the demo-safe example setup: eToro market data plus current demo-trading tools, enabled explicitly through `ETORO_ENABLED_TOOLSETS`. No toolsets are enabled by default.
 
 Canonical URLs:
 - GitHub guide: <https://github.com/n-kostadinov/etoro-trading-mcp/blob/main/INSTALL.md>
@@ -34,7 +34,7 @@ npx -y etoro-trading-mcp@1.0.0 --version
 npx -y etoro-trading-mcp@1.0.0 tools list
 ```
 
-`--version` must print `1.0.0`. `tools list` must report **28 enabled tools**. Neither command contacts eToro.
+`--version` must print `1.0.0`. `tools list` must report **0 enabled tools**: nothing is enabled until you list toolsets. Neither command contacts eToro.
 
 ## 2. Obtain eToro credentials
 
@@ -52,7 +52,7 @@ Map the copied values to:
 - `ETORO_API_KEY` — application/public API key
 - `ETORO_USER_KEY` — user key
 
-An existing OAuth bearer token may be used instead with `ETORO_ACCESS_TOKEN`. For the default tools, the usual alternatives are `etoro-public:demo:read`, `etoro-public:demo:write`, `etoro-public:trade.demo:read`, and `etoro-public:trade.demo:write`; each tool lists its own accepted alternatives in [docs/tools.md](docs/tools.md). The server does not refresh expired tokens.
+An existing OAuth bearer token may be used instead with `ETORO_ACCESS_TOKEN`. For the example toolsets, the usual alternatives are `etoro-public:demo:read`, `etoro-public:demo:write`, `etoro-public:trade.demo:read`, and `etoro-public:trade.demo:write`; each tool lists its own accepted alternatives in [docs/tools.md](docs/tools.md). The server does not refresh expired tokens.
 
 Use exactly one authentication method. Supplying both is a startup error.
 
@@ -69,6 +69,7 @@ A standard client entry is:
       "env": {
         "ETORO_API_KEY": "<user-supplied-application-key>",
         "ETORO_USER_KEY": "<user-supplied-user-key>",
+        "ETORO_ENABLED_TOOLSETS": "market-data,trading-demo",
         "ETORO_ALLOW_REAL_MONEY": "false"
       }
     }
@@ -88,21 +89,23 @@ If the client supports secret references or inherited process environment instea
 Before saving:
 - replace both placeholders with the user's supplied values or configure their secure substitution;
 - do not add `ETORO_ACCESS_TOKEN` when the key pair is present;
+- keep `ETORO_ENABLED_TOOLSETS` at the demo-safe example unless the user asks for more;
 - keep `ETORO_ALLOW_REAL_MONEY` false;
 - keep a backup of the previous configuration.
 
 ## 4. Validate without calling eToro
 
-Run:
+Run with the same `ETORO_ENABLED_TOOLSETS` value:
 
 ```bash
-npx -y etoro-trading-mcp@1.0.0 config validate --json
-npx -y etoro-trading-mcp@1.0.0 tools list --json
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.0 config validate --json
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.0 tools list --json
 ```
 
 Expected:
-- `config validate`: `valid: true`, default toolsets `market-data` and `trading-demo`, 28 enabled tools.
+- `config validate`: `valid: true`, enabled toolsets `market-data` and `trading-demo`, 28 enabled tools.
 - `tools list`: `enabledCount: 28`, `catalogOperationCount: 197`.
+- Without `ETORO_ENABLED_TOOLSETS`, `enabledCount` is 0 because nothing is enabled by default.
 
 To inspect all available operations and their blocked reasons:
 
@@ -125,23 +128,23 @@ If the user does not authorize a network call, stop after local validation. Setu
 
 Everything below is documented in detail in [docs/configuration.md](docs/configuration.md).
 
-Add watchlists while keeping defaults:
+Add watchlists to the example set:
 
 ```json
 "env": {
-  "ETORO_ENABLED_TOOLSETS": "watchlists"
+  "ETORO_ENABLED_TOOLSETS": "market-data,trading-demo,watchlists"
 }
 ```
 
-Disable demo trading but keep market data:
+Use market data only:
 
 ```json
 "env": {
-  "ETORO_DISABLED_TOOLSETS": "trading-demo"
+  "ETORO_ENABLED_TOOLSETS": "market-data"
 }
 ```
 
-Enable only one additional tool:
+Enable one additional tool without its whole toolset:
 
 ```json
 "env": {
@@ -149,20 +152,12 @@ Enable only one additional tool:
 }
 ```
 
-Disable one default tool:
-
-```json
-"env": {
-  "ETORO_DISABLED_TOOLS": "createTradingExecutionDemoOrdersV3"
-}
-```
-
 Use an explicit JSON file when settings grow:
 
 ```json
 {
-  "enabledToolsets": ["watchlists", "identity"],
-  "disabledToolsets": ["trading-demo"],
+  "enabledToolsets": ["market-data", "trading-demo", "watchlists"],
+  "enabledTools": ["getMe"],
   "includeDeprecated": false,
   "allowRealMoney": false,
   "requestTimeoutMs": 30000,
@@ -172,7 +167,7 @@ Use an explicit JSON file when settings grow:
 
 Then add `ETORO_CONFIG=/absolute/path/to/etoro-mcp.config.json`. Do not put credentials in that file.
 
-Legacy tools need `ETORO_INCLUDE_DEPRECATED=true` in addition to selecting the tool or toolset. Real-money mutations need `ETORO_ALLOW_REAL_MONEY=true` in addition to selecting the tool or toolset; do not set this casually.
+The full toolset catalog is in the README quick look and [docs/toolsets.md](docs/toolsets.md); every tool is listed in [docs/tools.md](docs/tools.md). Legacy tools need `ETORO_INCLUDE_DEPRECATED=true` in addition to selecting the tool or toolset. Real-money mutations need `ETORO_ALLOW_REAL_MONEY=true` in addition to selecting the tool or toolset; do not set this casually.
 
 ## 7. Troubleshoot
 
@@ -193,6 +188,6 @@ Report back only the following, without credential values:
 - Node version and package version;
 - authentication method selected (key pair or bearer), not the secret;
 - client configuration file updated and backed up;
-- local validation counts (expected 28 of 197);
+- local validation counts (expected 28 of 197 with the example toolsets, 0 with none listed);
 - whether a read-only market-data smoke check was authorized and its outcome;
 - any remaining user action, normally just restarting the MCP client.
