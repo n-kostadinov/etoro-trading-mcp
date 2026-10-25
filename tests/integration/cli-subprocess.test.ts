@@ -11,9 +11,7 @@ const cliEntry = path.join(repositoryRoot, "src", "cli.ts");
 const packageMetadata = JSON.parse(
   await readFile(path.join(repositoryRoot, "package.json"), "utf8"),
 ) as { version: string };
-const expectedEnabledTools = catalogModule.operations.filter(
-  (operation) => operation.defaultEnabled,
-).length;
+const expectedCatalogOperations = catalogModule.operations.length;
 
 interface CliRun {
   status: number | null;
@@ -40,9 +38,10 @@ function expectInspectionCommands(entryPath: string): void {
 
   const tools = runCli(entryPath, ["tools", "list", "--json"]);
   expect(tools.status, tools.stderr).toBe(0);
+  // No toolsets are enabled by default, so a bare run lists nothing.
   expect(JSON.parse(tools.stdout)).toMatchObject({
-    enabledCount: expectedEnabledTools,
-    catalogOperationCount: catalogModule.operations.length,
+    enabledCount: 0,
+    catalogOperationCount: expectedCatalogOperations,
   });
 
   const configuration = runCli(entryPath, ["config", "validate", "--json"]);

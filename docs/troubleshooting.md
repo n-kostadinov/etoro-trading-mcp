@@ -20,7 +20,7 @@ npx -y etoro-trading-mcp@1.0.0 config validate
 npx -y etoro-trading-mcp@1.0.0 tools list --all
 ```
 
-Check whether all enabled toolsets were disabled or individual disables removed every tool. An empty list is allowed but produces a startup warning.
+Nothing is enabled by default. Check that `ETORO_ENABLED_TOOLSETS` or `ETORO_ENABLED_TOOLS` is set for the server process. An empty list is allowed but produces a startup warning.
 
 ## Credentials
 

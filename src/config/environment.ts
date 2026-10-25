@@ -32,15 +32,23 @@ function parseInteger(name: string, value: string): number {
   return parsed;
 }
 
+const REMOVED_VARIABLES: Record<string, string> = {
+  ETORO_DISABLED_TOOLSETS: "was removed; list only the toolsets you want in ETORO_ENABLED_TOOLSETS",
+  ETORO_DISABLED_TOOLS: "was removed; list only the tools you want in ETORO_ENABLED_TOOLS",
+};
+
 export function parseEnvironmentSettings(
   env: Record<string, string | undefined>,
 ): ConfigurationLayer {
   const layer: ConfigurationLayer = {};
+  for (const [variable, guidance] of Object.entries(REMOVED_VARIABLES)) {
+    if (env[variable] !== undefined) {
+      throw new Error(`${variable} ${guidance}`);
+    }
+  }
   const listSettings: Array<[keyof ConfigurationLayer, string]> = [
     ["enabledToolsets", "ETORO_ENABLED_TOOLSETS"],
-    ["disabledToolsets", "ETORO_DISABLED_TOOLSETS"],
     ["enabledTools", "ETORO_ENABLED_TOOLS"],
-    ["disabledTools", "ETORO_DISABLED_TOOLS"],
   ];
   const layerRecord = layer as unknown as Record<string, unknown>;
   for (const [setting, variable] of listSettings) {

@@ -19,7 +19,7 @@ Treat MCP client configuration files as potentially plaintext. If your client su
 
 ## Real-money protection
 
-By default only market-data and current demo-trading tools are exposed. Real-money mutations require both tool selection and `ETORO_ALLOW_REAL_MONEY=true`. See [trading.md](trading.md).
+No toolsets are enabled by default; tools are exposed only when their toolset or operation is listed in configuration. Real-money mutations additionally require `ETORO_ALLOW_REAL_MONEY=true`. See [trading.md](trading.md).
 
 Annotations are advisory. Configure your MCP client to require human confirmation for state-changing tools, especially any real-money operation.
 

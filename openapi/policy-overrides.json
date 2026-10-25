@@ -1,6 +1,5 @@
 {
   "schemaVersion": 1,
-  "defaultToolsets": ["market-data", "trading-demo"],
   "toolsets": {
     "Agent Portfolios": "agent-portfolios",
     "App Data": "app-data",

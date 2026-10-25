@@ -53,21 +53,21 @@ function toolsDocument(catalog: ToolCatalog): string {
   const rows = catalog.operations
     .map(
       (operation) =>
-        `| \`${markdownCell(operation.operationId)}\` | ${markdownCell(operation.toolsetId)} | \`${markdownCell(operation.method)} ${markdownCell(operation.path)}\` | ${yesNo(operation.defaultEnabled)} | ${yesNo(operation.deprecated)} | ${yesNo(operation.readOnly)} | ${yesNo(operation.realMoneyMutation)} | ${markdownCell(rateLimit(operation))} | ${markdownCell(scopeAlternatives(operation))} | ${operation.replacementOperationId === null ? "---" : `\`${markdownCell(operation.replacementOperationId)}\``} |`,
+        `| \`${markdownCell(operation.operationId)}\` | ${markdownCell(operation.toolsetId)} | \`${markdownCell(operation.method)} ${markdownCell(operation.path)}\` | ${yesNo(operation.deprecated)} | ${yesNo(operation.readOnly)} | ${yesNo(operation.realMoneyMutation)} | ${markdownCell(rateLimit(operation))} | ${markdownCell(scopeAlternatives(operation))} | ${operation.replacementOperationId === null ? "---" : `\`${markdownCell(operation.replacementOperationId)}\``} |`,
     )
     .join("\n");
-  return `# Tool reference\n\nThis file is generated from eToro Swagger UI **${catalog.sourceVersion}** (canonical SHA-256 \`${catalog.sourceCanonicalSha256}\`). Do not edit it directly; run \`npm run generate\`.\n\nThe catalog contains **${catalog.operations.length} tools** in **${catalog.toolsets.length} toolsets**. The default configuration exposes **${catalog.defaultToolCount} current tools**.\n\n- OAuth scopes listed in one alternative are alternatives to the key-pair authentication method; separate rows separated by OR are alternatives to each other. See [trading.md](trading.md).\n- Real-money mutations require the separate \`allowRealMoney\` opt-in in addition to tool selection.\n- Legacy tools require \`includeDeprecated\`.\n\n| Tool | Toolset | REST request | Default | Legacy | Read-only | Real-money mutation | Rate limit | OAuth scope alternatives | Replacement |\n|---|---|---|---|---|---|---|---|---|---|\n${rows}\n`;
+  return `# Tool reference\n\nThis file is generated from eToro Swagger UI **${catalog.sourceVersion}** (canonical SHA-256 \`${catalog.sourceCanonicalSha256}\`). Do not edit it directly; run \`npm run generate\`.\n\nThe catalog contains **${catalog.operations.length} tools** in **${catalog.toolsets.length} toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.\n\n- OAuth scopes listed in one alternative are alternatives to the key-pair authentication method; separate rows separated by OR are alternatives to each other. See [trading.md](trading.md).\n- Real-money mutations require the separate \`allowRealMoney\` opt-in in addition to tool selection.\n- Legacy tools require \`includeDeprecated\`.\n\n| Tool | Toolset | REST request | Legacy | Read-only | Real-money mutation | Rate limit | OAuth scope alternatives | Replacement |\n|---|---|---|---|---|---|---|---|---|\n${rows}\n`;
 }
 
 function toolsetsDocument(catalog: ToolCatalog): string {
   const rows = catalog.toolsets
     .map(
       (toolset) =>
-        `| \`${markdownCell(toolset.id)}\` | ${markdownCell(toolset.sourceTag)} | ${toolset.currentOperations} | ${toolset.legacyOperations} | ${toolset.currentOperations + toolset.legacyOperations} | ${yesNo(toolset.defaultEnabled)} |`,
+        `| \`${markdownCell(toolset.id)}\` | ${markdownCell(toolset.sourceTag)} | ${toolset.currentOperations} | ${toolset.legacyOperations} | ${toolset.currentOperations + toolset.legacyOperations} |`,
     )
     .join("\n");
   const ids = catalog.toolsets.map((toolset) => `- \`${toolset.id}\``).join("\n");
-  return `# Toolsets\n\nThis file is generated from eToro Swagger UI **${catalog.sourceVersion}**. Do not edit it directly; run \`npm run generate\`.\n\nDefaults are \`market-data\` and \`trading-demo\`, yielding ${catalog.defaultToolCount} current tools. See [configuration.md](configuration.md) for precedence and safety gates.\n\n| Toolset ID | Swagger tag | Current tools | Legacy tools | Total | Default |\n|---|---|---:|---:|---:|---|\n${rows}\n\n## Available IDs\n\n${ids}\n`;
+  return `# Toolsets\n\nThis file is generated from eToro Swagger UI **${catalog.sourceVersion}**. Do not edit it directly; run \`npm run generate\`.\n\nAll toolsets are disabled by default. Enable them through \`enabledToolsets\` / \`ETORO_ENABLED_TOOLSETS\`; enabling a toolset enables all of its tools. See the README quick look for a sample configuration and [configuration.md](configuration.md) for precedence and safety gates.\n\n| Toolset ID | Swagger tag | Current tools | Legacy tools | Total |\n|---|---|---:|---:|---:|\n${rows}\n\n## Available IDs\n\n${ids}\n`;
 }
 
 async function apiTypes(document: unknown): Promise<string> {

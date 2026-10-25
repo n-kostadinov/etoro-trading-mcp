@@ -21,7 +21,6 @@ describe("layered configuration loading", () => {
     const result = await loadConfiguration({
       env: {
         ETORO_ENABLED_TOOLSETS: "identity",
-        ETORO_DISABLED_TOOLSETS: "trading-demo",
         ETORO_TIMEOUT_MS: "5000",
       },
       cli: {
@@ -43,9 +42,7 @@ describe("layered configuration loading", () => {
     expect(result.configPath).toBe("config.json");
     expect(result.settings).toEqual({
       enabledToolsets: ["identity"],
-      disabledToolsets: ["trading-demo"],
       enabledTools: ["getMe"],
-      disabledTools: [],
       includeDeprecated: true,
       allowRealMoney: false,
       requestTimeoutMs: 6000,
@@ -81,6 +78,23 @@ describe("layered configuration loading", () => {
         configSchema,
       }),
     ).rejects.toThrow(/schema validation/u);
+  });
+
+  it("rejects removed disable settings in configuration files actionably", async () => {
+    await expect(
+      loadConfiguration({
+        env: {},
+        cli: {},
+        cliConfigPath: "removed.json",
+        readFile: fileReader({
+          "removed.json": JSON.stringify({
+            enabledToolsets: ["watchlists"],
+            disabledTools: ["getRates"],
+          }),
+        }),
+        configSchema,
+      }),
+    ).rejects.toThrow(/schema validation.*disabledTools|disabledTools.*schema validation/u);
   });
 
   it("reports malformed JSON and non-object configuration files actionably", async () => {

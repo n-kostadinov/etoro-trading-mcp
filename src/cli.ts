@@ -9,7 +9,8 @@ import { loadConfiguration } from "./config/configuration.js";
 import type { RuntimeSettings } from "./config/types.js";
 import type { ToolCatalog } from "./catalog/types.js";
 import { resolveToolRegistry } from "./registry/tool-registry.js";
-import { startMcpServer } from "./mcp/start-server.js";
+import { readCredentialConfiguration } from "./transport/credentials.js";
+import { startMcpServer, type ServerHandle, type StartServerOptions } from "./mcp/start-server.js";
 
 const require = createRequire(import.meta.url);
 const packageMetadata = require("../package.json") as { version: string };
@@ -23,11 +24,9 @@ Usage:
   etoro-trading-mcp --version
   etoro-trading-mcp --help
 
-Tool selection:
-  --enable-toolset <id>      Enable a toolset in addition to the defaults
-  --disable-toolset <id>     Disable a toolset
-  --enable-tool <operation>  Enable one operation even if its toolset is disabled
-  --disable-tool <operation> Disable one operation; this wins over every enable rule
+Tool selection (all toolsets are disabled by default; listing enables):
+  --enable-toolset <id>      Enable a toolset and all of its tools
+  --enable-tool <operation>  Enable one operation without its whole toolset
   --include-deprecated       Include legacy operations (default: false)
   --no-include-deprecated
   --allow-real-money         Permit selected real-money mutations (default: false)
@@ -56,6 +55,7 @@ export interface CliDependencies {
   env?: Record<string, string | undefined>;
   readFile?: (path: string) => Promise<string>;
   catalog?: ToolCatalog;
+  startServer?: (options: StartServerOptions) => Promise<Pick<ServerHandle, "closed">>;
 }
 
 function toolJson(status: {
@@ -161,32 +161,36 @@ export async function runCli(
       output.stdout(packageMetadata.version);
       return 0;
     }
+    const env = dependencies.env ?? process.env;
     const configuration = await loadConfiguration({
-      env: dependencies.env ?? process.env,
+      env,
       cli: invocation.settings,
       cliConfigPath: invocation.configPath,
       readFile: dependencies.readFile,
     });
+    if (invocation.command === "server") {
+      const credentials = readCredentialConfiguration(env);
+      const startServer = dependencies.startServer ?? startMcpServer;
+      const serverHandle = await startServer({
+        settings: configuration.settings,
+        catalog,
+        credentials,
+      });
+      await serverHandle.closed;
+      return 0;
+    }
     const registry = resolveToolRegistry(catalog, configuration.settings);
     if (invocation.command === "tools-list") {
       printToolList(registry, catalog, invocation.all, invocation.json, output);
       return 0;
     }
-    if (invocation.command === "config-validate") {
-      printConfigValidation(
-        registry,
-        configuration.configPath,
-        configuration.settings,
-        invocation.json,
-        output,
-      );
-      return 0;
-    }
-    const serverHandle = await startMcpServer({
-      env: dependencies.env ?? process.env,
-      readFile: dependencies.readFile,
-    });
-    await serverHandle.closed;
+    printConfigValidation(
+      registry,
+      configuration.configPath,
+      configuration.settings,
+      invocation.json,
+      output,
+    );
     return 0;
   } catch (error) {
     output.stderr(`etoro-trading-mcp: ${error instanceof Error ? error.message : String(error)}`);

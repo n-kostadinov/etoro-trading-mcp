@@ -22,19 +22,32 @@ describe("inspection CLI", () => {
   });
 
   it("lists only enabled tools by default and all states with --all", async () => {
-    const enabled = capture();
-    await expect(runCli(["tools", "list", "--json"], enabled.output, { env: {} })).resolves.toBe(0);
-    const enabledJson = JSON.parse(enabled.stdout()) as {
+    const unconfigured = capture();
+    await expect(
+      runCli(["tools", "list", "--json"], unconfigured.output, { env: {} }),
+    ).resolves.toBe(0);
+    const unconfiguredJson = JSON.parse(unconfigured.stdout()) as {
       enabledCount: number;
       catalogOperationCount: number;
       tools: unknown[];
     };
-    expect(enabledJson).toMatchObject({ enabledCount: 28, catalogOperationCount: 197 });
-    expect(enabledJson.tools).toHaveLength(28);
+    expect(unconfiguredJson).toMatchObject({ enabledCount: 0, catalogOperationCount: 197 });
+    expect(unconfiguredJson.tools).toHaveLength(0);
+
+    const example = capture();
+    await expect(
+      runCli(["tools", "list", "--json"], example.output, {
+        env: { ETORO_ENABLED_TOOLSETS: "market-data,trading-demo" },
+      }),
+    ).resolves.toBe(0);
+    const exampleJson = JSON.parse(example.stdout()) as { enabledCount: number };
+    expect(exampleJson.enabledCount).toBe(28);
 
     const all = capture();
     await expect(
-      runCli(["tools", "list", "--all", "--json"], all.output, { env: {} }),
+      runCli(["tools", "list", "--all", "--json"], all.output, {
+        env: { ETORO_ENABLED_TOOLSETS: "trading-demo" },
+      }),
     ).resolves.toBe(0);
     const allJson = JSON.parse(all.stdout()) as { tools: { reason: string }[] };
     expect(allJson.tools).toHaveLength(197);
@@ -43,7 +56,7 @@ describe("inspection CLI", () => {
     const realMoney = capture();
     await expect(
       runCli(["tools", "list", "--all", "--json"], realMoney.output, {
-        env: { ETORO_ENABLED_TOOLSETS: "trading-real", ETORO_DISABLED_TOOLSETS: "trading-demo" },
+        env: { ETORO_ENABLED_TOOLSETS: "trading-real" },
       }),
     ).resolves.toBe(0);
     const realMoneyJson = JSON.parse(realMoney.stdout()) as { tools: { reason: string }[] };
@@ -62,7 +75,7 @@ describe("inspection CLI", () => {
       counts: { enabled: number };
     };
     expect(summary.valid).toBe(true);
-    expect(summary.counts.enabled).toBe(46);
+    expect(summary.counts.enabled).toBe(18);
     expect(summary.settings.enabledToolsets).toEqual(["watchlists"]);
   });
 

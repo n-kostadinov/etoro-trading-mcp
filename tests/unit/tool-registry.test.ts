@@ -17,60 +17,59 @@ function status(registry: ReturnType<typeof resolveToolRegistry>, operationId: s
 }
 
 describe("tool registry selection and safety policy", () => {
-  it("enables exactly the documented market-data and current demo defaults", () => {
+  it("enables nothing by default and warns about the empty tool list", () => {
     const registry = resolveToolRegistry(catalog, defaultRuntimeSettings);
+    expect(registry.enabledToolsets).toEqual([]);
+    expect(registry.enabledOperations).toHaveLength(0);
+    expect(registry.warnings).toContainEqual(
+      "No tools are enabled; the MCP server will expose an empty tool list",
+    );
+  });
+
+  it("enables every current tool of a listed toolset", () => {
+    const registry = resolveToolRegistry(catalog, settings({ enabledToolsets: ["watchlists"] }));
+    expect(registry.enabledToolsets).toEqual(["watchlists"]);
+    expect(registry.enabledOperations).toHaveLength(18);
+    expect(registry.enabledOperations.every((tool) => tool.toolsetId === "watchlists")).toBe(true);
+  });
+
+  it("enables the documented example set with legacy demo tools blocked", () => {
+    const registry = resolveToolRegistry(
+      catalog,
+      settings({ enabledToolsets: ["market-data", "trading-demo"] }),
+    );
     expect(registry.enabledOperations).toHaveLength(28);
-    expect(registry.enabledOperations.every((tool) => tool.defaultEnabled)).toBe(true);
     expect(registry.warnings).toHaveLength(6);
     expect(registry.warnings.every((warning) => warning.includes("blocked (deprecated)"))).toBe(
       true,
     );
     expect(status(registry, "getRates").enabled).toBe(true);
-    expect(status(registry, "getMe").enabled).toBe(false);
     expect(
       status(registry, "createTradingExecutionDemoMarketOpenOrdersByAmount").blockedBy,
     ).toEqual(["deprecated"]);
   });
 
-  it("adds toolsets to the defaults and supports explicit default removal", () => {
-    const registry = resolveToolRegistry(
+  it("adds individually enabled tools on top of toolset selection", () => {
+    const alone = resolveToolRegistry(catalog, settings({ enabledTools: ["getRates"] }));
+    expect(alone.enabledOperations.map((tool) => tool.operationId)).toEqual(["getRates"]);
+
+    const combined = resolveToolRegistry(
       catalog,
-      settings({ enabledToolsets: ["watchlists"], disabledToolsets: ["trading-demo"] }),
+      settings({ enabledToolsets: ["watchlists"], enabledTools: ["getRates"] }),
     );
-    expect(registry.enabledToolsets).toEqual(["market-data", "watchlists"]);
-    expect(registry.enabledOperations).toHaveLength(29);
+    expect(combined.enabledOperations).toHaveLength(19);
   });
 
-  it("lets an individual tool override a disabled toolset while disable-tool wins overall", () => {
-    const enabledDespiteToolset = resolveToolRegistry(
-      catalog,
-      settings({ disabledToolsets: ["market-data"], enabledTools: ["getRates"] }),
-    );
-    expect(enabledDespiteToolset.warnings).toHaveLength(6);
-    expect(enabledDespiteToolset.enabledOperations).toHaveLength(18);
-    expect(status(enabledDespiteToolset, "getRates").enabled).toBe(true);
-
-    const disabledWins = resolveToolRegistry(
-      catalog,
-      settings({
-        disabledToolsets: ["market-data"],
-        enabledTools: ["getRates"],
-        disabledTools: ["getRates"],
-      }),
-    );
-    expect(status(disabledWins, "getRates").enabled).toBe(false);
-    expect(disabledWins.warnings).toContainEqual(
-      "getRates is both enabled and disabled; disable wins",
-    );
-  });
-
-  it("keeps legacy and real-money safety gates above individual enable rules", () => {
+  it("keeps legacy and real-money safety gates above selection rules", () => {
     const legacyBlocked = resolveToolRegistry(
       catalog,
       settings({ enabledTools: ["postFeedsPost"] }),
     );
     expect(status(legacyBlocked, "postFeedsPost").enabled).toBe(false);
     expect(status(legacyBlocked, "postFeedsPost").blockedBy).toEqual(["deprecated"]);
+    expect(legacyBlocked.warnings).toContainEqual(
+      "No tools are enabled; the MCP server will expose an empty tool list",
+    );
 
     const legacyEnabled = resolveToolRegistry(
       catalog,
@@ -80,7 +79,7 @@ describe("tool registry selection and safety policy", () => {
 
     const realMoneyBlocked = resolveToolRegistry(
       catalog,
-      settings({ enabledToolsets: ["trading-real"], disabledToolsets: ["trading-demo"] }),
+      settings({ enabledToolsets: ["trading-real"] }),
     );
     expect(status(realMoneyBlocked, "createTradingExecutionOrdersV3").blockedBy).toEqual([
       "real-money",
@@ -89,11 +88,7 @@ describe("tool registry selection and safety policy", () => {
 
     const realMoneyEnabled = resolveToolRegistry(
       catalog,
-      settings({
-        enabledToolsets: ["trading-real"],
-        disabledToolsets: ["trading-demo"],
-        allowRealMoney: true,
-      }),
+      settings({ enabledToolsets: ["trading-real"], allowRealMoney: true }),
     );
     expect(status(realMoneyEnabled, "createTradingExecutionOrdersV3").enabled).toBe(true);
   });
@@ -104,17 +99,6 @@ describe("tool registry selection and safety policy", () => {
     );
     expect(() => resolveToolRegistry(catalog, settings({ enabledTools: ["readPrices"] }))).toThrow(
       /Unknown tool names: readPrices.*tools list --all/u,
-    );
-  });
-
-  it("warns when configuration produces no enabled tools", () => {
-    const registry = resolveToolRegistry(
-      catalog,
-      settings({ disabledToolsets: ["market-data", "trading-demo"] }),
-    );
-    expect(registry.enabledOperations).toHaveLength(0);
-    expect(registry.warnings).toContainEqual(
-      "No tools are enabled; the MCP server will expose an empty tool list",
     );
   });
 });

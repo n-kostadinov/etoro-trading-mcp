@@ -30,11 +30,11 @@ describe("CLI argument parsing", () => {
       "watchlists",
       "--enable-toolset",
       "identity",
-      "--disable-tool",
+      "--enable-tool",
       "getRates",
     ]);
     expect(invocation.settings.enabledToolsets).toEqual(["watchlists", "identity"]);
-    expect(invocation.settings.disabledTools).toEqual(["getRates"]);
+    expect(invocation.settings.enabledTools).toEqual(["getRates"]);
   });
 
   it("lets the last safety-flag spelling win and validates numeric ranges", () => {
@@ -59,6 +59,12 @@ describe("CLI argument parsing", () => {
   it("rejects unknown commands, unknown options, missing values, and misplaced flags", () => {
     expect(() => parseCliArguments(["tools", "inspect"])).toThrow(/Unknown command/u);
     expect(() => parseCliArguments(["--unknown"])).toThrow(/Unknown option/u);
+    expect(() => parseCliArguments(["--disable-toolset", "trading-demo"])).toThrow(
+      /Unknown option --disable-toolset/u,
+    );
+    expect(() => parseCliArguments(["--disable-tool", "getRates"])).toThrow(
+      /Unknown option --disable-tool/u,
+    );
     expect(() => parseCliArguments(["--enable-toolset"])).toThrow(/requires a value/u);
     expect(() => parseCliArguments(["--all", "config", "validate"])).toThrow(
       /--all is only valid/u,

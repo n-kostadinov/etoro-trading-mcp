@@ -14,7 +14,6 @@ export interface CatalogOperation extends OpenApiOperationDescriptor {
   replacementOperationId: string | null;
   readOnly: boolean;
   realMoneyMutation: boolean;
-  defaultEnabled: boolean;
   oauthScopeAlternatives: string[][];
   descriptionForTool: string;
   annotations: ToolAnnotations;
@@ -25,15 +24,12 @@ export interface ToolsetDescriptor {
   sourceTag: string;
   currentOperations: number;
   legacyOperations: number;
-  defaultEnabled: boolean;
 }
 
 export interface ToolCatalog {
   schemaVersion: 1;
   sourceVersion: string;
   sourceCanonicalSha256: string;
-  defaultToolsets: string[];
-  defaultToolCount: number;
   toolsets: ToolsetDescriptor[];
   operations: CatalogOperation[];
   warnings: string[];
@@ -41,7 +37,6 @@ export interface ToolCatalog {
 
 export interface CatalogPolicyOverrides {
   schemaVersion: 1;
-  defaultToolsets: string[];
   toolsets: Record<string, string>;
   readOnlyOperations: string[];
   realMoneyMutationOperations: string[];

@@ -6,6 +6,7 @@ import catalogModule from "../src/generated/tool-catalog.js";
 
 const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
 const documentationFiles = [
+  "README.md",
   "docs/configuration.md",
   "docs/security.md",
   "docs/toolsets.md",
@@ -50,12 +51,13 @@ async function assertGeneratedCoverage(documents: Map<string, string>): Promise<
   if (!tools.includes(`**${catalogModule.operations.length} tools**`)) {
     throw new Error("Generated tool reference has an incorrect operation count");
   }
-  if (!tools.includes(`**${catalogModule.defaultToolCount} current tools**`)) {
-    throw new Error("Generated tool reference has an incorrect default count");
-  }
 }
 
-async function validateConfigurationExamples(content: string): Promise<void> {
+async function validateConfigurationExamples(
+  content: string,
+  documentName: string,
+  requireConfigExample: boolean,
+): Promise<void> {
   const schema = JSON.parse(
     await readFile(path.join(repositoryRoot, "schemas/config.schema.json"), "utf8"),
   ) as unknown;
@@ -65,13 +67,60 @@ async function validateConfigurationExamples(content: string): Promise<void> {
     match[1] === undefined ? [] : [match[1]],
   );
   if (blocks.length === 0) {
-    throw new Error("configuration.md contains no JSON examples");
+    throw new Error(`${documentName} contains no JSON examples`);
   }
+  const schemaProperties = Object.keys(
+    (schema as { properties: Record<string, unknown> }).properties,
+  );
+  let configExamples = 0;
   for (const [index, block] of blocks.entries()) {
     const parsed = JSON.parse(block) as unknown;
-    if (!ajv.validate("urn:etoro-trading-mcp:configuration-example", parsed)) {
-      throw new Error(`configuration.md JSON example ${index + 1} failed schema validation`);
+    // Client entries such as an mcpServers block are not configuration files;
+    // only blocks that use configuration properties must match the schema.
+    if (
+      typeof parsed === "object" &&
+      parsed !== null &&
+      !Array.isArray(parsed) &&
+      Object.keys(parsed).some((key) => schemaProperties.includes(key))
+    ) {
+      configExamples += 1;
+      if (!ajv.validate("urn:etoro-trading-mcp:configuration-example", parsed)) {
+        throw new Error(`${documentName} JSON example ${index + 1} failed schema validation`);
+      }
     }
+  }
+  if (requireConfigExample && configExamples === 0) {
+    throw new Error(`${documentName} contains no configuration examples`);
+  }
+}
+
+function assertReadmeToolsetReferences(content: string): void {
+  const references = new Set<string>();
+  for (const match of content.matchAll(/ETORO_ENABLED_TOOLSETS[":= ]+([a-z0-9,-]+)/gu)) {
+    const value = match[1];
+    if (value !== undefined) {
+      for (const id of value.split(",")) {
+        references.add(id);
+      }
+    }
+  }
+  for (const match of content.matchAll(/"enabledToolsets"\s*:\s*\[([^\]]*)\]/gu)) {
+    const value = match[1];
+    if (value !== undefined) {
+      for (const id of value.matchAll(/"([^"]+)"/gu)) {
+        if (id[1] !== undefined) {
+          references.add(id[1]);
+        }
+      }
+    }
+  }
+  if (references.size === 0) {
+    throw new Error("README.md does not reference any enabled toolsets");
+  }
+  const known = new Set(catalogModule.toolsets.map((toolset) => toolset.id));
+  const unknown = [...references].filter((id) => !known.has(id));
+  if (unknown.length > 0) {
+    throw new Error(`README.md references unknown toolsets: ${unknown.join(", ")}`);
   }
 }
 
@@ -105,7 +154,13 @@ for (const file of documentationFiles) {
   documents.set(file, await readDocument(file));
 }
 await assertGeneratedCoverage(documents);
-await validateConfigurationExamples(documents.get("docs/configuration.md") ?? "");
+await validateConfigurationExamples(
+  documents.get("docs/configuration.md") ?? "",
+  "docs/configuration.md",
+  true,
+);
+await validateConfigurationExamples(documents.get("README.md") ?? "", "README.md", true);
+await assertReadmeToolsetReferences(documents.get("README.md") ?? "");
 await assertLocalLinks(documents);
 console.log(
   `Verified ${documentationFiles.length} documentation files, ${catalogModule.operations.length} tool entries, and ${catalogModule.toolsets.length} toolsets.`,

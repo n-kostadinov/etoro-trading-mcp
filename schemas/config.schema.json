@@ -16,23 +16,7 @@
       },
       "uniqueItems": true
     },
-    "disabledToolsets": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
-      "uniqueItems": true
-    },
     "enabledTools": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
-      "uniqueItems": true
-    },
-    "disabledTools": {
       "type": "array",
       "items": {
         "type": "string",

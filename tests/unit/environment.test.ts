@@ -6,10 +6,19 @@ describe("environment configuration", () => {
   it("parses comma-separated lists and preserves an explicit empty list", () => {
     const settings = parseEnvironmentSettings({
       ETORO_ENABLED_TOOLSETS: "watchlists, identity",
-      ETORO_DISABLED_TOOLS: "",
+      ETORO_ENABLED_TOOLS: "",
     });
     expect(settings.enabledToolsets).toEqual(["watchlists", "identity"]);
-    expect(settings.disabledTools).toEqual([]);
+    expect(settings.enabledTools).toEqual([]);
+  });
+
+  it("rejects removed disable variables with migration guidance", () => {
+    expect(() => parseEnvironmentSettings({ ETORO_DISABLED_TOOLSETS: "trading-demo" })).toThrow(
+      /ETORO_DISABLED_TOOLSETS.*ETORO_ENABLED_TOOLSETS/u,
+    );
+    expect(() => parseEnvironmentSettings({ ETORO_DISABLED_TOOLS: "getRates" })).toThrow(
+      /ETORO_DISABLED_TOOLS.*ETORO_ENABLED_TOOLS/u,
+    );
   });
 
   it("rejects malformed list values", () => {
@@ -51,9 +60,7 @@ describe("environment configuration", () => {
   it("uses safe defaults when no selection variables are set", () => {
     expect(defaultRuntimeSettings).toEqual({
       enabledToolsets: [],
-      disabledToolsets: [],
       enabledTools: [],
-      disabledTools: [],
       includeDeprecated: false,
       allowRealMoney: false,
       requestTimeoutMs: 30_000,

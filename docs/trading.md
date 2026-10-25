@@ -4,7 +4,7 @@ This project is an unofficial eToro integration. Nothing here is investment advi
 
 ## Default behavior
 
-The default configuration exposes:
+No toolsets are enabled by default. The demo-safe example documented in the README quick look enables:
 - `market-data`: stock/instrument search, metadata, candles, historical closes, and bid/ask rates.
 - current `trading-demo` operations: demo portfolio reads plus demo order placement, cancellation, and position updates.
 
@@ -26,7 +26,7 @@ ETORO_ACCESS_TOKEN=...
 
 Do not combine them. Do not use or share your eToro portal password.
 
-OAuth scope requirements are alternatives, not a checklist. A tool's generated description and [tools.md](tools.md) list the alternatives; one alternative is sufficient. For the default setup, create demo-oriented API credentials through eToro's official API key management interface and avoid real-account permissions unless you explicitly need them.
+OAuth scope requirements are alternatives, not a checklist. A tool's generated description and [tools.md](tools.md) list the alternatives; one alternative is sufficient. For the example setup, create demo-oriented API credentials through eToro's official API key management interface and avoid real-account permissions unless you explicitly need them.
 
 ## Asynchronous orders
 

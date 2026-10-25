@@ -5,200 +5,168 @@ const catalog = {
   "schemaVersion": 1,
   "sourceVersion": "v1.400.0",
   "sourceCanonicalSha256": "f4243522d5c4407feee7141846095f9ee80fc2ef1b3da64b320354510b2a8858",
-  "defaultToolsets": [
-    "market-data",
-    "trading-demo"
-  ],
-  "defaultToolCount": 28,
   "toolsets": [
     {
       "id": "agent-portfolios",
       "sourceTag": "Agent Portfolios",
       "currentOperations": 7,
-      "legacyOperations": 3,
-      "defaultEnabled": false
+      "legacyOperations": 3
     },
     {
       "id": "app-data",
       "sourceTag": "App Data",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "balances",
       "sourceTag": "Balances",
       "currentOperations": 6,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "cash-accounts",
       "sourceTag": "Cash Accounts",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "clubs",
       "sourceTag": "Clubs",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "copy-trading",
       "sourceTag": "Copy Trading",
       "currentOperations": 5,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "copy-trading-demo",
       "sourceTag": "Copy Trading - Demo",
       "currentOperations": 5,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "data",
       "sourceTag": "Data",
       "currentOperations": 4,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "identity",
       "sourceTag": "Identity",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "market-data",
       "sourceTag": "Market Data",
       "currentOperations": 11,
-      "legacyOperations": 0,
-      "defaultEnabled": true
+      "legacyOperations": 0
     },
     {
       "id": "notifications",
       "sourceTag": "Notifications",
       "currentOperations": 2,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "pi-data",
       "sourceTag": "PI Data",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "portfolio-search",
       "sourceTag": "PortfolioSearch",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "price-alerts",
       "sourceTag": "Price Alerts",
       "currentOperations": 4,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "rankings",
       "sourceTag": "Rankings",
       "currentOperations": 7,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "social-feeds",
       "sourceTag": "Social Feeds",
       "currentOperations": 37,
-      "legacyOperations": 4,
-      "defaultEnabled": false
+      "legacyOperations": 4
     },
     {
       "id": "sso-applications",
       "sourceTag": "SSO - Applications",
       "currentOperations": 5,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "sso-scopes",
       "sourceTag": "SSO - Scopes",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "sub-accounts",
       "sourceTag": "Sub-Accounts",
       "currentOperations": 2,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "sub-accounts-etoro-trading",
       "sourceTag": "Sub-Accounts - eToro Trading",
       "currentOperations": 6,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "top-assets",
       "sourceTag": "Top Assets",
       "currentOperations": 1,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "trading-demo",
       "sourceTag": "Trading - Demo",
       "currentOperations": 17,
-      "legacyOperations": 6,
-      "defaultEnabled": true
+      "legacyOperations": 6
     },
     {
       "id": "trading-real",
       "sourceTag": "Trading - Real",
       "currentOperations": 17,
-      "legacyOperations": 6,
-      "defaultEnabled": false
+      "legacyOperations": 6
     },
     {
       "id": "transfer",
       "sourceTag": "Transfer",
       "currentOperations": 7,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "user-stats",
       "sourceTag": "User Stats",
       "currentOperations": 4,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "users-info",
       "sourceTag": "Users Info",
       "currentOperations": 6,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     },
     {
       "id": "watchlists",
       "sourceTag": "Watchlists",
       "currentOperations": 18,
-      "legacyOperations": 0,
-      "defaultEnabled": false
+      "legacyOperations": 0
     }
   ],
   "operations": [
@@ -533,7 +501,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -888,7 +855,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -1224,7 +1190,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -1554,7 +1519,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -1852,7 +1816,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -2150,7 +2113,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -2633,7 +2595,6 @@ const catalog = {
       "replacementOperationId": "createAgentPortfoliosV2",
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -3054,7 +3015,6 @@ const catalog = {
       "replacementOperationId": "createAgentPortfoliosByAgentPortfolioIdUserTokensV2",
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -3478,7 +3438,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:agent-portfolio:write"
@@ -3939,7 +3898,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:agent-portfolio:write"
@@ -4338,7 +4296,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sso-applications:write"
@@ -4476,7 +4433,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:write"
@@ -4743,7 +4699,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money:transfer"
@@ -5142,7 +5097,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:write"
@@ -5453,7 +5407,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -5707,7 +5660,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -6045,7 +5997,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -6392,7 +6343,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -6916,7 +6866,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -7487,7 +7436,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -7801,7 +7749,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -8055,7 +8002,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -8393,7 +8339,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -8740,7 +8685,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -9264,7 +9208,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -9835,7 +9778,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -10077,7 +10019,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -10324,7 +10265,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -10497,7 +10437,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sso-applications:write"
@@ -10650,7 +10589,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -10823,7 +10761,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -10996,7 +10933,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -11189,7 +11125,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -11382,7 +11317,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -11529,7 +11463,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -11682,7 +11615,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -11835,7 +11767,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -12053,7 +11984,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -12200,7 +12130,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -12559,7 +12488,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:price-alerts:write"
@@ -12814,7 +12742,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:write"
@@ -12977,7 +12904,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -13143,7 +13069,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -13309,7 +13234,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -13620,7 +13544,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -13993,7 +13916,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -14159,7 +14081,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -14325,7 +14246,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -14491,7 +14411,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -14802,7 +14721,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -15175,7 +15093,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -15331,7 +15248,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -15621,7 +15537,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -15965,7 +15880,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -16178,7 +16092,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:agent-portfolio:read"
@@ -16770,7 +16683,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:trade.real:read"
@@ -17357,7 +17269,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:trade.demo:read"
@@ -17596,7 +17507,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sso-applications:read"
@@ -18231,7 +18141,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -18879,7 +18788,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.balance:read"
@@ -19475,7 +19383,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.balance:read"
@@ -20118,7 +20025,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.balance:read"
@@ -20525,7 +20431,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -21364,7 +21269,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:club:read"
@@ -21720,7 +21624,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -22085,7 +21988,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -22600,7 +22502,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -23115,7 +23016,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -23338,7 +23238,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -23980,7 +23879,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -25838,7 +25736,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -27696,7 +27593,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -29600,7 +29496,6 @@ const catalog = {
       "replacementOperationId": "getFeedsMarketsByMarketId",
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -31493,7 +31388,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -33351,7 +33245,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -35209,7 +35102,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -37113,7 +37005,6 @@ const catalog = {
       "replacementOperationId": "getFeedsUsersByUserId",
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -39006,7 +38897,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -40826,7 +40716,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -41282,7 +41171,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -41910,7 +41798,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.balance:read"
@@ -42492,7 +42379,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.balance:read"
@@ -43121,7 +43007,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.balance:read"
@@ -43305,7 +43190,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:read"
@@ -43788,7 +43672,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -44280,7 +44163,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -44684,7 +44566,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -44873,7 +44754,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -45052,7 +44932,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -45341,7 +45220,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -45677,7 +45555,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -45869,7 +45746,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -46117,7 +45993,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -46282,7 +46157,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -46769,7 +46643,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -46934,7 +46807,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         []
       ],
@@ -47135,7 +47007,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -47374,7 +47245,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -47935,7 +47805,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -48048,7 +47917,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:read"
@@ -48286,7 +48154,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:notifications:read"
@@ -48501,7 +48368,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -48931,7 +48797,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -49480,7 +49345,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -50025,7 +49889,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -50760,7 +50623,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -51014,7 +50876,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -52777,7 +52638,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -53833,7 +53693,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -54909,7 +54768,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -55354,7 +55212,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -55793,7 +55650,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:price-alerts:read"
@@ -56119,7 +55975,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -56734,7 +56589,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -57108,7 +56962,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -57264,7 +57117,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sso-scopes:read"
@@ -57731,7 +57583,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -58162,7 +58013,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -58440,7 +58290,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:read"
@@ -58632,7 +58481,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:read"
@@ -59115,7 +58963,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -59784,7 +59631,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -60470,7 +60316,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -61352,7 +61197,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -61940,7 +61784,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -62961,7 +62804,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:trade.demo:read"
@@ -63638,7 +63480,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -64226,7 +64067,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -65247,7 +65087,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:trade.real:read"
@@ -65727,7 +65566,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -66396,7 +66234,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -67278,7 +67115,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -67583,7 +67419,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -67888,7 +67723,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -68212,7 +68046,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:read"
@@ -68524,7 +68357,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:read"
@@ -68697,7 +68529,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:read"
@@ -68868,7 +68699,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:read"
@@ -69027,7 +68857,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:read"
@@ -69628,7 +69457,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -69888,7 +69716,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -70086,7 +69913,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -70462,7 +70288,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -70864,7 +70689,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -71667,7 +71491,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:read"
@@ -72213,7 +72036,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -72758,7 +72580,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -73071,7 +72892,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -73591,7 +73411,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -74063,7 +73882,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -75652,7 +75470,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:read"
@@ -76220,7 +76037,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.cash-transactions:read"
@@ -76392,7 +76208,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -76654,7 +76469,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -76962,7 +76776,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:read"
@@ -77078,7 +76891,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:notifications:write"
@@ -77592,7 +77404,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:price-alerts:write"
@@ -78177,7 +77988,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:trade.real:read"
@@ -78760,7 +78570,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:trade.demo:read"
@@ -79123,7 +78932,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -80391,7 +80199,6 @@ const catalog = {
       "replacementOperationId": "postPosts",
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -80659,7 +80466,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:money.transfer:write"
@@ -81935,7 +81741,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -82991,7 +82796,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -83178,7 +82982,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -84254,7 +84057,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -84461,7 +84263,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -84608,7 +84409,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -84775,7 +84575,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -84928,7 +84727,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -85146,7 +84944,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -85293,7 +85090,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -86614,7 +86410,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -87920,7 +87715,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -88477,7 +88271,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:price-alerts:write"
@@ -89523,7 +89316,6 @@ const catalog = {
       "replacementOperationId": "postPostsByPostIdComments",
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -90053,7 +89845,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -90343,7 +90134,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -90919,7 +90709,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -91437,7 +91226,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -92754,7 +92542,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -93833,7 +93620,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -94932,7 +94718,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:feed:write"
@@ -95114,7 +94899,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -95404,7 +95188,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -95598,7 +95381,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -95757,7 +95539,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -96052,7 +95833,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -96344,7 +96124,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -96542,7 +96321,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sso-applications:write"
@@ -96920,7 +96698,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": true,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         []
       ],
@@ -97243,7 +97020,6 @@ const catalog = {
       "replacementOperationId": "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenIdV2",
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -97573,7 +97349,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:agent-portfolio:write"
@@ -97961,7 +97736,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sso-applications:write"
@@ -98388,7 +98162,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": true,
       "oauthScopeAlternatives": [
         [
           "etoro-public:demo:write"
@@ -98818,7 +98591,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": true,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:real:write"
@@ -99148,7 +98920,6 @@ const catalog = {
       "replacementOperationId": null,
       "readOnly": false,
       "realMoneyMutation": false,
-      "defaultEnabled": false,
       "oauthScopeAlternatives": [
         [
           "etoro-public:sub-accounts:write"

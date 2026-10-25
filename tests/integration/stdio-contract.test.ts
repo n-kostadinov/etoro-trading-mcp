@@ -4,11 +4,13 @@ import path from "node:path";
 import { PassThrough } from "node:stream";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { LATEST_PROTOCOL_VERSION } from "@modelcontextprotocol/server";
+import { runCli } from "../../src/cli.js";
 import catalogModule from "../../src/generated/tool-catalog.js";
 import type { CatalogOperation } from "../../src/catalog/types.js";
+import { loadConfiguration } from "../../src/config/configuration.js";
+import { readCredentialConfiguration } from "../../src/transport/credentials.js";
 import { startMcpServer, type ServerHandle } from "../../src/mcp/start-server.js";
-import type { EtoroTransport } from "../../src/transport/fetch-transport.js";
-import type { EtoroCallResult, ToolArguments } from "../../src/transport/types.js";
+import type { EtoroCallResult, EtoroTransport, ToolArguments } from "../../src/transport/types.js";
 import { validArgumentsForOperation, type SampleContext } from "./sample-arguments.js";
 
 interface RecordedRequest {
@@ -96,9 +98,8 @@ function fakeResult(operation: CatalogOperation): EtoroCallResult {
   };
 }
 
-async function startContractServer(environment: Record<string, string>) {
-  const requests: RecordedRequest[] = [];
-  const transport: EtoroTransport = {
+function recordingTransport(requests: RecordedRequest[]): EtoroTransport {
+  return {
     execute: async (operation, args) => {
       requests.push({
         operationId: operation.operationId,
@@ -109,10 +110,22 @@ async function startContractServer(environment: Record<string, string>) {
       return fakeResult(operation);
     },
   };
+}
+
+async function startContractServer(environment: Record<string, string>) {
+  const requests: RecordedRequest[] = [];
+  const transport = recordingTransport(requests);
+  const configuration = await loadConfiguration({
+    env: environment,
+    cli: {},
+    cliConfigPath: null,
+  });
   const serverInput = new PassThrough();
   const serverOutput = new PassThrough();
   const handle = await startMcpServer({
-    env: environment,
+    settings: configuration.settings,
+    catalog: catalogModule,
+    credentials: readCredentialConfiguration(environment),
     stdin: serverInput,
     stdout: serverOutput,
     installSignalHandlers: false,
@@ -126,6 +139,68 @@ async function startContractServer(environment: Record<string, string>) {
   })) as { serverInfo: { name: string; version: string } };
   client.notify("notifications/initialized");
   return { client, handle, initialized, requests, serverInput };
+}
+
+async function startServerThroughCli(args: string[], environment: Record<string, string>) {
+  const requests: RecordedRequest[] = [];
+  const transport = recordingTransport(requests);
+  const transportLimits: Array<{ requestTimeoutMs: number; maxResponseBytes: number }> = [];
+  const serverInput = new PassThrough();
+  const serverOutput = new PassThrough();
+  const cliStdout: string[] = [];
+  const cliStderr: string[] = [];
+  let resolveStarted: ((handle: ServerHandle) => void) | undefined;
+  const started = new Promise<ServerHandle>((resolve) => {
+    resolveStarted = resolve;
+  });
+
+  const exitCode = runCli(
+    args,
+    {
+      stdout: (text) => cliStdout.push(text),
+      stderr: (text) => cliStderr.push(text),
+    },
+    {
+      env: environment,
+      startServer: (options) =>
+        startMcpServer({
+          ...options,
+          stdin: serverInput,
+          stdout: serverOutput,
+          installSignalHandlers: false,
+          transportFactory: (_credentials, limits) => {
+            transportLimits.push({ ...limits });
+            return transport;
+          },
+        }).then((handle) => {
+          resolveStarted?.(handle);
+          return handle;
+        }),
+    },
+  );
+  const handle = await Promise.race([
+    started,
+    exitCode.then((code) => {
+      throw new Error(`CLI exited ${code} before starting the server: ${cliStderr.join("\n")}`);
+    }),
+  ]);
+  const client = new LineJsonRpcClient(serverInput, serverOutput);
+  await client.request("initialize", {
+    protocolVersion: LATEST_PROTOCOL_VERSION,
+    capabilities: {},
+    clientInfo: { name: "integration-cli-client", version: "1.0.0" },
+  });
+  client.notify("notifications/initialized");
+  return {
+    client,
+    cliStderr,
+    cliStdout,
+    exitCode,
+    handle,
+    requests,
+    serverInput,
+    transportLimits,
+  };
 }
 
 let temporaryDirectory: string;
@@ -151,15 +226,11 @@ async function closeServer(serverInput: PassThrough, handle: ServerHandle): Prom
 }
 
 describe("MCP stdio contract", () => {
-  it("exposes the documented 28-tool default and rejects disabled or invalid calls", async () => {
-    const legacyDemoTools = catalogModule.operations
-      .filter((operation) => operation.toolsetId === "trading-demo" && operation.deprecated)
-      .map((operation) => operation.operationId)
-      .join(",");
+  it("exposes the 28-tool example set and rejects unlisted or invalid calls", async () => {
     const server = await startContractServer({
       ETORO_API_KEY: "integration-app-key",
       ETORO_USER_KEY: "integration-user-key",
-      ETORO_DISABLED_TOOLS: legacyDemoTools,
+      ETORO_ENABLED_TOOLSETS: "market-data,trading-demo",
     });
     try {
       expect(server.initialized.serverInfo).toEqual({
@@ -172,7 +243,11 @@ describe("MCP stdio contract", () => {
       expect(listed.tools).toHaveLength(28);
       expect(listed.tools.map((tool) => tool.name).sort()).toEqual(
         catalogModule.operations
-          .filter((operation) => operation.defaultEnabled)
+          .filter(
+            (operation) =>
+              (operation.toolsetId === "market-data" || operation.toolsetId === "trading-demo") &&
+              !operation.deprecated,
+          )
           .map((operation) => operation.operationId)
           .sort(),
       );
@@ -189,6 +264,60 @@ describe("MCP stdio contract", () => {
       expect(server.client.nonJsonLines).toEqual([]);
     } finally {
       await closeServer(server.serverInput, server.handle);
+    }
+  });
+
+  it("applies CLI safety negation and request limits to the composed stdio server", async () => {
+    const server = await startServerThroughCli(
+      ["--no-allow-real-money", "--timeout-ms", "44444", "--max-response-bytes", "12345678"],
+      {
+        ETORO_API_KEY: "integration-app-key",
+        ETORO_USER_KEY: "integration-user-key",
+        ETORO_ENABLED_TOOLSETS: "market-data,trading-real",
+        ETORO_ALLOW_REAL_MONEY: "true",
+      },
+    );
+    const realMoneyOperation = catalogModule.operations.find(
+      (operation) => operation.operationId === "createTradingExecutionOrders",
+    );
+    const ratesOperation = catalogModule.operations.find(
+      (operation) => operation.operationId === "getRates",
+    );
+    if (realMoneyOperation === undefined || ratesOperation === undefined) {
+      throw new Error("Expected catalog operations were not found");
+    }
+    try {
+      const listed = (await server.client.request("tools/list", {})) as {
+        tools: { name: string }[];
+      };
+      const toolNames = listed.tools.map((tool) => tool.name);
+      expect(toolNames).toContain("getTradingInfoRealPnl");
+      expect(toolNames).not.toContain(realMoneyOperation.operationId);
+      await expect(
+        server.client.request("tools/call", {
+          name: realMoneyOperation.operationId,
+          arguments: validArgumentsForOperation(realMoneyOperation, sampleContext),
+        }),
+      ).rejects.toThrow(/createTradingExecutionOrders/u);
+
+      const ratesResult = (await server.client.request("tools/call", {
+        name: ratesOperation.operationId,
+        arguments: validArgumentsForOperation(ratesOperation, sampleContext),
+      })) as { structuredContent?: EtoroCallResult };
+      expect(ratesResult.structuredContent?.ok).toBe(true);
+      expect(server.requests.map((request) => request.operationId)).toEqual([
+        ratesOperation.operationId,
+      ]);
+      expect(server.transportLimits).toEqual([
+        { requestTimeoutMs: 44444, maxResponseBytes: 12345678 },
+      ]);
+      expect(server.cliStdout).toEqual([]);
+      expect(server.cliStderr).toEqual([]);
+      expect(server.client.nonJsonLines).toEqual([]);
+    } finally {
+      server.serverInput.end();
+      await server.handle.closed;
+      await expect(server.exitCode).resolves.toBe(0);
     }
   });
 

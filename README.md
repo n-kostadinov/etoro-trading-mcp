@@ -1,6 +1,6 @@
 # eToro Trading MCP
 
-Local [Model Context Protocol](https://modelcontextprotocol.io) server for eToro's public Swagger UI API, focused by default on stock/instrument market data and virtual demo trading.
+Local [Model Context Protocol](https://modelcontextprotocol.io) server for eToro's public Swagger UI API. Its main purpose is **configuration for AI agents**: you register it once in an MCP client and enable exactly the toolsets your agent needs. The command line exists only for local inspection (`tools list`, `config validate`), not for day-to-day use.
 
 [![npm](https://img.shields.io/npm/v/etoro-trading-mcp)](https://www.npmjs.com/package/etoro-trading-mcp)
 [![CI](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/ci.yml)
@@ -21,22 +21,16 @@ The agent-facing guide is also available as [raw Markdown](https://raw.githubuse
 ## What you get
 
 - **197 fine-grained MCP tools** generated from eToro Swagger UI—one tool per REST operation.
-- **27 configurable toolsets**: market data, demo and real trading, watchlists, social feeds, rankings, balances, transfers, and more.
-- **28 safe defaults**: 11 market-data tools and 17 current demo-trading tools.
+- **27 toolsets, all disabled by default**: listing toolsets or tools in configuration is the only way to enable them. Enabling a toolset enables every tool in it.
+- **Demo-safe example configuration**: `ETORO_ENABLED_TOOLSETS=market-data,trading-demo` enables 28 tools (11 market-data tools and 17 current demo-trading tools) without touching real money.
 - Real-money mutations stay hidden unless you enable their tools **and** set `ETORO_ALLOW_REAL_MONEY=true`.
 - Legacy operations remain available only through an explicit `includeDeprecated` opt-in.
 - TypeScript, Node.js 22+, stdio transport, and one npx command—no global install.
 - Automatic request IDs, shared rate-limit tracking, conservative retries, structured HTTP responses, and credential redaction.
 
-## Quick look
+## Quick look: configure your agent
 
-```bash
-npx -y etoro-trading-mcp@1.0.0 --version
-npx -y etoro-trading-mcp@1.0.0 tools list
-npx -y etoro-trading-mcp@1.0.0 config validate
-```
-
-A typical MCP client entry looks like this:
+All toolsets are disabled by default. A typical, demo-safe MCP client entry:
 
 ```json
 {
@@ -47,6 +41,7 @@ A typical MCP client entry looks like this:
       "env": {
         "ETORO_API_KEY": "<user-supplied-application-key>",
         "ETORO_USER_KEY": "<user-supplied-user-key>",
+        "ETORO_ENABLED_TOOLSETS": "market-data,trading-demo",
         "ETORO_ALLOW_REAL_MONEY": "false"
       }
     }
@@ -56,11 +51,65 @@ A typical MCP client entry looks like this:
 
 Credentials are environment-only. An API key pair and user key, or an OAuth bearer token, can be used—never both and never a portal password.
 
+### How to enable tools
+
+| Purpose                                      | Environment variable                              | JSON file property                                   |
+| -------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------- |
+| Enable toolsets (every tool in each toolset) | `ETORO_ENABLED_TOOLSETS=market-data,trading-demo` | `"enabledToolsets": ["market-data", "trading-demo"]` |
+| Enable individual tools                      | `ETORO_ENABLED_TOOLS=getRates,getMe`              | `"enabledTools": ["getRates", "getMe"]`              |
+| Permit legacy tools                          | `ETORO_INCLUDE_DEPRECATED=true`                   | `"includeDeprecated": true`                          |
+| Permit real-money mutations                  | `ETORO_ALLOW_REAL_MONEY=true`                     | `"allowRealMoney": true`                             |
+
+Environment lists are comma-separated; JSON properties take arrays. Precedence is built-in defaults < JSON file (`ETORO_CONFIG`) < environment < CLI flags, with higher layers replacing (not merging) lists. The same example as an explicit JSON file (`ETORO_CONFIG=/absolute/path/to/etoro-mcp.config.json`):
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/n-kostadinov/etoro-trading-mcp/main/schemas/config.schema.json",
+  "enabledToolsets": ["market-data", "trading-demo"],
+  "includeDeprecated": false,
+  "allowRealMoney": false
+}
+```
+
+See [Configuration](docs/configuration.md) for every setting.
+
+Two safety gates stay separate from selection: legacy tools additionally require `includeDeprecated`, and real-money mutations additionally require `allowRealMoney`. Real-money mutations live in four toolsets—`trading-real`, `copy-trading`, `transfer`, and `sub-accounts-etoro-trading`—so enabling those toolsets exposes live-funds operations only when the second gate is also set.
+
+### Available toolsets (27)
+
+| Toolset             | Current | Legacy |     | Toolset                         | Current | Legacy |
+| ------------------- | ------: | -----: | --- | ------------------------------- | ------: | -----: |
+| `agent-portfolios`  |       7 |      3 |     | `rankings`                      |       7 |      0 |
+| `app-data`          |       1 |      0 |     | `social-feeds`                  |      37 |      4 |
+| `balances`          |       6 |      0 |     | `sso-applications`              |       5 |      0 |
+| `cash-accounts`     |       1 |      0 |     | `sso-scopes`                    |       1 |      0 |
+| `clubs`             |       1 |      0 |     | `sub-accounts`                  |       2 |      0 |
+| `copy-trading` ⚠️   |       5 |      0 |     | `sub-accounts-etoro-trading` ⚠️ |       6 |      0 |
+| `copy-trading-demo` |       5 |      0 |     | `top-assets`                    |       1 |      0 |
+| `data`              |       4 |      0 |     | `trading-demo`                  |      17 |      6 |
+| `identity`          |       1 |      0 |     | `trading-real` ⚠️               |      17 |      6 |
+| `market-data`       |      11 |      0 |     | `transfer` ⚠️                   |       7 |      0 |
+| `notifications`     |       2 |      0 |     | `user-stats`                    |       4 |      0 |
+| `pi-data`           |       1 |      0 |     | `users-info`                    |       6 |      0 |
+| `portfolio-search`  |       1 |      0 |     | `watchlists`                    |      18 |      0 |
+| `price-alerts`      |       4 |      0 |     |                                 |         |        |
+
+⚠️ marks toolsets containing real-money mutations (gated by `allowRealMoney` regardless of selection). "Current" tools are enabled with the toolset; "legacy" tools additionally need `includeDeprecated`. Every operation ID is listed in the [tool reference](docs/tools.md); the toolset breakdown is in [toolsets](docs/toolsets.md).
+
+### Local inspection (secondary)
+
+The CLI never contacts eToro for these commands and works without credentials:
+
+```bash
+npx -y etoro-trading-mcp@1.0.0 tools list --all    # every operation and its state
+npx -y etoro-trading-mcp@1.0.0 config validate     # effective settings and warnings
+```
+
 ## Documentation
 
 - [INSTALL](INSTALL.md) — complete agent and manual setup guide
 - [Configuration](docs/configuration.md) — file/environment/CLI precedence and every setting
-- [Toolsets](docs/toolsets.md) — all 27 toolsets, counts, and defaults
+- [Toolsets](docs/toolsets.md) — all 27 toolsets with counts
 - [Tool reference](docs/tools.md) — every generated tool, request, scope alternative, and replacement
 - [Trading](docs/trading.md) — demo versus real money, scopes, asynchronous orders, and safety
 - [Security](docs/security.md) — credentials, local files, diagnostics, and untrusted content
