@@ -226,15 +226,11 @@ async function closeServer(serverInput: PassThrough, handle: ServerHandle): Prom
 }
 
 describe("MCP stdio contract", () => {
-  it("exposes the documented 28-tool default and rejects disabled or invalid calls", async () => {
-    const legacyDemoTools = catalogModule.operations
-      .filter((operation) => operation.toolsetId === "trading-demo" && operation.deprecated)
-      .map((operation) => operation.operationId)
-      .join(",");
+  it("exposes the 28-tool example set and rejects unlisted or invalid calls", async () => {
     const server = await startContractServer({
       ETORO_API_KEY: "integration-app-key",
       ETORO_USER_KEY: "integration-user-key",
-      ETORO_DISABLED_TOOLS: legacyDemoTools,
+      ETORO_ENABLED_TOOLSETS: "market-data,trading-demo",
     });
     try {
       expect(server.initialized.serverInfo).toEqual({
@@ -247,7 +243,11 @@ describe("MCP stdio contract", () => {
       expect(listed.tools).toHaveLength(28);
       expect(listed.tools.map((tool) => tool.name).sort()).toEqual(
         catalogModule.operations
-          .filter((operation) => operation.defaultEnabled)
+          .filter(
+            (operation) =>
+              (operation.toolsetId === "market-data" || operation.toolsetId === "trading-demo") &&
+              !operation.deprecated,
+          )
           .map((operation) => operation.operationId)
           .sort(),
       );
@@ -273,7 +273,7 @@ describe("MCP stdio contract", () => {
       {
         ETORO_API_KEY: "integration-app-key",
         ETORO_USER_KEY: "integration-user-key",
-        ETORO_ENABLED_TOOLSETS: "trading-real",
+        ETORO_ENABLED_TOOLSETS: "market-data,trading-real",
         ETORO_ALLOW_REAL_MONEY: "true",
       },
     );

@@ -38,8 +38,6 @@ describe("generated OpenAPI and tool catalogs", () => {
     expect(catalog.operations).toHaveLength(197);
     expect(catalog.operations.filter((operation) => operation.deprecated)).toHaveLength(19);
     expect(catalog.operations.filter((operation) => operation.sourceDeprecated)).toHaveLength(7);
-    expect(catalog.defaultToolsets).toEqual(["market-data", "trading-demo"]);
-    expect(catalog.defaultToolCount).toBe(28);
     expect(catalog.warnings).toEqual([]);
     const count = (toolset: string) =>
       catalog.operations.filter((operation) => operation.toolsetId === toolset).length;

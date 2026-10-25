@@ -11,8 +11,25 @@ const expectedVersion = (
     version: string;
   }
 ).version;
-const expectedEnabledTools = catalogModule.operations.filter(
-  (operation) => operation.defaultEnabled,
+const readme = await readFile(path.join(repositoryRoot, "README.md"), "utf8");
+const readmeExample = readme.match(/ETORO_ENABLED_TOOLSETS[":= ]+([a-z0-9,-]+)/u);
+const readmeExampleValue = readmeExample?.[1];
+if (readmeExampleValue === undefined) {
+  throw new Error("README.md does not demonstrate ETORO_ENABLED_TOOLSETS");
+}
+const exampleToolsets = readmeExampleValue.split(",");
+for (const id of exampleToolsets) {
+  if (!catalogModule.toolsets.some((toolset) => toolset.id === id)) {
+    throw new Error(`README.md example references unknown toolset ${id}`);
+  }
+}
+// The shipped README example must enable exactly the catalog operations it
+// names that survive both safety gates, independently of the registry.
+const expectedExampleEnabledTools = catalogModule.operations.filter(
+  (operation) =>
+    exampleToolsets.includes(operation.toolsetId) &&
+    !operation.deprecated &&
+    !operation.realMoneyMutation,
 ).length;
 const expectedCatalogOperations = catalogModule.operations.length;
 const requiredFiles = [
@@ -107,10 +124,14 @@ try {
   });
   const installedRoot = path.join(installDirectory, "node_modules", "etoro-trading-mcp");
   const installedCli = path.join(installedRoot, "dist", "cli.js");
-  const runCli = async (arguments_: string[]) => {
+  const runCli = async (
+    arguments_: string[],
+    environment: Record<string, string> = {},
+  ): Promise<string> => {
     const result = spawnSync(process.execPath, [installedCli, ...arguments_], {
       cwd: installDirectory,
       encoding: "utf8",
+      env: { ...process.env, ...environment },
     });
     if (result.status !== 0) {
       throw new Error(`Installed CLI ${arguments_.join(" ")} failed:\n${String(result.stderr)}`);
@@ -119,9 +140,16 @@ try {
   };
   const version = (await runCli(["--version"])).trim();
   const help = await runCli(["--help"]);
-  const tools = JSON.parse(await runCli(["tools", "list", "--json"])) as {
+  const bareTools = JSON.parse(await runCli(["tools", "list", "--json"])) as {
     enabledCount: number;
     catalogOperationCount: number;
+  };
+  const exampleTools = JSON.parse(
+    await runCli(["tools", "list", "--json"], {
+      ETORO_ENABLED_TOOLSETS: readmeExampleValue,
+    }),
+  ) as {
+    enabledCount: number;
   };
   const configuration = JSON.parse(await runCli(["config", "validate", "--json"])) as {
     valid: boolean;
@@ -129,14 +157,15 @@ try {
   const installGuide = await readFile(path.join(installedRoot, "INSTALL.md"), "utf8");
   if (
     version !== expectedVersion ||
-    tools.enabledCount !== expectedEnabledTools ||
-    tools.catalogOperationCount !== expectedCatalogOperations ||
+    bareTools.enabledCount !== 0 ||
+    exampleTools.enabledCount !== expectedExampleEnabledTools ||
+    bareTools.catalogOperationCount !== expectedCatalogOperations ||
     !configuration.valid ||
     !help.includes("Usage:") ||
     !installGuide.includes("Agent rules")
   ) {
     throw new Error(
-      `Installed package smoke check failed; version=${version}; tools=${JSON.stringify(tools)}; valid=${String(configuration.valid)}`,
+      `Installed package smoke check failed; version=${version}; bareTools=${JSON.stringify(bareTools)}; exampleTools=${JSON.stringify(exampleTools)}; valid=${String(configuration.valid)}`,
     );
   }
   console.log(
@@ -144,8 +173,10 @@ try {
       {
         packageFileCount: files.length,
         version,
-        enabledTools: tools.enabledCount,
-        catalogOperations: tools.catalogOperationCount,
+        defaultEnabledTools: bareTools.enabledCount,
+        exampleToolsets: exampleToolsets.join(","),
+        exampleEnabledTools: exampleTools.enabledCount,
+        catalogOperations: bareTools.catalogOperationCount,
         validConfiguration: configuration.valid,
         installGuideIncluded: true,
       },

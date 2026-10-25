@@ -11,9 +11,7 @@ import type {
 
 export const defaultRuntimeSettings: RuntimeSettings = {
   enabledToolsets: [],
-  disabledToolsets: [],
   enabledTools: [],
-  disabledTools: [],
   includeDeprecated: false,
   allowRealMoney: false,
   requestTimeoutMs: 30_000,
@@ -54,7 +52,15 @@ function validateLayer(
     ajv.errors !== null
   ) {
     const details = ajv.errors
-      .map((error) => `${error.instancePath || "/"} ${error.message ?? "is invalid"}`)
+      .map((error) => {
+        const additionalProperty = (error.params as { additionalProperty?: string } | undefined)
+          ?.additionalProperty;
+        const location =
+          additionalProperty === undefined
+            ? error.instancePath || "/"
+            : `${error.instancePath || ""}/${additionalProperty}`;
+        return `${location} ${error.message ?? "is invalid"}`;
+      })
       .join("; ");
     throw new Error(`${layerName} failed schema validation: ${details}`);
   }

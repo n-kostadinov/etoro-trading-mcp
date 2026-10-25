@@ -12,9 +12,7 @@ export interface CliInvocation {
 
 const LIST_FLAGS: Record<string, keyof ConfigurationLayer> = {
   "--enable-toolset": "enabledToolsets",
-  "--disable-toolset": "disabledToolsets",
   "--enable-tool": "enabledTools",
-  "--disable-tool": "disabledTools",
 };
 
 const LOG_LEVELS: LogLevel[] = ["error", "warn", "info", "debug"];

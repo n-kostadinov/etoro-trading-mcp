@@ -44,38 +44,24 @@ function statusReason(status: Omit<ToolStatus, "reason">): string {
   if (status.blockedBy.includes("deprecated")) {
     return "blocked: legacy tools require includeDeprecated";
   }
-  if (status.blockedBy.includes("real-money")) {
-    return "blocked: real-money mutations require allowRealMoney";
-  }
-  return "disabled";
+  return "blocked: real-money mutations require allowRealMoney";
 }
 
 export function resolveToolRegistry(catalog: ToolCatalog, settings: RuntimeSettings): ToolRegistry {
   const validToolsets = new Set(catalog.toolsets.map((toolset) => toolset.id));
   const validTools = new Set(catalog.operations.map((operation) => operation.operationId));
-  rejectUnknownNames(
-    [...settings.enabledToolsets, ...settings.disabledToolsets],
-    validToolsets,
-    "toolset",
-  );
-  rejectUnknownNames([...settings.enabledTools, ...settings.disabledTools], validTools, "tool");
+  rejectUnknownNames(settings.enabledToolsets, validToolsets, "toolset");
+  rejectUnknownNames(settings.enabledTools, validTools, "tool");
 
-  const enabledToolsets = new Set(
-    [...catalog.defaultToolsets, ...settings.enabledToolsets].filter(
-      (toolset) => !settings.disabledToolsets.includes(toolset),
-    ),
-  );
+  const enabledToolsets = new Set(settings.enabledToolsets);
   const enabledTools = new Set(settings.enabledTools);
-  const disabledTools = new Set(settings.disabledTools);
   const statuses: ToolStatus[] = [];
   const enabledOperations: CatalogOperation[] = [];
   const warnings: string[] = [];
 
   for (const operation of catalog.operations) {
-    const individuallyEnabled = enabledTools.has(operation.operationId);
-    const explicitlyDisabled = disabledTools.has(operation.operationId);
     const selected =
-      (enabledToolsets.has(operation.toolsetId) || individuallyEnabled) && !explicitlyDisabled;
+      enabledToolsets.has(operation.toolsetId) || enabledTools.has(operation.operationId);
     const blockedBy: ToolBlockReason[] = [];
     if (selected && operation.deprecated && !settings.includeDeprecated) {
       blockedBy.push("deprecated");
@@ -95,9 +81,6 @@ export function resolveToolRegistry(catalog: ToolCatalog, settings: RuntimeSetti
     statuses.push({ ...partialStatus, reason: statusReason(partialStatus) });
     if (partialStatus.enabled) {
       enabledOperations.push(operation);
-    }
-    if (individuallyEnabled && explicitlyDisabled) {
-      warnings.push(`${operation.operationId} is both enabled and disabled; disable wins`);
     }
     if (selected && blockedBy.length > 0) {
       warnings.push(`${operation.operationId} is selected but blocked (${blockedBy.join(", ")})`);

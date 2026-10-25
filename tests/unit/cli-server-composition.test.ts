@@ -38,7 +38,6 @@ describe("CLI to server composition", () => {
     const reader = configurationReader({
       "server-config.json": JSON.stringify({
         enabledToolsets: ["watchlists"],
-        disabledToolsets: ["trading-demo"],
         requestTimeoutMs: 20000,
         maxResponseBytes: 2097152,
         logLevel: "warn",
@@ -51,8 +50,6 @@ describe("CLI to server composition", () => {
         "server-config.json",
         "--no-include-deprecated",
         "--no-allow-real-money",
-        "--disable-tool",
-        "getMe",
         "--timeout-ms",
         "45000",
         "--max-response-bytes",
@@ -88,9 +85,7 @@ describe("CLI to server composition", () => {
     expect(starts).toHaveLength(1);
     expect(starts[0]?.settings).toEqual({
       enabledToolsets: ["balances"],
-      disabledToolsets: ["trading-demo"],
       enabledTools: [],
-      disabledTools: ["getMe"],
       includeDeprecated: false,
       allowRealMoney: false,
       requestTimeoutMs: 45000,

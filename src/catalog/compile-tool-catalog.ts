@@ -30,7 +30,6 @@ export function validatePolicyOverrides(value: unknown): CatalogPolicyOverrides 
   }
   const policy: CatalogPolicyOverrides = {
     schemaVersion: 1,
-    defaultToolsets: stringArray(value.defaultToolsets, "defaultToolsets"),
     toolsets: stringRecord(value.toolsets, "toolsets"),
     readOnlyOperations: stringArray(value.readOnlyOperations, "readOnlyOperations"),
     realMoneyMutationOperations: stringArray(
@@ -46,11 +45,6 @@ export function validatePolicyOverrides(value: unknown): CatalogPolicyOverrides 
   for (const id of toolsetIds) {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
       throw new Error(`Invalid toolset ID ${id}`);
-    }
-  }
-  for (const id of policy.defaultToolsets) {
-    if (!toolsetIds.includes(id)) {
-      throw new Error(`Default toolset ${id} is not mapped to a Swagger tag`);
     }
   }
   return policy;
@@ -205,8 +199,6 @@ export function compileToolCatalog(options: {
       replacementOperationId,
       readOnly,
       realMoneyMutation,
-      defaultEnabled:
-        policy.defaultToolsets.includes(toolsetId) && !deprecated && !realMoneyMutation,
       oauthScopeAlternatives: scopes,
       descriptionForTool: toolDescription(operation, policyState, scopes),
       annotations: {
@@ -228,15 +220,12 @@ export function compileToolCatalog(options: {
     legacyOperations: operations.filter(
       (operation) => operation.toolsetId === id && operation.deprecated,
     ).length,
-    defaultEnabled: policy.defaultToolsets.includes(id),
   }));
 
   return {
     schemaVersion: 1,
     sourceVersion: manifest.sourceVersion,
     sourceCanonicalSha256: manifest.sourceCanonicalSha256,
-    defaultToolsets: [...policy.defaultToolsets],
-    defaultToolCount: operations.filter((operation) => operation.defaultEnabled).length,
     toolsets: toolsets.sort((left, right) => left.id.localeCompare(right.id)),
     operations: operations.sort((left, right) => left.operationId.localeCompare(right.operationId)),
     warnings: sourceWarnings(sourceIds, coreIds, deprecatedIds),

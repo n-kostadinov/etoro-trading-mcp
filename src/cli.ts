@@ -24,11 +24,9 @@ Usage:
   etoro-trading-mcp --version
   etoro-trading-mcp --help
 
-Tool selection:
-  --enable-toolset <id>      Enable a toolset in addition to the defaults
-  --disable-toolset <id>     Disable a toolset
-  --enable-tool <operation>  Enable one operation even if its toolset is disabled
-  --disable-tool <operation> Disable one operation; this wins over every enable rule
+Tool selection (all toolsets are disabled by default; listing enables):
+  --enable-toolset <id>      Enable a toolset and all of its tools
+  --enable-tool <operation>  Enable one operation without its whole toolset
   --include-deprecated       Include legacy operations (default: false)
   --no-include-deprecated
   --allow-real-money         Permit selected real-money mutations (default: false)

@@ -6,7 +6,6 @@ export interface SourceManifestForNotes {
 export interface CatalogForNotes {
   sourceVersion: string;
   sourceCanonicalSha256: string;
-  defaultToolCount: number;
   toolsets: unknown[];
   operations: unknown[];
   warnings: string[];
@@ -95,7 +94,6 @@ ${section.body}
 - Canonical SHA-256: \`${input.catalog.sourceCanonicalSha256}\`
 - Source snapshot retrieved: \`${input.sourceManifest.retrievedAt}\`
 - Tool catalog: **${input.catalog.operations.length} operations** across **${input.catalog.toolsets.length} toolsets**
-- Default exposure: **${input.catalog.defaultToolCount} current tools**
 ${input.catalog.warnings.length > 0 ? `- Publication warnings: ${input.catalog.warnings.join("; ")}` : "- Publication surfaces are consistent."}
 
 ## Install
