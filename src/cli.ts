@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { realpathSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -193,9 +194,12 @@ export async function runCli(
   }
 }
 
+// The ESM loader resolves symlinks when it computes import.meta.url, so the
+// entry path must be resolved the same way before comparing (for example macOS
+// temp directories sit behind the /var -> /private/var symlink).
 const invokedAsBinary =
   process.argv[1] !== undefined &&
-  pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
+  pathToFileURL(realpathSync(path.resolve(process.argv[1]))).href === import.meta.url;
 
 if (invokedAsBinary) {
   const args = process.argv.slice(2);
