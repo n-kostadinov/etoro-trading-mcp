@@ -2,6 +2,8 @@
 
 Local [Model Context Protocol](https://modelcontextprotocol.io) server for eToro's public Swagger UI API. Its main purpose is **configuration for AI agents**: you register it once in an MCP client and enable exactly the toolsets your agent needs. The command line exists only for local inspection (`tools list`, `config validate`), not for day-to-day use.
 
+**This MCP is scanning the eToro APIs for updates daily**: an automated daily job downloads eToro's current OpenAPI documents, detects upstream changes, and opens a pull request with fully regenerated and verified tools—nothing is merged or published automatically.
+
 [![npm](https://img.shields.io/npm/v/etoro-trading-mcp)](https://www.npmjs.com/package/etoro-trading-mcp)
 [![CI](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/ci.yml)
 [![Release](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/release.yml/badge.svg)](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/release.yml)
@@ -50,6 +52,15 @@ All toolsets are disabled by default. A typical, demo-safe MCP client entry:
 ```
 
 Credentials are environment-only. An API key pair and user key, or an OAuth bearer token, can be used—never both and never a portal password.
+
+### Where to find `x-api-key` and `x-user-key`
+
+The key pair comes from eToro's **API Key Management** page—open the [annotated screenshot](keys_explained.png) to see exactly which value is which:
+
+- **`x-api-key`** — the **Public Key** shown at the top of the page. It identifies your application and is supplied to this server as `ETORO_API_KEY`.
+- **`x-user-key`** — one of the keys you create with **Create Your API Key**; it appears in the **Generated Keys** list, identifies your eToro user, and is supplied as `ETORO_USER_KEY`.
+
+Every authenticated request sends both headers together. Start with a **Demo** key with **Read & Write** permissions; see [INSTALL.md](INSTALL.md#2-obtain-etoro-credentials) for the full walkthrough.
 
 ### How to enable tools
 
