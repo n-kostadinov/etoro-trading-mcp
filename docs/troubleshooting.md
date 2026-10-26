@@ -4,7 +4,7 @@
 
 **`npx` cannot find Node or exits immediately**
 - Require Node.js 22 or newer: `node --version`.
-- Try `npx -y etoro-trading-mcp@1.0.0 --version`.
+- Try `npx -y etoro-trading-mcp@1.0.1 --version`.
 - Behind a proxy, configure npm and Node environment variables according to your organization's policy.
 
 **The server appears to hang**
@@ -16,8 +16,8 @@ With no inspection subcommand, the executable is a stdio MCP server. It waits on
 Run:
 
 ```bash
-npx -y etoro-trading-mcp@1.0.0 config validate
-npx -y etoro-trading-mcp@1.0.0 tools list --all
+npx -y etoro-trading-mcp@1.0.1 config validate
+npx -y etoro-trading-mcp@1.0.1 tools list --all
 ```
 
 Nothing is enabled by default. Check that `ETORO_ENABLED_TOOLSETS` or `ETORO_ENABLED_TOOLS` is set for the server process. An empty list is allowed but produces a startup warning.

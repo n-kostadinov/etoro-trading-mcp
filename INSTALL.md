@@ -30,11 +30,11 @@ Require Node.js `>=22`. If Node is older, stop and ask the user how they want to
 Check the package without credentials:
 
 ```bash
-npx -y etoro-trading-mcp@1.0.0 --version
-npx -y etoro-trading-mcp@1.0.0 tools list
+npx -y etoro-trading-mcp@1.0.1 --version
+npx -y etoro-trading-mcp@1.0.1 tools list
 ```
 
-`--version` must print `1.0.0`. `tools list` must report **0 enabled tools**: nothing is enabled until you list toolsets. Neither command contacts eToro.
+`--version` must print `1.0.1`. `tools list` must report **0 enabled tools**: nothing is enabled until you list toolsets. Neither command contacts eToro.
 
 ## 2. Obtain eToro credentials
 
@@ -65,7 +65,7 @@ A standard client entry is:
   "mcpServers": {
     "etoro": {
       "command": "npx",
-      "args": ["-y", "etoro-trading-mcp@1.0.0"],
+      "args": ["-y", "etoro-trading-mcp@1.0.1"],
       "env": {
         "ETORO_API_KEY": "<user-supplied-application-key>",
         "ETORO_USER_KEY": "<user-supplied-user-key>",
@@ -98,8 +98,8 @@ Before saving:
 Run with the same `ETORO_ENABLED_TOOLSETS` value:
 
 ```bash
-ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.0 config validate --json
-ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.0 tools list --json
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.1 config validate --json
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.1 tools list --json
 ```
 
 Expected:
@@ -110,7 +110,7 @@ Expected:
 To inspect all available operations and their blocked reasons:
 
 ```bash
-npx -y etoro-trading-mcp@1.0.0 tools list --all
+npx -y etoro-trading-mcp@1.0.1 tools list --all
 ```
 
 ## 5. Restart and authorize a read-only smoke check

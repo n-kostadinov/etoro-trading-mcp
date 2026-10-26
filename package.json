@@ -1,6 +1,7 @@
 {
   "name": "etoro-trading-mcp",
-  "version": "1.0.0",
+  "mcpName": "io.github.n-kostadinov/etoro-trading-mcp",
+  "version": "1.0.1",
   "description": "Local TypeScript MCP server for eToro's complete Swagger UI API with toolsets enabled only through explicit allowlists.",
   "license": "MIT",
   "author": "Nikolay Kostadinov",

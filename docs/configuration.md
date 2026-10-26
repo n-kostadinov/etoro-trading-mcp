@@ -65,7 +65,7 @@ Run it explicitly:
 ETORO_API_KEY="$ETORO_API_KEY" \
 ETORO_USER_KEY="$ETORO_USER_KEY" \
 ETORO_CONFIG="/absolute/path/to/etoro-mcp.config.json" \
-npx -y etoro-trading-mcp@1.0.0
+npx -y etoro-trading-mcp@1.0.1
 ```
 
 There is deliberately no automatic search of the current directory or home directory. This prevents an untrusted project from changing your tool exposure merely because you run npx there.
@@ -75,19 +75,19 @@ There is deliberately no automatic search of the current directory or home direc
 Enable the demo-safe example set:
 
 ```bash
-ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.0
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.1
 ```
 
 Enable market data plus watchlists instead:
 
 ```bash
-ETORO_ENABLED_TOOLSETS=market-data,watchlists npx -y etoro-trading-mcp@1.0.0
+ETORO_ENABLED_TOOLSETS=market-data,watchlists npx -y etoro-trading-mcp@1.0.1
 ```
 
 Enable one current tool without its whole toolset:
 
 ```bash
-ETORO_ENABLED_TOOLS=getMe npx -y etoro-trading-mcp@1.0.0
+ETORO_ENABLED_TOOLS=getMe npx -y etoro-trading-mcp@1.0.1
 ```
 
 A legacy tool needs both its selection and the legacy gate, for example:
@@ -95,7 +95,7 @@ A legacy tool needs both its selection and the legacy gate, for example:
 ```bash
 ETORO_ENABLED_TOOLS=postFeedsPost \
 ETORO_INCLUDE_DEPRECATED=true \
-npx -y etoro-trading-mcp@1.0.0
+npx -y etoro-trading-mcp@1.0.1
 ```
 
 A real-money mutation needs both its selection and the real-money gate. Do not set the second gate unless you intended to permit live funds movement.
@@ -105,11 +105,11 @@ A real-money mutation needs both its selection and the real-money gate. Do not s
 These commands never contact eToro and work without credentials.
 
 ```bash
-npx -y etoro-trading-mcp@1.0.0 tools list
-npx -y etoro-trading-mcp@1.0.0 tools list --all
-npx -y etoro-trading-mcp@1.0.0 tools list --json
-npx -y etoro-trading-mcp@1.0.0 config validate
-npx -y etoro-trading-mcp@1.0.0 config validate --json
+npx -y etoro-trading-mcp@1.0.1 tools list
+npx -y etoro-trading-mcp@1.0.1 tools list --all
+npx -y etoro-trading-mcp@1.0.1 tools list --json
+npx -y etoro-trading-mcp@1.0.1 config validate
+npx -y etoro-trading-mcp@1.0.1 config validate --json
 ```
 
 `tools list --all` shows every catalog operation with its toolset, request identity, and one of these states:

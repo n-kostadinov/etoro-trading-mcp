@@ -1,0 +1,61 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.n-kostadinov/etoro-trading-mcp",
+  "title": "eToro Trading MCP",
+  "description": "197 eToro API tools for agents: market data, watchlists, feeds, demo and real trading.",
+  "websiteUrl": "https://github.com/n-kostadinov/etoro-trading-mcp",
+  "repository": {
+    "url": "https://github.com/n-kostadinov/etoro-trading-mcp",
+    "source": "github"
+  },
+  "version": "1.0.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "etoro-trading-mcp",
+      "version": "1.0.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "ETORO_API_KEY",
+          "description": "eToro application public key (x-api-key); pair with ETORO_USER_KEY",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "ETORO_USER_KEY",
+          "description": "eToro generated user key (x-user-key); pair with ETORO_API_KEY",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "ETORO_ACCESS_TOKEN",
+          "description": "OAuth bearer token; alternative to the key pair, never both",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "ETORO_ENABLED_TOOLSETS",
+          "description": "Comma-separated toolsets to enable; every toolset is off by default",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string",
+          "default": "market-data,trading-demo"
+        },
+        {
+          "name": "ETORO_ALLOW_REAL_MONEY",
+          "description": "Set true to permit real-money mutations in addition to enabling their tools",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "boolean",
+          "default": "false"
+        }
+      ]
+    }
+  ]
+}
