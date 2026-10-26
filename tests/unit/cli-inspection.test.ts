@@ -1,5 +1,11 @@
+import { createRequire } from "node:module";
 import { describe, expect, it } from "vitest";
 import { runCli } from "../../src/cli.js";
+
+const require = createRequire(import.meta.url);
+const { version: packageVersion } = require("../../package.json") as {
+  version: string;
+};
 
 function capture() {
   const stdout: string[] = [];
@@ -18,7 +24,7 @@ describe("inspection CLI", () => {
   it("reports the package version", async () => {
     const cli = capture();
     await expect(runCli(["--version"], cli.output, { env: {} })).resolves.toBe(0);
-    expect(cli.stdout()).toContain("1.0.0");
+    expect(cli.stdout()).toContain(packageVersion);
   });
 
   it("lists only enabled tools by default and all states with --all", async () => {

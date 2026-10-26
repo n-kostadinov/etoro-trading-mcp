@@ -1,3 +1,4 @@
+import { createRequire } from "node:module";
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -12,6 +13,11 @@ import { readCredentialConfiguration } from "../../src/transport/credentials.js"
 import { startMcpServer, type ServerHandle } from "../../src/mcp/start-server.js";
 import type { EtoroCallResult, EtoroTransport, ToolArguments } from "../../src/transport/types.js";
 import { validArgumentsForOperation, type SampleContext } from "./sample-arguments.js";
+
+const require = createRequire(import.meta.url);
+const { version: packageVersion } = require("../../package.json") as {
+  version: string;
+};
 
 interface RecordedRequest {
   operationId: string;
@@ -235,7 +241,7 @@ describe("MCP stdio contract", () => {
     try {
       expect(server.initialized.serverInfo).toEqual({
         name: "etoro-trading-mcp",
-        version: "1.0.0",
+        version: packageVersion,
       });
       const listed = (await server.client.request("tools/list", {})) as {
         tools: { name: string }[];
