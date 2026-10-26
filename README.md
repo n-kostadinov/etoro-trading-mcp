@@ -56,7 +56,6 @@ Credentials are environment-only. An API key pair and user key, or an OAuth bear
 ### Where to find `x-api-key` and `x-user-key`
 
 The key pair comes from eToro's **API Key Management** page—open the [annotated screenshot](keys_explained.png) to see exactly which value is which:
-
 - **`x-api-key`** — the **Public Key** shown at the top of the page. It identifies your application and is supplied to this server as `ETORO_API_KEY`.
 - **`x-user-key`** — one of the keys you create with **Create Your API Key**; it appears in the **Generated Keys** list, identifies your eToro user, and is supplied as `ETORO_USER_KEY`.
 
