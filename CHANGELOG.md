@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-31
+
+### Removed
+
+- `social-feeds` toolset (37 current and 4 legacy tools): eToro withdrew all social feed endpoints—feeds, posts, reactions, and attachments—from the published API documents in Swagger v1.402.0, following their deprecation notice of 2026-06-17 and withdrawal notice of 2026-08-18. Configurations that reference `social-feeds` or any of its tools now fail validation with the offending name.
+
+### Changed
+
+- Catalog refreshed from eToro Swagger UI v1.400.0 to v1.402.0: 156 tools across 26 toolsets.
+
 ## [1.0.1] - 2026-10-26
 
 ### Added

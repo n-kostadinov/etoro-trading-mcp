@@ -30,11 +30,11 @@ Require Node.js `>=22`. If Node is older, stop and ask the user how they want to
 Check the package without credentials:
 
 ```bash
-npx -y etoro-trading-mcp@1.0.1 --version
-npx -y etoro-trading-mcp@1.0.1 tools list
+npx -y etoro-trading-mcp@1.1.0 --version
+npx -y etoro-trading-mcp@1.1.0 tools list
 ```
 
-`--version` must print `1.0.1`. `tools list` must report **0 enabled tools**: nothing is enabled until you list toolsets. Neither command contacts eToro.
+`--version` must print `1.1.0`. `tools list` must report **0 enabled tools**: nothing is enabled until you list toolsets. Neither command contacts eToro.
 
 ## 2. Obtain eToro credentials
 
@@ -65,7 +65,7 @@ A standard client entry is:
   "mcpServers": {
     "etoro": {
       "command": "npx",
-      "args": ["-y", "etoro-trading-mcp@1.0.1"],
+      "args": ["-y", "etoro-trading-mcp@1.1.0"],
       "env": {
         "ETORO_API_KEY": "<user-supplied-application-key>",
         "ETORO_USER_KEY": "<user-supplied-user-key>",
@@ -98,19 +98,19 @@ Before saving:
 Run with the same `ETORO_ENABLED_TOOLSETS` value:
 
 ```bash
-ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.1 config validate --json
-ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.0.1 tools list --json
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.1.0 config validate --json
+ETORO_ENABLED_TOOLSETS=market-data,trading-demo npx -y etoro-trading-mcp@1.1.0 tools list --json
 ```
 
 Expected:
 - `config validate`: `valid: true`, enabled toolsets `market-data` and `trading-demo`, 28 enabled tools.
-- `tools list`: `enabledCount: 28`, `catalogOperationCount: 197`.
+- `tools list`: `enabledCount: 28`, `catalogOperationCount: 156`.
 - Without `ETORO_ENABLED_TOOLSETS`, `enabledCount` is 0 because nothing is enabled by default.
 
 To inspect all available operations and their blocked reasons:
 
 ```bash
-npx -y etoro-trading-mcp@1.0.1 tools list --all
+npx -y etoro-trading-mcp@1.1.0 tools list --all
 ```
 
 ## 5. Restart and authorize a read-only smoke check
@@ -188,6 +188,6 @@ Report back only the following, without credential values:
 - Node version and package version;
 - authentication method selected (key pair or bearer), not the secret;
 - client configuration file updated and backed up;
-- local validation counts (expected 28 of 197 with the example toolsets, 0 with none listed);
+- local validation counts (expected 28 of 156 with the example toolsets, 0 with none listed);
 - whether a read-only market-data smoke check was authorized and its outcome;
 - any remaining user action, normally just restarting the MCP client.
