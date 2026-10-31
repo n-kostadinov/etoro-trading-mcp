@@ -11,10 +11,14 @@ import { asOpenApiDocument, type OpenApiDocument } from "../src/openapi/model.js
 const dryRun = process.argv.includes("--dry-run");
 
 function run(command: string, arguments_: string[]): string {
-  const executable = process.platform === "win32" && command === "npm" ? "npm.cmd" : command;
+  const windowsNpm = process.platform === "win32" && command === "npm";
+  const executable = windowsNpm ? "npm.cmd" : command;
   const result = spawnSync(executable, arguments_, {
     cwd: repositoryRoot,
     encoding: "utf8",
+    // npm.cmd cannot be spawned directly on Windows (EINVAL since Node's
+    // CVE-2024-27980 mitigation); route it through the shell instead.
+    shell: windowsNpm,
   });
   if (result.status !== 0) {
     throw new Error(

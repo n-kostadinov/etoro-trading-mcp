@@ -1,8 +1,8 @@
 # Tool reference
 
-This file is generated from eToro Swagger UI **v1.400.0** (canonical SHA-256 `f4243522d5c4407feee7141846095f9ee80fc2ef1b3da64b320354510b2a8858`). Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.402.0** (canonical SHA-256 `8bc740629648eaa660ebe15f3d7ef19c8d87b8acdeaa07f6c4eb72ad4cecf61e`). Do not edit it directly; run `npm run generate`.
 
-The catalog contains **197 tools** in **27 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
+The catalog contains **156 tools** in **26 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
 
 - OAuth scopes listed in one alternative are alternatives to the key-pair authentication method; separate rows separated by OR are alternatives to each other. See [trading.md](trading.md).
 - Real-money mutations require the separate `allowRealMoney` opt-in in addition to tool selection.
@@ -39,16 +39,6 @@ The catalog contains **197 tools** in **27 toolsets**. All toolsets are disabled
 | `deleteAgentPortfoliosByAgentPortfolioId` | agent-portfolios | `DELETE /api/v1/agent-portfolios/{agentPortfolioId}` | no | no | no | 60/60s, default shared pool | etoro-public:real:write<br>OR etoro-public:agent-portfolio:write | --- |
 | `deleteAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenId` | agent-portfolios | `DELETE /api/v1/agent-portfolios/{agentPortfolioId}/user-tokens/{userTokenId}` | no | no | no | 60/60s, default shared pool | etoro-public:real:write<br>OR etoro-public:agent-portfolio:write | --- |
 | `deleteApplicationsByClientId` | sso-applications | `DELETE /api/v1/sso/applications/{clientId}` | no | no | no | 60/60s, default shared pool | etoro-public:sso-applications:write | --- |
-| `deletePostsByPostId` | social-feeds | `DELETE /api/v1/posts/{postId}` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdCommentsByCommentId` | social-feeds | `DELETE /api/v1/posts/{postId}/comments/{commentId}` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdCommentsByCommentIdLikes` | social-feeds | `DELETE /api/v1/posts/{postId}/comments/{commentId}/likes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdCommentsByCommentIdRepliesByReplyId` | social-feeds | `DELETE /api/v1/posts/{postId}/comments/{commentId}/replies/{replyId}` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdCommentsByCommentIdRepliesByReplyIdLikes` | social-feeds | `DELETE /api/v1/posts/{postId}/comments/{commentId}/replies/{replyId}/likes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdFollows` | social-feeds | `DELETE /api/v1/posts/{postId}/follows` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdLikes` | social-feeds | `DELETE /api/v1/posts/{postId}/likes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdPins` | social-feeds | `DELETE /api/v1/posts/{postId}/pins` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdPollsByPollIdOptionsByOptionIdVotes` | social-feeds | `DELETE /api/v1/posts/{postId}/polls/{pollId}/options/{optionId}/votes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `deletePostsByPostIdSaves` | social-feeds | `DELETE /api/v1/posts/{postId}/saves` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
 | `deletePriceAlertsByAlertId` | price-alerts | `DELETE /api/v1/price-alerts/{alertId}` | no | no | no | 60/60s, default shared pool | etoro-public:price-alerts:write | --- |
 | `deleteSubAccountUserToken` | sub-accounts-etoro-trading | `DELETE /api/v1/sub-accounts/etoro-trading/user-tokens/{userTokenId}` | no | no | no | 60/60s, default shared pool | etoro-public:sub-accounts:write | --- |
 | `deleteTradingExecutionDemoLimitOrdersByOrderId` | trading-demo | `DELETE /api/v1/trading/execution/demo/limit-orders/{orderId}` | yes | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:trade.demo:write | --- |
@@ -65,7 +55,7 @@ The catalog contains **197 tools** in **27 toolsets**. All toolsets are disabled
 | `deleteWatchlistsByWatchlistIdItems` | watchlists | `DELETE /api/v1/watchlists/{watchlistId}/items` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
 | `getAgentPortfolios` | agent-portfolios | `GET /api/v1/agent-portfolios` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:real:write<br>OR etoro-public:agent-portfolio:read<br>OR etoro-public:agent-portfolio:write | --- |
 | `getAgentPortfoliosScopes` | agent-portfolios | `GET /api/v2/agent-portfolios/user-tokens/scopes` | no | yes | no | 60/60s, default shared pool | etoro-public:agent-portfolio:read<br>OR etoro-public:agent-portfolio:write | --- |
-| `getAggregatedPortfolio` | trading-real | `GET /api/v1/trading/info/aggregate-portfolio` | no | yes | no | 60/60s, shared pool | etoro-public:trade.real:read<br>OR etoro-public:trade.real:write | --- |
+| `getAggregatedPortfolio` | trading-real | `GET /api/v1/trading/info/aggregate-portfolio` | no | yes | no | 60/60s, shared pool | etoro-public:trade.real:read | --- |
 | `getAggregatedPortfolioDemo` | trading-demo | `GET /api/v1/trading/info/demo/aggregate-portfolio` | no | yes | no | 60/60s, shared pool | etoro-public:trade.demo:read | --- |
 | `getApplications` | sso-applications | `GET /api/v1/sso/applications` | no | yes | no | 60/60s, default shared pool | etoro-public:sso-applications:read<br>OR etoro-public:sso-applications:write | --- |
 | `getAssetsHistory` | user-stats | `GET /api/v2/portfolios/{username}/assets/history` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
@@ -80,15 +70,6 @@ The catalog contains **197 tools** in **27 toolsets**. All toolsets are disabled
 | `getCostDemo` | trading-demo | `POST /api/v2/trading/info/demo/costs` | no | yes | no | 20/60s | etoro-public:demo:read<br>OR etoro-public:demo:write<br>OR etoro-public:trade.demo:read<br>OR etoro-public:trade.demo:write | --- |
 | `getCuratedLists` | watchlists | `GET /api/v1/curated-lists` | no | yes | no | 60/60s | etoro-public:demo:read<br>OR etoro-public:real:read<br>OR etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:read<br>OR etoro-public:watchlist:write | --- |
 | `getExposureHistory` | user-stats | `GET /api/v2/portfolios/{username}/exposure/history` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
-| `getFeedsFollowing` | social-feeds | `GET /api/v1/feeds/following` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
-| `getFeedsForYou` | social-feeds | `GET /api/v1/feeds/for-you` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
-| `getFeedsInstrumentByMarketId` | social-feeds | `GET /api/v1/feeds/instrument/{marketId}` | yes | yes | no | 60/60s, shared pool | (unscoped OAuth) | `getFeedsMarketsByMarketId` |
-| `getFeedsMarketsByMarketId` | social-feeds | `GET /api/v1/feeds/markets/{marketId}` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
-| `getFeedsNews` | social-feeds | `GET /api/v1/feeds/news` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
-| `getFeedsSaved` | social-feeds | `GET /api/v1/feeds/saved` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
-| `getFeedsUserByUserId` | social-feeds | `GET /api/v1/feeds/user/{userId}` | yes | yes | no | 60/60s, shared pool | (unscoped OAuth) | `getFeedsUsersByUserId` |
-| `getFeedsUsersByUserId` | social-feeds | `GET /api/v1/feeds/users/{userId}` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
-| `getFeedsUsersByUserIdPinned` | social-feeds | `GET /api/v1/feeds/users/{userId}/pinned` | no | yes | no | 60/60s, shared pool | (unscoped OAuth) | --- |
 | `getGainHistory` | user-stats | `GET /api/v2/portfolios/{username}/gain/{granularity}` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
 | `getHistoricalBalanceByAccount` | balances | `GET /api/v1/balances/{accountType}/{accountId}/history` | no | yes | no | 60/60s, default shared pool | etoro-public:money.balance:read | --- |
 | `getHistoricalBalances` | balances | `GET /api/v1/balances/history` | no | yes | no | 60/60s, default shared pool | etoro-public:money.balance:read | --- |
@@ -117,10 +98,6 @@ The catalog contains **197 tools** in **27 toolsets**. All toolsets are disabled
 | `getPortfolioRankingsByPreset` | rankings | `GET /api/v2/portfolios/rankings/presets/{type}` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
 | `getPortfoliosRankings` | rankings | `GET /api/v2/portfolios/rankings` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
 | `getPortfoliosRankingsSummary` | rankings | `GET /api/v2/portfolios/rankings/summary` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
-| `getPostsByPostId` | social-feeds | `GET /api/v1/posts/{postId}` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
-| `getPostsByPostIdComments` | social-feeds | `GET /api/v1/posts/{postId}/comments` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
-| `getPostsByPostIdCommentsByCommentIdReplies` | social-feeds | `GET /api/v1/posts/{postId}/comments/{commentId}/replies` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
-| `getPostsByPostIdShares` | social-feeds | `GET /api/v1/posts/{postId}/shares` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
 | `getPriceAlerts` | price-alerts | `GET /api/v1/price-alerts` | no | yes | no | 60/60s, default shared pool | etoro-public:price-alerts:read | --- |
 | `getPriceCandleCoverage` | data | `GET /api/v1/data/instruments/{instrumentId}/candles/coverage` | no | yes | no | 120/60s, shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:market-data:read | --- |
 | `getPriceCandles` | data | `GET /api/v1/data/instruments/{instrumentId}/candles` | no | yes | no | 120/60s, shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:market-data:read | --- |
@@ -167,32 +144,14 @@ The catalog contains **197 tools** in **27 toolsets**. All toolsets are disabled
 | `lookupTransfersByRequestReferenceId` | transfer | `GET /api/v1/money/transfers:lookup` | no | yes | no | 60/60s, default shared pool | etoro-public:money.transfer:read | --- |
 | `patchNotificationsMessages` | notifications | `PATCH /api/v1/notifications/messages` | no | no | no | 60/60s, default shared pool | etoro-public:notifications:write | --- |
 | `patchPriceAlertsByAlertId` | price-alerts | `PATCH /api/v1/price-alerts/{alertId}` | no | no | no | 60/60s, default shared pool | etoro-public:price-alerts:write | --- |
-| `postAggregatedPortfolio` | trading-real | `POST /api/v1/trading/info/aggregate-portfolio` | no | yes | no | 60/60s, shared pool | etoro-public:trade.real:read<br>OR etoro-public:trade.real:write | --- |
+| `postAggregatedPortfolio` | trading-real | `POST /api/v1/trading/info/aggregate-portfolio` | no | yes | no | 60/60s, shared pool | etoro-public:trade.real:read | --- |
 | `postAggregatedPortfolioDemo` | trading-demo | `POST /api/v1/trading/info/demo/aggregate-portfolio` | no | yes | no | 60/60s, shared pool | etoro-public:trade.demo:read | --- |
-| `postAttachments` | social-feeds | `POST /api/v1/attachments` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postFeedsPost` | social-feeds | `POST /api/v1/feeds/post` | yes | no | no | 20/60s | etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:feed:write | `postPosts` |
 | `postMoneyTransfer` | transfer | `POST /api/v1/money/transfers` | no | no | yes | 60/60s, default shared pool | etoro-public:money.transfer:write | --- |
-| `postPosts` | social-feeds | `POST /api/v1/posts` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdComments` | social-feeds | `POST /api/v1/posts/{postId}/comments` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdCommentsByCommentIdLikes` | social-feeds | `POST /api/v1/posts/{postId}/comments/{commentId}/likes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdCommentsByCommentIdReplies` | social-feeds | `POST /api/v1/posts/{postId}/comments/{commentId}/replies` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdCommentsByCommentIdRepliesByReplyIdLikes` | social-feeds | `POST /api/v1/posts/{postId}/comments/{commentId}/replies/{replyId}/likes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdFollows` | social-feeds | `POST /api/v1/posts/{postId}/follows` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdLikes` | social-feeds | `POST /api/v1/posts/{postId}/likes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdPins` | social-feeds | `POST /api/v1/posts/{postId}/pins` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdPollsByPollIdOptionsByOptionIdVotes` | social-feeds | `POST /api/v1/posts/{postId}/polls/{pollId}/options/{optionId}/votes` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsByPostIdSaves` | social-feeds | `POST /api/v1/posts/{postId}/saves` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsPolls` | social-feeds | `POST /api/v1/posts/polls` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `postPostsShares` | social-feeds | `POST /api/v1/posts/shares` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
 | `postPriceAlerts` | price-alerts | `POST /api/v1/price-alerts` | no | no | no | 60/60s, default shared pool | etoro-public:price-alerts:write | --- |
-| `postReactionsByPostIdComment` | social-feeds | `POST /api/v1/reactions/{postId}/comment` | yes | no | no | 20/60s | etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:feed:write | `postPostsByPostIdComments` |
 | `postWatchlists` | watchlists | `POST /api/v1/watchlists` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
 | `postWatchlistsByWatchlistIdItems` | watchlists | `POST /api/v1/watchlists/{watchlistId}/items` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
 | `postWatchlistsDefaultWatchlistSelectedItems` | watchlists | `POST /api/v1/watchlists/default-watchlist/selected-items` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
 | `postWatchlistsNewasdefaultWatchlist` | watchlists | `POST /api/v1/watchlists/newasdefault-watchlist` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
-| `putPostsByPostId` | social-feeds | `PUT /api/v1/posts/{postId}` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `putPostsByPostIdCommentsByCommentId` | social-feeds | `PUT /api/v1/posts/{postId}/comments/{commentId}` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
-| `putPostsByPostIdCommentsByCommentIdRepliesByReplyId` | social-feeds | `PUT /api/v1/posts/{postId}/comments/{commentId}/replies/{replyId}` | no | no | no | 60/60s, default shared pool | etoro-public:feed:write | --- |
 | `putWatchlistsByWatchlistId` | watchlists | `PUT /api/v1/watchlists/{watchlistId}` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
 | `putWatchlistsByWatchlistIdItems` | watchlists | `PUT /api/v1/watchlists/{watchlistId}/items` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |
 | `putWatchlistsRankByWatchlistId` | watchlists | `PUT /api/v1/watchlists/rank/{watchlistId}` | no | no | no | 20/60s, shared pool | etoro-public:demo:write<br>OR etoro-public:real:write<br>OR etoro-public:watchlist:write | --- |

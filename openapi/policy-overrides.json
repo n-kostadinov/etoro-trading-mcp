@@ -16,7 +16,6 @@
     "PortfolioSearch": "portfolio-search",
     "Price Alerts": "price-alerts",
     "Rankings": "rankings",
-    "Social Feeds": "social-feeds",
     "SSO - Applications": "sso-applications",
     "SSO - Scopes": "sso-scopes",
     "Sub-Accounts": "sub-accounts",
@@ -42,10 +41,6 @@
   "replacements": {
     "createAgentPortfolios": "createAgentPortfoliosV2",
     "createAgentPortfoliosByAgentPortfolioIdUserTokens": "createAgentPortfoliosByAgentPortfolioIdUserTokensV2",
-    "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenId": "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenIdV2",
-    "getFeedsInstrumentByMarketId": "getFeedsMarketsByMarketId",
-    "getFeedsUserByUserId": "getFeedsUsersByUserId",
-    "postFeedsPost": "postPosts",
-    "postReactionsByPostIdComment": "postPostsByPostIdComments"
+    "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenId": "updateAgentPortfoliosByAgentPortfolioIdUserTokensByUserTokenIdV2"
   }
 }

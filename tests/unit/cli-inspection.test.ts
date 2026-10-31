@@ -37,7 +37,7 @@ describe("inspection CLI", () => {
       catalogOperationCount: number;
       tools: unknown[];
     };
-    expect(unconfiguredJson).toMatchObject({ enabledCount: 0, catalogOperationCount: 197 });
+    expect(unconfiguredJson).toMatchObject({ enabledCount: 0, catalogOperationCount: 156 });
     expect(unconfiguredJson.tools).toHaveLength(0);
 
     const example = capture();
@@ -56,7 +56,7 @@ describe("inspection CLI", () => {
       }),
     ).resolves.toBe(0);
     const allJson = JSON.parse(all.stdout()) as { tools: { reason: string }[] };
-    expect(allJson.tools).toHaveLength(197);
+    expect(allJson.tools).toHaveLength(156);
     expect(allJson.tools.some((tool) => tool.reason.includes("legacy tools"))).toBe(true);
 
     const realMoney = capture();

@@ -1,6 +1,6 @@
 # Toolsets
 
-This file is generated from eToro Swagger UI **v1.400.0**. Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.402.0**. Do not edit it directly; run `npm run generate`.
 
 All toolsets are disabled by default. Enable them through `enabledToolsets` / `ETORO_ENABLED_TOOLSETS`; enabling a toolset enables all of its tools. See the README quick look for a sample configuration and [configuration.md](configuration.md) for precedence and safety gates.
 
@@ -21,7 +21,6 @@ All toolsets are disabled by default. Enable them through `enabledToolsets` / `E
 | `portfolio-search` | PortfolioSearch | 1 | 0 | 1 |
 | `price-alerts` | Price Alerts | 4 | 0 | 4 |
 | `rankings` | Rankings | 7 | 0 | 7 |
-| `social-feeds` | Social Feeds | 37 | 4 | 41 |
 | `sso-applications` | SSO - Applications | 5 | 0 | 5 |
 | `sso-scopes` | SSO - Scopes | 1 | 0 | 1 |
 | `sub-accounts` | Sub-Accounts | 2 | 0 | 2 |
@@ -51,7 +50,6 @@ All toolsets are disabled by default. Enable them through `enabledToolsets` / `E
 - `portfolio-search`
 - `price-alerts`
 - `rankings`
-- `social-feeds`
 - `sso-applications`
 - `sso-scopes`
 - `sub-accounts`

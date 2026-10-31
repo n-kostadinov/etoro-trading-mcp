@@ -2,12 +2,13 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import type { CatalogOperation } from "../../src/catalog/types.js";
 import catalog from "../../src/generated/tool-catalog.js";
+import type { CredentialConfiguration } from "../../src/transport/credentials.js";
 import {
   serializeRequest,
   TransportSerializationError,
 } from "../../src/transport/request-serialization.js";
-import type { CredentialConfiguration } from "../../src/transport/credentials.js";
 
 const credentials: CredentialConfiguration = {
   type: "apiKey",
@@ -22,6 +23,105 @@ function operation(operationId: string) {
     throw new Error(`Missing operation ${operationId}`);
   }
   return found;
+}
+
+function attachmentUpload(): CatalogOperation {
+  // Mirrors the postAttachments operation as generated from the withdrawn
+  // v1.400.0 Social Feeds surface: the multipart serializer must keep
+  // supporting binary uploads should eToro reintroduce them.
+  const fileProperty = {
+    type: "object",
+    additionalProperties: false,
+    required: ["filePath"],
+    properties: {
+      filePath: {
+        type: "string",
+        minLength: 1,
+        description: "Absolute or working-directory-relative path to the local file to upload.",
+      },
+      fileName: {
+        type: "string",
+        minLength: 1,
+        description: "Optional filename sent to eToro; defaults to the filePath basename.",
+      },
+      contentType: {
+        type: "string",
+        minLength: 1,
+        description: "Optional media type; validated against the actual file content.",
+      },
+    },
+    "x-etoro-local-file": true,
+    description:
+      "Required. The image file to upload. Supported formats: JPEG and PNG. Maximum size: 8 MB (8,388,608 bytes), enforced server-side.",
+  };
+  const bodySchema = {
+    properties: { file: fileProperty },
+    required: ["file"],
+    type: "object",
+  };
+  return {
+    ...structuredClone(operation("postMoneyTransfer")),
+    operationId: "postAttachments",
+    method: "POST",
+    path: "/api/v1/attachments",
+    parameters: [
+      {
+        name: "x-request-id",
+        in: "header",
+        required: true,
+        deprecated: false,
+        description: "A unique request identifier.",
+        style: "simple",
+        explode: false,
+        allowReserved: false,
+        allowEmptyValue: false,
+        schema: { format: "uuid", type: "string" },
+      },
+      {
+        name: "client_request_id",
+        in: "query",
+        required: true,
+        deprecated: false,
+        description:
+          "Client-generated correlation ID (UUID). Required for request tracing and idempotency.",
+        style: "form",
+        explode: true,
+        allowReserved: false,
+        allowEmptyValue: false,
+        schema: { format: "uuid", type: "string" },
+      },
+    ],
+    requestBody: {
+      required: true,
+      description: "",
+      mediaType: "multipart/form-data",
+      schema: bodySchema,
+      hasBinary: true,
+    },
+    inputSchema: {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        query: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            client_request_id: { format: "uuid", type: "string" },
+          },
+          required: ["client_request_id"],
+        },
+        headers: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            "x-request-id": { format: "uuid", type: "string" },
+          },
+        },
+        body: bodySchema,
+      },
+      required: ["query", "body"],
+    },
+  } as CatalogOperation;
 }
 
 beforeEach(async () => {
@@ -149,7 +249,7 @@ describe("request serialization", () => {
     const filePath = path.join(temporaryDirectory, "chart.png");
     await writeFile(filePath, png);
     const request = await serializeRequest(
-      operation("postAttachments"),
+      attachmentUpload(),
       {
         query: { client_request_id: "22222222-2222-4222-8222-222222222222" },
         body: { file: { filePath, fileName: "chart.png" } },
@@ -161,7 +261,7 @@ describe("request serialization", () => {
     expect(request.query).toBe("client_request_id=22222222-2222-4222-8222-222222222222");
     await expect(
       serializeRequest(
-        operation("postAttachments"),
+        attachmentUpload(),
         {
           query: { client_request_id: "22222222-2222-4222-8222-222222222222" },
           body: { file: { filePath, contentType: "image/jpeg" } },
@@ -174,7 +274,7 @@ describe("request serialization", () => {
     await writeFile(textPath, "plain text");
     await expect(
       serializeRequest(
-        operation("postAttachments"),
+        attachmentUpload(),
         {
           query: { client_request_id: "22222222-2222-4222-8222-222222222222" },
           body: { file: { filePath: textPath } },
@@ -192,7 +292,7 @@ describe("request serialization", () => {
     await writeFile(oversizedPath, Buffer.concat([pngMagic, Buffer.alloc(8 * 1024 * 1024)]));
     await expect(
       serializeRequest(
-        operation("postAttachments"),
+        attachmentUpload(),
         {
           query: { client_request_id: "22222222-2222-4222-8222-222222222222" },
           body: { file: { filePath: oversizedPath } },

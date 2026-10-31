@@ -73,6 +73,6 @@ describe("catalog policy validation", () => {
     expect(catalog.warnings[0]).toMatch(
       /Swagger UI operations absent from both portal documents:.*getWatchlists/u,
     );
-    expect(catalog.operations).toHaveLength(197);
+    expect(catalog.operations).toHaveLength(156);
   });
 });
