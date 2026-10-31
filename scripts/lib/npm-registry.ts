@@ -43,17 +43,6 @@ export function assertVersionUnpublished(
   );
 }
 
-export function verifyPublishedVersion(
-  name: string,
-  version: string,
-  output: CommandOutput,
-): PublishedVersion {
-  if (isRegistryAbsent(output)) {
-    throw new Error(`npm does not list ${name}@${version}; publication did not succeed`);
-  }
-  return parsePublishedVersion(name, version, output);
-}
-
 export function parsePublishedVersion(
   name: string,
   version: string,

@@ -4,7 +4,6 @@ import {
   isRegistryAbsent,
   parsePublishedVersion,
   registryViewArguments,
-  verifyPublishedVersion,
   type CommandOutput,
 } from "../../scripts/lib/npm-registry.js";
 
@@ -69,39 +68,10 @@ describe("npm registry lookup", () => {
     ).toThrow(/registry lookup for etoro-trading-mcp@1\.0\.0 failed/u);
   });
 
-  it("verifies a published version with tarball and provenance metadata", () => {
-    expect(verifyPublishedVersion("etoro-trading-mcp", "1.0.0", publishedView)).toEqual({
-      version: "1.0.0",
-      tarballUrl: "https://registry.npmjs.org/etoro-trading-mcp/-/etoro-trading-mcp-1.0.0.tgz",
-      provenanceAttestation: true,
-    });
-  });
-
-  it("reports provenance attestations as optional", () => {
-    const withoutAttestations = output({
-      stdout: JSON.stringify({
-        name: "etoro-trading-mcp",
-        version: "1.0.0",
-        dist: { tarball: "https://registry.npmjs.org/etoro-trading-mcp/-/x.tgz" },
-      }),
-    });
-    expect(
-      verifyPublishedVersion("etoro-trading-mcp", "1.0.0", withoutAttestations)
-        .provenanceAttestation,
-    ).toBe(false);
-  });
-
-  it("rejects metadata for the wrong version, an absent listing, or malformed output", () => {
-    expect(() => verifyPublishedVersion("etoro-trading-mcp", "1.0.1", publishedView)).toThrow(
+  it("rejects metadata for the wrong version or malformed output", () => {
+    expect(() => parsePublishedVersion("etoro-trading-mcp", "1.0.1", publishedView)).toThrow(
       /reports version 1\.0\.0/u,
     );
-    expect(() =>
-      verifyPublishedVersion(
-        "etoro-trading-mcp",
-        "1.0.0",
-        output({ status: 1, stderr: "npm error code E404" }),
-      ),
-    ).toThrow(/does not list etoro-trading-mcp@1\.0\.0/u);
     expect(() =>
       parsePublishedVersion("etoro-trading-mcp", "1.0.0", output({ stdout: "{broken" })),
     ).toThrow(/unreadable output/u);

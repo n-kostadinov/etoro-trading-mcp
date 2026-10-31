@@ -31,7 +31,6 @@
     "lint": "biome lint .",
     "pack:check": "tsx scripts/check-package.ts",
     "prepack": "npm run build",
-    "publication:verify": "tsx scripts/verify-publication.ts",
     "release:notes": "tsx scripts/release-notes.ts",
     "release:validate": "tsx scripts/validate-release.ts",
     "swagger:diff": "tsx scripts/swagger-diff.ts",
