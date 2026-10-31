@@ -63,19 +63,19 @@ describe("tool registry selection and safety policy", () => {
   it("keeps legacy and real-money safety gates above selection rules", () => {
     const legacyBlocked = resolveToolRegistry(
       catalog,
-      settings({ enabledTools: ["postFeedsPost"] }),
+      settings({ enabledTools: ["createAgentPortfolios"] }),
     );
-    expect(status(legacyBlocked, "postFeedsPost").enabled).toBe(false);
-    expect(status(legacyBlocked, "postFeedsPost").blockedBy).toEqual(["deprecated"]);
+    expect(status(legacyBlocked, "createAgentPortfolios").enabled).toBe(false);
+    expect(status(legacyBlocked, "createAgentPortfolios").blockedBy).toEqual(["deprecated"]);
     expect(legacyBlocked.warnings).toContainEqual(
       "No tools are enabled; the MCP server will expose an empty tool list",
     );
 
     const legacyEnabled = resolveToolRegistry(
       catalog,
-      settings({ enabledTools: ["postFeedsPost"], includeDeprecated: true }),
+      settings({ enabledTools: ["createAgentPortfolios"], includeDeprecated: true }),
     );
-    expect(status(legacyEnabled, "postFeedsPost").enabled).toBe(true);
+    expect(status(legacyEnabled, "createAgentPortfolios").enabled).toBe(true);
 
     const realMoneyBlocked = resolveToolRegistry(
       catalog,

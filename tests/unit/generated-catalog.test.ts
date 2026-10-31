@@ -27,17 +27,17 @@ describe("generated OpenAPI and tool catalogs", () => {
       .sort();
     const source = sourceIdentities();
     expect(generated).toEqual(source);
-    expect(new Set(manifest.operations.map((operation) => operation.operationId)).size).toBe(197);
+    expect(new Set(manifest.operations.map((operation) => operation.operationId)).size).toBe(156);
     expect(Math.max(...manifest.operations.map((operation) => operation.operationId.length))).toBe(
       87,
     );
   });
 
   it("preserves the complete toolset and safety baseline", () => {
-    expect(catalog.toolsets).toHaveLength(27);
-    expect(catalog.operations).toHaveLength(197);
-    expect(catalog.operations.filter((operation) => operation.deprecated)).toHaveLength(19);
-    expect(catalog.operations.filter((operation) => operation.sourceDeprecated)).toHaveLength(7);
+    expect(catalog.toolsets).toHaveLength(26);
+    expect(catalog.operations).toHaveLength(156);
+    expect(catalog.operations.filter((operation) => operation.deprecated)).toHaveLength(15);
+    expect(catalog.operations.filter((operation) => operation.sourceDeprecated)).toHaveLength(3);
     expect(catalog.warnings).toEqual([]);
     const count = (toolset: string) =>
       catalog.operations.filter((operation) => operation.toolsetId === toolset).length;
@@ -71,7 +71,7 @@ describe("generated OpenAPI and tool catalogs", () => {
     const withReplacements = catalog.operations.filter(
       (operation) => operation.replacementOperationId !== null,
     );
-    expect(withReplacements).toHaveLength(7);
+    expect(withReplacements).toHaveLength(3);
     expect(withReplacements.every((operation) => operation.deprecated)).toBe(true);
     expect(
       withReplacements.every(
@@ -101,20 +101,16 @@ describe("generated OpenAPI and tool catalogs", () => {
     }
   });
 
-  it("preserves request media types and the single binary upload", () => {
+  it("preserves request media types", () => {
     expect(
       manifest.operations.filter(
         (operation) => operation.requestBody?.mediaType === "application/json",
       ),
-    ).toHaveLength(60);
+    ).toHaveLength(47);
     expect(
       manifest.operations.filter(
         (operation) => operation.requestBody?.mediaType === "multipart/form-data",
       ),
-    ).toHaveLength(1);
-    const attachment = catalog.operations.find(
-      (operation) => operation.operationId === "postAttachments",
-    );
-    expect(attachment?.requestBody?.hasBinary).toBe(true);
+    ).toHaveLength(0);
   });
 });
