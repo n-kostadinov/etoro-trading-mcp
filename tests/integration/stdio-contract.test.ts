@@ -339,8 +339,8 @@ describe("MCP stdio contract", () => {
       const listed = (await server.client.request("tools/list", {})) as {
         tools: { name: string }[];
       };
-      expect(listed.tools).toHaveLength(156);
-      expect(new Set(listed.tools.map((tool) => tool.name)).size).toBe(156);
+      expect(listed.tools).toHaveLength(157);
+      expect(new Set(listed.tools.map((tool) => tool.name)).size).toBe(157);
 
       const failures: string[] = [];
       for (const operation of catalogModule.operations) {
@@ -354,8 +354,8 @@ describe("MCP stdio contract", () => {
       }
       expect(failures).toEqual([]);
 
-      expect(server.requests).toHaveLength(156);
-      expect(new Set(server.requests.map((request) => request.operationId)).size).toBe(156);
+      expect(server.requests).toHaveLength(157);
+      expect(new Set(server.requests.map((request) => request.operationId)).size).toBe(157);
       expect(server.requests.map((request) => `${request.method} ${request.path}`).sort()).toEqual(
         catalogModule.operations.map((operation) => `${operation.method} ${operation.path}`).sort(),
       );
