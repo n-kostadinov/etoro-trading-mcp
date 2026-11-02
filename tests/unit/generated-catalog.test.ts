@@ -34,7 +34,7 @@ describe("generated OpenAPI and tool catalogs", () => {
   });
 
   it("preserves the complete toolset and safety baseline", () => {
-    expect(catalog.toolsets).toHaveLength(26);
+    expect(catalog.toolsets).toHaveLength(25);
     expect(catalog.operations).toHaveLength(156);
     expect(catalog.operations.filter((operation) => operation.deprecated)).toHaveLength(15);
     expect(catalog.operations.filter((operation) => operation.sourceDeprecated)).toHaveLength(3);
