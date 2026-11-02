@@ -56,7 +56,7 @@ describe("inspection CLI", () => {
       }),
     ).resolves.toBe(0);
     const allJson = JSON.parse(all.stdout()) as { tools: { reason: string }[] };
-    expect(allJson.tools).toHaveLength(156);
+    expect(allJson.tools).toHaveLength(157);
     expect(allJson.tools.some((tool) => tool.reason.includes("legacy tools"))).toBe(true);
 
     const realMoney = capture();
