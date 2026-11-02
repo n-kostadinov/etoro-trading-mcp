@@ -1,8 +1,8 @@
 # Tool reference
 
-This file is generated from eToro Swagger UI **v1.404.0** (canonical SHA-256 `840f3bf942c109a33118cb10f60606d44502f5f21430c453147f359e40f2f41c`). Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.405.0** (canonical SHA-256 `8a1df41bcd753757fa833b0b2b0c96432c8ecc2c5cad5a7db4cb73e80ef1451f`). Do not edit it directly; run `npm run generate`.
 
-The catalog contains **156 tools** in **25 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
+The catalog contains **157 tools** in **26 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
 
 - OAuth scopes listed in one alternative are alternatives to the key-pair authentication method; separate rows separated by OR are alternatives to each other. See [trading.md](trading.md).
 - Real-money mutations require the separate `allowRealMoney` opt-in in addition to tool selection.
@@ -63,6 +63,7 @@ The catalog contains **156 tools** in **25 toolsets**. All toolsets are disabled
 | `getBalances` | balances | `GET /api/v1/balances` | no | yes | no | 60/60s, default shared pool | etoro-public:money.balance:read | --- |
 | `getBalancesByAccountType` | balances | `GET /api/v1/balances/{accountType}` | no | yes | no | 60/60s, default shared pool | etoro-public:money.balance:read | --- |
 | `getClosedPositionEventsHistory` | data | `GET /api/v1/data/positions/closed-events/history` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.demo:read | --- |
+| `getClubs` | clubs | `GET /api/v1/clubs` | no | yes | no | 60/60s, default shared pool | etoro-public:club:read | --- |
 | `getCopyTradingStatus` | copy-trading | `GET /api/v2/trading/copy/{referenceId}` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:real:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.real:write | --- |
 | `getCopyTradingStatusDemo` | copy-trading-demo | `GET /api/v2/trading/copy/demo/{referenceId}` | no | yes | no | 60/60s, default shared pool | etoro-public:demo:read<br>OR etoro-public:demo:write<br>OR etoro-public:trade.demo:read<br>OR etoro-public:trade.demo:write | --- |
 | `getCost` | trading-real | `POST /api/v2/trading/info/costs` | no | yes | no | 20/60s | etoro-public:real:read<br>OR etoro-public:real:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.real:write | --- |

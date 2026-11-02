@@ -1,6 +1,6 @@
 # Toolsets
 
-This file is generated from eToro Swagger UI **v1.404.0**. Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.405.0**. Do not edit it directly; run `npm run generate`.
 
 All toolsets are disabled by default. Enable them through `enabledToolsets` / `ETORO_ENABLED_TOOLSETS`; enabling a toolset enables all of its tools. See the README quick look for a sample configuration and [configuration.md](configuration.md) for precedence and safety gates.
 
@@ -10,6 +10,7 @@ All toolsets are disabled by default. Enable them through `enabledToolsets` / `E
 | `app-data` | App Data | 1 | 0 | 1 |
 | `balances` | Balances | 6 | 0 | 6 |
 | `cash-accounts` | Cash Accounts | 1 | 0 | 1 |
+| `clubs` | Clubs | 1 | 0 | 1 |
 | `copy-trading` | Copy Trading | 5 | 0 | 5 |
 | `copy-trading-demo` | Copy Trading - Demo | 5 | 0 | 5 |
 | `data` | Data | 5 | 0 | 5 |
@@ -38,6 +39,7 @@ All toolsets are disabled by default. Enable them through `enabledToolsets` / `E
 - `app-data`
 - `balances`
 - `cash-accounts`
+- `clubs`
 - `copy-trading`
 - `copy-trading-demo`
 - `data`
