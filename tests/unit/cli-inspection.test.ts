@@ -37,7 +37,7 @@ describe("inspection CLI", () => {
       catalogOperationCount: number;
       tools: unknown[];
     };
-    expect(unconfiguredJson).toMatchObject({ enabledCount: 0, catalogOperationCount: 156 });
+    expect(unconfiguredJson).toMatchObject({ enabledCount: 0, catalogOperationCount: 157 });
     expect(unconfiguredJson.tools).toHaveLength(0);
 
     const example = capture();

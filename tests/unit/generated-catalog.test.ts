@@ -38,7 +38,9 @@ describe("generated OpenAPI and tool catalogs", () => {
     expect(catalog.operations).toHaveLength(157);
     expect(catalog.operations.filter((operation) => operation.deprecated)).toHaveLength(15);
     expect(catalog.operations.filter((operation) => operation.sourceDeprecated)).toHaveLength(3);
-    expect(catalog.warnings).toEqual([]);
+    expect(catalog.warnings).toEqual([
+      "Swagger UI operations absent from both portal documents: getClubs",
+    ]);
     const count = (toolset: string) =>
       catalog.operations.filter((operation) => operation.toolsetId === toolset).length;
     expect(count("market-data")).toBe(11);
