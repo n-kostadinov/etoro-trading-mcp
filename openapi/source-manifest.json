@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-11-02T12:21:24.492Z",
+  "retrievedAt": "2026-11-02T13:04:59.648Z",
   "sources": {
     "swagger": {
       "id": "swagger",
       "file": "etoro.swagger.json",
       "url": "https://public-api.etoro.com/swagger/swagger.json",
-      "apiVersion": "v1.404.0",
+      "apiVersion": "v1.405.0",
       "openApiVersion": "3.0.1",
-      "operations": 156,
-      "rawSha256": "1fdc4c9f6a1950a7609b224d143af6bb3547ac373c4c36c05c96701e7655c682",
-      "canonicalSha256": "840f3bf942c109a33118cb10f60606d44502f5f21430c453147f359e40f2f41c"
+      "operations": 157,
+      "rawSha256": "c892afa97080745c444c09ab9ab537323f7b1cf63de03b0a0b1f5decea981b98",
+      "canonicalSha256": "8a1df41bcd753757fa833b0b2b0c96432c8ecc2c5cad5a7db4cb73e80ef1451f"
     },
     "core": {
       "id": "core",

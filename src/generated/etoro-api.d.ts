@@ -269,6 +269,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/clubs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get club dashboard data
+         * @description **Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.
+         *
+         *     ---
+         *
+         *     Retrieves club dashboard data for the authenticated user, including tier information, benefits, account manager details, offers, downgrade risk, and webinars.
+         */
+        get: operations["getClubs"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/curated-lists": {
         parameters: {
             query?: never;
@@ -375,12 +399,18 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Get the caller's stockback payments
+         * Get Stockback Payments
          * @description **Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.
          *
          *     ---
          *
-         *     Returns the calling customer's stockback and cashback payments, one entry per payment, newest payment date first. Each entry carries the reward channel, the amount paid in USD, the stock concerned, the related position and source transaction (either may be null), a transaction label, the payment date and the end of the month it belongs to. This is user-scoped: the caller is identified by their own gateway-issued GCID, not a path or query parameter, so it always answers for 'me'. Results are returned under `results` with a `pagination` block; a customer with no payments returns 200 with an empty `results` array, not 404 - there is no distinguishable 'not found' state for this endpoint.
+         *     Retrieves information about the rewards given to the calling user as part of the 4% Card Promo stock-back promotion. The data is returned as a list of individual reward events, each with the date the reward was given, the stock name, and the amount in USD.
+         *
+         *     Rewards fall into two types:
+         *     - **Stock reward (airdrop)** — stock deposited directly into the user's account
+         *     - **Cash reward** — paid when the user is unable to receive a stock airdrop, or in case the user is a Popular Investor (PI)
+         *
+         *     This is user-scoped: the caller is identified by their own gateway-issued GCID, not a path or query parameter, so it always answers for 'me'. Results are returned under `results` with a `pagination` block; a customer with no payments returns 200 with an empty `results` array, not 404.
          */
         get: operations["getStockbackPayments"];
         put?: never;
@@ -4349,16 +4379,6 @@ export interface components {
             /** @description Echoes the requested username. */
             userName: string;
         };
-        /** @description Instrument or user avatar in multiple sizes. */
-        Avatar: {
-            /** @description URL of the large avatar image. */
-            large?: string | null;
-            /** @description URL of the medium avatar image. */
-            medium?: string | null;
-            /** @description URL of the small avatar image. */
-            small?: string | null;
-            svg?: components["schemas"]["SvgAvatar"];
-        };
         /**
          * @description The type of eToro account, as returned in response bodies.
          * @enum {string}
@@ -4729,6 +4749,161 @@ export interface components {
             pagination: components["schemas"]["Pagination"];
             /** @description History entries for this page, oldest close year first. */
             results: components["schemas"]["ClosedPositionEventsHistoryItem"][];
+        };
+        /** @description Club dashboard data for a user */
+        ClubDashboardDataResponse: {
+            /** @description List of club tiers with equity thresholds */
+            clubs?: components["schemas"]["ClubInfo"][];
+            /** @description Account manager contact information for eligible users */
+            contacts?: components["schemas"]["ContactsResponse"];
+            /** @description Club tier downgrade risk assessment */
+            downgradeRisk?: components["schemas"]["DowngradeRiskResponse"];
+            /** @description Club benefit offers categorized by tier availability */
+            offers?: components["schemas"]["UserOffersData"];
+            /** @description Upcoming and past club webinars */
+            webinars?: components["schemas"]["WebinarsResponse"];
+        };
+        /** @description A single club tier with equity thresholds */
+        ClubInfo: {
+            /**
+             * @description Maximum realized equity threshold for this tier
+             * @example 10000
+             */
+            maxRealizedEquity?: number | null;
+            /**
+             * @description Minimum realized equity threshold for this tier
+             * @example 5000
+             */
+            minRealizedEquity?: number | null;
+            /**
+             * @description Display name of the club tier
+             * @example Silver
+             * @enum {string}
+             */
+            name?: "Internal" | "Bronze" | "Silver" | "Gold" | "Platinum" | "PlatinumPlus" | "Diamond";
+            /**
+             * @description Display rank of this tier
+             * @example 2
+             */
+            rank?: number;
+        };
+        /** @description A club benefit offer */
+        ClubOffer: {
+            /**
+             * @description Delivery method
+             * @example Static
+             * @enum {string|null}
+             */
+            deliveryMethod?: "Inventory Managed" | "On-demand" | "Static" | "API" | null;
+            /**
+             * @description Detailed offer description
+             * @example Discounted assistance with preparing annual tax returns from certified tax companies in your country.
+             */
+            description?: string | null;
+            /**
+             * @description Offer display name
+             * @example Tax Return Offer
+             */
+            displayName?: string;
+            /**
+             * @description Offer identifier
+             * @example 80
+             */
+            id?: string;
+            /**
+             * @description Minimum club tier required for this offer
+             * @example Silver
+             * @enum {string}
+             */
+            minimumClubLevel?: "Internal" | "Bronze" | "Silver" | "Gold" | "Platinum" | "PlatinumPlus" | "Diamond";
+            /**
+             * @description URL with more information about the offer
+             * @example https://www.etoro.com/club/offers/80
+             */
+            offerUrl?: string | null;
+            /** @description Offers bundled together with this offer */
+            offersInBundle?: components["schemas"]["OfferInBundle"][] | null;
+            /**
+             * @description Offer status
+             * @example Claimed
+             * @enum {string}
+             */
+            status?: "Pending" | "Available" | "Reserved" | "Claimed" | "Expired" | "Claim Cancelled" | "Inventory Order Cancelled";
+            /** @description Sub-offers within this offer */
+            subOffers?: components["schemas"]["ClubOffer"][] | null;
+            /**
+             * @description Offer sub-type
+             * @enum {string|null}
+             */
+            subType?: "High" | "Low" | null;
+            /**
+             * @description Offer type
+             * @example Financial
+             * @enum {string}
+             */
+            type?: "Entertainment" | "Gifts" | "News" | "Signals" | "Tools" | "Exclusive events" | "Tickets" | "Zoom meetings" | "Educational" | "Services" | "Association Membership" | "Financial" | "Travel" | "Gift card" | "Client meetup" | "Emotional" | "Bundle";
+        };
+        /** @description Avatar image in a specific size */
+        ClubsApi_Avatar: {
+            /**
+             * @description Image height in pixels
+             * @example 50
+             */
+            height?: number;
+            /**
+             * @description Image URL
+             * @example https://openbook-static-files.s3.amazonaws.com/images/avatoros/50x50/af.png
+             */
+            url?: string;
+            /**
+             * @description Image width in pixels
+             * @example 50
+             */
+            width?: number;
+        };
+        /** @description Standard error response */
+        ClubsApi_PublicErrorResponse: {
+            /**
+             * @description Machine-readable error code
+             * @example UnhandledException
+             */
+            errorCode: string;
+            /**
+             * @description Human-readable error message
+             * @example Global Error
+             */
+            errorMessage: string;
+        };
+        /** @description Account manager profile */
+        ContactInfo: {
+            /** @description Manager avatar images in different sizes */
+            avatars?: components["schemas"]["ClubsApi_Avatar"][];
+            /**
+             * @description Calendar booking URL for scheduling meetings
+             * @example https://calendly.com/etoro-club
+             */
+            calendarUrl?: string | null;
+            /**
+             * Format: email
+             * @description Account manager email address
+             * @example john.smith@etoro.com
+             */
+            email?: string;
+            /**
+             * @description Account manager first name
+             * @example John
+             */
+            firstName?: string;
+            /**
+             * @description Account manager last name
+             * @example Smith
+             */
+            lastName?: string;
+        };
+        /** @description Account manager contact details */
+        ContactsResponse: {
+            /** @description Assigned account manager profile */
+            manager?: components["schemas"]["ContactInfo"];
         };
         /** @description Current copiers snapshot and AUM tier for portfolio display. */
         CopiersCurrentResponse: {
@@ -5454,6 +5629,19 @@ export interface components {
              * @example true
              */
             success?: boolean;
+        };
+        /** @description Club tier downgrade risk assessment */
+        DowngradeRiskResponse: {
+            /**
+             * @description Days remaining until potential downgrade. Present only when isAtRisk is true.
+             * @example 30
+             */
+            daysUntilDowngrade?: number | null;
+            /**
+             * @description Whether the user is at risk of club tier downgrade
+             * @example false
+             */
+            isAtRisk?: boolean;
         };
         /** @description Provider-specific balance details, returned only when the request includes expand=equityDetails. All fields are nullable; only fields relevant to the account's provider are populated. Trading accounts populate available/frozenCash/currentPNL/totalUsedMargin; Crypto accounts populate cryptoId, the balance variants, fiatConversionCurrency, and orderIndex; Spaceship accounts return no equityDetails object at all; Plaee accounts populate available (withdrawable cash), frozenCash (cash reserved by resting prediction-market orders), currentPNL (unrealised profit and loss on open positions), realizedPNL (realised profit and loss of closed and settled positions, all time), invested (cost of the open positions), positionsValue (market value of the open positions), openOrdersValue (money in resting orders not yet matched), balance (cash) and totalBalance (cash plus resting orders plus open positions), all in the account currency, plus openPositionsCount (number of open positions) and hasOpenPositions (true when an open position or a resting order exists at Plaee). Currency: the fiat amounts here are denominated in the enclosing account's native currency (its currency field), not in displayCurrency — the object carries no currency marker of its own. The exception is the *InFiat crypto fields, which use fiatConversionCurrency. */
         EquityDetailsData: {
@@ -7072,7 +7260,7 @@ export interface components {
              * @description Asset type sub-category id.
              */
             assetTypeSubCategoryId?: number | null;
-            avatar?: components["schemas"]["Avatar"];
+            avatar?: components["schemas"]["WatchlistApi_Avatar"];
             /**
              * @description Human-readable instrument name.
              * @example Apple
@@ -7708,6 +7896,20 @@ export interface components {
         };
         /** @enum {string} */
         MoneybusApi_AccountType: "trading" | "options" | "cash" | "moneyFarm";
+        /** @description An offer included in a bundle */
+        OfferInBundle: {
+            /**
+             * @description Maximum number of offers in this bundle
+             * @example 3
+             */
+            offerLimit?: number;
+            /**
+             * @description Bundle offer type
+             * @example Services
+             * @enum {string}
+             */
+            type?: "Entertainment" | "Gifts" | "News" | "Signals" | "Tools" | "Exclusive events" | "Tickets" | "Zoom meetings" | "Educational" | "Services" | "Association Membership" | "Financial" | "Travel" | "Gift card" | "Client meetup" | "Emotional" | "Bundle";
+        };
         Order: {
             /**
              * Format: float
@@ -8609,9 +8811,93 @@ export interface components {
             /** @description White label partner identifier if user belongs to a partner program */
             whiteLabel?: number | null;
         };
+        PublicAvatarDto: {
+            /** Format: int32 */
+            height?: number;
+            url?: string | null;
+            /** Format: int32 */
+            width?: number;
+        };
+        PublicClubDashboardResponse: {
+            clubVersion?: string | null;
+            clubs?: components["schemas"]["PublicClubInfoDto"][] | null;
+            contacts?: components["schemas"]["PublicContactsDto"];
+            downgradeRisk?: components["schemas"]["PublicDowngradeRiskDto"];
+            offers?: components["schemas"]["PublicUserOffersDto"];
+            webinars?: components["schemas"]["PublicWebinarsDto"];
+        };
+        PublicClubInfoDto: {
+            /** Format: int32 */
+            maxRealizedEquity?: number | null;
+            /** Format: int32 */
+            minRealizedEquity?: number | null;
+            name?: string | null;
+            /** Format: int32 */
+            rank?: number;
+        };
+        PublicContactsDto: {
+            manager?: components["schemas"]["PublicManagerDto"];
+        };
+        PublicDowngradeRiskDto: {
+            /** Format: int32 */
+            daysUntilDowngrade?: number | null;
+            isAtRisk?: boolean;
+        };
+        PublicManagerDto: {
+            avatars?: components["schemas"]["PublicAvatarDto"][] | null;
+            calendarUrl?: string | null;
+            email?: string | null;
+            firstName?: string | null;
+            lastName?: string | null;
+        };
+        PublicOfferDto: {
+            deliveryMethod?: string | null;
+            description?: string | null;
+            displayName?: string | null;
+            id?: string | null;
+            minimumClubLevel?: string | null;
+            offerUrl?: string | null;
+            offersInBundle?: components["schemas"]["PublicOfferInBundleDto"][] | null;
+            status?: string | null;
+            subOffers?: components["schemas"]["PublicOfferDto"][] | null;
+            subType?: string | null;
+            type?: string | null;
+        };
+        PublicOfferInBundleDto: {
+            /** Format: int32 */
+            offerLimit?: number;
+            type?: string | null;
+        };
+        PublicStaticOfferDto: {
+            deliveryMethod?: string | null;
+            description?: string | null;
+            displayName?: string | null;
+            eligibleClubLevels?: string[] | null;
+            id?: string | null;
+            status?: string | null;
+            type?: string | null;
+        };
         PublicTransferEligibilityResponse: {
             destinationAccounts?: components["schemas"]["PublicAccountIdentifier"][] | null;
             sourceAccount?: components["schemas"]["PublicAccountIdentifier"];
+        };
+        PublicUserOffersDto: {
+            currentPlayerLevelAvailableOffers?: components["schemas"]["PublicOfferDto"][] | null;
+            nextPlayerLevelAvailableOffers?: components["schemas"]["PublicOfferDto"][] | null;
+            staticEligibleOffers?: components["schemas"]["PublicStaticOfferDto"][] | null;
+        };
+        PublicWebinarDto: {
+            /** Format: int64 */
+            id?: number;
+            joinUrl?: string | null;
+            recordUrl?: string | null;
+            /** Format: date-time */
+            startTime?: string;
+            topic?: string | null;
+        };
+        PublicWebinarsDto: {
+            previousWebinars?: components["schemas"]["PublicWebinarDto"][] | null;
+            upcomingWebinars?: components["schemas"]["PublicWebinarDto"][] | null;
         };
         /** @description A single investor ranking row. Identity fields come from PublicAggregatedInfo (GDPR-safe); performance fields come from RankingsAPI and are period-scoped. Nullable identity fields are omitted from the body when their condition is not met. */
         RankItem: {
@@ -8794,7 +9080,7 @@ export interface components {
              * @example 12345
              */
             Cid?: number;
-            avatar?: components["schemas"]["Avatar"];
+            avatar?: components["schemas"]["WatchlistApi_Avatar"];
             /**
              * Format: double
              * @description Performance change over the last month.
@@ -8895,6 +9181,53 @@ export interface components {
              * @description UTC timestamp when the error was generated.
              */
             timestamp: string;
+        };
+        /** @description An offer eligible across specific club tiers */
+        StaticEligibleOffer: {
+            /**
+             * @description Delivery method
+             * @example Static
+             * @enum {string|null}
+             */
+            deliveryMethod?: "Inventory Managed" | "On-demand" | "Static" | "API" | null;
+            /**
+             * @description Detailed offer description
+             * @example Discounted assistance with preparing annual tax returns from certified tax companies in your country.
+             */
+            description?: string | null;
+            /**
+             * @description Offer display name
+             * @example Tax Return Offer
+             */
+            displayName?: string;
+            /**
+             * @description Club tier names eligible for this offer
+             * @example [
+             *       "Gold",
+             *       "Silver",
+             *       "Platinum",
+             *       "PlatinumPlus",
+             *       "Diamond"
+             *     ]
+             */
+            eligibleClubLevels?: ("Internal" | "Bronze" | "Silver" | "Gold" | "Platinum" | "PlatinumPlus" | "Diamond")[];
+            /**
+             * @description Offer identifier
+             * @example 80
+             */
+            id?: string;
+            /**
+             * @description Offer status
+             * @example Claimed
+             * @enum {string}
+             */
+            status?: "Pending" | "Available" | "Reserved" | "Claimed" | "Expired" | "Claim Cancelled" | "Inventory Order Cancelled";
+            /**
+             * @description Offer type
+             * @example Financial
+             * @enum {string}
+             */
+            type?: "Entertainment" | "Gifts" | "News" | "Signals" | "Tools" | "Exclusive events" | "Tickets" | "Zoom meetings" | "Educational" | "Services" | "Association Membership" | "Financial" | "Travel" | "Gift card" | "Client meetup" | "Emotional" | "Bundle";
         };
         StatsAssetsApi_Error: {
             error?: {
@@ -11096,7 +11429,7 @@ export interface components {
              * @example 12345
              */
             Cid?: number;
-            avatar?: components["schemas"]["Avatar"];
+            avatar?: components["schemas"]["WatchlistApi_Avatar"];
             /**
              * Format: double
              * @description Performance change over the last month.
@@ -11172,6 +11505,15 @@ export interface components {
              */
             username?: string;
         };
+        /** @description Club offers categorized by availability */
+        UserOffersData: {
+            /** @description Offers available at the user's current club tier */
+            currentPlayerLevelAvailableOffers?: components["schemas"]["ClubOffer"][];
+            /** @description Offers that become available at the next club tier */
+            nextPlayerLevelAvailableOffers?: components["schemas"]["ClubOffer"][];
+            /** @description Offers eligible across specific club tiers */
+            staticEligibleOffers?: components["schemas"]["StaticEligibleOffer"][];
+        };
         UserTokenItem: {
             /**
              * Format: uuid
@@ -11211,6 +11553,16 @@ export interface components {
              * @example my-trading-bot
              */
             userTokenName?: string;
+        };
+        /** @description Instrument or user avatar in multiple sizes. */
+        WatchlistApi_Avatar: {
+            /** @description URL of the large avatar image. */
+            large?: string | null;
+            /** @description URL of the medium avatar image. */
+            medium?: string | null;
+            /** @description URL of the small avatar image. */
+            small?: string | null;
+            svg?: components["schemas"]["SvgAvatar"];
         };
         /** @description BFF component envelope returned by watchlist V2 facade endpoints */
         WatchlistComponentResponse: {
@@ -11465,6 +11817,43 @@ export interface components {
             status?: number;
             /** @description List of user watchlists */
             watchlists?: components["schemas"]["WatchlistResponse"][];
+        };
+        /** @description A club webinar event */
+        Webinar: {
+            /**
+             * Format: int64
+             * @description Webinar identifier
+             * @example 83618564462
+             */
+            id?: number;
+            /**
+             * @description URL to join the webinar (upcoming webinars only)
+             * @example https://us02web.zoom.us/j/83618564462
+             */
+            joinUrl?: string | null;
+            /**
+             * @description URL to the recording (past webinars only)
+             * @example https://us02web.zoom.us/rec/play/example
+             */
+            recordUrl?: string | null;
+            /**
+             * Format: date-time
+             * @description Scheduled start time in UTC
+             * @example 2026-05-20T14:00:00Z
+             */
+            startTime?: string;
+            /**
+             * @description Webinar topic
+             * @example Club Webinars with Lale Akoner and Sam North
+             */
+            topic?: string;
+        };
+        /** @description Upcoming and past webinars */
+        WebinarsResponse: {
+            /** @description List of past webinars with recordings */
+            previousWebinars?: components["schemas"]["Webinar"][];
+            /** @description List of upcoming webinars the user can join */
+            upcomingWebinars?: components["schemas"]["Webinar"][];
         };
         /** @description Error envelope */
         apiErrorEnvelope: {
@@ -13469,6 +13858,122 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["BalancesErrorResponse"];
+                };
+            };
+        };
+    };
+    getClubs: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description A unique request identifier. */
+                "x-request-id": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Club dashboard data retrieved successfully */
+            200: {
+                headers: {
+                    /**
+                     * @description Maximum number of requests allowed per window. This is the default shared pool used by every endpoint without a dedicated limit, so it is NOT per-endpoint — requests across those endpoints all draw from this one budget.
+                     * @example 60
+                     */
+                    "RateLimit-Limit"?: number;
+                    /**
+                     * @description Quota policy in the form `<limit>;w=<window-seconds>`.
+                     * @example 60;w=60
+                     */
+                    "RateLimit-Policy"?: string;
+                    /** @description Requests remaining in the current window for this quota. */
+                    "RateLimit-Remaining"?: number;
+                    /** @description Seconds until the current window resets. */
+                    "RateLimit-Reset"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ClubDashboardDataResponse"];
+                };
+            };
+            /** @description Unauthorized. Invalid or missing authentication */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "errorCode": "Unauthorized",
+                     *       "errorMessage": "Unauthorized"
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ClubsApi_PublicErrorResponse"];
+                };
+            };
+            /** @description Forbidden - insufficient permissions */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "errorCode": "InsufficientPermissions",
+                     *       "errorMessage": "Insufficient permissions to access this resource"
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ClubsApi_PublicErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    /**
+                     * @description Maximum number of requests allowed per window. This is the default shared pool used by every endpoint without a dedicated limit, so it is NOT per-endpoint — requests across those endpoints all draw from this one budget.
+                     * @example 60
+                     */
+                    "RateLimit-Limit"?: number;
+                    /**
+                     * @description Quota policy in the form `<limit>;w=<window-seconds>`.
+                     * @example 60;w=60
+                     */
+                    "RateLimit-Policy"?: string;
+                    /** @description Requests remaining in the current window for this quota. */
+                    "RateLimit-Remaining"?: number;
+                    /** @description Seconds until the current window resets. */
+                    "RateLimit-Reset"?: number;
+                    /**
+                     * @description Seconds to wait before retrying.
+                     * @example 60
+                     */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "errorCode": "TooManyRequests",
+                     *       "errorMessage": "Too many requests"
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ClubsApi_PublicErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "errorCode": "UnhandledException",
+                     *       "errorMessage": "Global Error"
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ClubsApi_PublicErrorResponse"];
                 };
             };
         };
