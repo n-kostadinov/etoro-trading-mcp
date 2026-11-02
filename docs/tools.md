@@ -1,8 +1,8 @@
 # Tool reference
 
-This file is generated from eToro Swagger UI **v1.402.0** (canonical SHA-256 `8bc740629648eaa660ebe15f3d7ef19c8d87b8acdeaa07f6c4eb72ad4cecf61e`). Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.404.0** (canonical SHA-256 `840f3bf942c109a33118cb10f60606d44502f5f21430c453147f359e40f2f41c`). Do not edit it directly; run `npm run generate`.
 
-The catalog contains **156 tools** in **26 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
+The catalog contains **156 tools** in **25 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
 
 - OAuth scopes listed in one alternative are alternatives to the key-pair authentication method; separate rows separated by OR are alternatives to each other. See [trading.md](trading.md).
 - Real-money mutations require the separate `allowRealMoney` opt-in in addition to tool selection.
@@ -63,7 +63,6 @@ The catalog contains **156 tools** in **26 toolsets**. All toolsets are disabled
 | `getBalances` | balances | `GET /api/v1/balances` | no | yes | no | 60/60s, default shared pool | etoro-public:money.balance:read | --- |
 | `getBalancesByAccountType` | balances | `GET /api/v1/balances/{accountType}` | no | yes | no | 60/60s, default shared pool | etoro-public:money.balance:read | --- |
 | `getClosedPositionEventsHistory` | data | `GET /api/v1/data/positions/closed-events/history` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.demo:read | --- |
-| `getClubs` | clubs | `GET /api/v1/clubs` | no | yes | no | 60/60s, default shared pool | etoro-public:club:read | --- |
 | `getCopyTradingStatus` | copy-trading | `GET /api/v2/trading/copy/{referenceId}` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:real:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.real:write | --- |
 | `getCopyTradingStatusDemo` | copy-trading-demo | `GET /api/v2/trading/copy/demo/{referenceId}` | no | yes | no | 60/60s, default shared pool | etoro-public:demo:read<br>OR etoro-public:demo:write<br>OR etoro-public:trade.demo:read<br>OR etoro-public:trade.demo:write | --- |
 | `getCost` | trading-real | `POST /api/v2/trading/info/costs` | no | yes | no | 20/60s | etoro-public:real:read<br>OR etoro-public:real:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.real:write | --- |
@@ -104,6 +103,7 @@ The catalog contains **156 tools** in **26 toolsets**. All toolsets are disabled
 | `getRates` | market-data | `GET /api/v2/market-data/rates` | no | yes | no | 120/60s, shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:market-data:read | --- |
 | `getScopes` | sso-scopes | `GET /api/v1/sso/scopes` | no | yes | no | 60/60s, default shared pool | etoro-public:sso-scopes:read<br>OR etoro-public:sso-scopes:write | --- |
 | `getSecurities` | market-data | `GET /api/v2/market-data/instruments` | no | yes | no | 120/60s, shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:market-data:read | --- |
+| `getStockbackPayments` | data | `GET /api/v1/data/stockback/payments` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.demo:read | --- |
 | `getStockbackPromoStatus` | data | `GET /api/v1/data/stockback/promo-status` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.demo:read | --- |
 | `getSubAccountUserTokens` | sub-accounts-etoro-trading | `GET /api/v1/sub-accounts/etoro-trading/user-tokens` | no | yes | no | 60/60s, default shared pool | etoro-public:sub-accounts:read<br>OR etoro-public:sub-accounts:write | --- |
 | `getSubAccountUserTokenScopes` | sub-accounts-etoro-trading | `GET /api/v1/sub-accounts/etoro-trading/user-tokens/scopes` | no | yes | no | 60/60s, default shared pool | etoro-public:sub-accounts:read<br>OR etoro-public:sub-accounts:write | --- |
