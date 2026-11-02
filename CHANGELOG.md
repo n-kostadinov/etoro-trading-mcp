@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-11-02
+
+### Added
+
+- `clubs` toolset (1 tool): eToro reinstated the Clubs endpoint `GET /api/v1/clubs` (`getClubs`) in Swagger v1.405.0, one version after withdrawing it in v1.404.0. Configurations referencing `clubs` or `getClubs` work again.
+
+### Changed
+
+- Catalog refreshed from eToro Swagger UI v1.404.0 to v1.405.0: 157 tools across 26 toolsets. At publication time `getClubs` is present in the Swagger UI document but absent from both API-portal documents; the release notes carry this as a publication warning.
+
 ## [1.2.0] - 2026-11-02
 
 ### Removed
