@@ -91,7 +91,7 @@ proof throughout.
 | 4 | Release commit on `main`: dated `CHANGELOG.md` `[1.2.0]` section (Removed/Changed per approved goal); `package.json` → 1.2.0; both `package-lock.json` version fields → 1.2.0; `README.md` toolset count 26→25 (four places) and drop the `clubs` table row; `INSTALL.md` `--version` prints 1.2.0; `server.json` both version fields → 1.2.0 | On the release commit: `npm run verify` green; greps confirm no `clubs` row in `README.md`, no `1.1.0` in `server.json`, lockfile top-level and `packages[""].version` both 1.2.0 | 3 | Completed |
 | 5 | Push the release commit to `origin/main`, then `npm run release:validate -- v1.2.0` | Command prints `"valid": true` (tag/lockfile/changelog/registry-unpublished/main-ancestry checks all pass) | 4 | Completed |
 | 6 | Tag `v1.2.0` on `main` HEAD, push only the tag, monitor the Release workflow (verify → publish) to completion | Workflow run for tag `v1.2.0` succeeds; `gh release view v1.2.0` is non-draft, its body contains the 1.2.0 changelog section and the API baseline (v1.404.0, SHA-256, 156 ops / 25 toolsets); `npm view etoro-trading-mcp@1.2.0` returns metadata with provenance | 5 | Completed |
-| 7 | Confirm the daily job is healthy again: trigger a `workflow_dispatch` Swagger-sync run on `main` (or await the next scheduled run) | The run completes successfully with `action: none` (guard satisfied — the failure diagnosed earlier is resolved); `gh run list` shows no new sync failures | 3 | Blocked |
+| 7 | Confirm the daily job is healthy again: trigger a `workflow_dispatch` Swagger-sync run on `main` (or await the next scheduled run) | The run completes successfully with `action: none` (guard satisfied — the failure diagnosed earlier is resolved); `gh run list` shows no new sync failures | 3 | Completed |
 
 ## Execution notes
 
@@ -132,3 +132,8 @@ proof throughout.
   restore the README table row and counts, and release v1.2.1 (Clubs restored
   after upstream reinstated it). The published v1.2.0 remains a coherent
   release built from the consistent v1.404.0 snapshot.
+- **Task 7 resolved (2026-11-02, later the same day)** — the follow-up plan
+  `plan/clubs-restoration-release.md` (v1.3.0) re-added the `Clubs` mapping,
+  synced to v1.405.0, and released v1.3.0; dispatch run `41451876064` then
+  reported `action: none`, meeting this task's criterion. Task 7 status updated
+  to Completed accordingly.

@@ -93,7 +93,42 @@ inside `npm run verify` at tasks 2, 3, and 4.
 | 1 | Preparation commit on `main` (single commit): force-add the approved plan file, re-add `"Clubs": "clubs"` to `openapi/policy-overrides.json`, pre-update the pinned baselines in `tests/unit/generated-catalog.test.ts` (toolsets 25→26; operations 156→157 in both assertions) so the sync's internal verify passes first try | `git log origin/main` shows the commit; policy parses with 26 mappings including `Clubs`; test file contains `toHaveLength(26)` and `toBe(157)`; `git status` clean | None | Completed |
 | 2 | Run `npm run sync:swagger` on the clean tree: download v1.405.0, regenerate, push `swagger/v1.405.0/<hash>`, open the sync PR; review `artifacts/swagger-diff.md` — expect exactly `+getClubs`, no removals, ~26 schema additions / 1 removal, publication sets consistent | PR titled `chore: sync eToro Swagger v1.405.0` exists; script's internal `npm run verify` passes on the first attempt; diff report matches expectations; all 6 PR CI checks pass | 1 | Completed |
 | 3 | Merge the sync PR manually and update local `main` | `main` HEAD contains the sync commit; `node` check on `docs/data/tool-catalog.json` reports `sourceVersion: v1.405.0`, 157 operations, 26 toolsets, `clubs` present with `getClubs` non-deprecated; `npm run verify` passes on `main` | 2 | Completed |
-| 4 | Release commit on `main`: dated `CHANGELOG.md` `[1.3.0]` section (Added/Changed per approved goal); `package.json` + both `package-lock.json` version fields → 1.3.0 via `npm version --no-git-tag-version`; `README.md` (toolset count 25→26 in three places, table rebalanced to 13/13 with `clubs` 1/0 row, `npx@1.3.0` refs, "Current release" line → 1.3.0 / v1.405.0); `INSTALL.md` (all 7 version refs → 1.3.0); `server.json` (both `version` fields → 1.3.0 and description tool count 156 → 157) | On the release commit: `npm run verify` green; greps confirm the `clubs` row is back in `README.md`, no `1.2.0` remains in `README.md`/`INSTALL.md`/`server.json`, both lockfile version fields are 1.3.0 | 3 | In progress |
-| 5 | Push the release commit to `origin/main`, then `npm run release:validate -- v1.3.0` | Command prints `"valid": true` (tag/lockfile/changelog/registry-unpublished/main-ancestry checks all pass) | 4 | Pending |
-| 6 | Tag `v1.3.0` on `main` HEAD, push only the tag, monitor the Release workflow to completion, verify the published artifacts | Workflow run for tag `v1.3.0` succeeds; `gh release view v1.3.0` is non-draft with the 1.3.0 changelog section and baseline (v1.405.0, SHA-256, 157 ops / 26 toolsets); `npm view etoro-trading-mcp@1.3.0` returns version + `dist.attestations.provenance` (retry for up to ~5 minutes — registry propagation lag observed on v1.2.0) | 5 | Pending |
-| 7 | Unblock verification of the daily job: trigger a `workflow_dispatch` Swagger-sync run on `main` | The run completes successfully with `action: none`; `gh run list --workflow "Swagger sync"` shows the new green run superseding the `missing=Clubs` failures | 3 | Pending |
+| 4 | Release commit on `main`: dated `CHANGELOG.md` `[1.3.0]` section (Added/Changed per approved goal); `package.json` + both `package-lock.json` version fields → 1.3.0 via `npm version --no-git-tag-version`; `README.md` (toolset count 25→26 in three places, table rebalanced to 13/13 with `clubs` 1/0 row, `npx@1.3.0` refs, "Current release" line → 1.3.0 / v1.405.0); `INSTALL.md` (all 7 version refs → 1.3.0); `server.json` (both `version` fields → 1.3.0 and description tool count 156 → 157) | On the release commit: `npm run verify` green; greps confirm the `clubs` row is back in `README.md`, no `1.2.0` remains in `README.md`/`INSTALL.md`/`server.json`, both lockfile version fields are 1.3.0 | 3 | Completed |
+| 5 | Push the release commit to `origin/main`, then `npm run release:validate -- v1.3.0` | Command prints `"valid": true` (tag/lockfile/changelog/registry-unpublished/main-ancestry checks all pass) | 4 | Completed |
+| 6 | Tag `v1.3.0` on `main` HEAD, push only the tag, monitor the Release workflow to completion, verify the published artifacts | Workflow run for tag `v1.3.0` succeeds; `gh release view v1.3.0` is non-draft with the 1.3.0 changelog section and baseline (v1.405.0, SHA-256, 157 ops / 26 toolsets); `npm view etoro-trading-mcp@1.3.0` returns version + `dist.attestations.provenance` (retry for up to ~5 minutes — registry propagation lag observed on v1.2.0) | 5 | Completed |
+| 7 | Unblock verification of the daily job: trigger a `workflow_dispatch` Swagger-sync run on `main` | The run completes successfully with `action: none`; `gh run list --workflow "Swagger sync"` shows the new green run superseding the `missing=Clubs` failures | 3 | Completed |
+
+## Execution notes
+
+- **Task 2** — the sync's internal verify needed baseline pins in three more
+  files than task 1's research identified; each was discovered by an aborted
+  sync attempt, fixed on `main`, and the sync re-run (commits `d2c9938`,
+  `5895f55`, `2a1e5c2`):
+  `tests/unit/compile-tool-catalog.test.ts:76` (fixture coverage 156→157),
+  `tests/unit/cli-inspection.test.ts:40` (`catalogOperationCount`) and `:59`
+  (`--all` listing), and `tests/integration/stdio-contract.test.ts:342-343,
+  357-358` (tools/list and dispatch counts). After the final pin sweep
+  (`grep -rn "156" tests/`) the sync's internal verify passed and the branch +
+  PR (#4) were created; PR CI 6/6 green. The task's "first attempt" criterion
+  held only after complete preparation — the plan's research under-counted the
+  pinned baselines.
+- **Tasks 2/4 deviation (non-material)** — `catalog.warnings` is no longer
+  empty: the API-portal documents lag the Swagger UI restore, so the catalog
+  carries `"Swagger UI operations absent from both portal documents: getClubs"`
+  (confirmed by the diff report's Publication consistency section).
+  `tests/unit/generated-catalog.test.ts:41` was updated from `toEqual([])` to
+  the exact warning string, the CHANGELOG notes it, and the v1.3.0 release
+  notes carry it as a publication warning. No goal criterion promised surface
+  consistency; the warning is informational by design
+  (`scripts/lib/release-notes.ts`).
+- **Task 4** — README table restored to the pre-1.2.0 13/13 column-major layout
+  with `data` at its new count of 5; `server.json` description tool count
+  156→157 in addition to both version fields; biome reported no formatting
+  fixes needed.
+- **Task 6** — npm registry propagated v1.3.0 after ~60 seconds (one retry);
+  `dist.attestations.provenance` (SLSA v1) confirmed.
+- **Task 7** — dispatch run `41451876064` printed
+  `{"action":"none","reason":"canonical sources unchanged"}`; it supersedes
+  failures `41446390279` (dispatch, `missing=Clubs`) and `41435502572`
+  (scheduled, `stale=Clubs`). This also resolves task 7 of
+  `plan/clubs-withdrawal-release.md`.
