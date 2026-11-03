@@ -23,6 +23,7 @@
   "scripts": {
     "acquire": "tsx scripts/acquire-openapi.ts",
     "build": "tsc -p tsconfig.build.json",
+    "check:swagger": "tsx scripts/check-swagger.ts",
     "docs:check": "tsx scripts/check-docs.ts && cspell --no-progress --no-summary",
     "format": "biome format --write .",
     "format:check": "biome format .",
@@ -34,7 +35,6 @@
     "release:notes": "tsx scripts/release-notes.ts",
     "release:validate": "tsx scripts/validate-release.ts",
     "swagger:diff": "tsx scripts/swagger-diff.ts",
-    "sync:swagger": "tsx scripts/synchronize-swagger.ts",
     "test": "vitest run",
     "test:integration": "vitest run --config vitest.integration.config.ts",
     "typecheck": "tsc -p tsconfig.json",

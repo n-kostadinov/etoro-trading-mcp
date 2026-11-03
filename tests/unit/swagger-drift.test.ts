@@ -2,12 +2,9 @@ import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 import { downloadSource } from "../../scripts/acquire-openapi.js";
 import { OPENAPI_SOURCES } from "../../scripts/lib/openapi.js";
-import {
-  determineSynchronizationAction,
-  swaggerSyncBranch,
-} from "../../scripts/lib/synchronization.js";
+import { determineSwaggerDrift } from "../../scripts/lib/swagger-drift.js";
 import { createSwaggerDiffReport } from "../../scripts/lib/swagger-diff.js";
-import { asOpenApiDocument, canonicalJson } from "../../src/openapi/model.js";
+import { asOpenApiDocument, canonicalJson, sha256 } from "../../src/openapi/model.js";
 
 function documentFixture(options: {
   version: string;
@@ -37,47 +34,77 @@ function documentFixture(options: {
   );
 }
 
-describe("Swagger synchronization decisions", () => {
-  it("treats canonical equality as no change regardless of raw formatting", () => {
+describe("Swagger drift verdicts", () => {
+  const sources = [
+    { id: "swagger", apiVersion: "v1.408.0", canonicalSha256: "a".repeat(64) },
+    { id: "core", apiVersion: "v1.408.0", canonicalSha256: "b".repeat(64) },
+    { id: "deprecated", apiVersion: "v1.408.0", canonicalSha256: "c".repeat(64) },
+  ];
+  const manifest = {
+    sources: {
+      swagger: { apiVersion: "v1.408.0", canonicalSha256: "a".repeat(64) },
+      core: { apiVersion: "v1.408.0", canonicalSha256: "b".repeat(64) },
+      deprecated: { apiVersion: "v1.408.0", canonicalSha256: "c".repeat(64) },
+    },
+  };
+
+  it("reports no drift when every canonical hash matches the manifest", () => {
+    expect(determineSwaggerDrift({ previousManifest: manifest, acquired: sources })).toEqual({
+      changed: false,
+      changes: [],
+    });
+  });
+
+  it("names the changed source with old and new values", () => {
+    const acquired = sources.map((source) =>
+      source.id === "core"
+        ? { ...source, apiVersion: "v1.409.0", canonicalSha256: "d".repeat(64) }
+        : source,
+    );
+    expect(determineSwaggerDrift({ previousManifest: manifest, acquired })).toEqual({
+      changed: true,
+      changes: [
+        {
+          id: "core",
+          fromVersion: "v1.408.0",
+          toVersion: "v1.409.0",
+          fromCanonicalSha256: "b".repeat(64),
+          toCanonicalSha256: "d".repeat(64),
+        },
+      ],
+    });
+  });
+
+  it("treats a missing manifest as drift in every source", () => {
+    const verdict = determineSwaggerDrift({ previousManifest: null, acquired: sources });
+    expect(verdict.changed).toBe(true);
+    expect(verdict.changes.map((change) => change.id)).toEqual(["swagger", "core", "deprecated"]);
+    expect(
+      verdict.changes.every(
+        (change) => change.fromVersion === null && change.fromCanonicalSha256 === null,
+      ),
+    ).toBe(true);
+  });
+
+  it("ignores upstream formatting churn through canonical hashing", () => {
     const compact = documentFixture({ version: "v1.0.0" });
     const formatted = JSON.parse(JSON.stringify(compact, null, 4)) as unknown;
-    expect(canonicalJson(compact)).toBe(canonicalJson(formatted));
+    const previousSwagger = {
+      apiVersion: "v1.0.0",
+      canonicalSha256: sha256(canonicalJson(compact)),
+    };
     expect(
-      determineSynchronizationAction({
-        currentCanonicalSha256: "a".repeat(64),
-        targetCanonicalSha256: "a".repeat(64),
+      determineSwaggerDrift({
+        previousManifest: { sources: { swagger: previousSwagger } },
+        acquired: [
+          {
+            id: "swagger",
+            apiVersion: "v1.0.0",
+            canonicalSha256: sha256(canonicalJson(formatted)),
+          },
+        ],
       }),
-    ).toEqual({ type: "none", reason: "canonical sources unchanged" });
-  });
-
-  it("creates a deterministic sanitized branch for a semantic change", () => {
-    const branch = swaggerSyncBranch("v1.401.0+build/extra", "b".repeat(64));
-    expect(branch).toBe(`swagger-sync/v1.401.0-build-extra-${"b".repeat(12)}`);
-    expect(swaggerSyncBranch("v1.401.0+build/extra", "b".repeat(64))).toBe(branch);
-    expect(
-      determineSynchronizationAction({
-        currentCanonicalSha256: "a".repeat(64),
-        targetCanonicalSha256: "b".repeat(64),
-      }),
-    ).toEqual({ type: "create" });
-  });
-
-  it("skips an existing branch for the same hash and refuses a hash collision", () => {
-    const target = "c".repeat(64);
-    expect(
-      determineSynchronizationAction({
-        currentCanonicalSha256: "a".repeat(64),
-        targetCanonicalSha256: target,
-        existingBranchCanonicalSha256: target,
-      }),
-    ).toEqual({ type: "skip", reason: "update branch already exists for this canonical hash" });
-    expect(
-      determineSynchronizationAction({
-        currentCanonicalSha256: "a".repeat(64),
-        targetCanonicalSha256: target,
-        existingBranchCanonicalSha256: "d".repeat(64),
-      }),
-    ).toMatchObject({ type: "fail" });
+    ).toEqual({ changed: false, changes: [] });
   });
 });
 
@@ -173,7 +200,7 @@ describe("Swagger semantic diff report", () => {
 });
 
 describe("OpenAPI download failure handling", () => {
-  it("fails safely on a non-retryable HTTP status without a branch decision", async () => {
+  it("fails safely on a non-retryable HTTP status without a drift verdict", async () => {
     const calls: string[] = [];
     await expect(
       downloadSource(OPENAPI_SOURCES[0] as (typeof OPENAPI_SOURCES)[number], {
@@ -205,31 +232,21 @@ describe("OpenAPI download failure handling", () => {
   });
 });
 
-describe("Swagger synchronization workflow", () => {
-  it("is scheduled daily, write-scoped, and has no npm credential access", async () => {
+describe("Swagger drift workflow", () => {
+  it("is scheduled daily, read-scoped, and checks without publishing", async () => {
     const workflow = await readFile(
-      new URL("../../.github/workflows/swagger-sync.yml", import.meta.url),
+      new URL("../../.github/workflows/swagger-drift.yml", import.meta.url),
       "utf8",
     );
     expect(workflow).toContain('cron: "17 3 * * *"');
     expect(workflow).toContain("permissions:");
-    expect(workflow).toContain("contents: write");
-    expect(workflow).toContain("pull-requests: write");
+    expect(workflow).toContain("contents: read");
+    expect(workflow).not.toContain("pull-requests");
+    expect(workflow).not.toContain("contents: write");
     expect(workflow).not.toContain("NPM_TOKEN");
     expect(workflow).not.toContain("npm publish");
+    expect(workflow).not.toContain("upload-artifact");
     expect(workflow).toContain("cancel-in-progress: false");
-    expect(workflow).toContain("--dry-run");
-  });
-
-  it("persists dry-run reports and verification logs as workflow artifacts", async () => {
-    const workflow = await readFile(
-      new URL("../../.github/workflows/swagger-sync.yml", import.meta.url),
-      "utf8",
-    );
-    expect(workflow).toContain("tee artifacts/dry-run.log");
-    expect(workflow).toContain("shell: bash");
-    expect(workflow).toContain("actions/upload-artifact@");
-    expect(workflow).toContain("name: swagger-dry-run");
-    expect(workflow).toContain("path: artifacts/");
+    expect(workflow).toContain("npm run check:swagger");
   });
 });
