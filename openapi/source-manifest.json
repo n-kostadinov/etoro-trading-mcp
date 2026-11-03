@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-11-02T13:04:59.648Z",
+  "retrievedAt": "2026-11-03T11:18:51.255Z",
   "sources": {
     "swagger": {
       "id": "swagger",
       "file": "etoro.swagger.json",
       "url": "https://public-api.etoro.com/swagger/swagger.json",
-      "apiVersion": "v1.405.0",
+      "apiVersion": "v1.408.0",
       "openApiVersion": "3.0.1",
-      "operations": 157,
-      "rawSha256": "c892afa97080745c444c09ab9ab537323f7b1cf63de03b0a0b1f5decea981b98",
-      "canonicalSha256": "8a1df41bcd753757fa833b0b2b0c96432c8ecc2c5cad5a7db4cb73e80ef1451f"
+      "operations": 159,
+      "rawSha256": "be61ca6f157c67c55d3f79e3da81c5b10690ff4168b30d1ee9d338469b3f64e6",
+      "canonicalSha256": "4b6a9bddb8b2f22b497169a01ff0044f878e1ccbf70b34a50a7df8348bab07a1"
     },
     "core": {
       "id": "core",
       "file": "etoro.core.json",
       "url": "https://api-portal.etoro.com/api-reference/openapi.json",
-      "apiVersion": "v1.404.0",
+      "apiVersion": "v1.408.0",
       "openApiVersion": "3.0.1",
-      "operations": 141,
-      "rawSha256": "c13d19e82f02a2ab6597ea0d7586fa636585366818ab7c8d26eb2f0f77de8444",
-      "canonicalSha256": "e3b0adf7a2ea2498f96577d8d4ee0c1e4e7385bf85dbdc58fde072be2269ac4b"
+      "operations": 144,
+      "rawSha256": "574a5667864a0c497b253ae35b5b0a4d218044453723bcfc747f9c0cc074e394",
+      "canonicalSha256": "23f4efbb42fbb55d6f1b48b13927722f910d8b3472bd4b093c9c18ad751a8def"
     },
     "deprecated": {
       "id": "deprecated",
       "file": "etoro.deprecated.json",
       "url": "https://api-portal.etoro.com/api-reference/deprecated-openapi.json",
-      "apiVersion": "v1.404.0",
+      "apiVersion": "v1.408.0",
       "openApiVersion": "3.0.1",
       "operations": 15,
-      "rawSha256": "2ac53db2933f524c335596a95a01255006f7eb0f68a87ab39bede00afbca123e",
-      "canonicalSha256": "9ecea2ca8e1dee1d290dddd794dc9e8b5df96d449948b09ad30ad0eb7f81c2e5"
+      "rawSha256": "7fb2692a9e5d1bf19db695d8b0c8d71f01ad40a9f163631fb0de7abf0c8a100b",
+      "canonicalSha256": "c860e19f4c047ff9b693dd6ace5c6d00d9b075a1947e2ddbdf9a961c55071a8b"
     }
   }
 }
