@@ -445,6 +445,54 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/data/strategy-prompts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List published strategy prompts
+         * @description **Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.
+         *
+         *     ---
+         *
+         *     Returns every strategy prompt approved for publication, as an integer id and a one-line description, ordered by id. Call this first, then fetch one id to get the XML prompt another AI should run. Draft and in-review strategies are omitted. An empty results array means nothing is published yet, not an error. These are hypothetical research templates, not live trading instructions or investment advice. Not user-scoped: the same catalog for every caller.
+         */
+        get: operations["listStrategyPrompts"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/data/strategy-prompts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get one published strategy prompt
+         * @description **Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.
+         *
+         *     ---
+         *
+         *     Returns the XML research prompt for one published strategy, for another AI to run as a hypothetical backtest template. It is not a live trading instruction and not investment advice. Take the id from the catalog. An unknown id, or a strategy that is not published, returns 404. Not user-scoped.
+         */
+        get: operations["getStrategyPrompt"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/impressions/topassets/user/{gcid}": {
         parameters: {
             query?: never;
@@ -9405,6 +9453,39 @@ export interface components {
                 industryName?: string;
             }[];
         };
+        /** @description The XML research prompt for one published strategy. A hypothetical template, not a live trading instruction. */
+        StrategyPrompt: {
+            /**
+             * Format: int32
+             * @description Stable public id.
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description XML document another AI can run as a backtest template.
+             * @example <?xml version="1.0" encoding="UTF-8"?><strategyPrompt><id>1</id></strategyPrompt>
+             */
+            prompt: string;
+        };
+        /** @description Every published strategy prompt. This is the full catalog, not a page. */
+        StrategyPromptCatalog: {
+            /** @description Published prompts, ordered by id. Empty when nothing is published. */
+            results: components["schemas"]["StrategyPromptSummary"][];
+        };
+        /** @description One published strategy prompt, enough to choose which prompt to fetch. */
+        StrategyPromptSummary: {
+            /**
+             * Format: int32
+             * @description Stable public id.
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description One-line name of the strategy.
+             * @example Time-Series Momentum (TSMOM 12/1)
+             */
+            shortDescription: string;
+        };
         StsMetadataFrontApi_ErrorResponse: {
             /** @description Machine-readable error code (e.g. `ScopeIdInvalid`, `ScopeIdsDuplicateItems`). */
             errorCode?: string;
@@ -14960,6 +15041,256 @@ export interface operations {
                     "X-Request-Id"?: string;
                     /** @description RFC 3339 instant the response was produced. */
                     "X-Timestamp"?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "DEPENDENCY_UNAVAILABLE",
+                     *         "message": "The requested resource is temporarily unavailable"
+                     *       },
+                     *       "success": false
+                     *     }
+                     */
+                    "application/json": components["schemas"]["DataApiError"];
+                };
+            };
+        };
+    };
+    listStrategyPrompts: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description A unique request identifier. */
+                "x-request-id": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The full published catalog. Empty when nothing is published. */
+            200: {
+                headers: {
+                    /**
+                     * @description public, max-age=300 on success. Catalog data, not customer-scoped.
+                     * @example public, max-age=300
+                     */
+                    "Cache-Control"?: string;
+                    /**
+                     * @description Maximum number of requests allowed per window. This is the default shared pool used by every endpoint without a dedicated limit, so it is NOT per-endpoint — requests across those endpoints all draw from this one budget.
+                     * @example 60
+                     */
+                    "RateLimit-Limit"?: number;
+                    /**
+                     * @description Quota policy in the form `<limit>;w=<window-seconds>`.
+                     * @example 60;w=60
+                     */
+                    "RateLimit-Policy"?: string;
+                    /** @description Requests remaining in the current window for this quota. */
+                    "RateLimit-Remaining"?: number;
+                    /** @description Seconds until the current window resets. */
+                    "RateLimit-Reset"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "results": [
+                     *         {
+                     *           "id": 1,
+                     *           "shortDescription": "Time-Series Momentum (TSMOM 12/1)"
+                     *         }
+                     *       ]
+                     *     }
+                     */
+                    "application/json": components["schemas"]["StrategyPromptCatalog"];
+                };
+            };
+            /** @description Too Many Requests — the shared rate limit (60 requests / 60s) was exceeded. */
+            429: {
+                headers: {
+                    /**
+                     * @description Maximum number of requests allowed per window. This is the default shared pool used by every endpoint without a dedicated limit, so it is NOT per-endpoint — requests across those endpoints all draw from this one budget.
+                     * @example 60
+                     */
+                    "RateLimit-Limit"?: number;
+                    /**
+                     * @description Quota policy in the form `<limit>;w=<window-seconds>`.
+                     * @example 60;w=60
+                     */
+                    "RateLimit-Policy"?: string;
+                    /** @description Requests remaining in the current window for this quota. */
+                    "RateLimit-Remaining"?: number;
+                    /** @description Seconds until the current window resets. */
+                    "RateLimit-Reset"?: number;
+                    /**
+                     * @description Seconds to wait before retrying.
+                     * @example 60
+                     */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The serving dependency is temporarily unavailable. The upstream already retried before returning this. Safe to retry. */
+            503: {
+                headers: {
+                    /**
+                     * @description private, no-store on errors.
+                     * @example private, no-store
+                     */
+                    "Cache-Control"?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "DEPENDENCY_UNAVAILABLE",
+                     *         "message": "The requested resource is temporarily unavailable"
+                     *       },
+                     *       "success": false
+                     *     }
+                     */
+                    "application/json": components["schemas"]["DataApiError"];
+                };
+            };
+        };
+    };
+    getStrategyPrompt: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description A unique request identifier. */
+                "x-request-id": string;
+            };
+            path: {
+                /** @description Public id from the strategy prompt catalog. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The XML prompt for the requested published strategy. */
+            200: {
+                headers: {
+                    /**
+                     * @description public, max-age=300 on success. Catalog data, not customer-scoped.
+                     * @example public, max-age=300
+                     */
+                    "Cache-Control"?: string;
+                    /**
+                     * @description Maximum number of requests allowed per window. This is the default shared pool used by every endpoint without a dedicated limit, so it is NOT per-endpoint — requests across those endpoints all draw from this one budget.
+                     * @example 60
+                     */
+                    "RateLimit-Limit"?: number;
+                    /**
+                     * @description Quota policy in the form `<limit>;w=<window-seconds>`.
+                     * @example 60;w=60
+                     */
+                    "RateLimit-Policy"?: string;
+                    /** @description Requests remaining in the current window for this quota. */
+                    "RateLimit-Remaining"?: number;
+                    /** @description Seconds until the current window resets. */
+                    "RateLimit-Reset"?: number;
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "id": 1,
+                     *       "prompt": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><strategyPrompt><id>1</id><name>Time-Series Momentum (TSMOM 12/1)</name></strategyPrompt>"
+                     *     }
+                     */
+                    "application/json": components["schemas"]["StrategyPrompt"];
+                };
+            };
+            /** @description The id is not a positive integer. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "INVALID_REQUEST",
+                     *         "message": "The request is invalid"
+                     *       },
+                     *       "success": false
+                     *     }
+                     */
+                    "application/json": components["schemas"]["DataApiError"];
+                };
+            };
+            /** @description No published strategy prompt has this id. A draft or in-review strategy answers the same way. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "STRATEGY_PROMPT_NOT_FOUND",
+                     *         "message": "Strategy prompt was not found"
+                     *       },
+                     *       "success": false
+                     *     }
+                     */
+                    "application/json": components["schemas"]["DataApiError"];
+                };
+            };
+            /** @description Too Many Requests — the shared rate limit (60 requests / 60s) was exceeded. */
+            429: {
+                headers: {
+                    /**
+                     * @description Maximum number of requests allowed per window. This is the default shared pool used by every endpoint without a dedicated limit, so it is NOT per-endpoint — requests across those endpoints all draw from this one budget.
+                     * @example 60
+                     */
+                    "RateLimit-Limit"?: number;
+                    /**
+                     * @description Quota policy in the form `<limit>;w=<window-seconds>`.
+                     * @example 60;w=60
+                     */
+                    "RateLimit-Policy"?: string;
+                    /** @description Requests remaining in the current window for this quota. */
+                    "RateLimit-Remaining"?: number;
+                    /** @description Seconds until the current window resets. */
+                    "RateLimit-Reset"?: number;
+                    /**
+                     * @description Seconds to wait before retrying.
+                     * @example 60
+                     */
+                    "Retry-After"?: number;
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description The query returned more than one row for this id. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "error": {
+                     *         "code": "DATA_INTEGRITY_ERROR",
+                     *         "message": "The requested resource could not be resolved"
+                     *       },
+                     *       "success": false
+                     *     }
+                     */
+                    "application/json": components["schemas"]["DataApiError"];
+                };
+            };
+            /** @description The serving dependency is temporarily unavailable. The upstream already retried before returning this. Safe to retry. */
+            503: {
+                headers: {
                     [name: string]: unknown;
                 };
                 content: {

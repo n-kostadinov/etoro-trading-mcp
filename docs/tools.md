@@ -1,8 +1,8 @@
 # Tool reference
 
-This file is generated from eToro Swagger UI **v1.405.0** (canonical SHA-256 `8a1df41bcd753757fa833b0b2b0c96432c8ecc2c5cad5a7db4cb73e80ef1451f`). Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.408.0** (canonical SHA-256 `4b6a9bddb8b2f22b497169a01ff0044f878e1ccbf70b34a50a7df8348bab07a1`). Do not edit it directly; run `npm run generate`.
 
-The catalog contains **157 tools** in **26 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
+The catalog contains **159 tools** in **26 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
 
 - OAuth scopes listed in one alternative are alternatives to the key-pair authentication method; separate rows separated by OR are alternatives to each other. See [trading.md](trading.md).
 - Real-money mutations require the separate `allowRealMoney` opt-in in addition to tool selection.
@@ -106,6 +106,7 @@ The catalog contains **157 tools** in **26 toolsets**. All toolsets are disabled
 | `getSecurities` | market-data | `GET /api/v2/market-data/instruments` | no | yes | no | 120/60s, shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:market-data:read | --- |
 | `getStockbackPayments` | data | `GET /api/v1/data/stockback/payments` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.demo:read | --- |
 | `getStockbackPromoStatus` | data | `GET /api/v1/data/stockback/promo-status` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:real:write<br>OR etoro-public:demo:write<br>OR etoro-public:trade.real:read<br>OR etoro-public:trade.demo:read | --- |
+| `getStrategyPrompt` | data | `GET /api/v1/data/strategy-prompts/{id}` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:market-data:read | --- |
 | `getSubAccountUserTokens` | sub-accounts-etoro-trading | `GET /api/v1/sub-accounts/etoro-trading/user-tokens` | no | yes | no | 60/60s, default shared pool | etoro-public:sub-accounts:read<br>OR etoro-public:sub-accounts:write | --- |
 | `getSubAccountUserTokenScopes` | sub-accounts-etoro-trading | `GET /api/v1/sub-accounts/etoro-trading/user-tokens/scopes` | no | yes | no | 60/60s, default shared pool | etoro-public:sub-accounts:read<br>OR etoro-public:sub-accounts:write | --- |
 | `getTradingInfoDemoCloseOrdersByOrderId` | trading-demo | `GET /api/v1/trading/info/demo/close-orders/{orderId}` | no | yes | no | 60/60s, shared pool | etoro-public:demo:read<br>OR etoro-public:demo:write<br>OR etoro-public:trade.demo:read<br>OR etoro-public:trade.demo:write | --- |
@@ -142,6 +143,7 @@ The catalog contains **157 tools** in **26 toolsets**. All toolsets are disabled
 | `listCashAccountTransactions` | cash-accounts | `GET /api/v1/money/accounts/cash/{accountId}/transactions` | no | yes | no | 60/60s, default shared pool | etoro-public:money.cash-transactions:read | --- |
 | `listPortfolioRankingsPresets` | rankings | `GET /api/v2/portfolios/rankings/presets` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
 | `listPortfolioRankingsTags` | rankings | `GET /api/v2/portfolios/rankings/tags` | no | yes | no | 60/60s, default shared pool | (unscoped OAuth) | --- |
+| `listStrategyPrompts` | data | `GET /api/v1/data/strategy-prompts` | no | yes | no | 60/60s, default shared pool | etoro-public:real:read<br>OR etoro-public:demo:read<br>OR etoro-public:market-data:read | --- |
 | `lookupTransfersByRequestReferenceId` | transfer | `GET /api/v1/money/transfers:lookup` | no | yes | no | 60/60s, default shared pool | etoro-public:money.transfer:read | --- |
 | `patchNotificationsMessages` | notifications | `PATCH /api/v1/notifications/messages` | no | no | no | 60/60s, default shared pool | etoro-public:notifications:write | --- |
 | `patchPriceAlertsByAlertId` | price-alerts | `PATCH /api/v1/price-alerts/{alertId}` | no | no | no | 60/60s, default shared pool | etoro-public:price-alerts:write | --- |
