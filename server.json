@@ -2,18 +2,18 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.n-kostadinov/etoro-trading-mcp",
   "title": "eToro Trading MCP",
-  "description": "157 eToro API tools for agents: market data, watchlists, demo and real trading.",
+  "description": "159 eToro API tools for agents: market data, watchlists, demo and real trading.",
   "websiteUrl": "https://github.com/n-kostadinov/etoro-trading-mcp",
   "repository": {
     "url": "https://github.com/n-kostadinov/etoro-trading-mcp",
     "source": "github"
   },
-  "version": "1.3.0",
+  "version": "1.4.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "etoro-trading-mcp",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "transport": {
         "type": "stdio"
       },

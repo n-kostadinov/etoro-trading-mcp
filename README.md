@@ -22,7 +22,7 @@ The agent-facing guide is also available as [raw Markdown](https://raw.githubuse
 
 ## What you get
 
-- **156 fine-grained MCP tools** generated from eToro Swagger UI—one tool per REST operation.
+- **159 fine-grained MCP tools** generated from eToro Swagger UI—one tool per REST operation.
 - **26 toolsets, all disabled by default**: listing toolsets or tools in configuration is the only way to enable them. Enabling a toolset enables every tool in it.
 - **Demo-safe example configuration**: `ETORO_ENABLED_TOOLSETS=market-data,trading-demo` enables 28 tools (11 market-data tools and 17 current demo-trading tools) without touching real money.
 - Real-money mutations stay hidden unless you enable their tools **and** set `ETORO_ALLOW_REAL_MONEY=true`.
@@ -39,7 +39,7 @@ All toolsets are disabled by default. A typical, demo-safe MCP client entry:
   "mcpServers": {
     "etoro": {
       "command": "npx",
-      "args": ["-y", "etoro-trading-mcp@1.3.0"],
+      "args": ["-y", "etoro-trading-mcp@1.4.0"],
       "env": {
         "ETORO_API_KEY": "<user-supplied-application-key>",
         "ETORO_USER_KEY": "<user-supplied-user-key>",
@@ -96,7 +96,7 @@ Two safety gates stay separate from selection: legacy tools additionally require
 | `clubs`             |       1 |      0 |     | `sub-accounts`                  |       2 |      0 |
 | `copy-trading` ⚠️   |       5 |      0 |     | `sub-accounts-etoro-trading` ⚠️ |       6 |      0 |
 | `copy-trading-demo` |       5 |      0 |     | `top-assets`                    |       1 |      0 |
-| `data`              |       5 |      0 |     | `trading-demo`                  |      17 |      6 |
+| `data`              |       7 |      0 |     | `trading-demo`                  |      17 |      6 |
 | `identity`          |       1 |      0 |     | `trading-real` ⚠️               |      17 |      6 |
 | `market-data`       |      11 |      0 |     | `transfer` ⚠️                   |       7 |      0 |
 | `notifications`     |       2 |      0 |     | `user-stats`                    |       4 |      0 |
@@ -110,8 +110,8 @@ Two safety gates stay separate from selection: legacy tools additionally require
 The CLI never contacts eToro for these commands and works without credentials:
 
 ```bash
-npx -y etoro-trading-mcp@1.3.0 tools list --all    # every operation and its state
-npx -y etoro-trading-mcp@1.3.0 config validate     # effective settings and warnings
+npx -y etoro-trading-mcp@1.4.0 tools list --all    # every operation and its state
+npx -y etoro-trading-mcp@1.4.0 config validate     # effective settings and warnings
 ```
 
 ## Documentation
@@ -128,7 +128,7 @@ npx -y etoro-trading-mcp@1.3.0 config validate     # effective settings and warn
 
 This is an independent, unofficial project. It is not affiliated with, endorsed by, or sponsored by eToro. eToro names and trademarks belong to eToro. Nothing in this repository is investment advice. Demo trading uses virtual funds; real trading can lose real money and requires two explicit opt-ins.
 
-Current release: **1.3.0**, generated from eToro Swagger UI **v1.405.0**. Daily automation opens a review pull request when eToro's published API changes; it never automatically merges, tags, or publishes.
+Current release: **1.4.0**, generated from eToro Swagger UI **v1.408.0**. Daily automation opens a review pull request when eToro's published API changes; it never automatically merges, tags, or publishes.
 
 ## Contribute
 
