@@ -27,7 +27,7 @@ describe("generated OpenAPI and tool catalogs", () => {
       .sort();
     const source = sourceIdentities();
     expect(generated).toEqual(source);
-    expect(new Set(manifest.operations.map((operation) => operation.operationId)).size).toBe(157);
+    expect(new Set(manifest.operations.map((operation) => operation.operationId)).size).toBe(159);
     expect(Math.max(...manifest.operations.map((operation) => operation.operationId.length))).toBe(
       87,
     );
@@ -35,12 +35,10 @@ describe("generated OpenAPI and tool catalogs", () => {
 
   it("preserves the complete toolset and safety baseline", () => {
     expect(catalog.toolsets).toHaveLength(26);
-    expect(catalog.operations).toHaveLength(157);
+    expect(catalog.operations).toHaveLength(159);
     expect(catalog.operations.filter((operation) => operation.deprecated)).toHaveLength(15);
     expect(catalog.operations.filter((operation) => operation.sourceDeprecated)).toHaveLength(3);
-    expect(catalog.warnings).toEqual([
-      "Swagger UI operations absent from both portal documents: getClubs",
-    ]);
+    expect(catalog.warnings).toEqual([]);
     const count = (toolset: string) =>
       catalog.operations.filter((operation) => operation.toolsetId === toolset).length;
     expect(count("market-data")).toBe(11);
