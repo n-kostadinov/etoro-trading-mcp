@@ -39,6 +39,13 @@ Never publish from a feature branch and never run `npm publish` locally; the wor
 - **npm publish succeeded but a later step failed** (for example the metadata verification): the version is immutable on npm, and the registry pre-existence check deliberately blocks another run for the same tag. Confirm `npm view etoro-trading-mcp@vX.Y.Z`, then flip the left-over draft manually (`gh release edit vX.Y.Z --draft=false`); do not re-run npm.
 - **Re-running for an existing tag:** dispatch the workflow with the tag name for a dry-run validation. To retry a failed publish for a pushed tag, re-run the failed workflow run from the Actions UI instead.
 
-## Daily Swagger synchronization
+## Daily Swagger drift check
 
-The **Swagger sync** workflow (03:17 UTC daily) downloads eToro's current OpenAPI documents, regenerates everything, runs the full verification, and opens a pull request on the deterministic `swagger-sync/<version>-<hash>` branch when upstream changed. It never merges, tags, or publishes on its own. A manual dry run uploads the diff report and the verification log as workflow artifacts instead of creating a branch. Review such a PR like any other change, paying extra attention to real-money classification diffs, then cut a normal release if it should ship.
+The **Swagger drift** workflow (03:17 UTC daily) downloads eToro's current OpenAPI documents and compares their canonical hashes against `openapi/source-manifest.json` for all three sources (Swagger UI, core portal, deprecated portal). It succeeds with `unchanged: true` while nothing moved and fails, naming each changed source with its old and new version and hash, the moment eToro publishes a change. It never regenerates, commits, or opens pull requests; a red run is the signal that upstream moved.
+
+When it fails, apply the update manually:
+1. Check eToro's API-portal announcements first — significant changes are announced in advance, and unannounced churn can be transient (see `AGENTS.md` for the Clubs precedent).
+2. `npm run swagger:diff` to review the semantic change; pay extra attention to real-money classification diffs.
+3. `npm run acquire` to download and write the new OpenAPI documents, then `npm run generate` to regenerate the artifacts.
+4. Update the pinned catalog baselines in the tests (operation and toolset counts, warnings) to the new values.
+5. `npm run verify`, then commit everything to `main` directly — no sync pull request — and cut a release per the release process if it should ship.

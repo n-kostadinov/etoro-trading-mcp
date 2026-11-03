@@ -2,7 +2,7 @@
 
 Local [Model Context Protocol](https://modelcontextprotocol.io) server for eToro's public Swagger UI API. Its main purpose is **configuration for AI agents**: you register it once in an MCP client and enable exactly the toolsets your agent needs. The command line exists only for local inspection (`tools list`, `config validate`), not for day-to-day use.
 
-**This MCP is scanning the eToro APIs for updates daily**: an automated daily job downloads eToro's current OpenAPI documents, detects upstream changes, and opens a pull request with fully regenerated and verified tools—nothing is merged or published automatically.
+**This MCP is scanning the eToro APIs for updates daily**: an automated daily job downloads eToro's current OpenAPI documents and compares them against the tracked baseline—the job succeeds while nothing changed and fails, naming what changed, the moment eToro publishes an update. Nothing is regenerated, merged, or published automatically.
 
 [![npm](https://img.shields.io/npm/v/etoro-trading-mcp)](https://www.npmjs.com/package/etoro-trading-mcp)
 [![CI](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/n-kostadinov/etoro-trading-mcp/actions/workflows/ci.yml)
@@ -128,7 +128,7 @@ npx -y etoro-trading-mcp@1.4.0 config validate     # effective settings and warn
 
 This is an independent, unofficial project. It is not affiliated with, endorsed by, or sponsored by eToro. eToro names and trademarks belong to eToro. Nothing in this repository is investment advice. Demo trading uses virtual funds; real trading can lose real money and requires two explicit opt-ins.
 
-Current release: **1.4.0**, generated from eToro Swagger UI **v1.408.0**. Daily automation opens a review pull request when eToro's published API changes; it never automatically merges, tags, or publishes.
+Current release: **1.4.0**, generated from eToro Swagger UI **v1.408.0**. A daily job fails loudly when eToro's published API changes; applying the update and cutting a release is always a manual, reviewed step.
 
 ## Contribute
 
