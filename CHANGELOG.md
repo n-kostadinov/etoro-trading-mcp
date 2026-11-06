@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2026-11-06
+
+### Changed
+
+- Catalog refreshed from eToro Swagger UI v1.408.0 to v1.413.0: 159 tools across 26 toolsets (unchanged). No operations were added or removed upstream. The SSO applications API documentation now covers partner-reserved scopes — `GET /api/v1/sso/scopes` does not list them, and create/update reject them with `400` — and documents a retryable `409` collision response on application creation.
+
 ## [1.4.0] - 2026-11-03
 
 ### Added
