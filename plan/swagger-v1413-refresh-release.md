@@ -83,7 +83,28 @@ suite via verify/CI.
 | ID | Task | Completion criterion | Dependencies | Status |
 |---:|---|---|---|---|
 | 1 | Update commit on `main`: force-add the approved plan; pre-flight the live document (expect v1.413.0); `npm run acquire`; `npm run generate`; run `npm run verify` confirming every pinned baseline held unchanged (159/26/15/3/87/11/23/17/`[]`); commit everything directly to `main` and push | Commit on `origin/main`; `docs/data/tool-catalog.json` reports `sourceVersion: v1.413.0`, 159 operations, 26 toolsets, `warnings: []`; `npm run verify` green before the commit; `git status` clean after | None | Completed |
-| 2 | Release commit on `main`: dated `CHANGELOG.md` `[1.4.1] - 2026-11-06` section; `npm version --no-git-tag-version 1.4.1` (package.json + both lockfile fields); sweep hand-maintained version refs — `README.md:42,113,114,131`, `INSTALL.md:33,34,37,68,101,102,113`, `server.json:11,16` (counts 159/26 untouched); `npm run verify`; commit and push | On the release commit: `npm run verify` green; `grep` confirms no `1.4.0` remains in README/INSTALL/server.json and both lockfile fields read 1.4.1; commit on `origin/main` | 1 | In progress |
-| 3 | Validate the release state: `npm run release:validate -- v1.4.1` on the release commit | Command prints `"valid": true` (tag/lockfile/changelog/registry-unpublished/main-ancestry checks pass) | 2 | Pending |
-| 4 | Cut the release: wait for CI green on `main`; tag `v1.4.1` on `main` HEAD, push only the tag; monitor the Release workflow (verify → publish); verify published artifacts | Workflow run for tag `v1.4.1` succeeds; `gh release view v1.4.1` non-draft with generated notes (baseline v1.413.0, 159 ops / 26 toolsets); `npm view etoro-trading-mcp@1.4.1` returns version + `dist.attestations.provenance` (retry up to ~5 min for registry propagation) | 3 | Pending |
+| 2 | Release commit on `main`: dated `CHANGELOG.md` `[1.4.1] - 2026-11-06` section; `npm version --no-git-tag-version 1.4.1` (package.json + both lockfile fields); sweep hand-maintained version refs — `README.md:42,113,114,131`, `INSTALL.md:33,34,37,68,101,102,113`, `server.json:11,16` (counts 159/26 untouched); `npm run verify`; commit and push | On the release commit: `npm run verify` green; `grep` confirms no `1.4.0` remains in README/INSTALL/server.json and both lockfile fields read 1.4.1; commit on `origin/main` | 1 | Completed |
+| 3 | Validate the release state: `npm run release:validate -- v1.4.1` on the release commit | Command prints `"valid": true` (tag/lockfile/changelog/registry-unpublished/main-ancestry checks pass) | 2 | Completed |
+| 4 | Cut the release: wait for CI green on `main`; tag `v1.4.1` on `main` HEAD, push only the tag; monitor the Release workflow (verify → publish); verify published artifacts | Workflow run for tag `v1.4.1` succeeds; `gh release view v1.4.1` non-draft with generated notes (baseline v1.413.0, 159 ops / 26 toolsets); `npm view etoro-trading-mcp@1.4.1` returns version + `dist.attestations.provenance` (retry up to ~5 min for registry propagation) | 3 | Completed |
 | 5 | Unblock the daily job signal: trigger a `workflow_dispatch` run of the Swagger drift workflow on `main` | Run completes successfully with `unchanged: true` / exit 0; `gh run list --workflow swagger-drift.yml` shows the green run superseding failure `42014157078` | 1 | Completed |
+
+## Execution notes
+
+- **Task 1** — pre-flight confirmed all three live documents at v1.413.0;
+  `npm run acquire` + `npm run generate` changed exactly the 10 expected files;
+  `npm run verify` passed with every pinned baseline held unchanged (the
+  predicted verified no-op — no test edits were needed at all, unlike the
+  v1.4.0 run). Committed as `68e7607`, pushed directly (maintainer bypass of
+  branch protection, as the playbook's direct-to-main flow implies).
+- **Task 5** — dispatch run `42258465220` printed `"unchanged": true` and
+  superseded both scheduled failures (`42014157078` on 2026-11-05 and
+  `42205673784` on 2026-11-06; the daily had failed again this morning before
+  the update landed, as expected).
+- **Task 2** — CI run on the sync commit (`42258398632`) was cancelled by the
+  release push (workflow concurrency); the release commit's CI (`42258952695`,
+  green) covers the identical final tree, so "CI green on main" holds.
+- **Task 4** — Release workflow run `42259548619` succeeded in 1m43s; npm
+  registry propagated v1.4.1 after ~45s with SLSA v1 provenance
+  (`dist.attestations.provenance`). GitHub release `v1.4.1` published
+  non-draft at 2026-11-06T17:14:29Z with the generated baseline notes
+  (v1.413.0, SHA `79ce7ce5…`, 159 ops / 26 toolsets, surfaces consistent).
