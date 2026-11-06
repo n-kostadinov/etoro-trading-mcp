@@ -935,6 +935,71 @@
         ],
         "type": "object"
       },
+      "BotStrategyPrompt": {
+        "description": "The prompt text for one published bot strategy. A template for another system, not a live trading instruction.",
+        "properties": {
+          "id": {
+            "description": "Stable public id.",
+            "example": 1,
+            "format": "int32",
+            "type": "integer"
+          },
+          "prompt": {
+            "description": "Prompt text stored for this bot.",
+            "example": "You are the Portfolio Manager Grok Bot for the shared eToro strategy swarm.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "BotStrategyPromptCatalog": {
+        "description": "Every published bot strategy prompt. This is the full catalog, not a page. The prompt text is not included.",
+        "properties": {
+          "results": {
+            "description": "Published prompts, ordered by id. Empty when nothing is published.",
+            "items": {
+              "$ref": "#/components/schemas/BotStrategyPromptSummary"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "results"
+        ],
+        "type": "object"
+      },
+      "BotStrategyPromptSummary": {
+        "description": "One published bot strategy prompt, enough to choose which prompt to fetch.",
+        "properties": {
+          "description": {
+            "description": "One-line description of what the bot does. Null when unset.",
+            "example": "Shared sizing, rebalance, and exposure control across strategy outputs.",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "description": "Stable public id.",
+            "example": 1,
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name of the bot.",
+            "example": "Portfolio Manager Bot",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description"
+        ],
+        "type": "object"
+      },
       "BusinessErrorResponse": {
         "properties": {
           "errorCode": {
@@ -14145,7 +14210,7 @@
   "info": {
     "description": "eToro’s public API provides access to real-time financial data, trading insights, and account management features, allowing developers to integrate eToro’s services into their applications. With access to market prices, historical data, and social trading information, the API empowers users to enhance their trading strategies. Designed for security and scalability, the eToro API ensures smooth and reliable integration for a variety of financial applications.\n\nFor more details on integrating with eToro's public WebSocket service, please refer to the dedicated [WebSocket documentation](./websocket/websocket-doc.html).\n\n## Authentication\n\nEvery request must be authenticated with exactly one of two options: an OAuth 2.0 access token (`Authorization: Bearer <token>`), or the non-interactive credential pair (`x-api-key` + `x-user-key` headers). The two options are mutually exclusive — a request carrying both is rejected. Each operation lists the OAuth scopes that grant access as alternative security requirements: a bearer token needs only ONE of them, and the same permissions govern the credential pair.",
     "title": "eToro Api",
-    "version": "v1.408.0"
+    "version": "v1.413.0"
   },
   "openapi": "3.0.1",
   "paths": {
@@ -14160,7 +14225,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "7298f6c1-0dfe-4edd-a74a-2de0645e4a4d",
+              "example": "0bc441f8-7e1f-4a47-b4f9-5d2726ef1920",
               "format": "uuid",
               "type": "string"
             }
@@ -14331,7 +14396,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "33534f35-a4fe-4230-9041-e722974334a3",
+              "example": "ab83f452-9444-43b6-839e-18ab5bff1d9a",
               "format": "uuid",
               "type": "string"
             }
@@ -14567,7 +14632,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "df818ada-953f-4c38-b61f-292f4ce5ddbb",
+              "example": "1ca54744-aad9-4c27-b3e7-3d595933ffb4",
               "format": "uuid",
               "type": "string"
             }
@@ -14761,7 +14826,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "510b3d14-0fcb-4ad3-b7df-a5c490eab275",
+              "example": "3f404b0c-43e0-4550-bf03-3432df82f7ea",
               "format": "uuid",
               "type": "string"
             }
@@ -14997,7 +15062,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "9f3d2ad7-17c4-406a-bc85-5e10daf8a8c4",
+              "example": "c1870445-5487-47ac-b9c2-bf8a1bd450c3",
               "format": "uuid",
               "type": "string"
             }
@@ -15188,7 +15253,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "0409bb3e-1a8f-4742-8a00-b0d8fd0ff66b",
+              "example": "37210c6f-ebc4-4559-8dc2-75a6daf000eb",
               "format": "uuid",
               "type": "string"
             }
@@ -15425,7 +15490,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "8f1c178e-eaf2-47f5-88f7-98a25bd7a89f",
+              "example": "f5269f2b-fa88-4fd2-91fd-55eb69d35252",
               "format": "uuid",
               "type": "string"
             }
@@ -15638,7 +15703,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b9f3490f-5711-487e-90d0-3612e970e58d",
+              "example": "7a3d0e80-65c4-45f4-bf04-4610cff47e34",
               "format": "uuid",
               "type": "string"
             }
@@ -15865,7 +15930,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "eb239d93-463c-436c-8c78-ded4ced34656",
+              "example": "dc7fc3ac-af90-433c-aefd-8445f69845bd",
               "format": "uuid",
               "type": "string"
             }
@@ -16087,7 +16152,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "438c0188-cd55-446b-9940-7ae148e5b670",
+              "example": "d4163dfe-74fe-4833-8da2-1964f079b6de",
               "format": "uuid",
               "type": "string"
             }
@@ -16323,7 +16388,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "25f6dbf2-411e-4122-8c9f-0ae4d8f9d8cc",
+              "example": "0f0d2cf0-2af7-4e91-bc3f-68dd2c5d9f49",
               "format": "uuid",
               "type": "string"
             }
@@ -16541,7 +16606,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5c4fd918-061e-4cbc-94bf-5f9fb3971b6d",
+              "example": "ebdab583-d0ea-4a49-9e56-381e06ce6262",
               "format": "uuid",
               "type": "string"
             }
@@ -16778,7 +16843,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "08104fa4-c7d6-4d0e-bb8c-3cc181e2ad07",
+              "example": "bcb808ea-9a1e-440d-9ed9-564ef60dfe07",
               "format": "uuid",
               "type": "string"
             }
@@ -16949,7 +17014,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f56b7597-de33-4cf9-a293-bed446e6bfaa",
+              "example": "af0cb080-6bd2-4de5-8afe-70b91c21fa5e",
               "format": "uuid",
               "type": "string"
             }
@@ -17123,7 +17188,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f25bca27-c5bf-422f-9ac0-66fcae9d02f8",
+              "example": "631e6038-0d64-478e-87b1-43cc7bf0904c",
               "format": "uuid",
               "type": "string"
             }
@@ -17514,7 +17579,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "48f5d068-2a2b-4d03-8e27-cdb61acc58bb",
+              "example": "5e442986-5c1c-40c3-8aa8-a07fa091da76",
               "format": "uuid",
               "type": "string"
             }
@@ -17802,7 +17867,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d753ec80-7258-4ae5-87e3-c9854c06b17d",
+              "example": "b0fcb250-8274-4d55-95ef-4c4ec62da2e6",
               "format": "uuid",
               "type": "string"
             }
@@ -18159,7 +18224,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "69efd1c7-3085-4282-97bb-8b67a6675b6b",
+              "example": "d56cecbb-a5f5-4491-91f8-6913f8a27155",
               "format": "uuid",
               "type": "string"
             }
@@ -18516,7 +18581,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "0a5ff9b6-458c-4e52-803d-1ee9877c19eb",
+              "example": "80078866-0269-44f7-8221-030ef85af958",
               "format": "uuid",
               "type": "string"
             }
@@ -18888,7 +18953,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "bc112fb7-f975-48e5-9428-5e41c82b1f72",
+              "example": "f0aedf91-f672-48e6-8fca-b2c6eea0dd2c",
               "format": "uuid",
               "type": "string"
             }
@@ -19058,7 +19123,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "bbeb3cf2-52a2-4a32-a39e-95a7d371ca1b",
+              "example": "d1d13ad7-56e0-4cfb-afb2-a57c0d491328",
               "format": "uuid",
               "type": "string"
             }
@@ -19277,7 +19342,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "a20dd9f9-0d78-4fad-bb5d-fc77bac28c28",
+              "example": "ae7d6ab1-47e3-4a36-b2e4-80ce0b86ab45",
               "format": "uuid",
               "type": "string"
             }
@@ -19415,7 +19480,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "8f351c91-2b83-438c-9f12-d6815e61633e",
+              "example": "a0f0f80f-3d4d-4f60-a65f-fce22339f86b",
               "format": "uuid",
               "type": "string"
             }
@@ -19565,7 +19630,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "94ace0e1-7112-4882-9590-8b007b51dd45",
+              "example": "4d0883ad-1b1b-448b-bf73-4f89e357976d",
               "format": "uuid",
               "type": "string"
             }
@@ -19708,7 +19773,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d3d4090b-5034-4413-8e08-d21fef1e2b0d",
+              "example": "a6dd978f-922e-4d78-bcbc-cd3dab4f4aaa",
               "format": "uuid",
               "type": "string"
             }
@@ -19851,7 +19916,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "cec7dc0a-9ce0-4742-9088-10c09d738f10",
+              "example": "c418d085-b627-46f8-a12c-d3980a25bbbc",
               "format": "uuid",
               "type": "string"
             }
@@ -20036,7 +20101,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "ec32f6bc-3248-46f8-aabf-8a8c66a34469",
+              "example": "f6dfb55a-17a2-4268-893a-2a2356aa2869",
               "format": "uuid",
               "type": "string"
             }
@@ -20204,7 +20269,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "6593f284-0359-4f60-a34b-cb28c34312fb",
+              "example": "3b9347ab-ebbe-4d69-9e9f-79751f360019",
               "format": "uuid",
               "type": "string"
             }
@@ -20353,7 +20418,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5e4992e4-31e1-43b7-bda3-f43f40fe869d",
+              "example": "5671732e-d273-444d-8fa0-0eb92cabb7dd",
               "format": "uuid",
               "type": "string"
             }
@@ -20567,7 +20632,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d1492eee-6ced-4c08-98a1-fd094035ff36",
+              "example": "94e951c8-a686-459b-b29f-40f6bdc0e973",
               "format": "uuid",
               "type": "string"
             }
@@ -20735,7 +20800,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d456e65e-2911-47bc-b22d-51cb5adc6193",
+              "example": "2da85bf1-e5cc-4141-9a9e-6d85eb30a300",
               "format": "uuid",
               "type": "string"
             }
@@ -20878,7 +20943,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "8ace2ff8-ec7a-4dc2-941c-1f6c3da64f94",
+              "example": "fc3e1a09-0977-4805-b622-673a4023673f",
               "format": "uuid",
               "type": "string"
             }
@@ -21066,7 +21131,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "a0f2d798-46dc-4598-8469-9d9e8eb273d7",
+              "example": "380e64e2-4e18-4961-879e-e76d6ad384a5",
               "format": "uuid",
               "type": "string"
             }
@@ -21233,7 +21298,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d0e8d60c-b5a5-4130-abc4-6edb1ffea235",
+              "example": "07c0fc11-7ab7-446e-9632-18c2a137d93a",
               "format": "uuid",
               "type": "string"
             }
@@ -21447,7 +21512,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "706784f4-9287-4320-add5-360567d70629",
+              "example": "1ccc52e9-f12b-418c-ada4-74ee7f85bcd6",
               "format": "uuid",
               "type": "string"
             }
@@ -21577,7 +21642,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "702b22a9-6c73-47ed-a0c6-d182c159551c",
+              "example": "551cf2aa-5b06-4b45-a42b-c821759df180",
               "format": "uuid",
               "type": "string"
             }
@@ -21707,7 +21772,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d6ddcff7-50b6-4402-aef3-c6e9e7fc1701",
+              "example": "f6f480fc-7a87-4529-b644-5a3957fb4e70",
               "format": "uuid",
               "type": "string"
             }
@@ -21837,7 +21902,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5b46b3ca-df8c-4058-8370-77f3aa18a898",
+              "example": "d594552e-db7c-42a4-adfa-55658a10e06b",
               "format": "uuid",
               "type": "string"
             }
@@ -22008,7 +22073,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "a3bfaa3d-3557-4265-b713-f39d47442f57",
+              "example": "5a4d1a03-de3f-4ab7-8c14-70c7bc0481ee",
               "format": "uuid",
               "type": "string"
             }
@@ -22151,7 +22216,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f46eecc7-4a9b-42d4-93c3-9a4b015e43a1",
+              "example": "92b42214-49ff-4d99-837b-ab71e3eefb0e",
               "format": "uuid",
               "type": "string"
             }
@@ -22292,7 +22357,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "01274f47-9bfa-4ef1-aa14-d505cefcab12",
+              "example": "0bda6269-3a42-4a8d-b6f3-0c725a9f2886",
               "format": "uuid",
               "type": "string"
             }
@@ -22432,7 +22497,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "fa288132-4bbb-4ccc-9080-4aca865b67a6",
+              "example": "59bfbd0c-2072-4149-96ae-94d1a06e9fd2",
               "format": "uuid",
               "type": "string"
             }
@@ -22554,7 +22619,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f67226eb-c51e-416d-900e-7984d617d430",
+              "example": "3876a82d-3fe2-48c0-8867-01c372cb821f",
               "format": "uuid",
               "type": "string"
             }
@@ -22671,7 +22736,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "122689d5-f512-46d1-8281-3afff7d5d859",
+              "example": "72630131-564e-4903-9106-2136dc58b51e",
               "format": "uuid",
               "type": "string"
             }
@@ -22799,7 +22864,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "dd37a158-8248-4be7-a65d-c382e348f8b6",
+              "example": "3f201117-09ff-423b-834a-a1692df71ca4",
               "format": "uuid",
               "type": "string"
             }
@@ -22988,7 +23053,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "0ef0ddec-8b62-4c89-9ef6-b7e77754ba38",
+              "example": "2d928f69-40ee-4c3a-8697-1a5a55a76ce2",
               "format": "uuid",
               "type": "string"
             }
@@ -23227,7 +23292,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b60e59e5-b013-4ab9-a140-3cff634172c0",
+              "example": "dc02a0ab-594b-42bc-af32-477f02db0cd5",
               "format": "uuid",
               "type": "string"
             }
@@ -23479,7 +23544,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "06e98a6f-9cdc-4ae3-b581-27669ee2033a",
+              "example": "ac7fdea4-8247-480f-a638-94e57726f994",
               "format": "uuid",
               "type": "string"
             }
@@ -23683,7 +23748,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "9bdbcdaa-6187-4fbc-9bef-3a9c356c71a3",
+              "example": "8449efd4-6030-4474-a2c4-02c322524d5f",
               "format": "uuid",
               "type": "string"
             }
@@ -23927,7 +23992,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "a82bf567-d7a1-4173-bbc9-0ba14eee1086",
+              "example": "f8b99912-8d6f-4078-9b4a-af1ea6569c6e",
               "format": "uuid",
               "type": "string"
             }
@@ -24052,7 +24117,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b5eb66d5-91d0-40a6-a091-cf03a9108477",
+              "example": "ef307281-d590-4f1a-840b-c50049ff77be",
               "format": "uuid",
               "type": "string"
             }
@@ -24132,7 +24197,7 @@
                 }
               }
             },
-            "description": "Validation error - missing required field, malformed URL, duplicate redirect URI, unknown scope id, or duplicate scope ids."
+            "description": "Validation error - missing required field, malformed URL, duplicate redirect URI, duplicate scope ids, or a scope id that `GET /api/v1/sso/scopes` does not list (unknown, or reserved for partner applications)."
           },
           "401": {
             "description": "Missing or invalid STS access token."
@@ -24146,6 +24211,16 @@
               }
             },
             "description": "The caller's SSO application allowance is zero - they may not create applications at all. Retrying cannot succeed."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StsMetadataFrontApi_ErrorResponse"
+                }
+              }
+            },
+            "description": "The generated application identifiers collided with an existing application. Retry the request."
           },
           "429": {
             "content": {
@@ -24231,7 +24306,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "cd64a06f-8747-4876-bcfd-b7dcacefd17d",
+              "example": "78988395-b50a-46d6-8579-0b438f302d3e",
               "format": "uuid",
               "type": "string"
             }
@@ -24367,7 +24442,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d220581d-402e-41da-b937-79eada7803a8",
+              "example": "ef22b498-fb96-490c-bc13-7c995012d24c",
               "format": "uuid",
               "type": "string"
             }
@@ -24447,7 +24522,7 @@
                 }
               }
             },
-            "description": "Validation error."
+            "description": "Validation error - the same rules as create: malformed URL, duplicate redirect URI, duplicate scope ids, or a scope id that `GET /api/v1/sso/scopes` does not list (unknown, or reserved for partner applications)."
           },
           "401": {
             "description": "Missing or invalid STS access token."
@@ -24539,7 +24614,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1bb14e90-832d-47f9-8912-b3920a7c6b05",
+              "example": "89d69fc7-fa2a-433b-83d9-254d9c679726",
               "format": "uuid",
               "type": "string"
             }
@@ -24678,7 +24753,7 @@
     },
     "/api/v1/sso/scopes": {
       "get": {
-        "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nReturns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update.",
+        "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nReturns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update. Scopes reserved for partner applications are not listed, and create/update reject them with `400`.",
         "operationId": "getScopes",
         "parameters": [
           {
@@ -24687,7 +24762,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "c2da6b50-0376-4c35-b99c-1cf8f301af78",
+              "example": "c58c1b4b-5edc-4813-a90e-99297fe1acef",
               "format": "uuid",
               "type": "string"
             }
@@ -24830,7 +24905,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "dfa2a8e4-4866-4801-8621-deb157de3520",
+              "example": "a8e0c11d-d630-4c51-9743-e34ef8a3d3fc",
               "format": "uuid",
               "type": "string"
             }
@@ -25053,7 +25128,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "a15e4ee8-9026-4fac-9ac7-200b79508d3d",
+              "example": "03e99968-706a-45d0-af03-c45515bec3cb",
               "format": "uuid",
               "type": "string"
             }
@@ -25213,7 +25288,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "67eb93b6-5b22-4730-ab3a-7b4d7f34ffb8",
+              "example": "fedf030a-6032-429b-b85f-580036ff6ce1",
               "format": "uuid",
               "type": "string"
             }
@@ -25481,7 +25556,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f7ad677f-e0a5-4aa9-8f90-bfe396931c43",
+              "example": "8a29c9f0-73a3-4ba2-8cf9-93a675091949",
               "format": "uuid",
               "type": "string"
             }
@@ -25632,7 +25707,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "bd6e84e2-9839-4544-9f32-7c1ccdf90c4c",
+              "example": "26ad4464-dd98-4287-a79c-df7ee815080e",
               "format": "uuid",
               "type": "string"
             }
@@ -25827,7 +25902,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "bfd9b7d7-50ce-4459-b1c7-422c5f7302af",
+              "example": "61da9e1b-9b56-4617-a5e8-267685f621a6",
               "format": "uuid",
               "type": "string"
             }
@@ -26079,7 +26154,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "c6fdaa34-2bc9-4f85-8527-37e17f6e447a",
+              "example": "cd5d3e0e-5196-4c2c-98d4-708116efae7c",
               "format": "uuid",
               "type": "string"
             }
@@ -26222,7 +26297,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "7ce52d45-8b87-4369-a2d3-3159171ca956",
+              "example": "c5854111-e3e1-44ff-8b52-b443d6f94392",
               "format": "uuid",
               "type": "string"
             }
@@ -26434,7 +26509,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2a6bb4ea-7863-4890-a914-d174a8e224ba",
+              "example": "32f16fba-6dfa-4ded-881d-6e9bd10e470c",
               "format": "uuid",
               "type": "string"
             }
@@ -26669,7 +26744,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f6e8bbb9-414d-4986-877e-09d56548fa96",
+              "example": "b22943d8-0bb6-4526-b381-ba3e38c4ad07",
               "format": "uuid",
               "type": "string"
             }
@@ -26829,7 +26904,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "53caed76-3ae8-434d-a29a-a5d2c2bdee4f",
+              "example": "ba9ad4c3-0f27-4340-8e47-ef07591b93b8",
               "format": "uuid",
               "type": "string"
             }
@@ -27066,7 +27141,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b5090a80-8189-4cad-b7cc-53af24bf63b8",
+              "example": "91b6f142-314a-431f-bea7-9ad8174b644b",
               "format": "uuid",
               "type": "string"
             }
@@ -27226,7 +27301,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2fcd135c-98cd-4775-874d-1c1bca47bfd9",
+              "example": "547949c6-76eb-4ffd-90a1-a8552a863b5b",
               "format": "uuid",
               "type": "string"
             }
@@ -27520,7 +27595,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "53447726-4fd5-4bf5-872a-79a8543e9884",
+              "example": "6869933f-b955-4338-a045-fbcc380be2d0",
               "format": "uuid",
               "type": "string"
             }
@@ -27825,7 +27900,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "c868816f-faa1-430b-b28d-071d0094bad3",
+              "example": "1e0ba4f4-f55d-41a5-84f3-9ff5e9e6a2c6",
               "format": "uuid",
               "type": "string"
             }
@@ -27985,7 +28060,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "e72eee7b-7541-4004-a122-66fd63de7d44",
+              "example": "15151dcc-a4b8-498f-9173-f148cc969588",
               "format": "uuid",
               "type": "string"
             }
@@ -28220,7 +28295,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2bdd97d7-b01a-46d7-a01e-7120652d989a",
+              "example": "4c8ad96d-378b-4a2c-96b9-2cf7cb7fe723",
               "format": "uuid",
               "type": "string"
             }
@@ -28380,7 +28455,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "080aa3b2-a1ba-44d0-b82c-f6bbf1e172e7",
+              "example": "0a93aac1-d136-4275-9d96-59567188a8f2",
               "format": "uuid",
               "type": "string"
             }
@@ -28617,7 +28692,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "aa83ed88-d85d-4401-9263-f509b1ea6acb",
+              "example": "190f0153-ed06-4280-860d-12f02fa20fd4",
               "format": "uuid",
               "type": "string"
             }
@@ -28777,7 +28852,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "16450861-0555-4146-aed7-429af5eddfb4",
+              "example": "e77000d6-4fb4-4366-9292-096dae691d9a",
               "format": "uuid",
               "type": "string"
             }
@@ -29071,7 +29146,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "761d8144-ed12-4942-b349-ad4fae4460b7",
+              "example": "66132468-abf7-423d-bed5-f4fc4416e516",
               "format": "uuid",
               "type": "string"
             }
@@ -29376,7 +29451,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "73b44cc0-7a31-4aee-974b-3c4f94b9a4a1",
+              "example": "acf8552e-43ac-4d85-94e8-8b5eb31bff4b",
               "format": "uuid",
               "type": "string"
             }
@@ -29536,7 +29611,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "713e8042-a23a-473b-908f-20af11b10daf",
+              "example": "07c91c7c-64e3-4e7b-8f0e-51f72d7a8efb",
               "format": "uuid",
               "type": "string"
             }
@@ -29791,7 +29866,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "cd886b25-17ad-4d16-8a63-3597892aa90e",
+              "example": "dca1a93e-e403-4074-84ff-b84e8a6df596",
               "format": "uuid",
               "type": "string"
             }
@@ -29951,7 +30026,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b36f78b1-3938-4597-88f7-ffde09c0a0c1",
+              "example": "3fe67930-e5f2-4e7e-8cbb-700a5a551700",
               "format": "uuid",
               "type": "string"
             }
@@ -30206,7 +30281,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f1869dc6-5b4c-4f49-aa72-76a3d1e377ae",
+              "example": "e674ea65-1cbe-4462-919b-617375d53141",
               "format": "uuid",
               "type": "string"
             }
@@ -30366,7 +30441,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "20b40dd1-1701-489d-bbfe-7cef8a077c41",
+              "example": "0c3d86ba-8603-4ebe-b919-f2f4936ba4ce",
               "format": "uuid",
               "type": "string"
             }
@@ -30546,7 +30621,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "823ad939-f441-47f7-8750-e0abbc2239f6",
+              "example": "ee9ac40a-d420-4801-bddc-1941f76fb9d5",
               "format": "uuid",
               "type": "string"
             }
@@ -30723,7 +30798,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "02c84a16-7d05-4a38-8073-f376d40fcfaf",
+              "example": "82f41f1a-77bd-4012-bd15-6f06e101e426",
               "format": "uuid",
               "type": "string"
             }
@@ -31113,7 +31188,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "8f7b8e9a-5a53-4488-a91e-4a683a17f455",
+              "example": "434762d0-379f-4542-a36b-4767fbba20b3",
               "format": "uuid",
               "type": "string"
             }
@@ -31350,7 +31425,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "554b2443-ba47-4b67-91e5-829bb86f6892",
+              "example": "46a9fe93-b66f-443b-abc6-783e7f2958f3",
               "format": "uuid",
               "type": "string"
             }
@@ -31587,7 +31662,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "6b8ff9a2-1616-4677-8e1c-eae12eb4824d",
+              "example": "5ec7dc69-6c5e-4308-a262-e14174d12567",
               "format": "uuid",
               "type": "string"
             }
@@ -31767,7 +31842,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b087392a-1237-41bd-b16e-766e62784cb7",
+              "example": "439867d3-b3c1-4a10-b771-0d6409dafd7c",
               "format": "uuid",
               "type": "string"
             }
@@ -31944,7 +32019,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f347e4c2-9390-4633-91ca-9c0aa85fd998",
+              "example": "c553089f-8446-4b54-a5ad-0df2b7932577",
               "format": "uuid",
               "type": "string"
             }
@@ -32334,7 +32409,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d8730ac8-12bf-45e0-8574-15cb196bb272",
+              "example": "2966ae79-2fe3-4a51-a116-d268a6ac02a3",
               "format": "uuid",
               "type": "string"
             }
@@ -32599,7 +32674,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "ababad0b-b534-4fa3-8655-f520cee4b65f",
+              "example": "743d4546-ada2-4499-9ecc-241f04bba760",
               "format": "uuid",
               "type": "string"
             }
@@ -32864,7 +32939,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "608476cd-d763-42f2-ac1c-e3dfc55b9c10",
+              "example": "328806d8-ff03-40d4-a3bf-db1a1aa758d0",
               "format": "uuid",
               "type": "string"
             }
@@ -33063,7 +33138,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1eb473b9-18ac-49f3-8da0-24ae64180e3e",
+              "example": "109dbb8c-a9f3-4917-afd0-5593a150aee6",
               "format": "uuid",
               "type": "string"
             }
@@ -33638,7 +33713,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f95102a7-1901-4a99-9060-707308572b2f",
+              "example": "4cc9726d-70d7-4895-933a-2c8e19b7dcd6",
               "format": "uuid",
               "type": "string"
             }
@@ -33852,7 +33927,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "e9c3f8c6-5059-4a23-8cf7-172ad3a69ffe",
+              "example": "48701f15-51ff-4ba3-a51e-bc4215fd32db",
               "format": "uuid",
               "type": "string"
             }
@@ -34001,7 +34076,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "809aa0af-d36f-4c17-9579-273b2b5c9004",
+              "example": "9157a3e9-84bb-4976-801c-80af189677ed",
               "format": "uuid",
               "type": "string"
             }
@@ -34357,7 +34432,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f2b0b4df-8ae8-4eaf-b77d-343fe9f2f4f1",
+              "example": "d525e97d-5eb5-42f3-8c9a-332ed1f13987",
               "format": "uuid",
               "type": "string"
             }
@@ -34709,7 +34784,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5f53b98f-47eb-4e3a-87c0-7fcd00a4ce32",
+              "example": "4a7c79dd-c365-418d-8c68-ac5b2e3c48b0",
               "format": "uuid",
               "type": "string"
             }
@@ -34889,7 +34964,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "0c5938b4-3811-4b1d-ae1b-c0179f7c1bf2",
+              "example": "aaacd976-c024-4768-9cdf-3fbdc3a5c662",
               "format": "uuid",
               "type": "string"
             }
@@ -35061,7 +35136,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "fc737fa5-4adc-4149-bb4c-3b355693d433",
+              "example": "ee30f4d8-3c41-41d1-abef-810891db660c",
               "format": "uuid",
               "type": "string"
             }
@@ -35214,7 +35289,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1c61a768-e87c-491a-be11-3d13047d7db8",
+              "example": "db7401cf-018b-40a0-9610-710d1bc7bad1",
               "format": "uuid",
               "type": "string"
             }
@@ -35387,7 +35462,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "0e2ad68a-f72d-456a-a08e-8d4e306d41d7",
+              "example": "75f6de65-5edf-4ef4-b48b-813c799fbe0b",
               "format": "uuid",
               "type": "string"
             }
@@ -35559,7 +35634,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "7cf793e1-e7df-4c1d-a49d-31ffbee238e5",
+              "example": "2c4fa6a8-033d-4f14-9e92-9bd03ed6e887",
               "format": "uuid",
               "type": "string"
             }
@@ -35730,7 +35805,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d793b265-cd06-4386-9b54-3a93a3d38c65",
+              "example": "c4eaa14d-ff8e-48f9-a037-24b1defb0152",
               "format": "uuid",
               "type": "string"
             }
@@ -35922,7 +35997,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "55a890c0-4ff7-4190-9674-2bf5796e123d",
+              "example": "edc1bdcb-6473-4ba2-9e90-e1536ac1573b",
               "format": "uuid",
               "type": "string"
             }
@@ -36075,7 +36150,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "907649d9-3a5d-48da-8783-b241f954aaf2",
+              "example": "825f45aa-2755-46f2-bea0-24064c5b4a65",
               "format": "uuid",
               "type": "string"
             }
@@ -36217,7 +36292,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "56f49d32-c141-4645-b4b5-04293d762f97",
+              "example": "f3a39f1b-f23b-4bcd-b44f-5b435d87bbcf",
               "format": "uuid",
               "type": "string"
             }
@@ -36357,7 +36432,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f9833413-5233-4adf-83bb-4ba97b972071",
+              "example": "96e16ff9-8f17-4fc7-872c-83edd21030ff",
               "format": "uuid",
               "type": "string"
             }
@@ -36539,7 +36614,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d75995e3-dad7-498d-8a44-cb6dee888c28",
+              "example": "d21e3af1-90ae-4ae0-9008-b56b0a88df4a",
               "format": "uuid",
               "type": "string"
             }
@@ -36692,7 +36767,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "abbc9a01-972c-4f27-b5e9-97a16c79b156",
+              "example": "0c9746f3-c130-47e2-8f95-a40a58a02e72",
               "format": "uuid",
               "type": "string"
             }
@@ -36846,7 +36921,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "c9bf8be0-1a64-4dd8-8edc-be74518df668",
+              "example": "1dc6da86-a345-4008-be59-cbf50b2691aa",
               "format": "uuid",
               "type": "string"
             }
@@ -37000,7 +37075,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2408d05b-4c0f-4f23-80d7-db845735d58f",
+              "example": "c141d2fe-27e4-406b-a607-f866d197f645",
               "format": "uuid",
               "type": "string"
             }
@@ -37156,7 +37231,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "954a13c6-ab57-46e8-8134-dbbf1c2fdf7f",
+              "example": "6445ba50-e9ac-49c8-97eb-346d2db4d237",
               "format": "uuid",
               "type": "string"
             }
@@ -37387,7 +37462,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1d816d5d-67c0-4998-bbbb-895bef16b975",
+              "example": "ea945600-e170-4004-8dce-cc2309b54ac4",
               "format": "uuid",
               "type": "string"
             }
@@ -37549,7 +37624,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "4510038e-9e3c-4dcd-853b-eb76e746e59f",
+              "example": "23b9cedc-1906-4277-a233-7d248a4b7017",
               "format": "uuid",
               "type": "string"
             }
@@ -37787,7 +37862,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "cd989997-7464-4b99-8ffa-ba6176350f18",
+              "example": "3f7c7bd0-432b-4421-85e9-8c145e1ecc7a",
               "format": "uuid",
               "type": "string"
             }
@@ -38026,7 +38101,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "9bf40265-f108-4a70-bf90-6b83dd832564",
+              "example": "b4593457-dfa0-4e6e-be07-670eb446b9af",
               "format": "uuid",
               "type": "string"
             }
@@ -38282,7 +38357,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "9e9924fe-fb01-4b7f-a27b-90c3079f63e5",
+              "example": "d5c50d9f-bde2-4c8e-b327-c0c39d2cee14",
               "format": "uuid",
               "type": "string"
             }
@@ -38495,7 +38570,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2c36c385-b45d-45fc-a96d-1628a5c1d05c",
+              "example": "a50fca8f-d0fb-42b9-afac-36c1b58aa697",
               "format": "uuid",
               "type": "string"
             }
@@ -38727,7 +38802,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "67224a43-3c06-4708-870b-eda953437b40",
+              "example": "5995c8f5-5c67-40b8-acd7-857a14901623",
               "format": "uuid",
               "type": "string"
             }
@@ -38981,7 +39056,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "3ebed851-abb9-4233-ac7c-bd6cbf7c41a4",
+              "example": "15afc1b8-d92b-469f-8769-ccc573abee81",
               "format": "uuid",
               "type": "string"
             }
@@ -39154,7 +39229,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "14678a2d-73f5-423d-845e-047c16e42a7d",
+              "example": "14675374-004c-4a1d-b331-efca402292a4",
               "format": "uuid",
               "type": "string"
             }
@@ -39301,7 +39376,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5cf70b7f-d95d-4397-adf6-4fdf9f6bf4a5",
+              "example": "91b3f04b-f652-4e9a-8794-56c1baaaebf0",
               "format": "uuid",
               "type": "string"
             }
@@ -39479,7 +39554,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2f5befc6-8e3c-46eb-b40b-f5622ca27988",
+              "example": "879ab0b0-66b3-4365-a05f-893d4d9c30ca",
               "format": "uuid",
               "type": "string"
             }
@@ -39629,7 +39704,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "679c2430-80cd-4c59-84aa-4df3658b281a",
+              "example": "296c8bf2-9358-4884-9d9b-6b4a564f7c62",
               "format": "uuid",
               "type": "string"
             }
@@ -39779,7 +39854,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "37f02bfe-d30e-4fd0-b58b-fda62a7b1f7d",
+              "example": "45756d13-5b70-474b-b160-a8ad3c5c03c2",
               "format": "uuid",
               "type": "string"
             }
@@ -40037,7 +40112,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1dcf1f70-5f15-40be-b8d4-73c5815875a4",
+              "example": "2f65116a-57cd-409f-8a91-5fdaf3c44d20",
               "format": "uuid",
               "type": "string"
             }
@@ -40213,7 +40288,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "ffc87f60-36fe-4a99-96f7-24eeccf21c2b",
+              "example": "9a6924fe-e55c-402a-b41c-25113f4620bc",
               "format": "uuid",
               "type": "string"
             }
@@ -40477,7 +40552,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "84bc04b2-7535-43a0-9426-18f4b5ad610f",
+              "example": "0e80ef26-3478-4f06-8e9a-03a34fba49d3",
               "format": "uuid",
               "type": "string"
             }
@@ -40696,7 +40771,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "951ebc23-8204-4ba2-8902-ba78d369e3c0",
+              "example": "0f979f7c-be3a-4fe4-973d-f3a22cb99dc8",
               "format": "uuid",
               "type": "string"
             }
@@ -40859,7 +40934,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "65aa0619-a767-47d4-8e26-414ef6a51244",
+              "example": "78be95e6-c6df-462a-ab1a-312a8e4efea0",
               "format": "uuid",
               "type": "string"
             }
@@ -41069,7 +41144,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "38d8821e-c354-4a56-b106-833bdde4dc3b",
+              "example": "44ee33db-0ec8-4c72-b966-2e4a98a1189e",
               "format": "uuid",
               "type": "string"
             }
@@ -41259,7 +41334,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "dd494774-a6df-4bb7-b40d-b8181b9215fd",
+              "example": "ec4c6f3e-79a1-41d5-8f78-f0c4e750c11e",
               "format": "uuid",
               "type": "string"
             }
@@ -41449,7 +41524,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "55eeb295-b79e-4822-9e51-da7d42a0ec44",
+              "example": "72f92449-cc53-48b2-a33f-86d1f0c70476",
               "format": "uuid",
               "type": "string"
             }
@@ -41659,7 +41734,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2de69b59-7a64-49e7-bc2e-318688a6f088",
+              "example": "89f4de2a-67fe-4c66-89b0-59e255ec9ef6",
               "format": "uuid",
               "type": "string"
             }
@@ -41849,7 +41924,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "fefac1dd-b1f5-4093-bb48-4ec4e03f082a",
+              "example": "4e563b89-d10c-47fb-b33a-2321d394fac2",
               "format": "uuid",
               "type": "string"
             }
@@ -42039,7 +42114,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "f19a1cd3-143e-4c73-aa37-69a058579fdf",
+              "example": "ea16c784-065d-410f-938e-35c5c0c7823d",
               "format": "uuid",
               "type": "string"
             }
@@ -42252,7 +42327,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "fade4d96-2c5a-440d-a928-c4986d087f4c",
+              "example": "8736a9f6-f03e-418d-a761-44c137f8fd2f",
               "format": "uuid",
               "type": "string"
             }
@@ -42477,7 +42552,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "20b9753b-02bd-4511-abf4-9411408d53f8",
+              "example": "fc44ecbc-521f-4ba7-9960-a5dbce54522e",
               "format": "uuid",
               "type": "string"
             }
@@ -42690,7 +42765,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1bca64b4-5c7f-449b-b251-2136a9c2bd37",
+              "example": "9bab14f7-174f-4297-b163-386a8be2f9e2",
               "format": "uuid",
               "type": "string"
             }
@@ -42915,7 +42990,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "54a0541c-e4a2-4d8d-a2ca-d340b3df8aaf",
+              "example": "d1b26d1f-f69b-46ce-89a1-6148658c8f1e",
               "format": "uuid",
               "type": "string"
             }
@@ -43114,7 +43189,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "d871dd27-9f93-4df3-a075-f33ae89ab668",
+              "example": "be556cef-ce0a-4ec7-8f6f-0468283e3fa1",
               "format": "uuid",
               "type": "string"
             }
@@ -43318,7 +43393,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5a2ae821-6d56-46ff-8160-941e49fe042f",
+              "example": "400ffd73-d623-4680-9f01-0c25b03f5d5a",
               "format": "uuid",
               "type": "string"
             }
@@ -43510,7 +43585,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "74feda21-edfc-419d-bbb9-2333c50cf09f",
+              "example": "906e7298-3c4c-4c5d-92dc-4bcd37be6bd8",
               "format": "uuid",
               "type": "string"
             }
@@ -43714,7 +43789,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "943e728f-6e32-4c69-960f-7d18dd827dbd",
+              "example": "bb6aadaa-4fa2-4297-9793-2a2a4cbbf228",
               "format": "uuid",
               "type": "string"
             }
@@ -43906,7 +43981,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "056c5f93-179f-499e-9f17-387530391411",
+              "example": "caab7795-e53a-488b-bbb5-9e2d80472f27",
               "format": "uuid",
               "type": "string"
             }
@@ -44140,7 +44215,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "eb8632d5-5040-4d14-a4e1-839438dc1220",
+              "example": "3145f1a8-b816-40b1-98e5-4c53f7a0485a",
               "format": "uuid",
               "type": "string"
             }
@@ -44374,7 +44449,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "34e85ea4-a1e1-4bcc-a712-d5c428e2a450",
+              "example": "8d1a1f68-7174-4638-a69c-a6a27e37848d",
               "format": "uuid",
               "type": "string"
             }
@@ -44601,7 +44676,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "7cf26e2c-bb9d-4036-981b-9c5c517664f5",
+              "example": "c6463844-0375-455f-9116-b7ab1806deeb",
               "format": "uuid",
               "type": "string"
             }
@@ -44917,7 +44992,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "3d21eb36-9a98-4252-bd4d-8136b7232681",
+              "example": "0aaf712c-34e9-418d-af01-44ab135b2910",
               "format": "uuid",
               "type": "string"
             }
@@ -45173,7 +45248,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "71e05e4d-9125-4dee-8abc-f2e6e65216c3",
+              "example": "ac894cf5-55e0-474e-91ae-4ef7103b150d",
               "format": "uuid",
               "type": "string"
             }
@@ -45400,7 +45475,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2521b3a5-9a36-4bc6-9f75-8ff050ebc942",
+              "example": "66e3c544-81ae-47d1-9b6c-3d5916e1d686",
               "format": "uuid",
               "type": "string"
             }
@@ -45716,7 +45791,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "5b37d4b4-bfef-4ab0-8fd1-82bcc82800a9",
+              "example": "fa599409-b12d-4dd1-bf4e-fe8f2ac1a08f",
               "format": "uuid",
               "type": "string"
             }
@@ -45972,7 +46047,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "6de7551f-c466-4248-bbbd-2d26c60cbc27",
+              "example": "ca9edde6-bcf4-4f7c-82d2-bc718237b8b7",
               "format": "uuid",
               "type": "string"
             }
@@ -46171,7 +46246,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "0bc8f8de-9697-40c9-a33f-3837ddad1a59",
+              "example": "51877b66-4122-43a2-9965-b1883947e4d5",
               "format": "uuid",
               "type": "string"
             }
@@ -46343,7 +46418,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b2e9cb45-fafb-4d67-beed-42b3d1c26c5c",
+              "example": "46eeb258-688f-40be-988e-3280c4fa5e3d",
               "format": "uuid",
               "type": "string"
             }
@@ -46556,7 +46631,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "2611aaf6-b426-4c3c-811b-8edc7f14c5c9",
+              "example": "aee8652c-017d-46ac-872c-96ad9299cf12",
               "format": "uuid",
               "type": "string"
             }
@@ -46750,7 +46825,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "6e75ffb4-0262-4c8f-8a85-2e67de58066b",
+              "example": "fc1ad056-149b-4695-868a-126dd66a0d66",
               "format": "uuid",
               "type": "string"
             }
@@ -46963,7 +47038,7 @@
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "94a5807f-15ad-4c41-9ae9-a0ac0dacc5ec",
+              "example": "0fe2a162-614f-4c3f-a820-827891822f9d",
               "format": "uuid",
               "type": "string"
             }

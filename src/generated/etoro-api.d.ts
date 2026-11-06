@@ -1285,7 +1285,7 @@ export interface paths {
          *
          *     ---
          *
-         *     Returns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update.
+         *     Returns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update. Scopes reserved for partner applications are not listed, and create/update reject them with `400`.
          */
         get: operations["getScopes"];
         put?: never;
@@ -4556,6 +4556,44 @@ export interface components {
              * @example 1
              */
             version: number;
+        };
+        /** @description The prompt text for one published bot strategy. A template for another system, not a live trading instruction. */
+        BotStrategyPrompt: {
+            /**
+             * Format: int32
+             * @description Stable public id.
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description Prompt text stored for this bot.
+             * @example You are the Portfolio Manager Grok Bot for the shared eToro strategy swarm.
+             */
+            prompt: string;
+        };
+        /** @description Every published bot strategy prompt. This is the full catalog, not a page. The prompt text is not included. */
+        BotStrategyPromptCatalog: {
+            /** @description Published prompts, ordered by id. Empty when nothing is published. */
+            results: components["schemas"]["BotStrategyPromptSummary"][];
+        };
+        /** @description One published bot strategy prompt, enough to choose which prompt to fetch. */
+        BotStrategyPromptSummary: {
+            /**
+             * @description One-line description of what the bot does. Null when unset.
+             * @example Shared sizing, rebalance, and exposure control across strategy outputs.
+             */
+            description: string | null;
+            /**
+             * Format: int32
+             * @description Stable public id.
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description Name of the bot.
+             * @example Portfolio Manager Bot
+             */
+            name: string;
         };
         BusinessErrorResponse: {
             errorCode: string;
@@ -18212,7 +18250,7 @@ export interface operations {
                     "application/json": components["schemas"]["CreateApplicationResponse"];
                 };
             };
-            /** @description Validation error - missing required field, malformed URL, duplicate redirect URI, unknown scope id, or duplicate scope ids. */
+            /** @description Validation error - missing required field, malformed URL, duplicate redirect URI, duplicate scope ids, or a scope id that `GET /api/v1/sso/scopes` does not list (unknown, or reserved for partner applications). */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -18230,6 +18268,15 @@ export interface operations {
             };
             /** @description The caller's SSO application allowance is zero - they may not create applications at all. Retrying cannot succeed. */
             403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StsMetadataFrontApi_ErrorResponse"];
+                };
+            };
+            /** @description The generated application identifiers collided with an existing application. Retry the request. */
+            409: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -18325,7 +18372,7 @@ export interface operations {
                     "application/json": components["schemas"]["UpdateApplicationResponse"];
                 };
             };
-            /** @description Validation error. */
+            /** @description Validation error - the same rules as create: malformed URL, duplicate redirect URI, duplicate scope ids, or a scope id that `GET /api/v1/sso/scopes` does not list (unknown, or reserved for partner applications). */
             400: {
                 headers: {
                     [name: string]: unknown;

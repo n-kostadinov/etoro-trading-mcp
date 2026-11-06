@@ -3,8 +3,8 @@ import type { ToolCatalog } from "../catalog/types.js";
 
 const catalog = {
   "schemaVersion": 1,
-  "sourceVersion": "v1.408.0",
-  "sourceCanonicalSha256": "4b6a9bddb8b2f22b497169a01ff0044f878e1ccbf70b34a50a7df8348bab07a1",
+  "sourceVersion": "v1.413.0",
+  "sourceCanonicalSha256": "79ce7ce5738e067db1f6fa566fde31b64c5bd45749ffbbacd5ffc5f58c71b871",
   "toolsets": [
     {
       "id": "agent-portfolios",
@@ -189,7 +189,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "20b9753b-02bd-4511-abf4-9411408d53f8"
+              "fc44ecbc-521f-4ba7-9960-a5dbce54522e"
             ],
             "format": "uuid",
             "type": "string"
@@ -454,7 +454,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "20b9753b-02bd-4511-abf4-9411408d53f8"
+                  "fc44ecbc-521f-4ba7-9960-a5dbce54522e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -543,7 +543,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f19a1cd3-143e-4c73-aa37-69a058579fdf"
+              "ea16c784-065d-410f-938e-35c5c0c7823d"
             ],
             "format": "uuid",
             "type": "string"
@@ -808,7 +808,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f19a1cd3-143e-4c73-aa37-69a058579fdf"
+                  "ea16c784-065d-410f-938e-35c5c0c7823d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -897,7 +897,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "65aa0619-a767-47d4-8e26-414ef6a51244"
+              "78be95e6-c6df-462a-ab1a-312a8e4efea0"
             ],
             "format": "uuid",
             "type": "string"
@@ -1167,7 +1167,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "65aa0619-a767-47d4-8e26-414ef6a51244"
+                  "78be95e6-c6df-462a-ab1a-312a8e4efea0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1226,7 +1226,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "55eeb295-b79e-4822-9e51-da7d42a0ec44"
+              "72f92449-cc53-48b2-a33f-86d1f0c70476"
             ],
             "format": "uuid",
             "type": "string"
@@ -1496,7 +1496,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "55eeb295-b79e-4822-9e51-da7d42a0ec44"
+                  "72f92449-cc53-48b2-a33f-86d1f0c70476"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1555,7 +1555,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "dd494774-a6df-4bb7-b40d-b8181b9215fd"
+              "ec4c6f3e-79a1-41d5-8f78-f0c4e750c11e"
             ],
             "format": "uuid",
             "type": "string"
@@ -1757,7 +1757,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "dd494774-a6df-4bb7-b40d-b8181b9215fd"
+                  "ec4c6f3e-79a1-41d5-8f78-f0c4e750c11e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1852,7 +1852,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fefac1dd-b1f5-4093-bb48-4ec4e03f082a"
+              "4e563b89-d10c-47fb-b33a-2321d394fac2"
             ],
             "format": "uuid",
             "type": "string"
@@ -2054,7 +2054,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fefac1dd-b1f5-4093-bb48-4ec4e03f082a"
+                  "4e563b89-d10c-47fb-b33a-2321d394fac2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2149,7 +2149,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "33534f35-a4fe-4230-9041-e722974334a3"
+              "ab83f452-9444-43b6-839e-18ab5bff1d9a"
             ],
             "format": "uuid",
             "type": "string"
@@ -2482,7 +2482,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "33534f35-a4fe-4230-9041-e722974334a3"
+                  "ab83f452-9444-43b6-839e-18ab5bff1d9a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2631,7 +2631,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "510b3d14-0fcb-4ad3-b7df-a5c490eab275"
+              "3f404b0c-43e0-4550-bf03-3432df82f7ea"
             ],
             "format": "uuid",
             "type": "string"
@@ -2924,7 +2924,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "510b3d14-0fcb-4ad3-b7df-a5c490eab275"
+                  "3f404b0c-43e0-4550-bf03-3432df82f7ea"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3051,7 +3051,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4510038e-9e3c-4dcd-853b-eb76e746e59f"
+              "23b9cedc-1906-4277-a233-7d248a4b7017"
             ],
             "format": "uuid",
             "type": "string"
@@ -3360,7 +3360,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4510038e-9e3c-4dcd-853b-eb76e746e59f"
+                  "23b9cedc-1906-4277-a233-7d248a4b7017"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3471,7 +3471,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "954a13c6-ab57-46e8-8134-dbbf1c2fdf7f"
+              "6445ba50-e9ac-49c8-97eb-346d2db4d237"
             ],
             "format": "uuid",
             "type": "string"
@@ -3798,7 +3798,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "954a13c6-ab57-46e8-8134-dbbf1c2fdf7f"
+                  "6445ba50-e9ac-49c8-97eb-346d2db4d237"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3931,7 +3931,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b5eb66d5-91d0-40a6-a091-cf03a9108477"
+              "ef307281-d590-4f1a-840b-c50049ff77be"
             ],
             "format": "uuid",
             "type": "string"
@@ -4081,7 +4081,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation error - missing required field, malformed URL, duplicate redirect URI, unknown scope id, or duplicate scope ids.",
+          "description": "Validation error - missing required field, malformed URL, duplicate redirect URI, duplicate scope ids, or a scope id that `GET /api/v1/sso/scopes` does not list (unknown, or reserved for partner applications).",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/StsMetadataFrontApi_ErrorResponse",
@@ -4111,6 +4111,29 @@ const catalog = {
         {
           "status": "403",
           "description": "The caller's SSO application allowance is zero - they may not create applications at all. Retrying cannot succeed.",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/StsMetadataFrontApi_ErrorResponse",
+            "$defs": {
+              "StsMetadataFrontApi_ErrorResponse": {
+                "properties": {
+                  "errorCode": {
+                    "description": "Machine-readable error code (e.g. `ScopeIdInvalid`, `ScopeIdsDuplicateItems`).",
+                    "type": "string"
+                  },
+                  "errorMessage": {
+                    "description": "Human-readable error description.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "status": "409",
+          "description": "The generated application identifiers collided with an existing application. Retry the request.",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/StsMetadataFrontApi_ErrorResponse",
@@ -4189,7 +4212,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b5eb66d5-91d0-40a6-a091-cf03a9108477"
+                  "ef307281-d590-4f1a-840b-c50049ff77be"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4329,7 +4352,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7ce52d45-8b87-4369-a2d3-3159171ca956"
+              "c5854111-e3e1-44ff-8b52-b443d6f94392"
             ],
             "format": "uuid",
             "type": "string"
@@ -4409,7 +4432,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7ce52d45-8b87-4369-a2d3-3159171ca956"
+                  "c5854111-e3e1-44ff-8b52-b443d6f94392"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4466,7 +4489,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "dfa2a8e4-4866-4801-8621-deb157de3520"
+              "a8e0c11d-d630-4c51-9743-e34ef8a3d3fc"
             ],
             "format": "uuid",
             "type": "string"
@@ -4637,7 +4660,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "dfa2a8e4-4866-4801-8621-deb157de3520"
+                  "a8e0c11d-d630-4c51-9743-e34ef8a3d3fc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4732,7 +4755,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "67eb93b6-5b22-4730-ab3a-7b4d7f34ffb8"
+              "fedf030a-6032-429b-b85f-580036ff6ce1"
             ],
             "format": "uuid",
             "type": "string"
@@ -5013,7 +5036,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "67eb93b6-5b22-4730-ab3a-7b4d7f34ffb8"
+                  "fedf030a-6032-429b-b85f-580036ff6ce1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5130,7 +5153,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2a6bb4ea-7863-4890-a914-d174a8e224ba"
+              "32f16fba-6dfa-4ded-881d-6e9bd10e470c"
             ],
             "format": "uuid",
             "type": "string"
@@ -5303,7 +5326,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2a6bb4ea-7863-4890-a914-d174a8e224ba"
+                  "32f16fba-6dfa-4ded-881d-6e9bd10e470c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5443,7 +5466,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "53caed76-3ae8-434d-a29a-a5d2c2bdee4f"
+              "ba9ad4c3-0f27-4340-8e47-ef07591b93b8"
             ],
             "format": "uuid",
             "type": "string"
@@ -5616,7 +5639,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "53caed76-3ae8-434d-a29a-a5d2c2bdee4f"
+                  "ba9ad4c3-0f27-4340-8e47-ef07591b93b8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5696,7 +5719,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2fcd135c-98cd-4775-874d-1c1bca47bfd9"
+              "547949c6-76eb-4ffd-90a1-a8552a863b5b"
             ],
             "format": "uuid",
             "type": "string"
@@ -5910,7 +5933,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2fcd135c-98cd-4775-874d-1c1bca47bfd9"
+                  "547949c6-76eb-4ffd-90a1-a8552a863b5b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6033,7 +6056,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "53447726-4fd5-4bf5-872a-79a8543e9884"
+              "6869933f-b955-4338-a045-fbcc380be2d0"
             ],
             "format": "uuid",
             "type": "string"
@@ -6256,7 +6279,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "53447726-4fd5-4bf5-872a-79a8543e9884"
+                  "6869933f-b955-4338-a045-fbcc380be2d0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6379,7 +6402,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d871dd27-9f93-4df3-a075-f33ae89ab668"
+              "be556cef-ce0a-4ec7-8f6f-0468283e3fa1"
             ],
             "format": "uuid",
             "type": "string"
@@ -6634,7 +6657,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d871dd27-9f93-4df3-a075-f33ae89ab668"
+                  "be556cef-ce0a-4ec7-8f6f-0468283e3fa1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6902,7 +6925,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b2e9cb45-fafb-4d67-beed-42b3d1c26c5c"
+              "46eeb258-688f-40be-988e-3280c4fa5e3d"
             ],
             "format": "uuid",
             "type": "string"
@@ -7204,7 +7227,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b2e9cb45-fafb-4d67-beed-42b3d1c26c5c"
+                  "46eeb258-688f-40be-988e-3280c4fa5e3d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7472,7 +7495,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e72eee7b-7541-4004-a122-66fd63de7d44"
+              "15151dcc-a4b8-498f-9173-f148cc969588"
             ],
             "format": "uuid",
             "type": "string"
@@ -7645,7 +7668,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e72eee7b-7541-4004-a122-66fd63de7d44"
+                  "15151dcc-a4b8-498f-9173-f148cc969588"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7785,7 +7808,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "080aa3b2-a1ba-44d0-b82c-f6bbf1e172e7"
+              "0a93aac1-d136-4275-9d96-59567188a8f2"
             ],
             "format": "uuid",
             "type": "string"
@@ -7958,7 +7981,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "080aa3b2-a1ba-44d0-b82c-f6bbf1e172e7"
+                  "0a93aac1-d136-4275-9d96-59567188a8f2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8038,7 +8061,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "16450861-0555-4146-aed7-429af5eddfb4"
+              "e77000d6-4fb4-4366-9292-096dae691d9a"
             ],
             "format": "uuid",
             "type": "string"
@@ -8252,7 +8275,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "16450861-0555-4146-aed7-429af5eddfb4"
+                  "e77000d6-4fb4-4366-9292-096dae691d9a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8375,7 +8398,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "761d8144-ed12-4942-b349-ad4fae4460b7"
+              "66132468-abf7-423d-bed5-f4fc4416e516"
             ],
             "format": "uuid",
             "type": "string"
@@ -8598,7 +8621,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "761d8144-ed12-4942-b349-ad4fae4460b7"
+                  "66132468-abf7-423d-bed5-f4fc4416e516"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8721,7 +8744,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "74feda21-edfc-419d-bbb9-2333c50cf09f"
+              "906e7298-3c4c-4c5d-92dc-4bcd37be6bd8"
             ],
             "format": "uuid",
             "type": "string"
@@ -8976,7 +8999,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "74feda21-edfc-419d-bbb9-2333c50cf09f"
+                  "906e7298-3c4c-4c5d-92dc-4bcd37be6bd8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9244,7 +9267,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6e75ffb4-0262-4c8f-8a85-2e67de58066b"
+              "fc1ad056-149b-4695-868a-126dd66a0d66"
             ],
             "format": "uuid",
             "type": "string"
@@ -9546,7 +9569,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6e75ffb4-0262-4c8f-8a85-2e67de58066b"
+                  "fc1ad056-149b-4695-868a-126dd66a0d66"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9814,7 +9837,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "df818ada-953f-4c38-b61f-292f4ce5ddbb"
+              "1ca54744-aad9-4c27-b3e7-3d595933ffb4"
             ],
             "format": "uuid",
             "type": "string"
@@ -9996,7 +10019,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "df818ada-953f-4c38-b61f-292f4ce5ddbb"
+                  "1ca54744-aad9-4c27-b3e7-3d595933ffb4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10055,7 +10078,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9f3d2ad7-17c4-406a-bc85-5e10daf8a8c4"
+              "c1870445-5487-47ac-b9c2-bf8a1bd450c3"
             ],
             "format": "uuid",
             "type": "string"
@@ -10242,7 +10265,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9f3d2ad7-17c4-406a-bc85-5e10daf8a8c4"
+                  "c1870445-5487-47ac-b9c2-bf8a1bd450c3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10301,7 +10324,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cd64a06f-8747-4876-bcfd-b7dcacefd17d"
+              "78988395-b50a-46d6-8579-0b438f302d3e"
             ],
             "format": "uuid",
             "type": "string"
@@ -10414,7 +10437,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cd64a06f-8747-4876-bcfd-b7dcacefd17d"
+                  "78988395-b50a-46d6-8579-0b438f302d3e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10470,7 +10493,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "06e98a6f-9cdc-4ae3-b581-27669ee2033a"
+              "ac7fdea4-8247-480f-a638-94e57726f994"
             ],
             "format": "uuid",
             "type": "string"
@@ -10772,7 +10795,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "06e98a6f-9cdc-4ae3-b581-27669ee2033a"
+                  "ac7fdea4-8247-480f-a638-94e57726f994"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10828,7 +10851,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bd6e84e2-9839-4544-9f32-7c1ccdf90c4c"
+              "26ad4464-dd98-4287-a79c-df7ee815080e"
             ],
             "format": "uuid",
             "type": "string"
@@ -11019,7 +11042,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bd6e84e2-9839-4544-9f32-7c1ccdf90c4c"
+                  "26ad4464-dd98-4287-a79c-df7ee815080e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11082,7 +11105,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f6e8bbb9-414d-4986-877e-09d56548fa96"
+              "b22943d8-0bb6-4526-b381-ba3e38c4ad07"
             ],
             "format": "uuid",
             "type": "string"
@@ -11188,7 +11211,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f6e8bbb9-414d-4986-877e-09d56548fa96"
+                  "b22943d8-0bb6-4526-b381-ba3e38c4ad07"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11247,7 +11270,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b5090a80-8189-4cad-b7cc-53af24bf63b8"
+              "91b6f142-314a-431f-bea7-9ad8174b644b"
             ],
             "format": "uuid",
             "type": "string"
@@ -11353,7 +11376,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b5090a80-8189-4cad-b7cc-53af24bf63b8"
+                  "91b6f142-314a-431f-bea7-9ad8174b644b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11412,7 +11435,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c868816f-faa1-430b-b28d-071d0094bad3"
+              "1e0ba4f4-f55d-41a5-84f3-9ff5e9e6a2c6"
             ],
             "format": "uuid",
             "type": "string"
@@ -11518,7 +11541,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c868816f-faa1-430b-b28d-071d0094bad3"
+                  "1e0ba4f4-f55d-41a5-84f3-9ff5e9e6a2c6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11577,7 +11600,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5a2ae821-6d56-46ff-8160-941e49fe042f"
+              "400ffd73-d623-4680-9f01-0c25b03f5d5a"
             ],
             "format": "uuid",
             "type": "string"
@@ -11828,7 +11851,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5a2ae821-6d56-46ff-8160-941e49fe042f"
+                  "400ffd73-d623-4680-9f01-0c25b03f5d5a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11887,7 +11910,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2611aaf6-b426-4c3c-811b-8edc7f14c5c9"
+              "aee8652c-017d-46ac-872c-96ad9299cf12"
             ],
             "format": "uuid",
             "type": "string"
@@ -12200,7 +12223,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2611aaf6-b426-4c3c-811b-8edc7f14c5c9"
+                  "aee8652c-017d-46ac-872c-96ad9299cf12"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12259,7 +12282,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2bdd97d7-b01a-46d7-a01e-7120652d989a"
+              "4c8ad96d-378b-4a2c-96b9-2cf7cb7fe723"
             ],
             "format": "uuid",
             "type": "string"
@@ -12365,7 +12388,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2bdd97d7-b01a-46d7-a01e-7120652d989a"
+                  "4c8ad96d-378b-4a2c-96b9-2cf7cb7fe723"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12424,7 +12447,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "aa83ed88-d85d-4401-9263-f509b1ea6acb"
+              "190f0153-ed06-4280-860d-12f02fa20fd4"
             ],
             "format": "uuid",
             "type": "string"
@@ -12530,7 +12553,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "aa83ed88-d85d-4401-9263-f509b1ea6acb"
+                  "190f0153-ed06-4280-860d-12f02fa20fd4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12589,7 +12612,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "73b44cc0-7a31-4aee-974b-3c4f94b9a4a1"
+              "acf8552e-43ac-4d85-94e8-8b5eb31bff4b"
             ],
             "format": "uuid",
             "type": "string"
@@ -12695,7 +12718,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "73b44cc0-7a31-4aee-974b-3c4f94b9a4a1"
+                  "acf8552e-43ac-4d85-94e8-8b5eb31bff4b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12754,7 +12777,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "943e728f-6e32-4c69-960f-7d18dd827dbd"
+              "bb6aadaa-4fa2-4297-9793-2a2a4cbbf228"
             ],
             "format": "uuid",
             "type": "string"
@@ -13005,7 +13028,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "943e728f-6e32-4c69-960f-7d18dd827dbd"
+                  "bb6aadaa-4fa2-4297-9793-2a2a4cbbf228"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13064,7 +13087,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "94a5807f-15ad-4c41-9ae9-a0ac0dacc5ec"
+              "0fe2a162-614f-4c3f-a820-827891822f9d"
             ],
             "format": "uuid",
             "type": "string"
@@ -13377,7 +13400,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "94a5807f-15ad-4c41-9ae9-a0ac0dacc5ec"
+                  "0fe2a162-614f-4c3f-a820-827891822f9d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13436,7 +13459,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "56f49d32-c141-4645-b4b5-04293d762f97"
+              "f3a39f1b-f23b-4bcd-b44f-5b435d87bbcf"
             ],
             "format": "uuid",
             "type": "string"
@@ -13532,7 +13555,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "56f49d32-c141-4645-b4b5-04293d762f97"
+                  "f3a39f1b-f23b-4bcd-b44f-5b435d87bbcf"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13594,7 +13617,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "abbc9a01-972c-4f27-b5e9-97a16c79b156"
+              "0c9746f3-c130-47e2-8f95-a40a58a02e72"
             ],
             "format": "uuid",
             "type": "string"
@@ -13701,7 +13724,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "abbc9a01-972c-4f27-b5e9-97a16c79b156"
+                  "0c9746f3-c130-47e2-8f95-a40a58a02e72"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13883,7 +13906,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7298f6c1-0dfe-4edd-a74a-2de0645e4a4d"
+              "0bc441f8-7e1f-4a47-b4f9-5d2726ef1920"
             ],
             "format": "uuid",
             "type": "string"
@@ -14167,7 +14190,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7298f6c1-0dfe-4edd-a74a-2de0645e4a4d"
+                  "0bc441f8-7e1f-4a47-b4f9-5d2726ef1920"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14229,7 +14252,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1d816d5d-67c0-4998-bbbb-895bef16b975"
+              "ea945600-e170-4004-8dce-cc2309b54ac4"
             ],
             "format": "uuid",
             "type": "string"
@@ -14379,7 +14402,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1d816d5d-67c0-4998-bbbb-895bef16b975"
+                  "ea945600-e170-4004-8dce-cc2309b54ac4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14435,7 +14458,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "713e8042-a23a-473b-908f-20af11b10daf"
+              "07c91c7c-64e3-4e7b-8f0e-51f72d7a8efb"
             ],
             "format": "uuid",
             "type": "string"
@@ -14965,7 +14988,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "713e8042-a23a-473b-908f-20af11b10daf"
+                  "07c91c7c-64e3-4e7b-8f0e-51f72d7a8efb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15018,7 +15041,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b36f78b1-3938-4597-88f7-ffde09c0a0c1"
+              "3fe67930-e5f2-4e7e-8cbb-700a5a551700"
             ],
             "format": "uuid",
             "type": "string"
@@ -15548,7 +15571,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b36f78b1-3938-4597-88f7-ffde09c0a0c1"
+                  "3fe67930-e5f2-4e7e-8cbb-700a5a551700"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15601,7 +15624,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a82bf567-d7a1-4173-bbc9-0ba14eee1086"
+              "f8b99912-8d6f-4078-9b4a-af1ea6569c6e"
             ],
             "format": "uuid",
             "type": "string"
@@ -15786,7 +15809,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a82bf567-d7a1-4173-bbc9-0ba14eee1086"
+                  "f8b99912-8d6f-4078-9b4a-af1ea6569c6e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15842,7 +15865,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "37f02bfe-d30e-4fd0-b58b-fda62a7b1f7d"
+              "45756d13-5b70-474b-b160-a8ad3c5c03c2"
             ],
             "format": "uuid",
             "type": "string"
@@ -16400,7 +16423,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "37f02bfe-d30e-4fd0-b58b-fda62a7b1f7d"
+                  "45756d13-5b70-474b-b160-a8ad3c5c03c2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -16471,7 +16494,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "25f6dbf2-411e-4122-8c9f-0ae4d8f9d8cc"
+              "0f0d2cf0-2af7-4e91-bc3f-68dd2c5d9f49"
             ],
             "format": "uuid",
             "type": "string"
@@ -17046,7 +17069,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "25f6dbf2-411e-4122-8c9f-0ae4d8f9d8cc"
+                  "0f0d2cf0-2af7-4e91-bc3f-68dd2c5d9f49"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -17120,7 +17143,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8f1c178e-eaf2-47f5-88f7-98a25bd7a89f"
+              "f5269f2b-fa88-4fd2-91fd-55eb69d35252"
             ],
             "format": "uuid",
             "type": "string"
@@ -17662,7 +17685,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8f1c178e-eaf2-47f5-88f7-98a25bd7a89f"
+                  "f5269f2b-fa88-4fd2-91fd-55eb69d35252"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -17715,7 +17738,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "eb239d93-463c-436c-8c78-ded4ced34656"
+              "dc7fc3ac-af90-433c-aefd-8445f69845bd"
             ],
             "format": "uuid",
             "type": "string"
@@ -18283,7 +18306,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "eb239d93-463c-436c-8c78-ded4ced34656"
+                  "dc7fc3ac-af90-433c-aefd-8445f69845bd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -18357,7 +18380,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d753ec80-7258-4ae5-87e3-c9854c06b17d"
+              "b0fcb250-8274-4d55-95ef-4c4ec62da2e6"
             ],
             "format": "uuid",
             "type": "string"
@@ -18710,7 +18733,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d753ec80-7258-4ae5-87e3-c9854c06b17d"
+                  "b0fcb250-8274-4d55-95ef-4c4ec62da2e6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -18778,7 +18801,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "08104fa4-c7d6-4d0e-bb8c-3cc181e2ad07"
+              "bcb808ea-9a1e-440d-9ed9-564ef60dfe07"
             ],
             "format": "uuid",
             "type": "string"
@@ -19548,7 +19571,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "08104fa4-c7d6-4d0e-bb8c-3cc181e2ad07"
+                  "bcb808ea-9a1e-440d-9ed9-564ef60dfe07"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -19601,7 +19624,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1bca64b4-5c7f-449b-b251-2136a9c2bd37"
+              "9bab14f7-174f-4297-b163-386a8be2f9e2"
             ],
             "format": "uuid",
             "type": "string"
@@ -19900,7 +19923,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1bca64b4-5c7f-449b-b251-2136a9c2bd37"
+                  "9bab14f7-174f-4297-b163-386a8be2f9e2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -19965,7 +19988,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fade4d96-2c5a-440d-a928-c4986d087f4c"
+              "8736a9f6-f03e-418d-a761-44c137f8fd2f"
             ],
             "format": "uuid",
             "type": "string"
@@ -20264,7 +20287,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fade4d96-2c5a-440d-a928-c4986d087f4c"
+                  "8736a9f6-f03e-418d-a761-44c137f8fd2f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -20329,7 +20352,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "056c5f93-179f-499e-9f17-387530391411"
+              "caab7795-e53a-488b-bbb5-9e2d80472f27"
             ],
             "format": "uuid",
             "type": "string"
@@ -20569,7 +20592,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "056c5f93-179f-499e-9f17-387530391411"
+                  "caab7795-e53a-488b-bbb5-9e2d80472f27"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -20843,7 +20866,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "eb8632d5-5040-4d14-a4e1-839438dc1220"
+              "3145f1a8-b816-40b1-98e5-4c53f7a0485a"
             ],
             "format": "uuid",
             "type": "string"
@@ -21083,7 +21106,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "eb8632d5-5040-4d14-a4e1-839438dc1220"
+                  "3145f1a8-b816-40b1-98e5-4c53f7a0485a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -21357,7 +21380,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f56b7597-de33-4cf9-a293-bed446e6bfaa"
+              "af0cb080-6bd2-4de5-8afe-70b91c21fa5e"
             ],
             "format": "uuid",
             "type": "string"
@@ -21517,7 +21540,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f56b7597-de33-4cf9-a293-bed446e6bfaa"
+                  "af0cb080-6bd2-4de5-8afe-70b91c21fa5e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -21585,7 +21608,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ffc87f60-36fe-4a99-96f7-24eeccf21c2b"
+              "9a6924fe-e55c-402a-b41c-25113f4620bc"
             ],
             "format": "uuid",
             "type": "string"
@@ -22138,7 +22161,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ffc87f60-36fe-4a99-96f7-24eeccf21c2b"
+                  "9a6924fe-e55c-402a-b41c-25113f4620bc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -22209,7 +22232,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "84bc04b2-7535-43a0-9426-18f4b5ad610f"
+              "0e80ef26-3478-4f06-8e9a-03a34fba49d3"
             ],
             "format": "uuid",
             "type": "string"
@@ -22610,7 +22633,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "84bc04b2-7535-43a0-9426-18f4b5ad610f"
+                  "0e80ef26-3478-4f06-8e9a-03a34fba49d3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -22664,7 +22687,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5c4fd918-061e-4cbc-94bf-5f9fb3971b6d"
+              "ebdab583-d0ea-4a49-9e56-381e06ce6262"
             ],
             "format": "uuid",
             "type": "string"
@@ -23219,7 +23242,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5c4fd918-061e-4cbc-94bf-5f9fb3971b6d"
+                  "ebdab583-d0ea-4a49-9e56-381e06ce6262"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23293,7 +23316,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b9f3490f-5711-487e-90d0-3612e970e58d"
+              "7a3d0e80-65c4-45f4-bf04-4610cff47e34"
             ],
             "format": "uuid",
             "type": "string"
@@ -23821,7 +23844,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b9f3490f-5711-487e-90d0-3612e970e58d"
+                  "7a3d0e80-65c4-45f4-bf04-4610cff47e34"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23874,7 +23897,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "438c0188-cd55-446b-9940-7ae148e5b670"
+              "d4163dfe-74fe-4833-8da2-1964f079b6de"
             ],
             "format": "uuid",
             "type": "string"
@@ -24428,7 +24451,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "438c0188-cd55-446b-9940-7ae148e5b670"
+                  "d4163dfe-74fe-4833-8da2-1964f079b6de"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24502,7 +24525,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a20dd9f9-0d78-4fad-bb5d-fc77bac28c28"
+              "ae7d6ab1-47e3-4a36-b2e4-80ce0b86ab45"
             ],
             "format": "uuid",
             "type": "string"
@@ -24629,7 +24652,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a20dd9f9-0d78-4fad-bb5d-fc77bac28c28"
+                  "ae7d6ab1-47e3-4a36-b2e4-80ce0b86ab45"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24685,7 +24708,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "71e05e4d-9125-4dee-8abc-f2e6e65216c3"
+              "ac894cf5-55e0-474e-91ae-4ef7103b150d"
             ],
             "format": "uuid",
             "type": "string"
@@ -25074,7 +25097,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "71e05e4d-9125-4dee-8abc-f2e6e65216c3"
+                  "ac894cf5-55e0-474e-91ae-4ef7103b150d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25176,7 +25199,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "34e85ea4-a1e1-4bcc-a712-d5c428e2a450"
+              "8d1a1f68-7174-4638-a69c-a6a27e37848d"
             ],
             "format": "uuid",
             "type": "string"
@@ -25565,7 +25588,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "34e85ea4-a1e1-4bcc-a712-d5c428e2a450"
+                  "8d1a1f68-7174-4638-a69c-a6a27e37848d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25667,7 +25690,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9e9924fe-fb01-4b7f-a27b-90c3079f63e5"
+              "d5c50d9f-bde2-4c8e-b327-c0c39d2cee14"
             ],
             "format": "uuid",
             "type": "string"
@@ -26005,7 +26028,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9e9924fe-fb01-4b7f-a27b-90c3079f63e5"
+                  "d5c50d9f-bde2-4c8e-b327-c0c39d2cee14"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26073,7 +26096,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8f351c91-2b83-438c-9f12-d6815e61633e"
+              "a0f0f80f-3d4d-4f60-a65f-fce22339f86b"
             ],
             "format": "uuid",
             "type": "string"
@@ -26193,7 +26216,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8f351c91-2b83-438c-9f12-d6815e61633e"
+                  "a0f0f80f-3d4d-4f60-a65f-fce22339f86b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26261,7 +26284,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "94ace0e1-7112-4882-9590-8b007b51dd45"
+              "4d0883ad-1b1b-448b-bf73-4f89e357976d"
             ],
             "format": "uuid",
             "type": "string"
@@ -26374,7 +26397,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "94ace0e1-7112-4882-9590-8b007b51dd45"
+                  "4d0883ad-1b1b-448b-bf73-4f89e357976d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26425,7 +26448,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cec7dc0a-9ce0-4742-9088-10c09d738f10"
+              "c418d085-b627-46f8-a12c-d3980a25bbbc"
             ],
             "format": "uuid",
             "type": "string"
@@ -26662,7 +26685,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cec7dc0a-9ce0-4742-9088-10c09d738f10"
+                  "c418d085-b627-46f8-a12c-d3980a25bbbc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26713,7 +26736,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5e4992e4-31e1-43b7-bda3-f43f40fe869d"
+              "5671732e-d273-444d-8fa0-0eb92cabb7dd"
             ],
             "format": "uuid",
             "type": "string"
@@ -26994,7 +27017,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5e4992e4-31e1-43b7-bda3-f43f40fe869d"
+                  "5671732e-d273-444d-8fa0-0eb92cabb7dd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27048,7 +27071,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ec32f6bc-3248-46f8-aabf-8a8c66a34469"
+              "f6dfb55a-17a2-4268-893a-2a2356aa2869"
             ],
             "format": "uuid",
             "type": "string"
@@ -27188,7 +27211,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ec32f6bc-3248-46f8-aabf-8a8c66a34469"
+                  "f6dfb55a-17a2-4268-893a-2a2356aa2869"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27239,7 +27262,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6593f284-0359-4f60-a34b-cb28c34312fb"
+              "3b9347ab-ebbe-4d69-9e9f-79751f360019"
             ],
             "format": "uuid",
             "type": "string"
@@ -27432,7 +27455,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6593f284-0359-4f60-a34b-cb28c34312fb"
+                  "3b9347ab-ebbe-4d69-9e9f-79751f360019"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27486,7 +27509,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d3d4090b-5034-4413-8e08-d21fef1e2b0d"
+              "a6dd978f-922e-4d78-bcbc-cd3dab4f4aaa"
             ],
             "format": "uuid",
             "type": "string"
@@ -27599,7 +27622,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d3d4090b-5034-4413-8e08-d21fef1e2b0d"
+                  "a6dd978f-922e-4d78-bcbc-cd3dab4f4aaa"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27650,7 +27673,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d1492eee-6ced-4c08-98a1-fd094035ff36"
+              "94e951c8-a686-459b-b29f-40f6bdc0e973"
             ],
             "format": "uuid",
             "type": "string"
@@ -28082,7 +28105,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d1492eee-6ced-4c08-98a1-fd094035ff36"
+                  "94e951c8-a686-459b-b29f-40f6bdc0e973"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28136,7 +28159,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d456e65e-2911-47bc-b22d-51cb5adc6193"
+              "2da85bf1-e5cc-4141-9a9e-6d85eb30a300"
             ],
             "format": "uuid",
             "type": "string"
@@ -28249,7 +28272,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d456e65e-2911-47bc-b22d-51cb5adc6193"
+                  "2da85bf1-e5cc-4141-9a9e-6d85eb30a300"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28300,7 +28323,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8ace2ff8-ec7a-4dc2-941c-1f6c3da64f94"
+              "fc3e1a09-0977-4805-b622-673a4023673f"
             ],
             "format": "uuid",
             "type": "string"
@@ -28446,7 +28469,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8ace2ff8-ec7a-4dc2-941c-1f6c3da64f94"
+                  "fc3e1a09-0977-4805-b622-673a4023673f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28517,7 +28540,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a0f2d798-46dc-4598-8469-9d9e8eb273d7"
+              "380e64e2-4e18-4961-879e-e76d6ad384a5"
             ],
             "format": "uuid",
             "type": "string"
@@ -28687,7 +28710,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a0f2d798-46dc-4598-8469-9d9e8eb273d7"
+                  "380e64e2-4e18-4961-879e-e76d6ad384a5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28752,7 +28775,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3ebed851-abb9-4233-ac7c-bd6cbf7c41a4"
+              "15afc1b8-d92b-469f-8769-ccc573abee81"
             ],
             "format": "uuid",
             "type": "string"
@@ -29201,7 +29224,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3ebed851-abb9-4233-ac7c-bd6cbf7c41a4"
+                  "15afc1b8-d92b-469f-8769-ccc573abee81"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29298,7 +29321,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c6fdaa34-2bc9-4f85-8527-37e17f6e447a"
+              "cd5d3e0e-5196-4c2c-98d4-708116efae7c"
             ],
             "format": "uuid",
             "type": "string"
@@ -29359,7 +29382,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c6fdaa34-2bc9-4f85-8527-37e17f6e447a"
+                  "cd5d3e0e-5196-4c2c-98d4-708116efae7c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29415,7 +29438,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fa288132-4bbb-4ccc-9080-4aca865b67a6"
+              "59bfbd0c-2072-4149-96ae-94d1a06e9fd2"
             ],
             "format": "uuid",
             "type": "string"
@@ -29596,7 +29619,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fa288132-4bbb-4ccc-9080-4aca865b67a6"
+                  "59bfbd0c-2072-4149-96ae-94d1a06e9fd2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29649,7 +29672,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "122689d5-f512-46d1-8281-3afff7d5d859"
+              "72630131-564e-4903-9106-2136dc58b51e"
             ],
             "format": "uuid",
             "type": "string"
@@ -29810,7 +29833,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "122689d5-f512-46d1-8281-3afff7d5d859"
+                  "72630131-564e-4903-9106-2136dc58b51e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29869,7 +29892,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1dcf1f70-5f15-40be-b8d4-73c5815875a4"
+              "2f65116a-57cd-409f-8a91-5fdaf3c44d20"
             ],
             "format": "uuid",
             "type": "string"
@@ -30236,7 +30259,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1dcf1f70-5f15-40be-b8d4-73c5815875a4"
+                  "2f65116a-57cd-409f-8a91-5fdaf3c44d20"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -30290,7 +30313,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "951ebc23-8204-4ba2-8902-ba78d369e3c0"
+              "0f979f7c-be3a-4fe4-973d-f3a22cb99dc8"
             ],
             "format": "uuid",
             "type": "string"
@@ -30763,7 +30786,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "951ebc23-8204-4ba2-8902-ba78d369e3c0"
+                  "0f979f7c-be3a-4fe4-973d-f3a22cb99dc8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -30838,7 +30861,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5cf70b7f-d95d-4397-adf6-4fdf9f6bf4a5"
+              "91b3f04b-f652-4e9a-8794-56c1baaaebf0"
             ],
             "format": "uuid",
             "type": "string"
@@ -31328,7 +31351,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5cf70b7f-d95d-4397-adf6-4fdf9f6bf4a5"
+                  "91b3f04b-f652-4e9a-8794-56c1baaaebf0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -31382,7 +31405,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "67224a43-3c06-4708-870b-eda953437b40"
+              "5995c8f5-5c67-40b8-acd7-857a14901623"
             ],
             "format": "uuid",
             "type": "string"
@@ -32042,7 +32065,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "67224a43-3c06-4708-870b-eda953437b40"
+                  "5995c8f5-5c67-40b8-acd7-857a14901623"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32116,7 +32139,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2f5befc6-8e3c-46eb-b40b-f5622ca27988"
+              "879ab0b0-66b3-4365-a05f-893d4d9c30ca"
             ],
             "format": "uuid",
             "type": "string"
@@ -32315,7 +32338,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2f5befc6-8e3c-46eb-b40b-f5622ca27988"
+                  "879ab0b0-66b3-4365-a05f-893d4d9c30ca"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32369,7 +32392,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0ef0ddec-8b62-4c89-9ef6-b7e77754ba38"
+              "2d928f69-40ee-4c3a-8697-1a5a55a76ce2"
             ],
             "format": "uuid",
             "type": "string"
@@ -32756,7 +32779,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0ef0ddec-8b62-4c89-9ef6-b7e77754ba38"
+                  "2d928f69-40ee-4c3a-8697-1a5a55a76ce2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32809,7 +32832,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "48f5d068-2a2b-4d03-8e27-cdb61acc58bb"
+              "5e442986-5c1c-40c3-8aa8-a07fa091da76"
             ],
             "format": "uuid",
             "type": "string"
@@ -33078,7 +33101,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "48f5d068-2a2b-4d03-8e27-cdb61acc58bb"
+                  "5e442986-5c1c-40c3-8aa8-a07fa091da76"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -33146,7 +33169,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f25bca27-c5bf-422f-9ac0-66fcae9d02f8"
+              "631e6038-0d64-478e-87b1-43cc7bf0904c"
             ],
             "format": "uuid",
             "type": "string"
@@ -33691,7 +33714,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f25bca27-c5bf-422f-9ac0-66fcae9d02f8"
+                  "631e6038-0d64-478e-87b1-43cc7bf0904c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -33760,7 +33783,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2c36c385-b45d-45fc-a96d-1628a5c1d05c"
+              "a50fca8f-d0fb-42b9-afac-36c1b58aa697"
             ],
             "format": "uuid",
             "type": "string"
@@ -34065,7 +34088,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2c36c385-b45d-45fc-a96d-1628a5c1d05c"
+                  "a50fca8f-d0fb-42b9-afac-36c1b58aa697"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34116,7 +34139,7 @@ const catalog = {
         "SSO - Scopes"
       ],
       "summary": "List available OAuth scopes",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nReturns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nReturns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update. Scopes reserved for partner applications are not listed, and create/update reject them with `400`.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": false,
@@ -34133,7 +34156,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c2da6b50-0376-4c35-b99c-1cf8f301af78"
+              "c58c1b4b-5edc-4813-a90e-99297fe1acef"
             ],
             "format": "uuid",
             "type": "string"
@@ -34223,7 +34246,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c2da6b50-0376-4c35-b99c-1cf8f301af78"
+                  "c58c1b4b-5edc-4813-a90e-99297fe1acef"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34245,7 +34268,7 @@ const catalog = {
           "etoro-public:sso-scopes:write"
         ]
       ],
-      "descriptionForTool": "List available OAuth scopes\n\nGET /api/v1/sso/scopes\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nReturns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update.\n\nToolset source tag: SSO - Scopes.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:sso-scopes:read OR etoro-public:sso-scopes:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "List available OAuth scopes\n\nGET /api/v1/sso/scopes\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nReturns the public catalog of OAuth scopes that can be requested when creating or updating an application. Use this endpoint to render scope pickers and to validate scope ids client-side before calling create/update. Scopes reserved for partner applications are not listed, and create/update reject them with `400`.\n\nToolset source tag: SSO - Scopes.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:sso-scopes:read OR etoro-public:sso-scopes:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "List available OAuth scopes",
         "readOnlyHint": true,
@@ -34279,7 +34302,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9bf40265-f108-4a70-bf90-6b83dd832564"
+              "b4593457-dfa0-4e6e-be07-670eb446b9af"
             ],
             "format": "uuid",
             "type": "string"
@@ -34689,7 +34712,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9bf40265-f108-4a70-bf90-6b83dd832564"
+                  "b4593457-dfa0-4e6e-be07-670eb446b9af"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34754,7 +34777,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "69efd1c7-3085-4282-97bb-8b67a6675b6b"
+              "d56cecbb-a5f5-4491-91f8-6913f8a27155"
             ],
             "format": "uuid",
             "type": "string"
@@ -35153,7 +35176,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "69efd1c7-3085-4282-97bb-8b67a6675b6b"
+                  "d56cecbb-a5f5-4491-91f8-6913f8a27155"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -35215,7 +35238,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0a5ff9b6-458c-4e52-803d-1ee9877c19eb"
+              "80078866-0269-44f7-8221-030ef85af958"
             ],
             "format": "uuid",
             "type": "string"
@@ -35580,7 +35603,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0a5ff9b6-458c-4e52-803d-1ee9877c19eb"
+                  "80078866-0269-44f7-8221-030ef85af958"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -35648,7 +35671,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bbeb3cf2-52a2-4a32-a39e-95a7d371ca1b"
+              "d1d13ad7-56e0-4cfb-afb2-a57c0d491328"
             ],
             "format": "uuid",
             "type": "string"
@@ -35943,7 +35966,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bbeb3cf2-52a2-4a32-a39e-95a7d371ca1b"
+                  "d1d13ad7-56e0-4cfb-afb2-a57c0d491328"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36005,7 +36028,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a15e4ee8-9026-4fac-9ac7-200b79508d3d"
+              "03e99968-706a-45d0-af03-c45515bec3cb"
             ],
             "format": "uuid",
             "type": "string"
@@ -36214,7 +36237,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a15e4ee8-9026-4fac-9ac7-200b79508d3d"
+                  "03e99968-706a-45d0-af03-c45515bec3cb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36270,7 +36293,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f7ad677f-e0a5-4aa9-8f90-bfe396931c43"
+              "8a29c9f0-73a3-4ba2-8cf9-93a675091949"
             ],
             "format": "uuid",
             "type": "string"
@@ -36405,7 +36428,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f7ad677f-e0a5-4aa9-8f90-bfe396931c43"
+                  "8a29c9f0-73a3-4ba2-8cf9-93a675091949"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36461,7 +36484,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "20b40dd1-1701-489d-bbfe-7cef8a077c41"
+              "0c3d86ba-8603-4ebe-b919-f2f4936ba4ce"
             ],
             "format": "uuid",
             "type": "string"
@@ -36884,7 +36907,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "20b40dd1-1701-489d-bbfe-7cef8a077c41"
+                  "0c3d86ba-8603-4ebe-b919-f2f4936ba4ce"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36949,7 +36972,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "823ad939-f441-47f7-8750-e0abbc2239f6"
+              "ee9ac40a-d420-4801-bddc-1941f76fb9d5"
             ],
             "format": "uuid",
             "type": "string"
@@ -37552,7 +37575,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "823ad939-f441-47f7-8750-e0abbc2239f6"
+                  "ee9ac40a-d420-4801-bddc-1941f76fb9d5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -37617,7 +37640,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3d21eb36-9a98-4252-bd4d-8136b7232681"
+              "0aaf712c-34e9-418d-af01-44ab135b2910"
             ],
             "format": "uuid",
             "type": "string"
@@ -38240,7 +38263,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3d21eb36-9a98-4252-bd4d-8136b7232681"
+                  "0aaf712c-34e9-418d-af01-44ab135b2910"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -38302,7 +38325,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "02c84a16-7d05-4a38-8073-f376d40fcfaf"
+              "82f41f1a-77bd-4012-bd15-6f06e101e426"
             ],
             "format": "uuid",
             "type": "string"
@@ -39121,7 +39144,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "02c84a16-7d05-4a38-8073-f376d40fcfaf"
+                  "82f41f1a-77bd-4012-bd15-6f06e101e426"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -39183,7 +39206,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8f7b8e9a-5a53-4488-a91e-4a683a17f455"
+              "434762d0-379f-4542-a36b-4767fbba20b3"
             ],
             "format": "uuid",
             "type": "string"
@@ -39708,7 +39731,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8f7b8e9a-5a53-4488-a91e-4a683a17f455"
+                  "434762d0-379f-4542-a36b-4767fbba20b3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -39770,7 +39793,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7cf26e2c-bb9d-4036-981b-9c5c517664f5"
+              "c6463844-0375-455f-9116-b7ab1806deeb"
             ],
             "format": "uuid",
             "type": "string"
@@ -40718,7 +40741,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7cf26e2c-bb9d-4036-981b-9c5c517664f5"
+                  "c6463844-0375-455f-9116-b7ab1806deeb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -40781,7 +40804,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5b37d4b4-bfef-4ab0-8fd1-82bcc82800a9"
+              "fa599409-b12d-4dd1-bf4e-fe8f2ac1a08f"
             ],
             "format": "uuid",
             "type": "string"
@@ -41404,7 +41427,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5b37d4b4-bfef-4ab0-8fd1-82bcc82800a9"
+                  "fa599409-b12d-4dd1-bf4e-fe8f2ac1a08f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -41466,7 +41489,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "554b2443-ba47-4b67-91e5-829bb86f6892"
+              "46a9fe93-b66f-443b-abc6-783e7f2958f3"
             ],
             "format": "uuid",
             "type": "string"
@@ -41991,7 +42014,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "554b2443-ba47-4b67-91e5-829bb86f6892"
+                  "46a9fe93-b66f-443b-abc6-783e7f2958f3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -42053,7 +42076,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2521b3a5-9a36-4bc6-9f75-8ff050ebc942"
+              "66e3c544-81ae-47d1-9b6c-3d5916e1d686"
             ],
             "format": "uuid",
             "type": "string"
@@ -43001,7 +43024,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2521b3a5-9a36-4bc6-9f75-8ff050ebc942"
+                  "66e3c544-81ae-47d1-9b6c-3d5916e1d686"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43064,7 +43087,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6b8ff9a2-1616-4677-8e1c-eae12eb4824d"
+              "5ec7dc69-6c5e-4308-a262-e14174d12567"
             ],
             "format": "uuid",
             "type": "string"
@@ -43487,7 +43510,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6b8ff9a2-1616-4677-8e1c-eae12eb4824d"
+                  "5ec7dc69-6c5e-4308-a262-e14174d12567"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43552,7 +43575,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b087392a-1237-41bd-b16e-766e62784cb7"
+              "439867d3-b3c1-4a10-b771-0d6409dafd7c"
             ],
             "format": "uuid",
             "type": "string"
@@ -44155,7 +44178,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b087392a-1237-41bd-b16e-766e62784cb7"
+                  "439867d3-b3c1-4a10-b771-0d6409dafd7c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -44220,7 +44243,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f347e4c2-9390-4633-91ca-9c0aa85fd998"
+              "c553089f-8446-4b54-a5ad-0df2b7932577"
             ],
             "format": "uuid",
             "type": "string"
@@ -45039,7 +45062,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f347e4c2-9390-4633-91ca-9c0aa85fd998"
+                  "c553089f-8446-4b54-a5ad-0df2b7932577"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45101,7 +45124,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d8730ac8-12bf-45e0-8574-15cb196bb272"
+              "2966ae79-2fe3-4a51-a116-d268a6ac02a3"
             ],
             "format": "uuid",
             "type": "string"
@@ -45340,7 +45363,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d8730ac8-12bf-45e0-8574-15cb196bb272"
+                  "2966ae79-2fe3-4a51-a116-d268a6ac02a3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45405,7 +45428,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ababad0b-b534-4fa3-8655-f520cee4b65f"
+              "743d4546-ada2-4499-9ecc-241f04bba760"
             ],
             "format": "uuid",
             "type": "string"
@@ -45644,7 +45667,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ababad0b-b534-4fa3-8655-f520cee4b65f"
+                  "743d4546-ada2-4499-9ecc-241f04bba760"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45709,7 +45732,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5b46b3ca-df8c-4058-8370-77f3aa18a898"
+              "d594552e-db7c-42a4-adfa-55658a10e06b"
             ],
             "format": "uuid",
             "type": "string"
@@ -45956,7 +45979,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5b46b3ca-df8c-4058-8370-77f3aa18a898"
+                  "d594552e-db7c-42a4-adfa-55658a10e06b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46023,7 +46046,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f46eecc7-4a9b-42d4-93c3-9a4b015e43a1"
+              "92b42214-49ff-4d99-837b-ab71e3eefb0e"
             ],
             "format": "uuid",
             "type": "string"
@@ -46278,7 +46301,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f46eecc7-4a9b-42d4-93c3-9a4b015e43a1"
+                  "92b42214-49ff-4d99-837b-ab71e3eefb0e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46334,7 +46357,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "706784f4-9287-4320-add5-360567d70629"
+              "1ccc52e9-f12b-418c-ada4-74ee7f85bcd6"
             ],
             "format": "uuid",
             "type": "string"
@@ -46453,7 +46476,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "706784f4-9287-4320-add5-360567d70629"
+                  "1ccc52e9-f12b-418c-ada4-74ee7f85bcd6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46506,7 +46529,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "702b22a9-6c73-47ed-a0c6-d182c159551c"
+              "551cf2aa-5b06-4b45-a42b-c821759df180"
             ],
             "format": "uuid",
             "type": "string"
@@ -46623,7 +46646,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "702b22a9-6c73-47ed-a0c6-d182c159551c"
+                  "551cf2aa-5b06-4b45-a42b-c821759df180"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46676,7 +46699,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d6ddcff7-50b6-4402-aef3-c6e9e7fc1701"
+              "f6f480fc-7a87-4529-b644-5a3957fb4e70"
             ],
             "format": "uuid",
             "type": "string"
@@ -46781,7 +46804,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d6ddcff7-50b6-4402-aef3-c6e9e7fc1701"
+                  "f6f480fc-7a87-4529-b644-5a3957fb4e70"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46834,7 +46857,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "608476cd-d763-42f2-ac1c-e3dfc55b9c10"
+              "328806d8-ff03-40d4-a3bf-db1a1aa758d0"
             ],
             "format": "uuid",
             "type": "string"
@@ -47381,7 +47404,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "608476cd-d763-42f2-ac1c-e3dfc55b9c10"
+                  "328806d8-ff03-40d4-a3bf-db1a1aa758d0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47432,7 +47455,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f95102a7-1901-4a99-9060-707308572b2f"
+              "4cc9726d-70d7-4895-933a-2c8e19b7dcd6"
             ],
             "format": "uuid",
             "type": "string"
@@ -47636,7 +47659,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f95102a7-1901-4a99-9060-707308572b2f"
+                  "4cc9726d-70d7-4895-933a-2c8e19b7dcd6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47705,7 +47728,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e9c3f8c6-5059-4a23-8cf7-172ad3a69ffe"
+              "48701f15-51ff-4ba3-a51e-bc4215fd32db"
             ],
             "format": "uuid",
             "type": "string"
@@ -47834,7 +47857,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e9c3f8c6-5059-4a23-8cf7-172ad3a69ffe"
+                  "48701f15-51ff-4ba3-a51e-bc4215fd32db"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47902,7 +47925,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "809aa0af-d36f-4c17-9579-273b2b5c9004"
+              "9157a3e9-84bb-4976-801c-80af189677ed"
             ],
             "format": "uuid",
             "type": "string"
@@ -48209,7 +48232,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "809aa0af-d36f-4c17-9579-273b2b5c9004"
+                  "9157a3e9-84bb-4976-801c-80af189677ed"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -48277,7 +48300,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f2b0b4df-8ae8-4eaf-b77d-343fe9f2f4f1"
+              "d525e97d-5eb5-42f3-8c9a-332ed1f13987"
             ],
             "format": "uuid",
             "type": "string"
@@ -48609,7 +48632,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f2b0b4df-8ae8-4eaf-b77d-343fe9f2f4f1"
+                  "d525e97d-5eb5-42f3-8c9a-332ed1f13987"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -48678,7 +48701,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1eb473b9-18ac-49f3-8da0-24ae64180e3e"
+              "109dbb8c-a9f3-4917-afd0-5593a150aee6"
             ],
             "format": "uuid",
             "type": "string"
@@ -49412,7 +49435,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1eb473b9-18ac-49f3-8da0-24ae64180e3e"
+                  "109dbb8c-a9f3-4917-afd0-5593a150aee6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -49480,7 +49503,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5f53b98f-47eb-4e3a-87c0-7fcd00a4ce32"
+              "4a7c79dd-c365-418d-8c68-ac5b2e3c48b0"
             ],
             "format": "uuid",
             "type": "string"
@@ -49960,7 +49983,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5f53b98f-47eb-4e3a-87c0-7fcd00a4ce32"
+                  "4a7c79dd-c365-418d-8c68-ac5b2e3c48b0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50028,7 +50051,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f9833413-5233-4adf-83bb-4ba97b972071"
+              "96e16ff9-8f17-4fc7-872c-83edd21030ff"
             ],
             "format": "uuid",
             "type": "string"
@@ -50501,7 +50524,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f9833413-5233-4adf-83bb-4ba97b972071"
+                  "96e16ff9-8f17-4fc7-872c-83edd21030ff"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50572,7 +50595,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1c61a768-e87c-491a-be11-3d13047d7db8"
+              "db7401cf-018b-40a0-9610-710d1bc7bad1"
             ],
             "format": "uuid",
             "type": "string"
@@ -50816,7 +50839,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1c61a768-e87c-491a-be11-3d13047d7db8"
+                  "db7401cf-018b-40a0-9610-710d1bc7bad1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50884,7 +50907,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7cf793e1-e7df-4c1d-a49d-31ffbee238e5"
+              "2c4fa6a8-033d-4f14-9e92-9bd03ed6e887"
             ],
             "format": "uuid",
             "type": "string"
@@ -51332,7 +51355,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7cf793e1-e7df-4c1d-a49d-31ffbee238e5"
+                  "2c4fa6a8-033d-4f14-9e92-9bd03ed6e887"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51403,7 +51426,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d793b265-cd06-4386-9b54-3a93a3d38c65"
+              "c4eaa14d-ff8e-48f9-a037-24b1defb0152"
             ],
             "format": "uuid",
             "type": "string"
@@ -51803,7 +51826,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d793b265-cd06-4386-9b54-3a93a3d38c65"
+                  "c4eaa14d-ff8e-48f9-a037-24b1defb0152"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51874,7 +51897,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0bc8f8de-9697-40c9-a33f-3837ddad1a59"
+              "51877b66-4122-43a2-9965-b1883947e4d5"
             ],
             "format": "uuid",
             "type": "string"
@@ -53302,7 +53325,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0bc8f8de-9697-40c9-a33f-3837ddad1a59"
+                  "51877b66-4122-43a2-9965-b1883947e4d5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -53462,7 +53485,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d0e8d60c-b5a5-4130-abc4-6edb1ffea235"
+              "07c0fc11-7ab7-446e-9632-18c2a137d93a"
             ],
             "format": "uuid",
             "type": "string"
@@ -53958,7 +53981,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d0e8d60c-b5a5-4130-abc4-6edb1ffea235"
+                  "07c0fc11-7ab7-446e-9632-18c2a137d93a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54014,7 +54037,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "14678a2d-73f5-423d-845e-047c16e42a7d"
+              "14675374-004c-4a1d-b331-efca402292a4"
             ],
             "format": "uuid",
             "type": "string"
@@ -54132,7 +54155,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "14678a2d-73f5-423d-845e-047c16e42a7d"
+                  "14675374-004c-4a1d-b331-efca402292a4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54183,7 +54206,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "679c2430-80cd-4c59-84aa-4df3658b281a"
+              "296c8bf2-9358-4884-9d9b-6b4a564f7c62"
             ],
             "format": "uuid",
             "type": "string"
@@ -54393,7 +54416,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "679c2430-80cd-4c59-84aa-4df3658b281a"
+                  "296c8bf2-9358-4884-9d9b-6b4a564f7c62"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54444,7 +54467,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bc112fb7-f975-48e5-9428-5e41c82b1f72"
+              "f0aedf91-f672-48e6-8fca-b2c6eea0dd2c"
             ],
             "format": "uuid",
             "type": "string"
@@ -54593,7 +54616,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bc112fb7-f975-48e5-9428-5e41c82b1f72"
+                  "f0aedf91-f672-48e6-8fca-b2c6eea0dd2c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54652,7 +54675,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "01274f47-9bfa-4ef1-aa14-d505cefcab12"
+              "0bda6269-3a42-4a8d-b6f3-0c725a9f2886"
             ],
             "format": "uuid",
             "type": "string"
@@ -54905,7 +54928,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "01274f47-9bfa-4ef1-aa14-d505cefcab12"
+                  "0bda6269-3a42-4a8d-b6f3-0c725a9f2886"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54961,7 +54984,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f67226eb-c51e-416d-900e-7984d617d430"
+              "3876a82d-3fe2-48c0-8867-01c372cb821f"
             ],
             "format": "uuid",
             "type": "string"
@@ -55023,7 +55046,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f67226eb-c51e-416d-900e-7984d617d430"
+                  "3876a82d-3fe2-48c0-8867-01c372cb821f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55076,7 +55099,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9bdbcdaa-6187-4fbc-9bef-3a9c356c71a3"
+              "8449efd4-6030-4474-a2c4-02c322524d5f"
             ],
             "format": "uuid",
             "type": "string"
@@ -55509,7 +55532,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9bdbcdaa-6187-4fbc-9bef-3a9c356c71a3"
+                  "8449efd4-6030-4474-a2c4-02c322524d5f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55589,7 +55612,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cd886b25-17ad-4d16-8a63-3597892aa90e"
+              "dca1a93e-e403-4074-84ff-b84e8a6df596"
             ],
             "format": "uuid",
             "type": "string"
@@ -55996,7 +56019,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cd886b25-17ad-4d16-8a63-3597892aa90e"
+                  "dca1a93e-e403-4074-84ff-b84e8a6df596"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56168,7 +56191,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f1869dc6-5b4c-4f49-aa72-76a3d1e377ae"
+              "e674ea65-1cbe-4462-919b-617375d53141"
             ],
             "format": "uuid",
             "type": "string"
@@ -56575,7 +56598,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f1869dc6-5b4c-4f49-aa72-76a3d1e377ae"
+                  "e674ea65-1cbe-4462-919b-617375d53141"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56747,7 +56770,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a3bfaa3d-3557-4265-b713-f39d47442f57"
+              "5a4d1a03-de3f-4ab7-8c14-70c7bc0481ee"
             ],
             "format": "uuid",
             "type": "string"
@@ -56866,7 +56889,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a3bfaa3d-3557-4265-b713-f39d47442f57"
+                  "5a4d1a03-de3f-4ab7-8c14-70c7bc0481ee"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57008,7 +57031,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b60e59e5-b013-4ab9-a140-3cff634172c0"
+              "dc02a0ab-594b-42bc-af32-477f02db0cd5"
             ],
             "format": "uuid",
             "type": "string"
@@ -57477,7 +57500,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b60e59e5-b013-4ab9-a140-3cff634172c0"
+                  "dc02a0ab-594b-42bc-af32-477f02db0cd5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57564,7 +57587,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0c5938b4-3811-4b1d-ae1b-c0179f7c1bf2"
+              "aaacd976-c024-4768-9cdf-3fbdc3a5c662"
             ],
             "format": "uuid",
             "type": "string"
@@ -58031,7 +58054,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0c5938b4-3811-4b1d-ae1b-c0179f7c1bf2"
+                  "aaacd976-c024-4768-9cdf-3fbdc3a5c662"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58093,7 +58116,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c9bf8be0-1a64-4dd8-8edc-be74518df668"
+              "1dc6da86-a345-4008-be59-cbf50b2691aa"
             ],
             "format": "uuid",
             "type": "string"
@@ -58200,7 +58223,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c9bf8be0-1a64-4dd8-8edc-be74518df668"
+                  "1dc6da86-a345-4008-be59-cbf50b2691aa"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58382,7 +58405,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fc737fa5-4adc-4149-bb4c-3b355693d433"
+              "ee30f4d8-3c41-41d1-abef-810891db660c"
             ],
             "format": "uuid",
             "type": "string"
@@ -58776,7 +58799,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fc737fa5-4adc-4149-bb4c-3b355693d433"
+                  "ee30f4d8-3c41-41d1-abef-810891db660c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58957,7 +58980,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0e2ad68a-f72d-456a-a08e-8d4e306d41d7"
+              "75f6de65-5edf-4ef4-b48b-813c799fbe0b"
             ],
             "format": "uuid",
             "type": "string"
@@ -59412,7 +59435,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0e2ad68a-f72d-456a-a08e-8d4e306d41d7"
+                  "75f6de65-5edf-4ef4-b48b-813c799fbe0b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59474,7 +59497,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d75995e3-dad7-498d-8a44-cb6dee888c28"
+              "d21e3af1-90ae-4ae0-9008-b56b0a88df4a"
             ],
             "format": "uuid",
             "type": "string"
@@ -59598,7 +59621,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d75995e3-dad7-498d-8a44-cb6dee888c28"
+                  "d21e3af1-90ae-4ae0-9008-b56b0a88df4a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59661,7 +59684,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2408d05b-4c0f-4f23-80d7-db845735d58f"
+              "c141d2fe-27e4-406b-a607-f866d197f645"
             ],
             "format": "uuid",
             "type": "string"
@@ -59768,7 +59791,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2408d05b-4c0f-4f23-80d7-db845735d58f"
+                  "c141d2fe-27e4-406b-a607-f866d197f645"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59950,7 +59973,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "55a890c0-4ff7-4190-9674-2bf5796e123d"
+              "edc1bdcb-6473-4ba2-9e90-e1536ac1573b"
             ],
             "format": "uuid",
             "type": "string"
@@ -60080,7 +60103,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "55a890c0-4ff7-4190-9674-2bf5796e123d"
+                  "edc1bdcb-6473-4ba2-9e90-e1536ac1573b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60143,7 +60166,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "907649d9-3a5d-48da-8783-b241f954aaf2"
+              "825f45aa-2755-46f2-bea0-24064c5b4a65"
             ],
             "format": "uuid",
             "type": "string"
@@ -60239,7 +60262,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "907649d9-3a5d-48da-8783-b241f954aaf2"
+                  "825f45aa-2755-46f2-bea0-24064c5b4a65"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60301,7 +60324,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "38d8821e-c354-4a56-b106-833bdde4dc3b"
+              "44ee33db-0ec8-4c72-b966-2e4a98a1189e"
             ],
             "format": "uuid",
             "type": "string"
@@ -60503,7 +60526,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "38d8821e-c354-4a56-b106-833bdde4dc3b"
+                  "44ee33db-0ec8-4c72-b966-2e4a98a1189e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60592,7 +60615,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2de69b59-7a64-49e7-bc2e-318688a6f088"
+              "89f4de2a-67fe-4c66-89b0-59e255ec9ef6"
             ],
             "format": "uuid",
             "type": "string"
@@ -60794,7 +60817,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2de69b59-7a64-49e7-bc2e-318688a6f088"
+                  "89f4de2a-67fe-4c66-89b0-59e255ec9ef6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60883,7 +60906,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1bb14e90-832d-47f9-8912-b3920a7c6b05"
+              "89d69fc7-fa2a-433b-83d9-254d9c679726"
             ],
             "format": "uuid",
             "type": "string"
@@ -61021,7 +61044,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1bb14e90-832d-47f9-8912-b3920a7c6b05"
+                  "89d69fc7-fa2a-433b-83d9-254d9c679726"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -61077,7 +61100,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "dd37a158-8248-4be7-a65d-c382e348f8b6"
+              "3f201117-09ff-423b-834a-a1692df71ca4"
             ],
             "format": "uuid",
             "type": "string"
@@ -61398,7 +61421,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "dd37a158-8248-4be7-a65d-c382e348f8b6"
+                  "3f201117-09ff-423b-834a-a1692df71ca4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -61452,7 +61475,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0409bb3e-1a8f-4742-8a00-b0d8fd0ff66b"
+              "37210c6f-ebc4-4559-8dc2-75a6daf000eb"
             ],
             "format": "uuid",
             "type": "string"
@@ -61662,7 +61685,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0409bb3e-1a8f-4742-8a00-b0d8fd0ff66b"
+                  "37210c6f-ebc4-4559-8dc2-75a6daf000eb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -61779,7 +61802,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cd989997-7464-4b99-8ffa-ba6176350f18"
+              "3f7c7bd0-432b-4421-85e9-8c145e1ecc7a"
             ],
             "format": "uuid",
             "type": "string"
@@ -62005,7 +62028,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cd989997-7464-4b99-8ffa-ba6176350f18"
+                  "3f7c7bd0-432b-4421-85e9-8c145e1ecc7a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -62105,7 +62128,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d220581d-402e-41da-b937-79eada7803a8"
+              "ef22b498-fb96-490c-bc13-7c995012d24c"
             ],
             "format": "uuid",
             "type": "string"
@@ -62265,7 +62288,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation error.",
+          "description": "Validation error - the same rules as create: malformed URL, duplicate redirect URI, duplicate scope ids, or a scope id that `GET /api/v1/sso/scopes` does not list (unknown, or reserved for partner applications).",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/StsMetadataFrontApi_ErrorResponse",
@@ -62369,7 +62392,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d220581d-402e-41da-b937-79eada7803a8"
+                  "ef22b498-fb96-490c-bc13-7c995012d24c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -62492,7 +62515,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "54a0541c-e4a2-4d8d-a2ca-d340b3df8aaf"
+              "d1b26d1f-f69b-46ce-89a1-6148658c8f1e"
             ],
             "format": "uuid",
             "type": "string"
@@ -62807,7 +62830,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "54a0541c-e4a2-4d8d-a2ca-d340b3df8aaf"
+                  "d1b26d1f-f69b-46ce-89a1-6148658c8f1e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -62921,7 +62944,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6de7551f-c466-4248-bbbd-2d26c60cbc27"
+              "ca9edde6-bcf4-4f7c-82d2-bc718237b8b7"
             ],
             "format": "uuid",
             "type": "string"
@@ -63236,7 +63259,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6de7551f-c466-4248-bbbd-2d26c60cbc27"
+                  "ca9edde6-bcf4-4f7c-82d2-bc718237b8b7"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -63350,7 +63373,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bfd9b7d7-50ce-4459-b1c7-422c5f7302af"
+              "61da9e1b-9b56-4617-a5e8-267685f621a6"
             ],
             "format": "uuid",
             "type": "string"
@@ -63570,7 +63593,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bfd9b7d7-50ce-4459-b1c7-422c5f7302af"
+                  "61da9e1b-9b56-4617-a5e8-267685f621a6"
                 ],
                 "format": "uuid",
                 "type": "string"

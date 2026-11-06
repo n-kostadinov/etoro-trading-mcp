@@ -1,6 +1,6 @@
 # Toolsets
 
-This file is generated from eToro Swagger UI **v1.408.0**. Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.413.0**. Do not edit it directly; run `npm run generate`.
 
 All toolsets are disabled by default. Enable them through `enabledToolsets` / `ETORO_ENABLED_TOOLSETS`; enabling a toolset enables all of its tools. See the README quick look for a sample configuration and [configuration.md](configuration.md) for precedence and safety gates.
 
