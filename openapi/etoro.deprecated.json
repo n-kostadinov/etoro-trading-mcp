@@ -801,7 +801,7 @@
   "info": {
     "description": "etoro’s public API provides access to real-time financial data, trading insights, and account management features, allowing developers to integrate etoro’s services into their applications. With access to market prices, historical data, and social trading information, the API empowers users to enhance their trading strategies. Designed for security and scalability, the etoro API ensures smooth and reliable integration for a variety of financial applications.\n\nFor more details on integrating with etoro's public WebSocket service, please refer to the dedicated [WebSocket documentation](./websocket/websocket-doc.html).\n\n## Authentication\n\nEvery request must be authenticated with exactly one of two options: an OAuth 2.0 access token (`Authorization: Bearer <token>`), or the non-interactive credential pair (`x-api-key` + `x-user-key` headers). The two options are mutually exclusive — a request carrying both is rejected. Each operation lists the OAuth scopes that grant access as alternative security requirements: a bearer token needs only ONE of them, and the same permissions govern the credential pair.",
     "title": "etoro Api",
-    "version": "v1.413.0"
+    "version": "v1.415.0"
   },
   "openapi": "3.0.1",
   "paths": {
@@ -813,12 +813,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "ab83f452-9444-43b6-839e-18ab5bff1d9a",
+            "example": "136f21d7-7c9a-4227-9faf-95417a441137",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "ab83f452-9444-43b6-839e-18ab5bff1d9a",
+              "example": "136f21d7-7c9a-4227-9faf-95417a441137",
               "format": "uuid",
               "type": "string"
             }
@@ -1051,12 +1051,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "3f404b0c-43e0-4550-bf03-3432df82f7ea",
+            "example": "f4ad1c28-5180-4b2b-b9e4-d8430a22db40",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "3f404b0c-43e0-4550-bf03-3432df82f7ea",
+              "example": "f4ad1c28-5180-4b2b-b9e4-d8430a22db40",
               "format": "uuid",
               "type": "string"
             }
@@ -1289,12 +1289,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "37210c6f-ebc4-4559-8dc2-75a6daf000eb",
+            "example": "8b0f6e8b-3493-4e6e-bda1-707116be9435",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "37210c6f-ebc4-4559-8dc2-75a6daf000eb",
+              "example": "8b0f6e8b-3493-4e6e-bda1-707116be9435",
               "format": "uuid",
               "type": "string"
             }
@@ -1528,12 +1528,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "32f16fba-6dfa-4ded-881d-6e9bd10e470c",
+            "example": "05203ca4-e1a0-4827-b88d-cbf4a44b78d5",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "32f16fba-6dfa-4ded-881d-6e9bd10e470c",
+              "example": "05203ca4-e1a0-4827-b88d-cbf4a44b78d5",
               "format": "uuid",
               "type": "string"
             }
@@ -1764,12 +1764,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "b22943d8-0bb6-4526-b381-ba3e38c4ad07",
+            "example": "ac8b1057-5ee3-4d79-a6b7-e6203c4545a4",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "b22943d8-0bb6-4526-b381-ba3e38c4ad07",
+              "example": "ac8b1057-5ee3-4d79-a6b7-e6203c4545a4",
               "format": "uuid",
               "type": "string"
             }
@@ -1925,12 +1925,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "547949c6-76eb-4ffd-90a1-a8552a863b5b",
+            "example": "fe8a7aeb-7699-4aa4-8adb-5ef75862d24f",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "547949c6-76eb-4ffd-90a1-a8552a863b5b",
+              "example": "fe8a7aeb-7699-4aa4-8adb-5ef75862d24f",
               "format": "uuid",
               "type": "string"
             }
@@ -2220,12 +2220,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "6869933f-b955-4338-a045-fbcc380be2d0",
+            "example": "823e760f-4331-4f66-8e31-5724e8ee388e",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "6869933f-b955-4338-a045-fbcc380be2d0",
+              "example": "823e760f-4331-4f66-8e31-5724e8ee388e",
               "format": "uuid",
               "type": "string"
             }
@@ -2526,12 +2526,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "1e0ba4f4-f55d-41a5-84f3-9ff5e9e6a2c6",
+            "example": "3fe5d692-066e-4d6f-8450-a7208c114437",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "1e0ba4f4-f55d-41a5-84f3-9ff5e9e6a2c6",
+              "example": "3fe5d692-066e-4d6f-8450-a7208c114437",
               "format": "uuid",
               "type": "string"
             }
@@ -2687,12 +2687,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "15151dcc-a4b8-498f-9173-f148cc969588",
+            "example": "3d5a9dbe-8787-4757-a8e3-d048e6e8c9cc",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "15151dcc-a4b8-498f-9173-f148cc969588",
+              "example": "3d5a9dbe-8787-4757-a8e3-d048e6e8c9cc",
               "format": "uuid",
               "type": "string"
             }
@@ -2923,12 +2923,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "4c8ad96d-378b-4a2c-96b9-2cf7cb7fe723",
+            "example": "1feea67c-595c-460e-94e6-ba5c70350d07",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "4c8ad96d-378b-4a2c-96b9-2cf7cb7fe723",
+              "example": "1feea67c-595c-460e-94e6-ba5c70350d07",
               "format": "uuid",
               "type": "string"
             }
@@ -3084,12 +3084,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "e77000d6-4fb4-4366-9292-096dae691d9a",
+            "example": "fb5d7d76-0648-4c81-8dfd-cdfdf82a6d29",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "e77000d6-4fb4-4366-9292-096dae691d9a",
+              "example": "fb5d7d76-0648-4c81-8dfd-cdfdf82a6d29",
               "format": "uuid",
               "type": "string"
             }
@@ -3379,12 +3379,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "66132468-abf7-423d-bed5-f4fc4416e516",
+            "example": "0dd58a27-43fd-47bc-a981-fe7a2193b1f8",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "66132468-abf7-423d-bed5-f4fc4416e516",
+              "example": "0dd58a27-43fd-47bc-a981-fe7a2193b1f8",
               "format": "uuid",
               "type": "string"
             }
@@ -3685,12 +3685,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "acf8552e-43ac-4d85-94e8-8b5eb31bff4b",
+            "example": "9b167277-19e8-4f86-8a14-90827422e7ce",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "acf8552e-43ac-4d85-94e8-8b5eb31bff4b",
+              "example": "9b167277-19e8-4f86-8a14-90827422e7ce",
               "format": "uuid",
               "type": "string"
             }
@@ -3846,12 +3846,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "ee9ac40a-d420-4801-bddc-1941f76fb9d5",
+            "example": "8e7630c8-1639-4027-9ad3-094f8dc4c358",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "ee9ac40a-d420-4801-bddc-1941f76fb9d5",
+              "example": "8e7630c8-1639-4027-9ad3-094f8dc4c358",
               "format": "uuid",
               "type": "string"
             }
@@ -4025,12 +4025,12 @@
         "parameters": [
           {
             "description": "A unique request identifier.",
-            "example": "439867d3-b3c1-4a10-b771-0d6409dafd7c",
+            "example": "6689d9d6-5944-4639-ac07-f72b585cccc2",
             "in": "header",
             "name": "x-request-id",
             "required": true,
             "schema": {
-              "example": "439867d3-b3c1-4a10-b771-0d6409dafd7c",
+              "example": "6689d9d6-5944-4639-ac07-f72b585cccc2",
               "format": "uuid",
               "type": "string"
             }
