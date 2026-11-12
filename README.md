@@ -39,7 +39,7 @@ All toolsets are disabled by default. A typical, demo-safe MCP client entry:
   "mcpServers": {
     "etoro": {
       "command": "npx",
-      "args": ["-y", "etoro-trading-mcp@1.4.1"],
+      "args": ["-y", "etoro-trading-mcp@1.4.2"],
       "env": {
         "ETORO_API_KEY": "<user-supplied-application-key>",
         "ETORO_USER_KEY": "<user-supplied-user-key>",
@@ -110,8 +110,8 @@ Two safety gates stay separate from selection: legacy tools additionally require
 The CLI never contacts eToro for these commands and works without credentials:
 
 ```bash
-npx -y etoro-trading-mcp@1.4.1 tools list --all    # every operation and its state
-npx -y etoro-trading-mcp@1.4.1 config validate     # effective settings and warnings
+npx -y etoro-trading-mcp@1.4.2 tools list --all    # every operation and its state
+npx -y etoro-trading-mcp@1.4.2 config validate     # effective settings and warnings
 ```
 
 ## Documentation
@@ -128,7 +128,7 @@ npx -y etoro-trading-mcp@1.4.1 config validate     # effective settings and warn
 
 This is an independent, unofficial project. It is not affiliated with, endorsed by, or sponsored by eToro. eToro names and trademarks belong to eToro. Nothing in this repository is investment advice. Demo trading uses virtual funds; real trading can lose real money and requires two explicit opt-ins.
 
-Current release: **1.4.1**, generated from eToro Swagger UI **v1.413.0**. A daily job fails loudly when eToro's published API changes; applying the update and cutting a release is always a manual, reviewed step.
+Current release: **1.4.2**, generated from eToro Swagger UI **v1.415.0**. A daily job fails loudly when eToro's published API changes; applying the update and cutting a release is always a manual, reviewed step.
 
 ## Contribute
 
