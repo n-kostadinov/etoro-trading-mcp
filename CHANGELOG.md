@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-11-16
+
+### Changed
+
+- Catalog refreshed from eToro Swagger UI v1.415.0 to v1.417.0: 159 tools across 26 toolsets (unchanged). No operations were added or removed upstream.
+- `registerCopyTrading` and `registerCopyTradingDemo` (`POST /api/v2/trading/copy`, `POST /api/v2/trading/copy/demo`) accept two new optional body fields: `mirrorID`, to add or remove funds on an existing copy by its id, and `mirrorSLPercentage`, an optional copy stop-loss (greater than 0 and less than 100). `parentCID` is no longer required; send it to start or edit a copy of an investor, or send `mirrorID` instead. `registerCopyTrading` remains a real-money mutation.
+- `getTradingInfoPortfolio` and `getTradingInfoDemoPortfolio` response schemas now reference `TradingRealApi_Position`, which has the same content as the previously referenced `TradingDemoApi_Position`.
+
 ## [1.4.2] - 2026-11-12
 
 ### Changed
