@@ -3269,7 +3269,7 @@ export interface paths {
          *
          *     ---
          *
-         *     Registers a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/{referenceId} using the referenceID supplied here.
+         *     Registers a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). To change a specific existing copy, you can send its mirrorID instead of parentCID. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/{referenceId} using the referenceID supplied here.
          */
         post: operations["registerCopyTrading"];
         /**
@@ -3325,7 +3325,7 @@ export interface paths {
          *
          *     ---
          *
-         *     Registers a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/demo/{referenceId} using the referenceID supplied here.
+         *     Registers a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). To change a specific existing copy, you can send its mirrorID instead of parentCID. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/demo/{referenceId} using the referenceID supplied here.
          */
         post: operations["registerCopyTradingDemo"];
         /**
@@ -5074,9 +5074,19 @@ export interface components {
             amount: number;
             /**
              * Format: int32
-             * @description The investor account id to copy.
+             * @description Optional. Send it to change an existing copy by its id, as returned in the status response after a successful registration. The request adds or removes funds on that copy and never creates a new one; the copy must belong to the authenticated account.
              */
-            parentCID: number;
+            mirrorID?: number;
+            /**
+             * Format: decimal
+             * @description Optional stop-loss: the copy closes when its value falls to this percentage of its realized equity. Must be greater than 0 and less than 100, with at most 2 decimal places. On register (mirrorID absent), when a new copy is created and the field is omitted, the platform default stop-loss is applied. On edit (mirrorID present, or parentCID of an investor you already copy, handled as an edit of that copy), it is the new target value, not a change to the current one; when omitted, the stop-loss is left unchanged. On edit, the stop-loss can only be changed together with a funds change. Every funds change recalculates the stop-loss amount based on the copy's value including that change, while the stop-loss percentage stays the same. The stop-loss percentage is applied asynchronously and can be rejected, for example when the new level is outside the copied investor's limits (or the platform defaults if it has none) or, on edit, would immediately close the copy. If the stop-loss is rejected, a new registration creates no copy, while an edit can still apply the funds change and leaves the stop-loss unchanged. After a timeout, check the outcome with GET /api/v2/trading/copy/{referenceId} before resending.
+             */
+            mirrorSLPercentage?: number;
+            /**
+             * Format: int32
+             * @description The investor account id to copy. Required when mirrorID is not sent. If you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID; when editing by mirrorID, the investor of that copy is used.
+             */
+            parentCID?: number;
             /** @description Caller-supplied operation reference used to poll the outcome. Case-sensitive, URL-safe characters without '/', unique per operation within your account. Not an idempotency key: resubmitting the same value creates a new operation, and status lookups for a reused reference prefer the successful outcome. */
             referenceID: string;
         };
@@ -8529,7 +8539,7 @@ export interface components {
                     /** @description Indication if the mirror is in closure process */
                     pendingForClosure?: boolean;
                     /** @description Positions within this copy trading mirror */
-                    positions?: components["schemas"]["TradingDemoApi_Position"][];
+                    positions?: components["schemas"]["TradingRealApi_Position"][];
                     /**
                      * Format: date-time
                      * @description Date and time when the mirror trading was initiated
@@ -8610,7 +8620,7 @@ export interface components {
                 /** @description Active orders to open positions */
                 ordersForOpen?: Record<string, never>[];
                 /** @description List of currently open trading positions */
-                positions?: components["schemas"]["TradingDemoApi_Position"][];
+                positions?: components["schemas"]["TradingRealApi_Position"][];
                 /** @description Obsolete */
                 stockOrders?: Record<string, never>[];
             };
@@ -27667,13 +27677,6 @@ export interface operations {
         };
         requestBody: {
             content: {
-                /**
-                 * @example {
-                 *       "amount": 500,
-                 *       "parentCID": 5551234,
-                 *       "referenceID": "partner-op-2026-07-15-0001"
-                 *     }
-                 */
                 "application/json": components["schemas"]["CopyTradingRegisterRequest"];
             };
         };
@@ -27706,7 +27709,7 @@ export interface operations {
                     "application/json": components["schemas"]["TokenedResponse"];
                 };
             };
-            /** @description Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters) */
+            /** @description Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters, mirrorID sent together with parentCID, mirrorSLPercentage not greater than 0 and less than 100, mirrorSLPercentage with more than 2 decimal places, or mirrorSLPercentage sent on a copy that is pending closure) */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -28044,13 +28047,6 @@ export interface operations {
         };
         requestBody: {
             content: {
-                /**
-                 * @example {
-                 *       "amount": 500,
-                 *       "parentCID": 5551234,
-                 *       "referenceID": "partner-op-2026-07-15-0001"
-                 *     }
-                 */
                 "application/json": components["schemas"]["CopyTradingRegisterRequest"];
             };
         };
@@ -28083,7 +28079,7 @@ export interface operations {
                     "application/json": components["schemas"]["TokenedResponse"];
                 };
             };
-            /** @description Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters) */
+            /** @description Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters, mirrorID sent together with parentCID, mirrorSLPercentage not greater than 0 and less than 100, mirrorSLPercentage with more than 2 decimal places, or mirrorSLPercentage sent on a copy that is pending closure) */
             400: {
                 headers: {
                     [name: string]: unknown;

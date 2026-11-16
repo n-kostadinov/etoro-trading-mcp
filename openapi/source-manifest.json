@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-11-12T19:06:47.196Z",
+  "retrievedAt": "2026-11-16T17:44:41.761Z",
   "sources": {
     "swagger": {
       "id": "swagger",
       "file": "etoro.swagger.json",
       "url": "https://public-api.etoro.com/swagger/swagger.json",
-      "apiVersion": "v1.415.0",
+      "apiVersion": "v1.417.0",
       "openApiVersion": "3.0.1",
       "operations": 159,
-      "rawSha256": "68ec9498babe7a9baf9ac48df7a1100e42fbf84e498057039ad41f1c18417c54",
-      "canonicalSha256": "011965a114b1e074255e54e2a4f57f5b551c24d1cca3c6048d760661c56d9a01"
+      "rawSha256": "d33a10b085d0fd450bf383b41e06dee5433efd90e91a51c75c3e3daa443e9bdb",
+      "canonicalSha256": "acd44e6326c10ad052d75cca10fe95484fbb33bc9d3019389048574608239116"
     },
     "core": {
       "id": "core",
       "file": "etoro.core.json",
       "url": "https://api-portal.etoro.com/api-reference/openapi.json",
-      "apiVersion": "v1.415.0",
+      "apiVersion": "v1.417.0",
       "openApiVersion": "3.0.1",
       "operations": 144,
-      "rawSha256": "f9e710fb8d5a11a597dd5bed4f480e948595352005d6ef188be607a5b13825e1",
-      "canonicalSha256": "dbcebe0a7fdd5770952c615b1c4b03e2bc2cdb4e87a732d8b8101da9384aa07b"
+      "rawSha256": "abf29ffbed0cd3582b34e4037522acc657d2487481838cdda6154adcf5ae2e98",
+      "canonicalSha256": "4195c7eaad25de0ebb440920fd0cb1cb4f4f717a34ec066a92da610bd7ea0980"
     },
     "deprecated": {
       "id": "deprecated",
       "file": "etoro.deprecated.json",
       "url": "https://api-portal.etoro.com/api-reference/deprecated-openapi.json",
-      "apiVersion": "v1.415.0",
+      "apiVersion": "v1.417.0",
       "openApiVersion": "3.0.1",
       "operations": 15,
-      "rawSha256": "45b848b13a4895248de4baa607033ff0770fb286beb1122fef20da1e879ce7d9",
-      "canonicalSha256": "e83dfd24efde89491f6bd72f0c39b1b72af9f58904927fd18ac086801d4202b9"
+      "rawSha256": "2b8c767528f254b3b494e47638e41440051405cf6aa2f88ca93021c420830e78",
+      "canonicalSha256": "9d72e7e627cbb847be8abd35779daa3df70a3bb4f2cb14041c0673328bdc44df"
     }
   }
 }
