@@ -79,11 +79,11 @@ daily-job sentences in `README.md`, are not touched here).
 
 **Constraints, assumptions, decisions.**
 
-- **Version: pending maintainer decision.** Earlier documentation-only syncs
+- **Version 1.5.0 (minor), agreed with the maintainer on 2026-11-16.** Earlier documentation-only syncs
   shipped as patches (v1.4.1, v1.4.2); this one changes the input schema of
   `registerCopyTrading` / `registerCopyTradingDemo` in a backward-compatible,
   additive way (new optional capabilities: edit by `mirrorID`, copy
-  stop-loss). Recommendation: minor (**1.5.0**).
+  stop-loss).
 - No push, tag, or npm publication without the maintainer's explicit go-ahead.
 - Same tag-driven release machinery as prior releases; no local `npm publish`.
 
@@ -95,9 +95,9 @@ suites (unit + integration) inside `npm run verify`.
 | ID | Task | Completion criterion | Dependencies | Status |
 |---:|---|---|---|---|
 | 1 | Sync commit on `main`: announcements re-check; confirm all three live documents agree; `swagger:diff`; `acquire`; `generate`; confirm classification and pins; `npm run verify`; commit | Commit on `main`; catalog reports v1.417.0 / 159 / 26 / `warnings: []`; verify green; `git status` clean | None | Completed |
-| 2 | Push the sync commit and dispatch the Swagger drift workflow | Dispatched run green with `unchanged: true` | 1, maintainer go-ahead to push | Pending |
-| 3 | Release commit: `CHANGELOG.md` section, `npm version --no-git-tag-version X.Y.Z`, sweep `README.md` / `INSTALL.md` / `server.json` version refs; verify; commit | verify green; no stale version refs; both lockfile fields read X.Y.Z | 1, version agreed | Pending |
-| 4 | `npm run release:validate -- vX.Y.Z`, CI green, tag, push tag, verify GitHub release and npm provenance | Release workflow succeeds; npm metadata with provenance | 3, maintainer go-ahead to publish | Pending |
+| 2 | Push the sync commit and dispatch the Swagger drift workflow | Dispatched run green with `unchanged: true` | 1, maintainer go-ahead to push | Completed |
+| 3 | Release commit: `CHANGELOG.md` section, `npm version --no-git-tag-version X.Y.Z`, sweep `README.md` / `INSTALL.md` / `server.json` version refs; verify; commit | verify green; no stale version refs; both lockfile fields read X.Y.Z | 1, version agreed | Completed |
+| 4 | `npm run release:validate -- vX.Y.Z`, CI green, tag, push tag, verify GitHub release and npm provenance | Release workflow succeeds; npm metadata with provenance | 3, maintainer go-ahead to publish | Completed |
 
 ## Execution notes
 
@@ -112,3 +112,21 @@ suites (unit + integration) inside `npm run verify`.
   (`registerCopyTrading` still `realMoneyMutation: true`, the demo variant
   still `false`); toolsets identical. `npm run verify` passed with every
   pinned baseline unchanged — no test edits needed.
+- **Task 2** — maintainer approved version 1.5.0 and the full release.
+  `00b261a` pushed to `main`; dispatched Swagger drift run `43923411026`
+  completed green with `"unchanged": true`, superseding `43705924961` and
+  `43855613892`. CI on `00b261a` (`43923410182`) was cancelled by workflow
+  concurrency when the release commit was pushed. That is expected and covered
+  by the CI run on the release commit.
+- **Task 3** — release commit `51b92ca` (CHANGELOG `[1.5.0] - 2026-11-16`,
+  `npm version --no-git-tag-version 1.5.0`, version refs swept in
+  `README.md` (version tokens only on line 131), `INSTALL.md`, `server.json`).
+  `npm run verify` green; grep confirms no `1.4.2` / `v1.415.0` remains in
+  those files.
+- **Task 4** — `release:validate -- v1.5.0` printed `"valid": true`. CI
+  `43923748315` on `51b92ca`: all 6 matrix jobs `success` (conclusion checked
+  explicitly, not just the `gh run watch` exit code). Annotated tag `v1.5.0`
+  on `51b92ca`, tag pushed alone. Release workflow `43924167186` succeeded
+  (verify → publish). GitHub release `v1.5.0` non-draft, published
+  2026-11-16T18:01:10Z. `npm view etoro-trading-mcp@1.5.0` returns the
+  version with SLSA v1 provenance.
