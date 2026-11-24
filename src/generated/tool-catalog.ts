@@ -3,8 +3,8 @@ import type { ToolCatalog } from "../catalog/types.js";
 
 const catalog = {
   "schemaVersion": 1,
-  "sourceVersion": "v1.417.0",
-  "sourceCanonicalSha256": "acd44e6326c10ad052d75cca10fe95484fbb33bc9d3019389048574608239116",
+  "sourceVersion": "v1.421.0",
+  "sourceCanonicalSha256": "21c18894c1c27f5d81c2abc7bccca0b791c916d4b0584f61947bd2b071266ba1",
   "toolsets": [
     {
       "id": "agent-portfolios",
@@ -172,7 +172,7 @@ const catalog = {
         "Copy Trading"
       ],
       "summary": "Pre-check whether a copy registration would be allowed",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Request body is the same as starting a new copy (POST /api/v2/trading/copy). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Name the investor with parentCID or parentUsername (send one of the two, not both), together with the amount, as when starting a new copy (POST /api/v2/trading/copy). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.",
       "sourceDeprecated": false,
       "readOnlyExtension": true,
       "realMoneyExtension": false,
@@ -189,7 +189,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b1a52e46-7f21-4111-b5d5-3d2b113e6128"
+              "109196d1-22c5-4239-b042-17d4ab902b50"
             ],
             "format": "uuid",
             "type": "string"
@@ -258,7 +258,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. zero amount or missing parentCID)",
+          "description": "Validation failure (e.g. zero amount, neither parentCID nor parentUsername sent, both sent together, parentCID not greater than 0, or a parentUsername that is malformed)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -344,6 +344,32 @@ const catalog = {
                 "required": [
                   "errorCode",
                   "errorMessage"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "status": "404",
+          "description": "Not found: no investor with this parentCID or parentUsername.",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
                 ],
                 "type": "object"
               }
@@ -454,7 +480,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b1a52e46-7f21-4111-b5d5-3d2b113e6128"
+                  "109196d1-22c5-4239-b042-17d4ab902b50"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -477,13 +503,18 @@ const catalog = {
                 "type": "number"
               },
               "parentCID": {
-                "description": "The investor account id to copy.",
+                "description": "The investor account id to copy: a user or a Smart Portfolio. Send either parentCID or parentUsername (not both).",
                 "format": "int32",
                 "type": "integer"
+              },
+              "parentUsername": {
+                "description": "The investor's username, as an alternative to parentCID. Send either parentCID or parentUsername (not both). 1 to 20 characters, with no space at the start or end; case-insensitive.",
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
               }
             },
             "required": [
-              "parentCID",
               "amount"
             ],
             "type": "object"
@@ -509,7 +540,7 @@ const catalog = {
           "etoro-public:trade.real:write"
         ]
       ],
-      "descriptionForTool": "Pre-check whether a copy registration would be allowed\n\nPOST /api/v2/trading/copy/eligibility\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Request body is the same as starting a new copy (POST /api/v2/trading/copy). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.\n\nToolset source tag: Copy Trading.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:read OR etoro-public:real:write OR etoro-public:trade.real:read OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Pre-check whether a copy registration would be allowed\n\nPOST /api/v2/trading/copy/eligibility\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Name the investor with parentCID or parentUsername (send one of the two, not both), together with the amount, as when starting a new copy (POST /api/v2/trading/copy). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.\n\nToolset source tag: Copy Trading.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:read OR etoro-public:real:write OR etoro-public:trade.real:read OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Pre-check whether a copy registration would be allowed",
         "readOnlyHint": true,
@@ -526,7 +557,7 @@ const catalog = {
         "Copy Trading - Demo"
       ],
       "summary": "Pre-check whether a copy registration would be allowed",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Request body is the same as starting a new copy (POST /api/v2/trading/copy/demo). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Name the investor with parentCID or parentUsername (send one of the two, not both), together with the amount, as when starting a new copy (POST /api/v2/trading/copy/demo). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.",
       "sourceDeprecated": false,
       "readOnlyExtension": true,
       "realMoneyExtension": false,
@@ -543,7 +574,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "be276bea-8a59-40c2-b8f1-05b6b9e60745"
+              "74913828-2716-4e30-924c-4c846dc56b62"
             ],
             "format": "uuid",
             "type": "string"
@@ -612,7 +643,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. zero amount or missing parentCID)",
+          "description": "Validation failure (e.g. zero amount, neither parentCID nor parentUsername sent, both sent together, parentCID not greater than 0, or a parentUsername that is malformed)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -698,6 +729,32 @@ const catalog = {
                 "required": [
                   "errorCode",
                   "errorMessage"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "status": "404",
+          "description": "Not found: no investor with this parentCID or parentUsername.",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
                 ],
                 "type": "object"
               }
@@ -808,7 +865,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "be276bea-8a59-40c2-b8f1-05b6b9e60745"
+                  "74913828-2716-4e30-924c-4c846dc56b62"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -831,13 +888,18 @@ const catalog = {
                 "type": "number"
               },
               "parentCID": {
-                "description": "The investor account id to copy.",
+                "description": "The investor account id to copy: a user or a Smart Portfolio. Send either parentCID or parentUsername (not both).",
                 "format": "int32",
                 "type": "integer"
+              },
+              "parentUsername": {
+                "description": "The investor's username, as an alternative to parentCID. Send either parentCID or parentUsername (not both). 1 to 20 characters, with no space at the start or end; case-insensitive.",
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
               }
             },
             "required": [
-              "parentCID",
               "amount"
             ],
             "type": "object"
@@ -863,7 +925,7 @@ const catalog = {
           "etoro-public:trade.demo:write"
         ]
       ],
-      "descriptionForTool": "Pre-check whether a copy registration would be allowed\n\nPOST /api/v2/trading/copy/demo/eligibility\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Request body is the same as starting a new copy (POST /api/v2/trading/copy/demo). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.\n\nToolset source tag: Copy Trading - Demo.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:read OR etoro-public:demo:write OR etoro-public:trade.demo:read OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Pre-check whether a copy registration would be allowed\n\nPOST /api/v2/trading/copy/demo/eligibility\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nA dry run of the register operation that changes nothing: verifies whether the authenticated account can copy the given investor with the given amount. Name the investor with parentCID or parentUsername (send one of the two, not both), together with the amount, as when starting a new copy (POST /api/v2/trading/copy/demo). A positive verdict is a point-in-time check, not a reservation. When isSuccess is false, errorCode and errorMessage may be absent.\n\nToolset source tag: Copy Trading - Demo.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:read OR etoro-public:demo:write OR etoro-public:trade.demo:read OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Pre-check whether a copy registration would be allowed",
         "readOnlyHint": true,
@@ -880,7 +942,7 @@ const catalog = {
         "Copy Trading"
       ],
       "summary": "Close or detach a copy relationship",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. The relationship is selected by mirrorID; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": true,
@@ -897,7 +959,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6f48c225-459d-43aa-89af-f39d992b6423"
+              "20066b88-7a4c-47ef-8bff-10e93896b6dc"
             ],
             "format": "uuid",
             "type": "string"
@@ -906,9 +968,9 @@ const catalog = {
         {
           "name": "mirrorID",
           "in": "query",
-          "required": true,
+          "required": false,
           "deprecated": false,
-          "description": "The copy relationship to close, as returned in the status response after a successful registration.",
+          "description": "The copy to close, as returned in the status response after a successful registration. Send exactly one of mirrorID, parentCID or parentUsername.",
           "style": "form",
           "explode": true,
           "allowReserved": false,
@@ -917,6 +979,38 @@ const catalog = {
             "format": "int32",
             "minimum": 1,
             "type": "integer"
+          }
+        },
+        {
+          "name": "parentCID",
+          "in": "query",
+          "required": false,
+          "deprecated": false,
+          "description": "The account id of the investor whose copy to close. Send exactly one of mirrorID, parentCID or parentUsername.",
+          "style": "form",
+          "explode": true,
+          "allowReserved": false,
+          "allowEmptyValue": false,
+          "schema": {
+            "format": "int32",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        {
+          "name": "parentUsername",
+          "in": "query",
+          "required": false,
+          "deprecated": false,
+          "description": "The username of the investor whose copy to close (1 to 20 characters, with no space at the start or end; case-insensitive). Send exactly one of mirrorID, parentCID or parentUsername.",
+          "style": "form",
+          "explode": true,
+          "allowReserved": false,
+          "allowEmptyValue": false,
+          "schema": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
           }
         },
         {
@@ -981,7 +1075,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. missing or non-positive mirrorID, unknown unregisterType, zero-valued clientRequestID, or a request body on this binding)",
+          "description": "Validation failure (e.g. none of mirrorID, parentCID and parentUsername sent, or more than one of them sent, mirrorID or parentCID not greater than 0, a parentUsername that is malformed, unknown unregisterType, zero-valued clientRequestID, or a request body on this binding)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -1074,6 +1168,32 @@ const catalog = {
           }
         },
         {
+          "status": "404",
+          "description": "Not found: no copy with this mirrorID for the authenticated account, no investor with this parentCID or parentUsername, or the account does not copy this investor (a copy that has already closed counts as not copied).",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
           "status": "429",
           "description": "Rate limit exceeded",
           "mediaType": "application/json",
@@ -1144,6 +1264,16 @@ const catalog = {
                 "minimum": 1,
                 "type": "integer"
               },
+              "parentCID": {
+                "format": "int32",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "parentUsername": {
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
+              },
               "unregisterType": {
                 "default": "Close",
                 "enum": [
@@ -1156,10 +1286,7 @@ const catalog = {
                 "format": "uuid",
                 "type": "string"
               }
-            },
-            "required": [
-              "mirrorID"
-            ]
+            }
           },
           "headers": {
             "type": "object",
@@ -1167,17 +1294,14 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6f48c225-459d-43aa-89af-f39d992b6423"
+                  "20066b88-7a4c-47ef-8bff-10e93896b6dc"
                 ],
                 "format": "uuid",
                 "type": "string"
               }
             }
           }
-        },
-        "required": [
-          "query"
-        ]
+        }
       },
       "toolsetId": "copy-trading",
       "deprecated": false,
@@ -1192,7 +1316,7 @@ const catalog = {
           "etoro-public:trade.real:write"
         ]
       ],
-      "descriptionForTool": "Close or detach a copy relationship\n\nDELETE /api/v2/trading/copy\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. The relationship is selected by mirrorID; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading.\n\nREAL-MONEY OPERATION. This can change real funds or positions. It requires the separate real-money opt-in and user confirmation by the MCP client.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:write OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Close or detach a copy relationship\n\nDELETE /api/v2/trading/copy\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading.\n\nREAL-MONEY OPERATION. This can change real funds or positions. It requires the separate real-money opt-in and user confirmation by the MCP client.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:write OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Close or detach a copy relationship",
         "readOnlyHint": false,
@@ -1209,7 +1333,7 @@ const catalog = {
         "Copy Trading - Demo"
       ],
       "summary": "Close or detach a copy relationship",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. The relationship is selected by mirrorID; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/demo/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/demo/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": false,
@@ -1226,7 +1350,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "61f007d6-b1e6-4c32-9842-ff2a04b99599"
+              "eacb39a0-33b1-4c57-802f-aeaeac9a97a8"
             ],
             "format": "uuid",
             "type": "string"
@@ -1235,9 +1359,9 @@ const catalog = {
         {
           "name": "mirrorID",
           "in": "query",
-          "required": true,
+          "required": false,
           "deprecated": false,
-          "description": "The copy relationship to close, as returned in the status response after a successful registration.",
+          "description": "The copy to close, as returned in the status response after a successful registration. Send exactly one of mirrorID, parentCID or parentUsername.",
           "style": "form",
           "explode": true,
           "allowReserved": false,
@@ -1246,6 +1370,38 @@ const catalog = {
             "format": "int32",
             "minimum": 1,
             "type": "integer"
+          }
+        },
+        {
+          "name": "parentCID",
+          "in": "query",
+          "required": false,
+          "deprecated": false,
+          "description": "The account id of the investor whose copy to close. Send exactly one of mirrorID, parentCID or parentUsername.",
+          "style": "form",
+          "explode": true,
+          "allowReserved": false,
+          "allowEmptyValue": false,
+          "schema": {
+            "format": "int32",
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        {
+          "name": "parentUsername",
+          "in": "query",
+          "required": false,
+          "deprecated": false,
+          "description": "The username of the investor whose copy to close (1 to 20 characters, with no space at the start or end; case-insensitive). Send exactly one of mirrorID, parentCID or parentUsername.",
+          "style": "form",
+          "explode": true,
+          "allowReserved": false,
+          "allowEmptyValue": false,
+          "schema": {
+            "maxLength": 20,
+            "minLength": 1,
+            "type": "string"
           }
         },
         {
@@ -1310,7 +1466,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. missing or non-positive mirrorID, unknown unregisterType, zero-valued clientRequestID, or a request body on this binding)",
+          "description": "Validation failure (e.g. none of mirrorID, parentCID and parentUsername sent, or more than one of them sent, mirrorID or parentCID not greater than 0, a parentUsername that is malformed, unknown unregisterType, zero-valued clientRequestID, or a request body on this binding)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -1396,6 +1552,32 @@ const catalog = {
                 "required": [
                   "errorCode",
                   "errorMessage"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "status": "404",
+          "description": "Not found: no copy with this mirrorID for the authenticated account, no investor with this parentCID or parentUsername, or the account does not copy this investor (a copy that has already closed counts as not copied).",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
                 ],
                 "type": "object"
               }
@@ -1473,6 +1655,16 @@ const catalog = {
                 "minimum": 1,
                 "type": "integer"
               },
+              "parentCID": {
+                "format": "int32",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "parentUsername": {
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
+              },
               "unregisterType": {
                 "default": "Close",
                 "enum": [
@@ -1485,10 +1677,7 @@ const catalog = {
                 "format": "uuid",
                 "type": "string"
               }
-            },
-            "required": [
-              "mirrorID"
-            ]
+            }
           },
           "headers": {
             "type": "object",
@@ -1496,17 +1685,14 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "61f007d6-b1e6-4c32-9842-ff2a04b99599"
+                  "eacb39a0-33b1-4c57-802f-aeaeac9a97a8"
                 ],
                 "format": "uuid",
                 "type": "string"
               }
             }
           }
-        },
-        "required": [
-          "query"
-        ]
+        }
       },
       "toolsetId": "copy-trading-demo",
       "deprecated": false,
@@ -1521,7 +1707,7 @@ const catalog = {
           "etoro-public:trade.demo:write"
         ]
       ],
-      "descriptionForTool": "Close or detach a copy relationship\n\nDELETE /api/v2/trading/copy/demo\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. The relationship is selected by mirrorID; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/demo/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading - Demo.\n\nDemo operation: changes virtual/demo state only; it is not a real-money trade.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:write OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Close or detach a copy relationship\n\nDELETE /api/v2/trading/copy/demo\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername; identity is resolved from the authenticated caller. This binding takes all fields as query parameters and rejects any request carrying a body — use POST /api/v2/trading/copy/demo/close for a JSON-body equivalent. The operation is asynchronous and the response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading - Demo.\n\nDemo operation: changes virtual/demo state only; it is not a real-money trade.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:write OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Close or detach a copy relationship",
         "readOnlyHint": false,
@@ -1538,7 +1724,7 @@ const catalog = {
         "Copy Trading"
       ],
       "summary": "Close or detach a copy relationship (JSON body)",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Identical semantics to DELETE /api/v2/trading/copy, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername. Identical semantics to DELETE /api/v2/trading/copy, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": true,
@@ -1555,7 +1741,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8a1f1a38-fdd7-4216-b604-f8b61668c3a4"
+              "ec5e362f-f809-41b4-a507-bf4fe4e96061"
             ],
             "format": "uuid",
             "type": "string"
@@ -1597,7 +1783,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. missing or non-positive mirrorID, unknown unregisterType, zero-valued clientRequestID)",
+          "description": "Validation failure (e.g. none of mirrorID, parentCID and parentUsername sent, or more than one of them sent, mirrorID or parentCID not greater than 0, a parentUsername that is malformed, unknown unregisterType, or zero-valued clientRequestID)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -1683,6 +1869,32 @@ const catalog = {
                 "required": [
                   "errorCode",
                   "errorMessage"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "status": "404",
+          "description": "Not found: no copy with this mirrorID for the authenticated account, no investor with this parentCID or parentUsername, or the account does not copy this investor (a copy that has already closed counts as not copied).",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
                 ],
                 "type": "object"
               }
@@ -1757,7 +1969,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8a1f1a38-fdd7-4216-b604-f8b61668c3a4"
+                  "ec5e362f-f809-41b4-a507-bf4fe4e96061"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1783,10 +1995,22 @@ const catalog = {
                 ]
               },
               "mirrorID": {
-                "description": "The copy relationship to close, as returned in the status response after a successful registration.",
+                "description": "The copy to close, as returned in the status response after a successful registration. Send exactly one of mirrorID, parentCID or parentUsername.",
                 "format": "int32",
                 "minimum": 1,
                 "type": "integer"
+              },
+              "parentCID": {
+                "description": "The account id of the investor whose copy to close. Send exactly one of mirrorID, parentCID or parentUsername.",
+                "format": "int32",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "parentUsername": {
+                "description": "The username of the investor whose copy to close (1 to 20 characters, with no space at the start or end; case-insensitive). Send exactly one of mirrorID, parentCID or parentUsername.",
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
               },
               "unregisterType": {
                 "default": "Close",
@@ -1798,9 +2022,6 @@ const catalog = {
                 "type": "string"
               }
             },
-            "required": [
-              "mirrorID"
-            ],
             "type": "object"
           }
         }
@@ -1818,7 +2039,7 @@ const catalog = {
           "etoro-public:trade.real:write"
         ]
       ],
-      "descriptionForTool": "Close or detach a copy relationship (JSON body)\n\nPOST /api/v2/trading/copy/close\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Identical semantics to DELETE /api/v2/trading/copy, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading.\n\nREAL-MONEY OPERATION. This can change real funds or positions. It requires the separate real-money opt-in and user confirmation by the MCP client.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:write OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Close or detach a copy relationship (JSON body)\n\nPOST /api/v2/trading/copy/close\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername. Identical semantics to DELETE /api/v2/trading/copy, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading.\n\nREAL-MONEY OPERATION. This can change real funds or positions. It requires the separate real-money opt-in and user confirmation by the MCP client.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:write OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Close or detach a copy relationship (JSON body)",
         "readOnlyHint": false,
@@ -1835,7 +2056,7 @@ const catalog = {
         "Copy Trading - Demo"
       ],
       "summary": "Close or detach a copy relationship (JSON body)",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Identical semantics to DELETE /api/v2/trading/copy/demo, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername. Identical semantics to DELETE /api/v2/trading/copy/demo, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": false,
@@ -1852,7 +2073,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b1a1986a-88a5-49a2-9916-ec3fd8a47933"
+              "9dce56cb-4f8c-45ca-9e75-6ebdbd012dae"
             ],
             "format": "uuid",
             "type": "string"
@@ -1894,7 +2115,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. missing or non-positive mirrorID, unknown unregisterType, zero-valued clientRequestID)",
+          "description": "Validation failure (e.g. none of mirrorID, parentCID and parentUsername sent, or more than one of them sent, mirrorID or parentCID not greater than 0, a parentUsername that is malformed, unknown unregisterType, or zero-valued clientRequestID)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -1987,6 +2208,32 @@ const catalog = {
           }
         },
         {
+          "status": "404",
+          "description": "Not found: no copy with this mirrorID for the authenticated account, no investor with this parentCID or parentUsername, or the account does not copy this investor (a copy that has already closed counts as not copied).",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
           "status": "429",
           "description": "Rate limit exceeded",
           "mediaType": "application/json",
@@ -2054,7 +2301,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b1a1986a-88a5-49a2-9916-ec3fd8a47933"
+                  "9dce56cb-4f8c-45ca-9e75-6ebdbd012dae"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2080,10 +2327,22 @@ const catalog = {
                 ]
               },
               "mirrorID": {
-                "description": "The copy relationship to close, as returned in the status response after a successful registration.",
+                "description": "The copy to close, as returned in the status response after a successful registration. Send exactly one of mirrorID, parentCID or parentUsername.",
                 "format": "int32",
                 "minimum": 1,
                 "type": "integer"
+              },
+              "parentCID": {
+                "description": "The account id of the investor whose copy to close. Send exactly one of mirrorID, parentCID or parentUsername.",
+                "format": "int32",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "parentUsername": {
+                "description": "The username of the investor whose copy to close (1 to 20 characters, with no space at the start or end; case-insensitive). Send exactly one of mirrorID, parentCID or parentUsername.",
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
               },
               "unregisterType": {
                 "default": "Close",
@@ -2095,9 +2354,6 @@ const catalog = {
                 "type": "string"
               }
             },
-            "required": [
-              "mirrorID"
-            ],
             "type": "object"
           }
         }
@@ -2115,7 +2371,7 @@ const catalog = {
           "etoro-public:trade.demo:write"
         ]
       ],
-      "descriptionForTool": "Close or detach a copy relationship (JSON body)\n\nPOST /api/v2/trading/copy/demo/close\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Identical semantics to DELETE /api/v2/trading/copy/demo, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading - Demo.\n\nDemo operation: changes virtual/demo state only; it is not a real-money trade.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:write OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Close or detach a copy relationship (JSON body)\n\nPOST /api/v2/trading/copy/demo/close\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nThis action closes the sub-portfolio of the copy relationship. There are 2 ways to close the sub-portfolio: (a) Close — close all positions and withdraw the funds back to the main portfolio balance; (b) Detach — detach the positions from the sub-portfolio and move them into the main portfolio, and withdraw the sub-portfolio cash balance back into the main portfolio balance. These correspond to the unregisterType values Close and Detach. Name the copy to close in exactly one of three ways: by its mirrorID, by the parentCID of the investor you copy, or by that investor's parentUsername. Identical semantics to DELETE /api/v2/trading/copy/demo, with the fields carried in a JSON body instead of query parameters — provided because some HTTP clients and proxies handle DELETE requests with bodies unreliably. The response token is an acknowledgment only: close completion is not pollable through this API.\n\nToolset source tag: Copy Trading - Demo.\n\nDemo operation: changes virtual/demo state only; it is not a real-money trade.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:write OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Close or detach a copy relationship (JSON body)",
         "readOnlyHint": false,
@@ -2149,7 +2405,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9c464b3a-92d8-43a0-8496-3a657505577b"
+              "e73f029a-907a-473b-abb2-0b9b0491e64d"
             ],
             "format": "uuid",
             "type": "string"
@@ -2482,7 +2738,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9c464b3a-92d8-43a0-8496-3a657505577b"
+                  "e73f029a-907a-473b-abb2-0b9b0491e64d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2631,7 +2887,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7118889d-74f8-47f0-b611-ddddbd1ce0fb"
+              "48687d10-bdf7-4eae-a2e9-56b9c08c24cd"
             ],
             "format": "uuid",
             "type": "string"
@@ -2924,7 +3180,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7118889d-74f8-47f0-b611-ddddbd1ce0fb"
+                  "48687d10-bdf7-4eae-a2e9-56b9c08c24cd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3051,7 +3307,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "732b5697-3bb2-4464-8cb2-7bd0d3ac706b"
+              "a1ba2ef5-0d1b-4b35-9c35-c01febd6af17"
             ],
             "format": "uuid",
             "type": "string"
@@ -3360,7 +3616,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "732b5697-3bb2-4464-8cb2-7bd0d3ac706b"
+                  "a1ba2ef5-0d1b-4b35-9c35-c01febd6af17"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3471,7 +3727,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cb776310-6c27-40d8-97cb-208c9b652763"
+              "bbffcfd3-a194-4581-859c-b8c98aebd131"
             ],
             "format": "uuid",
             "type": "string"
@@ -3798,7 +4054,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cb776310-6c27-40d8-97cb-208c9b652763"
+                  "bbffcfd3-a194-4581-859c-b8c98aebd131"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3931,7 +4187,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "48e9d3cc-d8d1-4c84-aaf8-9fe4acddeb31"
+              "a4538684-b602-4baa-9ca4-8daa213f6e11"
             ],
             "format": "uuid",
             "type": "string"
@@ -4212,7 +4468,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "48e9d3cc-d8d1-4c84-aaf8-9fe4acddeb31"
+                  "a4538684-b602-4baa-9ca4-8daa213f6e11"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4352,7 +4608,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4cbdda56-33d7-451d-97df-cb834944cf76"
+              "b5ef1de0-7e39-4426-a256-e5e62fb3e4f3"
             ],
             "format": "uuid",
             "type": "string"
@@ -4432,7 +4688,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4cbdda56-33d7-451d-97df-cb834944cf76"
+                  "b5ef1de0-7e39-4426-a256-e5e62fb3e4f3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4489,7 +4745,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1771278a-6018-44fd-9c92-d8431ae66fa7"
+              "2501f9b3-8ec8-482d-bd05-1ddd2ed525b9"
             ],
             "format": "uuid",
             "type": "string"
@@ -4660,7 +4916,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1771278a-6018-44fd-9c92-d8431ae66fa7"
+                  "2501f9b3-8ec8-482d-bd05-1ddd2ed525b9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4755,7 +5011,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "44c05568-e55a-4a4e-a55e-05967ffacda1"
+              "cb6968fd-a089-431f-b586-6d21c6fb0ebf"
             ],
             "format": "uuid",
             "type": "string"
@@ -5036,7 +5292,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "44c05568-e55a-4a4e-a55e-05967ffacda1"
+                  "cb6968fd-a089-431f-b586-6d21c6fb0ebf"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5153,7 +5409,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ab952a88-859c-40fc-b936-d3a09fbfad8c"
+              "e7419b64-2725-41de-8ae8-13e0efdece08"
             ],
             "format": "uuid",
             "type": "string"
@@ -5326,7 +5582,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ab952a88-859c-40fc-b936-d3a09fbfad8c"
+                  "e7419b64-2725-41de-8ae8-13e0efdece08"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5466,7 +5722,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "76fdc6a6-9fbb-4c8c-b3f0-55f7314716d9"
+              "3eda364f-0885-4e03-8187-c0604b8f5553"
             ],
             "format": "uuid",
             "type": "string"
@@ -5639,7 +5895,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "76fdc6a6-9fbb-4c8c-b3f0-55f7314716d9"
+                  "3eda364f-0885-4e03-8187-c0604b8f5553"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5719,7 +5975,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "180bab52-568f-4e97-b30d-23ffdc9f8b8c"
+              "0acf4e21-5893-44f6-b6a9-e84ac57a517b"
             ],
             "format": "uuid",
             "type": "string"
@@ -5933,7 +6189,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "180bab52-568f-4e97-b30d-23ffdc9f8b8c"
+                  "0acf4e21-5893-44f6-b6a9-e84ac57a517b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6056,7 +6312,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3bf1c473-7ce1-44df-84da-648590714fee"
+              "a76838d3-d842-4ba9-9983-59a7c0eda659"
             ],
             "format": "uuid",
             "type": "string"
@@ -6279,7 +6535,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3bf1c473-7ce1-44df-84da-648590714fee"
+                  "a76838d3-d842-4ba9-9983-59a7c0eda659"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6402,7 +6658,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "90235d89-c631-46df-8b7a-8f6f41bc2dde"
+              "b73c30d3-3e1e-45aa-bb98-b7cd8e695343"
             ],
             "format": "uuid",
             "type": "string"
@@ -6657,7 +6913,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "90235d89-c631-46df-8b7a-8f6f41bc2dde"
+                  "b73c30d3-3e1e-45aa-bb98-b7cd8e695343"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6925,7 +7181,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3a0b9041-18ab-4288-bf49-49a46ade7141"
+              "8067db34-710c-4db8-adfe-13f07b8b80a2"
             ],
             "format": "uuid",
             "type": "string"
@@ -7227,7 +7483,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3a0b9041-18ab-4288-bf49-49a46ade7141"
+                  "8067db34-710c-4db8-adfe-13f07b8b80a2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7495,7 +7751,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7c02040e-8e7f-415c-887c-657ce464c419"
+              "f24852f1-9f9a-4f7a-984d-45dd00137977"
             ],
             "format": "uuid",
             "type": "string"
@@ -7668,7 +7924,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7c02040e-8e7f-415c-887c-657ce464c419"
+                  "f24852f1-9f9a-4f7a-984d-45dd00137977"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7808,7 +8064,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f50eebad-31fe-4df6-af9c-03a96303b1c1"
+              "210219a5-f334-4ee3-a4e0-f349355e62d6"
             ],
             "format": "uuid",
             "type": "string"
@@ -7981,7 +8237,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f50eebad-31fe-4df6-af9c-03a96303b1c1"
+                  "210219a5-f334-4ee3-a4e0-f349355e62d6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8061,7 +8317,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "83a6967d-8867-43df-9b32-55381b30a56b"
+              "005f502b-cecf-4b9a-bff6-530e83bbf08e"
             ],
             "format": "uuid",
             "type": "string"
@@ -8275,7 +8531,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "83a6967d-8867-43df-9b32-55381b30a56b"
+                  "005f502b-cecf-4b9a-bff6-530e83bbf08e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8398,7 +8654,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0f23f5b7-a167-4e89-bfe3-95e3e2ea20bb"
+              "574ab7bb-a097-4d57-9d4b-b12991a3e036"
             ],
             "format": "uuid",
             "type": "string"
@@ -8621,7 +8877,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0f23f5b7-a167-4e89-bfe3-95e3e2ea20bb"
+                  "574ab7bb-a097-4d57-9d4b-b12991a3e036"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8744,7 +9000,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "efcc91b7-ed6b-4229-a530-0bd3a5287009"
+              "e9601b6b-3aef-4d6b-a6ef-ce47358330d0"
             ],
             "format": "uuid",
             "type": "string"
@@ -8999,7 +9255,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "efcc91b7-ed6b-4229-a530-0bd3a5287009"
+                  "e9601b6b-3aef-4d6b-a6ef-ce47358330d0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9267,7 +9523,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "585205e7-1d61-4e0e-b8be-e603018db0a9"
+              "8f9d6127-57cb-4238-99e2-97902ad7c3a7"
             ],
             "format": "uuid",
             "type": "string"
@@ -9569,7 +9825,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "585205e7-1d61-4e0e-b8be-e603018db0a9"
+                  "8f9d6127-57cb-4238-99e2-97902ad7c3a7"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9837,7 +10093,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cf5cf819-de85-4550-8409-338107c765c2"
+              "273bb304-2309-4bf7-86c6-0d0bd707c612"
             ],
             "format": "uuid",
             "type": "string"
@@ -10019,7 +10275,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cf5cf819-de85-4550-8409-338107c765c2"
+                  "273bb304-2309-4bf7-86c6-0d0bd707c612"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10078,7 +10334,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f5c59bfc-3520-46b7-8fa1-1013edb8feb4"
+              "0bd5013c-fd54-4bcc-971b-4eaa44532081"
             ],
             "format": "uuid",
             "type": "string"
@@ -10265,7 +10521,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f5c59bfc-3520-46b7-8fa1-1013edb8feb4"
+                  "0bd5013c-fd54-4bcc-971b-4eaa44532081"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10324,7 +10580,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ac5ba6ed-54f7-47ae-a73f-0154296dc489"
+              "4c345790-73d9-4e5d-b5c3-d10500e65f37"
             ],
             "format": "uuid",
             "type": "string"
@@ -10437,7 +10693,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ac5ba6ed-54f7-47ae-a73f-0154296dc489"
+                  "4c345790-73d9-4e5d-b5c3-d10500e65f37"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10493,7 +10749,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "adb6f85c-0ee9-4ba9-a618-5206bdefe8c0"
+              "cb344ed0-c186-4355-b274-0138c42a3828"
             ],
             "format": "uuid",
             "type": "string"
@@ -10795,7 +11051,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "adb6f85c-0ee9-4ba9-a618-5206bdefe8c0"
+                  "cb344ed0-c186-4355-b274-0138c42a3828"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10851,7 +11107,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "18aaf809-4ce5-4ece-a930-b018def53a5c"
+              "e2a7696c-f801-4f5d-acc5-5774d2d27b69"
             ],
             "format": "uuid",
             "type": "string"
@@ -11042,7 +11298,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "18aaf809-4ce5-4ece-a930-b018def53a5c"
+                  "e2a7696c-f801-4f5d-acc5-5774d2d27b69"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11105,7 +11361,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "048f07e9-992d-4df3-9524-4171b35e809e"
+              "87e742fe-5530-44df-a988-8758bc133e5d"
             ],
             "format": "uuid",
             "type": "string"
@@ -11211,7 +11467,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "048f07e9-992d-4df3-9524-4171b35e809e"
+                  "87e742fe-5530-44df-a988-8758bc133e5d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11270,7 +11526,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ff60b883-bc3a-4acc-9043-d22fb934ee76"
+              "bc56223c-2304-4b8f-b7cc-d9f5c6741045"
             ],
             "format": "uuid",
             "type": "string"
@@ -11376,7 +11632,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ff60b883-bc3a-4acc-9043-d22fb934ee76"
+                  "bc56223c-2304-4b8f-b7cc-d9f5c6741045"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11435,7 +11691,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "33895175-ab9e-4a80-b07a-ae5660a1dfb2"
+              "cc33c414-2420-4c59-b9e6-d7acc8d88737"
             ],
             "format": "uuid",
             "type": "string"
@@ -11541,7 +11797,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "33895175-ab9e-4a80-b07a-ae5660a1dfb2"
+                  "cc33c414-2420-4c59-b9e6-d7acc8d88737"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11600,7 +11856,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "96d8b86e-c4a2-4978-8dc2-a2a68f48c8aa"
+              "b0ba1e6a-b5cc-43cd-ad12-d4ad36e11153"
             ],
             "format": "uuid",
             "type": "string"
@@ -11851,7 +12107,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "96d8b86e-c4a2-4978-8dc2-a2a68f48c8aa"
+                  "b0ba1e6a-b5cc-43cd-ad12-d4ad36e11153"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11910,7 +12166,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a7fd3c0e-2d3e-4037-ace7-0b44bfbde210"
+              "bd0cba8b-726f-4a7e-b8cf-987cb9e5b909"
             ],
             "format": "uuid",
             "type": "string"
@@ -12223,7 +12479,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a7fd3c0e-2d3e-4037-ace7-0b44bfbde210"
+                  "bd0cba8b-726f-4a7e-b8cf-987cb9e5b909"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12282,7 +12538,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "94dd0cdb-93d6-4afe-a644-6d9d22322473"
+              "1667e560-4886-4d6c-9f4a-a957732d03c0"
             ],
             "format": "uuid",
             "type": "string"
@@ -12388,7 +12644,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "94dd0cdb-93d6-4afe-a644-6d9d22322473"
+                  "1667e560-4886-4d6c-9f4a-a957732d03c0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12447,7 +12703,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8ae7db31-f1a8-4297-82bf-98da3b1a15d6"
+              "84ca0b90-172e-4c30-a73d-da4e2a24d009"
             ],
             "format": "uuid",
             "type": "string"
@@ -12553,7 +12809,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8ae7db31-f1a8-4297-82bf-98da3b1a15d6"
+                  "84ca0b90-172e-4c30-a73d-da4e2a24d009"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12612,7 +12868,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1234f14f-d863-49bc-8ed5-50e287ae0d7c"
+              "ee331310-7f17-4c7b-a111-c1335f0218ac"
             ],
             "format": "uuid",
             "type": "string"
@@ -12718,7 +12974,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1234f14f-d863-49bc-8ed5-50e287ae0d7c"
+                  "ee331310-7f17-4c7b-a111-c1335f0218ac"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12777,7 +13033,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "79ec3b8b-c05a-4d15-ac4f-e29ac0972609"
+              "33ddf9b0-26fa-4896-8929-9d6998095e29"
             ],
             "format": "uuid",
             "type": "string"
@@ -13028,7 +13284,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "79ec3b8b-c05a-4d15-ac4f-e29ac0972609"
+                  "33ddf9b0-26fa-4896-8929-9d6998095e29"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13087,7 +13343,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "67ed9ad7-2f6e-4f36-8031-791c8c5c2ef3"
+              "3d4d805e-6f12-44b6-a35a-e15ad9f6275b"
             ],
             "format": "uuid",
             "type": "string"
@@ -13400,7 +13656,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "67ed9ad7-2f6e-4f36-8031-791c8c5c2ef3"
+                  "3d4d805e-6f12-44b6-a35a-e15ad9f6275b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13459,7 +13715,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b655df2f-f63b-49d0-8905-b7e6b8bb2d11"
+              "bebadfec-bf1d-4fcc-8648-3ff63ad2bfa0"
             ],
             "format": "uuid",
             "type": "string"
@@ -13555,7 +13811,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b655df2f-f63b-49d0-8905-b7e6b8bb2d11"
+                  "bebadfec-bf1d-4fcc-8648-3ff63ad2bfa0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13617,7 +13873,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a4eba2e9-d5e9-47a3-a954-c75dd7266997"
+              "0c10a1b8-ab35-4c0a-8fb3-c406fc1465fd"
             ],
             "format": "uuid",
             "type": "string"
@@ -13724,7 +13980,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a4eba2e9-d5e9-47a3-a954-c75dd7266997"
+                  "0c10a1b8-ab35-4c0a-8fb3-c406fc1465fd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13906,7 +14162,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "89f5cead-e528-4d2f-9fd9-45e449a359d8"
+              "58ff0121-442a-4de4-ab16-9ebbcb785121"
             ],
             "format": "uuid",
             "type": "string"
@@ -14190,7 +14446,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "89f5cead-e528-4d2f-9fd9-45e449a359d8"
+                  "58ff0121-442a-4de4-ab16-9ebbcb785121"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14252,7 +14508,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0594f229-b922-414d-85ef-32c43cce286d"
+              "92e428a9-ddc0-48fc-889d-6643e4805446"
             ],
             "format": "uuid",
             "type": "string"
@@ -14402,7 +14658,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0594f229-b922-414d-85ef-32c43cce286d"
+                  "92e428a9-ddc0-48fc-889d-6643e4805446"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14458,7 +14714,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3794fd62-c595-4df3-9be9-c1738afbd031"
+              "1be71d59-32f5-4f6f-a6d4-493faea4bd87"
             ],
             "format": "uuid",
             "type": "string"
@@ -14988,7 +15244,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3794fd62-c595-4df3-9be9-c1738afbd031"
+                  "1be71d59-32f5-4f6f-a6d4-493faea4bd87"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15041,7 +15297,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9dfd5b9f-1697-4ad7-b534-8ee8eb13985e"
+              "fa59c8a9-596c-4495-b3b0-95cd03b93c9b"
             ],
             "format": "uuid",
             "type": "string"
@@ -15571,7 +15827,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9dfd5b9f-1697-4ad7-b534-8ee8eb13985e"
+                  "fa59c8a9-596c-4495-b3b0-95cd03b93c9b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15624,7 +15880,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "35efb2ce-a46d-4305-89ad-857445fc6e7e"
+              "e497507e-0967-4c28-93a3-0ac75a20f501"
             ],
             "format": "uuid",
             "type": "string"
@@ -15809,7 +16065,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "35efb2ce-a46d-4305-89ad-857445fc6e7e"
+                  "e497507e-0967-4c28-93a3-0ac75a20f501"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15865,7 +16121,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "399e9763-0695-4c75-b90b-f15fd42d54dd"
+              "9321b949-d449-4d24-9974-71234de0d16c"
             ],
             "format": "uuid",
             "type": "string"
@@ -16423,7 +16679,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "399e9763-0695-4c75-b90b-f15fd42d54dd"
+                  "9321b949-d449-4d24-9974-71234de0d16c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -16494,7 +16750,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f4fd205e-3075-444c-bc23-730c48e61675"
+              "3358a8e6-c4ee-442a-90c5-2be05426e7d9"
             ],
             "format": "uuid",
             "type": "string"
@@ -17069,7 +17325,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f4fd205e-3075-444c-bc23-730c48e61675"
+                  "3358a8e6-c4ee-442a-90c5-2be05426e7d9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -17143,7 +17399,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2eca604f-81c7-4a50-a499-e133c016204d"
+              "35eff3cb-2df0-411a-9d3b-800055f2c743"
             ],
             "format": "uuid",
             "type": "string"
@@ -17685,7 +17941,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2eca604f-81c7-4a50-a499-e133c016204d"
+                  "35eff3cb-2df0-411a-9d3b-800055f2c743"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -17738,7 +17994,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d92a8b83-3843-46c6-898d-1facb9ec5e2b"
+              "5a7f999f-3622-40a0-8e9a-46b6b261f5ca"
             ],
             "format": "uuid",
             "type": "string"
@@ -18306,7 +18562,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d92a8b83-3843-46c6-898d-1facb9ec5e2b"
+                  "5a7f999f-3622-40a0-8e9a-46b6b261f5ca"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -18380,7 +18636,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "67ba1801-3b30-442c-bee9-a7b3ca12b3b1"
+              "886bf87b-aff1-4dec-a74f-d6abfd68cf88"
             ],
             "format": "uuid",
             "type": "string"
@@ -18733,7 +18989,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "67ba1801-3b30-442c-bee9-a7b3ca12b3b1"
+                  "886bf87b-aff1-4dec-a74f-d6abfd68cf88"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -18801,7 +19057,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "78a5c5bc-bf18-4b63-8e8f-da7505fb3e41"
+              "f4471766-a9cb-4bef-9599-a8563efed1b8"
             ],
             "format": "uuid",
             "type": "string"
@@ -19571,7 +19827,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "78a5c5bc-bf18-4b63-8e8f-da7505fb3e41"
+                  "f4471766-a9cb-4bef-9599-a8563efed1b8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -19624,7 +19880,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "80a9cd1a-481d-44c6-b84f-00603613f8d1"
+              "340fe1b6-f71a-4a43-a543-5c995cb76b2c"
             ],
             "format": "uuid",
             "type": "string"
@@ -19923,7 +20179,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "80a9cd1a-481d-44c6-b84f-00603613f8d1"
+                  "340fe1b6-f71a-4a43-a543-5c995cb76b2c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -19988,7 +20244,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ac604ab3-1245-4b47-b287-56eae190ca1c"
+              "21729c68-7bee-40d1-ae76-3c19fc89428b"
             ],
             "format": "uuid",
             "type": "string"
@@ -20287,7 +20543,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ac604ab3-1245-4b47-b287-56eae190ca1c"
+                  "21729c68-7bee-40d1-ae76-3c19fc89428b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -20352,7 +20608,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1f7b63ab-2513-421f-bc9c-65cd2d3d3d89"
+              "c9506d93-1366-4e7e-a716-50ca3eefe3a6"
             ],
             "format": "uuid",
             "type": "string"
@@ -20592,7 +20848,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1f7b63ab-2513-421f-bc9c-65cd2d3d3d89"
+                  "c9506d93-1366-4e7e-a716-50ca3eefe3a6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -20866,7 +21122,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f0eab00c-7e40-45b1-8e74-1c284e59389a"
+              "239eb8ac-8e93-4036-9ab2-dddd58c1dcf4"
             ],
             "format": "uuid",
             "type": "string"
@@ -21106,7 +21362,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f0eab00c-7e40-45b1-8e74-1c284e59389a"
+                  "239eb8ac-8e93-4036-9ab2-dddd58c1dcf4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -21380,7 +21636,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b812603d-3d78-4989-8b66-c89bbb91e826"
+              "2d77a901-0d4f-4117-8f85-3c747710c660"
             ],
             "format": "uuid",
             "type": "string"
@@ -21540,7 +21796,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b812603d-3d78-4989-8b66-c89bbb91e826"
+                  "2d77a901-0d4f-4117-8f85-3c747710c660"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -21608,7 +21864,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2385b857-0e91-48e2-9bf7-faaf971c8e23"
+              "99702217-179f-4f6b-bcb1-7df599843b43"
             ],
             "format": "uuid",
             "type": "string"
@@ -22161,7 +22417,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2385b857-0e91-48e2-9bf7-faaf971c8e23"
+                  "99702217-179f-4f6b-bcb1-7df599843b43"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -22232,7 +22488,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ad64be61-b7d9-4409-8156-90d5b114a5f3"
+              "3a8ec188-7dd4-4386-bd8b-34be074c7c9d"
             ],
             "format": "uuid",
             "type": "string"
@@ -22633,7 +22889,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ad64be61-b7d9-4409-8156-90d5b114a5f3"
+                  "3a8ec188-7dd4-4386-bd8b-34be074c7c9d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -22687,7 +22943,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "38c442fa-8677-456f-b269-0b155ad10d70"
+              "c90782cb-5368-4a49-bb5f-7d728b5b47e0"
             ],
             "format": "uuid",
             "type": "string"
@@ -23242,7 +23498,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "38c442fa-8677-456f-b269-0b155ad10d70"
+                  "c90782cb-5368-4a49-bb5f-7d728b5b47e0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23316,7 +23572,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cdf2c87b-00ce-409c-9457-f0d94b29d4c0"
+              "0900c900-dfae-49af-ae4f-c58f7dbe6106"
             ],
             "format": "uuid",
             "type": "string"
@@ -23844,7 +24100,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cdf2c87b-00ce-409c-9457-f0d94b29d4c0"
+                  "0900c900-dfae-49af-ae4f-c58f7dbe6106"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23897,7 +24153,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bbee1d78-86c9-40f7-a4f2-8de14ea3bc1b"
+              "31bf1048-940b-4326-a1c5-d9bd35e4cac3"
             ],
             "format": "uuid",
             "type": "string"
@@ -24451,7 +24707,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bbee1d78-86c9-40f7-a4f2-8de14ea3bc1b"
+                  "31bf1048-940b-4326-a1c5-d9bd35e4cac3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24525,7 +24781,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1ae9a826-3907-4d75-a97e-ecb17dcc39a7"
+              "7c3b83bc-220c-4316-bf67-0f06fffad608"
             ],
             "format": "uuid",
             "type": "string"
@@ -24652,7 +24908,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1ae9a826-3907-4d75-a97e-ecb17dcc39a7"
+                  "7c3b83bc-220c-4316-bf67-0f06fffad608"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24708,7 +24964,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "76aa8d3f-d107-4dbc-bc6e-6e8f357582a9"
+              "1cbcc515-3c1f-429d-9f46-0ff5ad0b89d2"
             ],
             "format": "uuid",
             "type": "string"
@@ -25097,7 +25353,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "76aa8d3f-d107-4dbc-bc6e-6e8f357582a9"
+                  "1cbcc515-3c1f-429d-9f46-0ff5ad0b89d2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25199,7 +25455,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "15b23b7f-768a-4f87-87a5-50af6b88a249"
+              "6b1b3e71-54b0-4cae-a4e4-276b5eeef56a"
             ],
             "format": "uuid",
             "type": "string"
@@ -25588,7 +25844,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "15b23b7f-768a-4f87-87a5-50af6b88a249"
+                  "6b1b3e71-54b0-4cae-a4e4-276b5eeef56a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25690,7 +25946,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bffcd1d1-7987-431e-9a65-aa7677d211e6"
+              "da63d8d4-c692-423c-8520-60e55f6e75e1"
             ],
             "format": "uuid",
             "type": "string"
@@ -26028,7 +26284,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bffcd1d1-7987-431e-9a65-aa7677d211e6"
+                  "da63d8d4-c692-423c-8520-60e55f6e75e1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26096,7 +26352,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f75d3b87-bbaa-4bba-9a6a-4314aba79234"
+              "2bcf8de6-76b3-47f7-b207-0c9420fc6e84"
             ],
             "format": "uuid",
             "type": "string"
@@ -26216,7 +26472,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f75d3b87-bbaa-4bba-9a6a-4314aba79234"
+                  "2bcf8de6-76b3-47f7-b207-0c9420fc6e84"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26284,7 +26540,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b7733fbc-5d91-4aa5-813b-97670a691f52"
+              "1a8b70a9-6d4d-440d-bc8e-c73ea609658a"
             ],
             "format": "uuid",
             "type": "string"
@@ -26397,7 +26653,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b7733fbc-5d91-4aa5-813b-97670a691f52"
+                  "1a8b70a9-6d4d-440d-bc8e-c73ea609658a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26448,7 +26704,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bd2e0aaa-b0f1-41d7-8bac-3be136cf6a6d"
+              "59ba5bbb-a398-4e8c-b6ba-64e5e84b78e8"
             ],
             "format": "uuid",
             "type": "string"
@@ -26685,7 +26941,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bd2e0aaa-b0f1-41d7-8bac-3be136cf6a6d"
+                  "59ba5bbb-a398-4e8c-b6ba-64e5e84b78e8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26736,7 +26992,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7f7ae09d-2931-468a-865d-9712715e722a"
+              "3442436f-e26f-4a43-b67b-3e485d51ec0a"
             ],
             "format": "uuid",
             "type": "string"
@@ -27017,7 +27273,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7f7ae09d-2931-468a-865d-9712715e722a"
+                  "3442436f-e26f-4a43-b67b-3e485d51ec0a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27071,7 +27327,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8872f49a-e58f-486b-ab97-8cc68954d9ad"
+              "8cdb01cd-260c-430f-ac7a-ddc828e8d9eb"
             ],
             "format": "uuid",
             "type": "string"
@@ -27211,7 +27467,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8872f49a-e58f-486b-ab97-8cc68954d9ad"
+                  "8cdb01cd-260c-430f-ac7a-ddc828e8d9eb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27262,7 +27518,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5be52f66-e9b3-480e-aabd-3b1a2ba71046"
+              "ec4deae9-0819-4399-adbc-20a100cbf958"
             ],
             "format": "uuid",
             "type": "string"
@@ -27455,7 +27711,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5be52f66-e9b3-480e-aabd-3b1a2ba71046"
+                  "ec4deae9-0819-4399-adbc-20a100cbf958"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27509,7 +27765,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5e9522eb-c2c2-4dc9-a3dd-473abdc53c66"
+              "166fce9d-90c1-4e46-9076-acd623cf4f87"
             ],
             "format": "uuid",
             "type": "string"
@@ -27622,7 +27878,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5e9522eb-c2c2-4dc9-a3dd-473abdc53c66"
+                  "166fce9d-90c1-4e46-9076-acd623cf4f87"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27673,7 +27929,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b5963357-3727-4689-b14c-bcefddb9c6e5"
+              "c719346b-1dba-4faf-9072-6ec09ddbc440"
             ],
             "format": "uuid",
             "type": "string"
@@ -28105,7 +28361,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b5963357-3727-4689-b14c-bcefddb9c6e5"
+                  "c719346b-1dba-4faf-9072-6ec09ddbc440"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28159,7 +28415,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a3070b3d-c406-4f99-b5ee-bf4c40e5cecc"
+              "0605bf40-eea1-4d1e-8cdf-c473286bb2ee"
             ],
             "format": "uuid",
             "type": "string"
@@ -28272,7 +28528,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a3070b3d-c406-4f99-b5ee-bf4c40e5cecc"
+                  "0605bf40-eea1-4d1e-8cdf-c473286bb2ee"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28323,7 +28579,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9e781e48-0bb1-4a1b-89d2-0592a06ce780"
+              "0d92b68f-4c4a-4972-aa12-490fba1b6fab"
             ],
             "format": "uuid",
             "type": "string"
@@ -28469,7 +28725,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9e781e48-0bb1-4a1b-89d2-0592a06ce780"
+                  "0d92b68f-4c4a-4972-aa12-490fba1b6fab"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28540,7 +28796,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d230c1bd-ccae-4b1e-90d3-0fc747189949"
+              "aab643f2-57d2-40a8-a95b-ed6bbe25ced9"
             ],
             "format": "uuid",
             "type": "string"
@@ -28710,7 +28966,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d230c1bd-ccae-4b1e-90d3-0fc747189949"
+                  "aab643f2-57d2-40a8-a95b-ed6bbe25ced9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28775,7 +29031,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "86b076bb-bdd1-4509-91a5-74af5829c62a"
+              "b62af446-31e0-4123-916d-8841c7bb02ed"
             ],
             "format": "uuid",
             "type": "string"
@@ -29224,7 +29480,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "86b076bb-bdd1-4509-91a5-74af5829c62a"
+                  "b62af446-31e0-4123-916d-8841c7bb02ed"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29321,7 +29577,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cfee9bb0-14dd-48f8-9551-0ad0ac817585"
+              "c78954c3-62c2-4932-8abd-adcf0d281d40"
             ],
             "format": "uuid",
             "type": "string"
@@ -29382,7 +29638,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cfee9bb0-14dd-48f8-9551-0ad0ac817585"
+                  "c78954c3-62c2-4932-8abd-adcf0d281d40"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29438,7 +29694,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6a4e0d51-bdfd-44bf-a83b-6e7f1869a44e"
+              "e278c676-4118-4542-a8c1-c6b6162cd6fe"
             ],
             "format": "uuid",
             "type": "string"
@@ -29619,7 +29875,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6a4e0d51-bdfd-44bf-a83b-6e7f1869a44e"
+                  "e278c676-4118-4542-a8c1-c6b6162cd6fe"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29672,7 +29928,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "18d00106-44ac-4fe2-85de-1c87ba3faee7"
+              "b98b5a33-5503-45b6-8d0f-063e20a1e06e"
             ],
             "format": "uuid",
             "type": "string"
@@ -29833,7 +30089,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "18d00106-44ac-4fe2-85de-1c87ba3faee7"
+                  "b98b5a33-5503-45b6-8d0f-063e20a1e06e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29892,7 +30148,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2cbcf066-b1d1-43e0-aafe-54d23cc89b79"
+              "78f6f982-2d39-496e-9516-cb92091e97ec"
             ],
             "format": "uuid",
             "type": "string"
@@ -30259,7 +30515,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2cbcf066-b1d1-43e0-aafe-54d23cc89b79"
+                  "78f6f982-2d39-496e-9516-cb92091e97ec"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -30313,7 +30569,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4c996ea5-5982-4d63-a5bd-e484fcd3fcd4"
+              "3ae21606-0e38-4719-ba4b-76eddd4b68f9"
             ],
             "format": "uuid",
             "type": "string"
@@ -30786,7 +31042,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4c996ea5-5982-4d63-a5bd-e484fcd3fcd4"
+                  "3ae21606-0e38-4719-ba4b-76eddd4b68f9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -30861,7 +31117,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e81d038d-7d97-4d1e-bda9-5534b3ce5f34"
+              "8fe2df5d-bf8b-494e-bc7f-0ddb0943632d"
             ],
             "format": "uuid",
             "type": "string"
@@ -31351,7 +31607,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e81d038d-7d97-4d1e-bda9-5534b3ce5f34"
+                  "8fe2df5d-bf8b-494e-bc7f-0ddb0943632d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -31405,7 +31661,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "48cac2ad-95cd-4788-ba6f-b61840152603"
+              "7718b4c6-c63d-4b06-86d1-b6c51e0280b5"
             ],
             "format": "uuid",
             "type": "string"
@@ -32065,7 +32321,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "48cac2ad-95cd-4788-ba6f-b61840152603"
+                  "7718b4c6-c63d-4b06-86d1-b6c51e0280b5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32139,7 +32395,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "21f82a67-0034-4d84-a1f5-13ef7bb3050d"
+              "ebb48f44-c03e-445f-9677-25cdb1131535"
             ],
             "format": "uuid",
             "type": "string"
@@ -32338,7 +32594,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "21f82a67-0034-4d84-a1f5-13ef7bb3050d"
+                  "ebb48f44-c03e-445f-9677-25cdb1131535"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32392,7 +32648,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a8a439b5-7c20-4f83-825e-a9302a35ff2a"
+              "0a5e97bb-f934-4f0a-b744-24f7159f55cb"
             ],
             "format": "uuid",
             "type": "string"
@@ -32779,7 +33035,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a8a439b5-7c20-4f83-825e-a9302a35ff2a"
+                  "0a5e97bb-f934-4f0a-b744-24f7159f55cb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32832,7 +33088,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6d9fce85-b452-4063-9d34-432595cdf087"
+              "868cdf40-24e7-4ff4-b375-b7a2c42a9c92"
             ],
             "format": "uuid",
             "type": "string"
@@ -33101,7 +33357,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6d9fce85-b452-4063-9d34-432595cdf087"
+                  "868cdf40-24e7-4ff4-b375-b7a2c42a9c92"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -33169,7 +33425,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7251f8b9-d888-4f2c-a751-f3965fb33017"
+              "a5124a20-f25b-4f77-a973-401b9229fc0f"
             ],
             "format": "uuid",
             "type": "string"
@@ -33714,7 +33970,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7251f8b9-d888-4f2c-a751-f3965fb33017"
+                  "a5124a20-f25b-4f77-a973-401b9229fc0f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -33783,7 +34039,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "038846cf-4da2-4c7d-a819-ae5a48436f8d"
+              "8ae24427-8b25-4dca-b54c-48896396d476"
             ],
             "format": "uuid",
             "type": "string"
@@ -34088,7 +34344,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "038846cf-4da2-4c7d-a819-ae5a48436f8d"
+                  "8ae24427-8b25-4dca-b54c-48896396d476"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34156,7 +34412,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "84c33617-95af-4139-80b6-60f04be6f671"
+              "3d23e974-e4b0-422d-945b-646fa3c0f5d2"
             ],
             "format": "uuid",
             "type": "string"
@@ -34246,7 +34502,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "84c33617-95af-4139-80b6-60f04be6f671"
+                  "3d23e974-e4b0-422d-945b-646fa3c0f5d2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34302,7 +34558,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bec2d1fd-505b-492a-b548-7cd72c927ab8"
+              "3b30f2ce-686d-4530-9160-3179b97c1816"
             ],
             "format": "uuid",
             "type": "string"
@@ -34712,7 +34968,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bec2d1fd-505b-492a-b548-7cd72c927ab8"
+                  "3b30f2ce-686d-4530-9160-3179b97c1816"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34777,7 +35033,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3743b012-1a0e-406b-9d01-3a49f2a31cf6"
+              "f3074595-966f-4360-861b-3bbb56096079"
             ],
             "format": "uuid",
             "type": "string"
@@ -35176,7 +35432,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3743b012-1a0e-406b-9d01-3a49f2a31cf6"
+                  "f3074595-966f-4360-861b-3bbb56096079"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -35238,7 +35494,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "542f12cf-ef0e-4131-b6dd-5822f639fcfd"
+              "847c75ce-aad6-493b-adaa-262ab6663c56"
             ],
             "format": "uuid",
             "type": "string"
@@ -35603,7 +35859,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "542f12cf-ef0e-4131-b6dd-5822f639fcfd"
+                  "847c75ce-aad6-493b-adaa-262ab6663c56"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -35671,7 +35927,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5e534fe2-8c28-461b-a99d-1105ea086d51"
+              "7242a420-eadd-4151-9972-4e22902f8cf5"
             ],
             "format": "uuid",
             "type": "string"
@@ -35966,7 +36222,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5e534fe2-8c28-461b-a99d-1105ea086d51"
+                  "7242a420-eadd-4151-9972-4e22902f8cf5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36028,7 +36284,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c17e28b4-e1b5-492c-9de4-b3f7ee4fc9da"
+              "409cd146-8f06-434a-8a65-96ba0f132501"
             ],
             "format": "uuid",
             "type": "string"
@@ -36237,7 +36493,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c17e28b4-e1b5-492c-9de4-b3f7ee4fc9da"
+                  "409cd146-8f06-434a-8a65-96ba0f132501"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36293,7 +36549,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "954ede8e-e517-4ea4-b720-e7d66e48393c"
+              "745ac941-7980-49e2-98bd-07672a2212e0"
             ],
             "format": "uuid",
             "type": "string"
@@ -36428,7 +36684,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "954ede8e-e517-4ea4-b720-e7d66e48393c"
+                  "745ac941-7980-49e2-98bd-07672a2212e0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36484,7 +36740,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "43e0e8a0-034e-447d-a74f-653df752d86f"
+              "4f825089-29f3-4541-bf92-a651b0b4331b"
             ],
             "format": "uuid",
             "type": "string"
@@ -36907,7 +37163,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "43e0e8a0-034e-447d-a74f-653df752d86f"
+                  "4f825089-29f3-4541-bf92-a651b0b4331b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36972,7 +37228,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5d7e2eda-f149-419f-b1c5-aae6e69b8584"
+              "2684e71d-e971-4770-b8cf-7139fa5ba51b"
             ],
             "format": "uuid",
             "type": "string"
@@ -37575,7 +37831,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5d7e2eda-f149-419f-b1c5-aae6e69b8584"
+                  "2684e71d-e971-4770-b8cf-7139fa5ba51b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -37640,7 +37896,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4fdd9ebd-c9dc-45eb-b944-36aa28488ec4"
+              "ec012eb6-7093-4d91-b495-2856ab5daffb"
             ],
             "format": "uuid",
             "type": "string"
@@ -38263,7 +38519,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4fdd9ebd-c9dc-45eb-b944-36aa28488ec4"
+                  "ec012eb6-7093-4d91-b495-2856ab5daffb"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -38325,7 +38581,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8751a847-0f41-43c2-934d-05c545c06fb1"
+              "7a825d18-f522-4644-9fd4-e80cb517fa19"
             ],
             "format": "uuid",
             "type": "string"
@@ -39144,7 +39400,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8751a847-0f41-43c2-934d-05c545c06fb1"
+                  "7a825d18-f522-4644-9fd4-e80cb517fa19"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -39206,7 +39462,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c79e700f-a1d3-4224-8a09-7e1ae1dcd8c3"
+              "8661584e-2d30-4598-9d54-6641cf205306"
             ],
             "format": "uuid",
             "type": "string"
@@ -39731,7 +39987,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c79e700f-a1d3-4224-8a09-7e1ae1dcd8c3"
+                  "8661584e-2d30-4598-9d54-6641cf205306"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -39793,7 +40049,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1ae8888f-ba78-4102-af73-ce7ed23b0d1a"
+              "ddc513d9-7ba6-41c4-b9c0-f056bfcec7e4"
             ],
             "format": "uuid",
             "type": "string"
@@ -40741,7 +40997,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1ae8888f-ba78-4102-af73-ce7ed23b0d1a"
+                  "ddc513d9-7ba6-41c4-b9c0-f056bfcec7e4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -40804,7 +41060,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2200bb91-7160-4e7c-aa78-bfcd874d13c3"
+              "df9ebe6b-52ce-4a1b-b1d9-d0dc0ff6564a"
             ],
             "format": "uuid",
             "type": "string"
@@ -41427,7 +41683,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2200bb91-7160-4e7c-aa78-bfcd874d13c3"
+                  "df9ebe6b-52ce-4a1b-b1d9-d0dc0ff6564a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -41489,7 +41745,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "07217f05-9994-4996-aeb6-82c8f55764cf"
+              "5f58d646-ac5c-4a87-9c5e-80fbdc31dcae"
             ],
             "format": "uuid",
             "type": "string"
@@ -42014,7 +42270,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "07217f05-9994-4996-aeb6-82c8f55764cf"
+                  "5f58d646-ac5c-4a87-9c5e-80fbdc31dcae"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -42076,7 +42332,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a54859e6-6f4c-4d64-aa7f-cf8ff78bf7a1"
+              "d775c230-7431-494e-a0af-5298ac702b7f"
             ],
             "format": "uuid",
             "type": "string"
@@ -43024,7 +43280,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a54859e6-6f4c-4d64-aa7f-cf8ff78bf7a1"
+                  "d775c230-7431-494e-a0af-5298ac702b7f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43087,7 +43343,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e4c66acb-6485-4807-9f9a-07797fa4f642"
+              "7213ac66-aa9b-42c9-801c-f201c3ffd4f6"
             ],
             "format": "uuid",
             "type": "string"
@@ -43510,7 +43766,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e4c66acb-6485-4807-9f9a-07797fa4f642"
+                  "7213ac66-aa9b-42c9-801c-f201c3ffd4f6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43575,7 +43831,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9f0d28a8-b14e-45fe-a339-fea34031bb27"
+              "3e3aac23-b930-4634-aad6-9c883d9052e1"
             ],
             "format": "uuid",
             "type": "string"
@@ -44178,7 +44434,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9f0d28a8-b14e-45fe-a339-fea34031bb27"
+                  "3e3aac23-b930-4634-aad6-9c883d9052e1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -44243,7 +44499,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "54b565cd-6eae-4090-b9f1-fa4b3eecb008"
+              "49b57d9c-07c5-4f0a-842f-61aaf5f7a921"
             ],
             "format": "uuid",
             "type": "string"
@@ -45062,7 +45318,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "54b565cd-6eae-4090-b9f1-fa4b3eecb008"
+                  "49b57d9c-07c5-4f0a-842f-61aaf5f7a921"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45124,7 +45380,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "508d9c14-8484-4749-b117-589140c31037"
+              "1d054b34-6faa-485f-be66-bb898d0503d6"
             ],
             "format": "uuid",
             "type": "string"
@@ -45363,7 +45619,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "508d9c14-8484-4749-b117-589140c31037"
+                  "1d054b34-6faa-485f-be66-bb898d0503d6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45428,7 +45684,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0ead6e2f-370a-41a5-8142-6cea9408c572"
+              "6afea3f4-7e29-4932-b297-655517d036ac"
             ],
             "format": "uuid",
             "type": "string"
@@ -45667,7 +45923,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0ead6e2f-370a-41a5-8142-6cea9408c572"
+                  "6afea3f4-7e29-4932-b297-655517d036ac"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45732,7 +45988,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d1a8c913-1dcb-46c6-b5c6-63da951f25f2"
+              "d5d27dc8-f13a-4f86-80fb-565d3e993e6b"
             ],
             "format": "uuid",
             "type": "string"
@@ -45979,7 +46235,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d1a8c913-1dcb-46c6-b5c6-63da951f25f2"
+                  "d5d27dc8-f13a-4f86-80fb-565d3e993e6b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46046,7 +46302,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "af1bc344-02bb-435a-aa13-bd0232ed52de"
+              "5c73aa88-7df5-4633-9596-6841e80c885a"
             ],
             "format": "uuid",
             "type": "string"
@@ -46301,7 +46557,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "af1bc344-02bb-435a-aa13-bd0232ed52de"
+                  "5c73aa88-7df5-4633-9596-6841e80c885a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46357,7 +46613,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0311bd9d-aa6c-4596-a004-9dc8edec7f74"
+              "fad52d01-205c-43ef-b048-936c7e19f031"
             ],
             "format": "uuid",
             "type": "string"
@@ -46476,7 +46732,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0311bd9d-aa6c-4596-a004-9dc8edec7f74"
+                  "fad52d01-205c-43ef-b048-936c7e19f031"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46529,7 +46785,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "45bd76d4-5c9e-47f2-983d-4a5dde172056"
+              "b8dd87ba-c7ba-4b1c-92f4-a651fad2715b"
             ],
             "format": "uuid",
             "type": "string"
@@ -46646,7 +46902,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "45bd76d4-5c9e-47f2-983d-4a5dde172056"
+                  "b8dd87ba-c7ba-4b1c-92f4-a651fad2715b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46699,7 +46955,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e7578180-db6b-49a7-898a-bce44642bd1b"
+              "1e664d56-2e20-4bb6-8e7c-ec9269ece72f"
             ],
             "format": "uuid",
             "type": "string"
@@ -46804,7 +47060,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e7578180-db6b-49a7-898a-bce44642bd1b"
+                  "1e664d56-2e20-4bb6-8e7c-ec9269ece72f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46857,7 +47113,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "82431574-ae8d-4c66-b4b7-516ae4a58705"
+              "f12b07da-7184-4207-b483-21f35c31e3e6"
             ],
             "format": "uuid",
             "type": "string"
@@ -47404,7 +47660,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "82431574-ae8d-4c66-b4b7-516ae4a58705"
+                  "f12b07da-7184-4207-b483-21f35c31e3e6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47455,7 +47711,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1a444649-51be-4472-b0b8-a635046a6944"
+              "5d2033fd-a8e2-4553-96e1-26a2ca66ba83"
             ],
             "format": "uuid",
             "type": "string"
@@ -47659,7 +47915,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1a444649-51be-4472-b0b8-a635046a6944"
+                  "5d2033fd-a8e2-4553-96e1-26a2ca66ba83"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47728,7 +47984,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2e931b7f-3264-4e61-b3f1-ad7d31c84419"
+              "c2d31b47-4d53-4a89-a856-737ce8306b75"
             ],
             "format": "uuid",
             "type": "string"
@@ -47857,7 +48113,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2e931b7f-3264-4e61-b3f1-ad7d31c84419"
+                  "c2d31b47-4d53-4a89-a856-737ce8306b75"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47925,7 +48181,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c037cbea-c934-4c34-99a9-3646a57c8983"
+              "345e807f-7347-4db8-ae25-c11e141f41d1"
             ],
             "format": "uuid",
             "type": "string"
@@ -48232,7 +48488,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c037cbea-c934-4c34-99a9-3646a57c8983"
+                  "345e807f-7347-4db8-ae25-c11e141f41d1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -48300,7 +48556,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "baab25de-9834-4081-8d1b-c55ea9508671"
+              "adecbced-1c18-4828-8b0a-b3be9859b52b"
             ],
             "format": "uuid",
             "type": "string"
@@ -48632,7 +48888,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "baab25de-9834-4081-8d1b-c55ea9508671"
+                  "adecbced-1c18-4828-8b0a-b3be9859b52b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -48701,7 +48957,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e1244be1-6768-4e17-8f3d-7decd3c1862d"
+              "845dca8e-af6a-41e3-a184-14c1fb9238c6"
             ],
             "format": "uuid",
             "type": "string"
@@ -49435,7 +49691,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e1244be1-6768-4e17-8f3d-7decd3c1862d"
+                  "845dca8e-af6a-41e3-a184-14c1fb9238c6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -49503,7 +49759,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c404c1a2-ddbb-45d5-aab0-c4cb4d487d0c"
+              "2e4ff368-fef4-4510-97ce-fc2cd23ae24e"
             ],
             "format": "uuid",
             "type": "string"
@@ -49983,7 +50239,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c404c1a2-ddbb-45d5-aab0-c4cb4d487d0c"
+                  "2e4ff368-fef4-4510-97ce-fc2cd23ae24e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50051,7 +50307,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f0dba400-d930-40ad-8b7e-82dd169630b7"
+              "f967573e-5c27-4217-9ffb-055238c7dc9e"
             ],
             "format": "uuid",
             "type": "string"
@@ -50524,7 +50780,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f0dba400-d930-40ad-8b7e-82dd169630b7"
+                  "f967573e-5c27-4217-9ffb-055238c7dc9e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50595,7 +50851,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e2952ae3-9bae-4041-bc73-e93a74e43330"
+              "45cee41a-96ff-4a5e-80f9-0396e3e1c45a"
             ],
             "format": "uuid",
             "type": "string"
@@ -50839,7 +51095,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e2952ae3-9bae-4041-bc73-e93a74e43330"
+                  "45cee41a-96ff-4a5e-80f9-0396e3e1c45a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50907,7 +51163,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e4d3f423-4bdb-4bf6-8cfc-a72282a23fe6"
+              "2ab6993d-c9e8-424a-89b2-30823da0cfa4"
             ],
             "format": "uuid",
             "type": "string"
@@ -51355,7 +51611,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e4d3f423-4bdb-4bf6-8cfc-a72282a23fe6"
+                  "2ab6993d-c9e8-424a-89b2-30823da0cfa4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51426,7 +51682,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "105dcf7f-469f-4751-bf69-b68925bdfdb2"
+              "27a45bfd-abaa-450d-9a77-7145c1f35636"
             ],
             "format": "uuid",
             "type": "string"
@@ -51826,7 +52082,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "105dcf7f-469f-4751-bf69-b68925bdfdb2"
+                  "27a45bfd-abaa-450d-9a77-7145c1f35636"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51897,7 +52153,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "28e6474e-9dc3-4522-bb7d-422166e03194"
+              "4b17af51-359a-4f6b-bcca-c23201eaf1d9"
             ],
             "format": "uuid",
             "type": "string"
@@ -53325,7 +53581,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "28e6474e-9dc3-4522-bb7d-422166e03194"
+                  "4b17af51-359a-4f6b-bcca-c23201eaf1d9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -53485,7 +53741,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a92c12b0-e27b-41d6-81c2-dbc1b6811fc4"
+              "d6db9db5-5759-4501-ae4e-6dbc2003155f"
             ],
             "format": "uuid",
             "type": "string"
@@ -53981,7 +54237,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a92c12b0-e27b-41d6-81c2-dbc1b6811fc4"
+                  "d6db9db5-5759-4501-ae4e-6dbc2003155f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54037,7 +54293,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "abc10447-dc23-4052-9fd6-f69c602a2a62"
+              "a9d035cf-656f-4a79-8636-c3ecb83da0d0"
             ],
             "format": "uuid",
             "type": "string"
@@ -54155,7 +54411,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "abc10447-dc23-4052-9fd6-f69c602a2a62"
+                  "a9d035cf-656f-4a79-8636-c3ecb83da0d0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54206,7 +54462,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1939ab7e-d35b-4c4e-9f3e-34db2ba55b78"
+              "8bbe9388-63ea-4a19-ac34-a9fe030d2982"
             ],
             "format": "uuid",
             "type": "string"
@@ -54416,7 +54672,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1939ab7e-d35b-4c4e-9f3e-34db2ba55b78"
+                  "8bbe9388-63ea-4a19-ac34-a9fe030d2982"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54467,7 +54723,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4df04fad-6de5-4b19-a9b7-0739e9787695"
+              "fc3027ab-c703-4a99-88ca-3c1f86532aae"
             ],
             "format": "uuid",
             "type": "string"
@@ -54616,7 +54872,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4df04fad-6de5-4b19-a9b7-0739e9787695"
+                  "fc3027ab-c703-4a99-88ca-3c1f86532aae"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54675,7 +54931,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3094e6ca-fba8-4e78-8358-c6d1174f85c1"
+              "99951478-9a0f-48ce-b3cd-f13306ac7afc"
             ],
             "format": "uuid",
             "type": "string"
@@ -54928,7 +55184,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3094e6ca-fba8-4e78-8358-c6d1174f85c1"
+                  "99951478-9a0f-48ce-b3cd-f13306ac7afc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54984,7 +55240,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4f599663-2f15-4e05-ac9d-f39b675e71c7"
+              "ea199b60-450a-42c4-8282-c8cc9bcc53ca"
             ],
             "format": "uuid",
             "type": "string"
@@ -55046,7 +55302,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4f599663-2f15-4e05-ac9d-f39b675e71c7"
+                  "ea199b60-450a-42c4-8282-c8cc9bcc53ca"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55099,7 +55355,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "392b11a2-c544-431c-92e2-040508f5dcb9"
+              "9b82bf69-34a9-4647-8878-20b2ca2f2ad8"
             ],
             "format": "uuid",
             "type": "string"
@@ -55532,7 +55788,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "392b11a2-c544-431c-92e2-040508f5dcb9"
+                  "9b82bf69-34a9-4647-8878-20b2ca2f2ad8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55612,7 +55868,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9c59edee-3a7c-4ad2-9da1-a3dea67c40ab"
+              "ef50dd05-1250-4dd7-bf87-42da380f0a12"
             ],
             "format": "uuid",
             "type": "string"
@@ -56019,7 +56275,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9c59edee-3a7c-4ad2-9da1-a3dea67c40ab"
+                  "ef50dd05-1250-4dd7-bf87-42da380f0a12"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56191,7 +56447,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "333b6aae-e7ec-4d45-9289-dd991907c933"
+              "e9abdbd4-9bdc-4f98-8e94-7b717a338d44"
             ],
             "format": "uuid",
             "type": "string"
@@ -56598,7 +56854,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "333b6aae-e7ec-4d45-9289-dd991907c933"
+                  "e9abdbd4-9bdc-4f98-8e94-7b717a338d44"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56770,7 +57026,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "533217ce-3886-4df0-a470-0e4a987f63ef"
+              "85fdb4a0-912a-4f43-b460-7bfcfb1fad58"
             ],
             "format": "uuid",
             "type": "string"
@@ -56889,7 +57145,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "533217ce-3886-4df0-a470-0e4a987f63ef"
+                  "85fdb4a0-912a-4f43-b460-7bfcfb1fad58"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57031,7 +57287,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "99e4b484-73e1-4727-aefb-4b44b8c60ca1"
+              "13ca82f3-6379-44e8-82b1-7f37325cefd8"
             ],
             "format": "uuid",
             "type": "string"
@@ -57500,7 +57756,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "99e4b484-73e1-4727-aefb-4b44b8c60ca1"
+                  "13ca82f3-6379-44e8-82b1-7f37325cefd8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57587,7 +57843,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6059e3d6-7baf-41a6-98ed-83a556021652"
+              "518f9849-4203-410e-8e1e-68d9ef7c2988"
             ],
             "format": "uuid",
             "type": "string"
@@ -58054,7 +58310,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6059e3d6-7baf-41a6-98ed-83a556021652"
+                  "518f9849-4203-410e-8e1e-68d9ef7c2988"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58116,7 +58372,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f946edf7-13f8-4b43-b1c5-c7b372189c47"
+              "d877bb3a-1a19-4f7f-b8f2-1363d6e7e227"
             ],
             "format": "uuid",
             "type": "string"
@@ -58223,7 +58479,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f946edf7-13f8-4b43-b1c5-c7b372189c47"
+                  "d877bb3a-1a19-4f7f-b8f2-1363d6e7e227"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58405,7 +58661,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "eeb6cb4a-b04e-4091-8f87-7478939d788c"
+              "5fb7ada9-644f-42bf-9f4a-cd29edfa8577"
             ],
             "format": "uuid",
             "type": "string"
@@ -58799,7 +59055,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "eeb6cb4a-b04e-4091-8f87-7478939d788c"
+                  "5fb7ada9-644f-42bf-9f4a-cd29edfa8577"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58980,7 +59236,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "acda7e6f-72f7-47c0-bcae-a0345b2f9488"
+              "1bde457d-d8a5-4365-b9ac-f87ef1ef7d53"
             ],
             "format": "uuid",
             "type": "string"
@@ -59435,7 +59691,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "acda7e6f-72f7-47c0-bcae-a0345b2f9488"
+                  "1bde457d-d8a5-4365-b9ac-f87ef1ef7d53"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59497,7 +59753,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ed7ead7c-b918-4f38-ae67-26a435e84c78"
+              "7a09d496-6004-4a6e-8d4d-ff9a93dc4f37"
             ],
             "format": "uuid",
             "type": "string"
@@ -59621,7 +59877,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ed7ead7c-b918-4f38-ae67-26a435e84c78"
+                  "7a09d496-6004-4a6e-8d4d-ff9a93dc4f37"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59684,7 +59940,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2bca8901-c218-4205-8d46-32cc04e94e46"
+              "3b6d1018-3cf6-4afc-a3f2-45dc91be1d81"
             ],
             "format": "uuid",
             "type": "string"
@@ -59791,7 +60047,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2bca8901-c218-4205-8d46-32cc04e94e46"
+                  "3b6d1018-3cf6-4afc-a3f2-45dc91be1d81"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59973,7 +60229,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "54baf781-e292-4a31-aea4-9b50663e286a"
+              "ecc6504c-ee8c-4784-b842-83b1cc942174"
             ],
             "format": "uuid",
             "type": "string"
@@ -60103,7 +60359,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "54baf781-e292-4a31-aea4-9b50663e286a"
+                  "ecc6504c-ee8c-4784-b842-83b1cc942174"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60166,7 +60422,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1ec3b80e-fc3d-429f-89c9-508cfdfd55bf"
+              "9041156b-5340-430d-8611-0b6846fe10d6"
             ],
             "format": "uuid",
             "type": "string"
@@ -60262,7 +60518,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1ec3b80e-fc3d-429f-89c9-508cfdfd55bf"
+                  "9041156b-5340-430d-8611-0b6846fe10d6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60307,7 +60563,7 @@ const catalog = {
         "Copy Trading"
       ],
       "summary": "Start copying an investor, or adjust an existing copy",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). To change a specific existing copy, you can send its mirrorID instead of parentCID. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/{referenceId} using the referenceID supplied here.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints); both users and Smart Portfolios can be copied. Instead of parentCID you can name the investor by parentUsername; send one of the two, not both. If you already copy this investor, the request edits that existing copy, whether you send parentCID or parentUsername. You can also edit an existing copy by sending its mirrorID instead of parentCID or parentUsername. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/{referenceId} using the referenceID supplied here.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": true,
@@ -60324,7 +60580,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5c1d44e7-5bb0-4711-9c0f-30c32fda00aa"
+              "83dbcfc8-2a4a-4ccd-b530-30c30f173d29"
             ],
             "format": "uuid",
             "type": "string"
@@ -60366,7 +60622,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters, mirrorID sent together with parentCID, mirrorSLPercentage not greater than 0 and less than 100, mirrorSLPercentage with more than 2 decimal places, or mirrorSLPercentage sent on a copy that is pending closure)",
+          "description": "Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters, none of mirrorID, parentCID and parentUsername sent, or more than one of them sent, mirrorID or parentCID not greater than 0, a parentUsername that is malformed, mirrorSLPercentage not greater than 0 and less than 100, mirrorSLPercentage with more than 2 decimal places, or mirrorSLPercentage sent on a copy that is pending closure)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -60452,6 +60708,32 @@ const catalog = {
                 "required": [
                   "errorCode",
                   "errorMessage"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "status": "404",
+          "description": "Not found: no copy with this mirrorID for the authenticated account, or no investor with this parentCID or parentUsername.",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
                 ],
                 "type": "object"
               }
@@ -60526,7 +60808,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5c1d44e7-5bb0-4711-9c0f-30c32fda00aa"
+                  "83dbcfc8-2a4a-4ccd-b530-30c30f173d29"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60562,9 +60844,15 @@ const catalog = {
                 "type": "number"
               },
               "parentCID": {
-                "description": "The investor account id to copy. Required when mirrorID is not sent. If you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID; when editing by mirrorID, the investor of that copy is used.",
+                "description": "The investor account id to copy: a user or a Smart Portfolio. When mirrorID is not sent, send either parentCID or parentUsername (not both). If you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID or parentUsername; when editing by mirrorID, the investor of that copy is used.",
                 "format": "int32",
                 "type": "integer"
+              },
+              "parentUsername": {
+                "description": "The investor's username, as an alternative to parentCID. When mirrorID is not sent, send either parentCID or parentUsername (not both). As with parentCID, if you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID. 1 to 20 characters, with no space at the start or end; case-insensitive.",
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
               },
               "referenceID": {
                 "description": "Caller-supplied operation reference used to poll the outcome. Case-sensitive, URL-safe characters without '/', unique per operation within your account. Not an idempotency key: resubmitting the same value creates a new operation, and status lookups for a reused reference prefer the successful outcome.",
@@ -60593,7 +60881,7 @@ const catalog = {
           "etoro-public:trade.real:write"
         ]
       ],
-      "descriptionForTool": "Start copying an investor, or adjust an existing copy\n\nPOST /api/v2/trading/copy\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). To change a specific existing copy, you can send its mirrorID instead of parentCID. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/{referenceId} using the referenceID supplied here.\n\nToolset source tag: Copy Trading.\n\nREAL-MONEY OPERATION. This can change real funds or positions. It requires the separate real-money opt-in and user confirmation by the MCP client.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:write OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Start copying an investor, or adjust an existing copy\n\nPOST /api/v2/trading/copy\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints); both users and Smart Portfolios can be copied. Instead of parentCID you can name the investor by parentUsername; send one of the two, not both. If you already copy this investor, the request edits that existing copy, whether you send parentCID or parentUsername. You can also edit an existing copy by sending its mirrorID instead of parentCID or parentUsername. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/{referenceId} using the referenceID supplied here.\n\nToolset source tag: Copy Trading.\n\nREAL-MONEY OPERATION. This can change real funds or positions. It requires the separate real-money opt-in and user confirmation by the MCP client.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:real:write OR etoro-public:trade.real:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Start copying an investor, or adjust an existing copy",
         "readOnlyHint": false,
@@ -60610,7 +60898,7 @@ const catalog = {
         "Copy Trading - Demo"
       ],
       "summary": "Start copying an investor, or adjust an existing copy",
-      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). To change a specific existing copy, you can send its mirrorID instead of parentCID. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/demo/{referenceId} using the referenceID supplied here.",
+      "description": "**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints); both users and Smart Portfolios can be copied. Instead of parentCID you can name the investor by parentUsername; send one of the two, not both. If you already copy this investor, the request edits that existing copy, whether you send parentCID or parentUsername. You can also edit an existing copy by sending its mirrorID instead of parentCID or parentUsername. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/demo/{referenceId} using the referenceID supplied here.",
       "sourceDeprecated": false,
       "readOnlyExtension": false,
       "realMoneyExtension": false,
@@ -60627,7 +60915,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bb77a82a-10a4-4fed-844e-d232d9e6113a"
+              "8931d1d0-9f9c-4e3a-a2de-f99f79f22f38"
             ],
             "format": "uuid",
             "type": "string"
@@ -60669,7 +60957,7 @@ const catalog = {
         },
         {
           "status": "400",
-          "description": "Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters, mirrorID sent together with parentCID, mirrorSLPercentage not greater than 0 and less than 100, mirrorSLPercentage with more than 2 decimal places, or mirrorSLPercentage sent on a copy that is pending closure)",
+          "description": "Validation failure (e.g. zero amount, missing referenceID, referenceID longer than 35 characters, none of mirrorID, parentCID and parentUsername sent, or more than one of them sent, mirrorID or parentCID not greater than 0, a parentUsername that is malformed, mirrorSLPercentage not greater than 0 and less than 100, mirrorSLPercentage with more than 2 decimal places, or mirrorSLPercentage sent on a copy that is pending closure)",
           "mediaType": "application/json",
           "schema": {
             "$ref": "#/$defs/CopyTradingErrorResponse",
@@ -60762,6 +61050,32 @@ const catalog = {
           }
         },
         {
+          "status": "404",
+          "description": "Not found: no copy with this mirrorID for the authenticated account, or no investor with this parentCID or parentUsername.",
+          "mediaType": "application/json",
+          "schema": {
+            "$ref": "#/$defs/CopyTradingErrorResponse",
+            "$defs": {
+              "CopyTradingErrorResponse": {
+                "description": "Error response from the Copy Trading API (400, 404 and 500 statuses).",
+                "properties": {
+                  "error": {
+                    "description": "Human-readable error message naming the offending field where applicable.",
+                    "examples": [
+                      "Amount must not be zero"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "error"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
           "status": "429",
           "description": "Rate limit exceeded",
           "mediaType": "application/json",
@@ -60829,7 +61143,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bb77a82a-10a4-4fed-844e-d232d9e6113a"
+                  "8931d1d0-9f9c-4e3a-a2de-f99f79f22f38"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60865,9 +61179,15 @@ const catalog = {
                 "type": "number"
               },
               "parentCID": {
-                "description": "The investor account id to copy. Required when mirrorID is not sent. If you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID; when editing by mirrorID, the investor of that copy is used.",
+                "description": "The investor account id to copy: a user or a Smart Portfolio. When mirrorID is not sent, send either parentCID or parentUsername (not both). If you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID or parentUsername; when editing by mirrorID, the investor of that copy is used.",
                 "format": "int32",
                 "type": "integer"
+              },
+              "parentUsername": {
+                "description": "The investor's username, as an alternative to parentCID. When mirrorID is not sent, send either parentCID or parentUsername (not both). As with parentCID, if you already copy this investor, the request edits that existing copy. Do not send it together with mirrorID. 1 to 20 characters, with no space at the start or end; case-insensitive.",
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
               },
               "referenceID": {
                 "description": "Caller-supplied operation reference used to poll the outcome. Case-sensitive, URL-safe characters without '/', unique per operation within your account. Not an idempotency key: resubmitting the same value creates a new operation, and status lookups for a reused reference prefer the successful outcome.",
@@ -60896,7 +61216,7 @@ const catalog = {
           "etoro-public:trade.demo:write"
         ]
       ],
-      "descriptionForTool": "Start copying an investor, or adjust an existing copy\n\nPOST /api/v2/trading/copy/demo\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints). To change a specific existing copy, you can send its mirrorID instead of parentCID. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/demo/{referenceId} using the referenceID supplied here.\n\nToolset source tag: Copy Trading - Demo.\n\nDemo operation: changes virtual/demo state only; it is not a real-money trade.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:write OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
+      "descriptionForTool": "Start copying an investor, or adjust an existing copy\n\nPOST /api/v2/trading/copy/demo\n\n**Rate limit:** 60 requests per 60 seconds. This is the **default shared quota** — it is shared with every other endpoint that has no dedicated limit, so requests across those endpoints all draw from the same budget.\n\n---\n\nRegisters a copy relationship with the given investor for the authenticated account. If the copy already exists, funds will be added to or removed from it; if it does not exist, a new copy will be created and funds transferred into it. Every change of funds causes a realignment process that adjusts all the positions inside the sub-portfolio to match the parent portfolio proportions. Investor account ids (parentCID) are the ids surfaced by the platform's public endpoints (for example, the Rankings endpoints); both users and Smart Portfolios can be copied. Instead of parentCID you can name the investor by parentUsername; send one of the two, not both. If you already copy this investor, the request edits that existing copy, whether you send parentCID or parentUsername. You can also edit an existing copy by sending its mirrorID instead of parentCID or parentUsername. The operation is asynchronous: the response token acknowledges acceptance, and the outcome can be checked via GET /api/v2/trading/copy/demo/{referenceId} using the referenceID supplied here.\n\nToolset source tag: Copy Trading - Demo.\n\nDemo operation: changes virtual/demo state only; it is not a real-money trade.\n\nOAuth scope alternatives (any one listed alternative): etoro-public:demo:write OR etoro-public:trade.demo:write.\n\nRate limit: 60 requests per 60 seconds in the default shared pool.\n\nx-request-id is generated when omitted. Reuse the returned request ID when checking an ambiguous outcome; non-idempotent mutations are not automatically retried.",
       "annotations": {
         "title": "Start copying an investor, or adjust an existing copy",
         "readOnlyHint": false,
@@ -60930,7 +61250,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "198ef16f-41d4-4b8d-8504-ee0c845564ee"
+              "4c208138-2462-44fc-825d-444a7fc8b404"
             ],
             "format": "uuid",
             "type": "string"
@@ -61068,7 +61388,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "198ef16f-41d4-4b8d-8504-ee0c845564ee"
+                  "4c208138-2462-44fc-825d-444a7fc8b404"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -61124,7 +61444,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bf4456f7-8ab9-4d63-8778-f09191f8f8ee"
+              "ca3e314a-a8f4-4092-a026-17b3471d1786"
             ],
             "format": "uuid",
             "type": "string"
@@ -61445,7 +61765,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bf4456f7-8ab9-4d63-8778-f09191f8f8ee"
+                  "ca3e314a-a8f4-4092-a026-17b3471d1786"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -61499,7 +61819,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d8881def-77da-4f8c-bb29-317ed77dc074"
+              "bf038804-2378-4a5b-a38d-d92fc25d9ee4"
             ],
             "format": "uuid",
             "type": "string"
@@ -61709,7 +62029,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d8881def-77da-4f8c-bb29-317ed77dc074"
+                  "bf038804-2378-4a5b-a38d-d92fc25d9ee4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -61826,7 +62146,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d0ba9ba9-130f-46a2-bbd4-53ae9143c030"
+              "676f5e1a-02c6-4827-84ae-2b4e57b35a11"
             ],
             "format": "uuid",
             "type": "string"
@@ -62052,7 +62372,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d0ba9ba9-130f-46a2-bbd4-53ae9143c030"
+                  "676f5e1a-02c6-4827-84ae-2b4e57b35a11"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -62152,7 +62472,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ad22113f-9531-44d3-ac1a-e1f58fb3ac2a"
+              "30c577e1-31f2-4b45-b221-cb846810725a"
             ],
             "format": "uuid",
             "type": "string"
@@ -62416,7 +62736,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ad22113f-9531-44d3-ac1a-e1f58fb3ac2a"
+                  "30c577e1-31f2-4b45-b221-cb846810725a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -62539,7 +62859,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "dc6947cc-3c0d-4740-b037-d7865d757de5"
+              "cb558f01-f79b-4414-929c-7ffff1d9dd31"
             ],
             "format": "uuid",
             "type": "string"
@@ -62854,7 +63174,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "dc6947cc-3c0d-4740-b037-d7865d757de5"
+                  "cb558f01-f79b-4414-929c-7ffff1d9dd31"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -62968,7 +63288,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "deccfd14-298a-40f9-9f08-28abece24db1"
+              "cf30ac2d-b236-4bbe-b871-8a6a26530209"
             ],
             "format": "uuid",
             "type": "string"
@@ -63283,7 +63603,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "deccfd14-298a-40f9-9f08-28abece24db1"
+                  "cf30ac2d-b236-4bbe-b871-8a6a26530209"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -63397,7 +63717,7 @@ const catalog = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ee128822-27cb-40b7-98fc-680f04213124"
+              "0508d953-c213-45c0-9d73-22695866bdfb"
             ],
             "format": "uuid",
             "type": "string"
@@ -63617,7 +63937,7 @@ const catalog = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ee128822-27cb-40b7-98fc-680f04213124"
+                  "0508d953-c213-45c0-9d73-22695866bdfb"
                 ],
                 "format": "uuid",
                 "type": "string"
