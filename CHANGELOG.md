@@ -4,6 +4,14 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-11-24
+
+### Changed
+
+- Catalog refreshed from eToro Swagger UI v1.417.0 to v1.421.0: 159 tools across 26 toolsets (unchanged). No operations were added or removed upstream.
+- Copy-trading tools can now name the copied investor by `parentUsername`, on real and demo accounts alike. `registerCopyTrading` and `registerCopyTradingDemo` accept it as an alternative to `parentCID` (send one of the two when `mirrorID` is not sent). `checkCopyTradingEligibility` and `checkCopyTradingEligibilityDemo` accept it too and no longer require `parentCID`. `closeCopyTrading`, `closeCopyTradingDemo`, `closeCopyTradingViaPost` and `closeCopyTradingViaPostDemo` no longer require `mirrorID` and accept `parentCID` or `parentUsername` instead; send exactly one of the three.
+- All eight copy-trading tools document a new `404` response for an unknown copy or investor, and their `400` validation descriptions were reworded; the register and eligibility descriptions now state that Smart Portfolios can be copied. `registerCopyTrading`, `closeCopyTrading` and `closeCopyTradingViaPost` remain real-money mutations.
+
 ## [1.5.0] - 2026-11-16
 
 ### Changed
