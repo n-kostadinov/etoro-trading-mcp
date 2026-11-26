@@ -3,8 +3,8 @@ import type { OpenApiManifest } from "../generator/manifest-types.js";
 
 const manifest = {
   "schemaVersion": 1,
-  "sourceVersion": "v1.421.0",
-  "sourceCanonicalSha256": "21c18894c1c27f5d81c2abc7bccca0b791c916d4b0584f61947bd2b071266ba1",
+  "sourceVersion": "v1.424.0",
+  "sourceCanonicalSha256": "8bc7c6b89d28620adce6530490668391d3c756c4f3b2b40b6e9ba7154bfc652c",
   "operations": [
     {
       "operationId": "checkCopyTradingEligibility",
@@ -31,7 +31,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "109196d1-22c5-4239-b042-17d4ab902b50"
+              "b15853fb-dfb3-495a-b474-42c172aa6d13"
             ],
             "format": "uuid",
             "type": "string"
@@ -322,7 +322,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "109196d1-22c5-4239-b042-17d4ab902b50"
+                  "b15853fb-dfb3-495a-b474-42c172aa6d13"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -389,7 +389,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "74913828-2716-4e30-924c-4c846dc56b62"
+              "8fa98900-3bd1-4bc6-9407-425242d841f4"
             ],
             "format": "uuid",
             "type": "string"
@@ -680,7 +680,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "74913828-2716-4e30-924c-4c846dc56b62"
+                  "8fa98900-3bd1-4bc6-9407-425242d841f4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -747,7 +747,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "20066b88-7a4c-47ef-8bff-10e93896b6dc"
+              "fc460008-f3f9-4e42-b4e0-d1616b1d74d3"
             ],
             "format": "uuid",
             "type": "string"
@@ -1082,7 +1082,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "20066b88-7a4c-47ef-8bff-10e93896b6dc"
+                  "fc460008-f3f9-4e42-b4e0-d1616b1d74d3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1117,7 +1117,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "eacb39a0-33b1-4c57-802f-aeaeac9a97a8"
+              "c8c6b3fe-c1fe-4ed8-9708-0a685aedffba"
             ],
             "format": "uuid",
             "type": "string"
@@ -1452,7 +1452,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "eacb39a0-33b1-4c57-802f-aeaeac9a97a8"
+                  "c8c6b3fe-c1fe-4ed8-9708-0a685aedffba"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1487,7 +1487,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ec5e362f-f809-41b4-a507-bf4fe4e96061"
+              "0aafc7ec-d3fd-4f9c-9e37-8704488a57f6"
             ],
             "format": "uuid",
             "type": "string"
@@ -1715,7 +1715,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ec5e362f-f809-41b4-a507-bf4fe4e96061"
+                  "0aafc7ec-d3fd-4f9c-9e37-8704488a57f6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -1798,7 +1798,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9dce56cb-4f8c-45ca-9e75-6ebdbd012dae"
+              "005e08f5-3c8d-4cd8-b48b-1f2128a25257"
             ],
             "format": "uuid",
             "type": "string"
@@ -2026,7 +2026,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9dce56cb-4f8c-45ca-9e75-6ebdbd012dae"
+                  "005e08f5-3c8d-4cd8-b48b-1f2128a25257"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2109,7 +2109,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e73f029a-907a-473b-abb2-0b9b0491e64d"
+              "8d3aec0e-b702-4108-894f-d3ca77254c66"
             ],
             "format": "uuid",
             "type": "string"
@@ -2442,7 +2442,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e73f029a-907a-473b-abb2-0b9b0491e64d"
+                  "8d3aec0e-b702-4108-894f-d3ca77254c66"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2570,7 +2570,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "48687d10-bdf7-4eae-a2e9-56b9c08c24cd"
+              "a7c8f09c-4fb7-4eba-bfb1-75cb138c0dd5"
             ],
             "format": "uuid",
             "type": "string"
@@ -2863,7 +2863,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "48687d10-bdf7-4eae-a2e9-56b9c08c24cd"
+                  "a7c8f09c-4fb7-4eba-bfb1-75cb138c0dd5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -2969,7 +2969,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a1ba2ef5-0d1b-4b35-9c35-c01febd6af17"
+              "67e7ff27-675e-48b7-b44e-d8311b65545c"
             ],
             "format": "uuid",
             "type": "string"
@@ -3278,7 +3278,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a1ba2ef5-0d1b-4b35-9c35-c01febd6af17"
+                  "67e7ff27-675e-48b7-b44e-d8311b65545c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3371,7 +3371,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bbffcfd3-a194-4581-859c-b8c98aebd131"
+              "3ac399ef-283c-473d-986f-67db872a6ae1"
             ],
             "format": "uuid",
             "type": "string"
@@ -3698,7 +3698,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bbffcfd3-a194-4581-859c-b8c98aebd131"
+                  "3ac399ef-283c-473d-986f-67db872a6ae1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -3813,7 +3813,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a4538684-b602-4baa-9ca4-8daa213f6e11"
+              "6f570688-0a6a-4cc1-9059-bf4e77676f55"
             ],
             "format": "uuid",
             "type": "string"
@@ -4094,7 +4094,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a4538684-b602-4baa-9ca4-8daa213f6e11"
+                  "6f570688-0a6a-4cc1-9059-bf4e77676f55"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4216,7 +4216,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b5ef1de0-7e39-4426-a256-e5e62fb3e4f3"
+              "8720eb83-fa88-4083-8f86-c38bd6cb0ef0"
             ],
             "format": "uuid",
             "type": "string"
@@ -4296,7 +4296,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b5ef1de0-7e39-4426-a256-e5e62fb3e4f3"
+                  "8720eb83-fa88-4083-8f86-c38bd6cb0ef0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4335,7 +4335,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2501f9b3-8ec8-482d-bd05-1ddd2ed525b9"
+              "b9c88ae8-9e77-4244-8d8f-5d5dfa5ead34"
             ],
             "format": "uuid",
             "type": "string"
@@ -4506,7 +4506,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2501f9b3-8ec8-482d-bd05-1ddd2ed525b9"
+                  "b9c88ae8-9e77-4244-8d8f-5d5dfa5ead34"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4583,7 +4583,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cb6968fd-a089-431f-b586-6d21c6fb0ebf"
+              "4a0639e1-f4ee-4c0b-8c4e-c9f22b55cb4c"
             ],
             "format": "uuid",
             "type": "string"
@@ -4864,7 +4864,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cb6968fd-a089-431f-b586-6d21c6fb0ebf"
+                  "4a0639e1-f4ee-4c0b-8c4e-c9f22b55cb4c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -4963,7 +4963,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e7419b64-2725-41de-8ae8-13e0efdece08"
+              "bfea9c0c-0929-48cc-8630-23c8ac068abc"
             ],
             "format": "uuid",
             "type": "string"
@@ -5136,7 +5136,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e7419b64-2725-41de-8ae8-13e0efdece08"
+                  "bfea9c0c-0929-48cc-8630-23c8ac068abc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5255,7 +5255,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3eda364f-0885-4e03-8187-c0604b8f5553"
+              "51675272-35e1-49fa-918c-113b8f8e57c2"
             ],
             "format": "uuid",
             "type": "string"
@@ -5428,7 +5428,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3eda364f-0885-4e03-8187-c0604b8f5553"
+                  "51675272-35e1-49fa-918c-113b8f8e57c2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5487,7 +5487,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0acf4e21-5893-44f6-b6a9-e84ac57a517b"
+              "f2035039-3293-437a-bf67-e06d1262d2c0"
             ],
             "format": "uuid",
             "type": "string"
@@ -5701,7 +5701,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0acf4e21-5893-44f6-b6a9-e84ac57a517b"
+                  "f2035039-3293-437a-bf67-e06d1262d2c0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -5803,7 +5803,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a76838d3-d842-4ba9-9983-59a7c0eda659"
+              "053a7411-a28a-4807-a266-99e78a318d3b"
             ],
             "format": "uuid",
             "type": "string"
@@ -6026,7 +6026,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a76838d3-d842-4ba9-9983-59a7c0eda659"
+                  "053a7411-a28a-4807-a266-99e78a318d3b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6128,7 +6128,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b73c30d3-3e1e-45aa-bb98-b7cd8e695343"
+              "23c05a8f-63e7-4c07-8400-120be26973ec"
             ],
             "format": "uuid",
             "type": "string"
@@ -6383,7 +6383,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b73c30d3-3e1e-45aa-bb98-b7cd8e695343"
+                  "23c05a8f-63e7-4c07-8400-120be26973ec"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -6630,7 +6630,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8067db34-710c-4db8-adfe-13f07b8b80a2"
+              "af5816a5-6379-4ba8-9ccb-256636e64857"
             ],
             "format": "uuid",
             "type": "string"
@@ -6932,7 +6932,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8067db34-710c-4db8-adfe-13f07b8b80a2"
+                  "af5816a5-6379-4ba8-9ccb-256636e64857"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7179,7 +7179,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f24852f1-9f9a-4f7a-984d-45dd00137977"
+              "86c98d19-1d78-4e9e-9755-efc4a3d46785"
             ],
             "format": "uuid",
             "type": "string"
@@ -7352,7 +7352,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f24852f1-9f9a-4f7a-984d-45dd00137977"
+                  "86c98d19-1d78-4e9e-9755-efc4a3d46785"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7471,7 +7471,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "210219a5-f334-4ee3-a4e0-f349355e62d6"
+              "91099678-35dd-40b4-bb74-c30721ed3082"
             ],
             "format": "uuid",
             "type": "string"
@@ -7644,7 +7644,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "210219a5-f334-4ee3-a4e0-f349355e62d6"
+                  "91099678-35dd-40b4-bb74-c30721ed3082"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -7703,7 +7703,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "005f502b-cecf-4b9a-bff6-530e83bbf08e"
+              "d3d8206d-1125-42d0-82d7-eb8524cb5b5d"
             ],
             "format": "uuid",
             "type": "string"
@@ -7917,7 +7917,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "005f502b-cecf-4b9a-bff6-530e83bbf08e"
+                  "d3d8206d-1125-42d0-82d7-eb8524cb5b5d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8019,7 +8019,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "574ab7bb-a097-4d57-9d4b-b12991a3e036"
+              "4c1871c7-529b-4e71-b058-a9d4a69f9491"
             ],
             "format": "uuid",
             "type": "string"
@@ -8242,7 +8242,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "574ab7bb-a097-4d57-9d4b-b12991a3e036"
+                  "4c1871c7-529b-4e71-b058-a9d4a69f9491"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8344,7 +8344,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e9601b6b-3aef-4d6b-a6ef-ce47358330d0"
+              "8dd9c36d-444f-4582-81a0-e7b169554036"
             ],
             "format": "uuid",
             "type": "string"
@@ -8599,7 +8599,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e9601b6b-3aef-4d6b-a6ef-ce47358330d0"
+                  "8dd9c36d-444f-4582-81a0-e7b169554036"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -8846,7 +8846,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8f9d6127-57cb-4238-99e2-97902ad7c3a7"
+              "793e762b-d270-4a4b-8687-2f8471e40fc0"
             ],
             "format": "uuid",
             "type": "string"
@@ -9148,7 +9148,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8f9d6127-57cb-4238-99e2-97902ad7c3a7"
+                  "793e762b-d270-4a4b-8687-2f8471e40fc0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9395,7 +9395,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "273bb304-2309-4bf7-86c6-0d0bd707c612"
+              "44af6502-dc0d-4044-ae2a-31bd4cc9b123"
             ],
             "format": "uuid",
             "type": "string"
@@ -9577,7 +9577,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "273bb304-2309-4bf7-86c6-0d0bd707c612"
+                  "44af6502-dc0d-4044-ae2a-31bd4cc9b123"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9615,7 +9615,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0bd5013c-fd54-4bcc-971b-4eaa44532081"
+              "a3ddc47d-1870-443b-be2d-98e3c580387f"
             ],
             "format": "uuid",
             "type": "string"
@@ -9802,7 +9802,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0bd5013c-fd54-4bcc-971b-4eaa44532081"
+                  "a3ddc47d-1870-443b-be2d-98e3c580387f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9840,7 +9840,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4c345790-73d9-4e5d-b5c3-d10500e65f37"
+              "a365b185-e9b0-412d-abdf-069c6701e860"
             ],
             "format": "uuid",
             "type": "string"
@@ -9953,7 +9953,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4c345790-73d9-4e5d-b5c3-d10500e65f37"
+                  "a365b185-e9b0-412d-abdf-069c6701e860"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -9991,7 +9991,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cb344ed0-c186-4355-b274-0138c42a3828"
+              "6fb1d929-40d9-4dc6-b07a-a8fb16c27ac0"
             ],
             "format": "uuid",
             "type": "string"
@@ -10293,7 +10293,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cb344ed0-c186-4355-b274-0138c42a3828"
+                  "6fb1d929-40d9-4dc6-b07a-a8fb16c27ac0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10331,7 +10331,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e2a7696c-f801-4f5d-acc5-5774d2d27b69"
+              "525f4947-c29c-4386-ab1c-271fcee5be2c"
             ],
             "format": "uuid",
             "type": "string"
@@ -10522,7 +10522,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e2a7696c-f801-4f5d-acc5-5774d2d27b69"
+                  "525f4947-c29c-4386-ab1c-271fcee5be2c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10567,7 +10567,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "87e742fe-5530-44df-a988-8758bc133e5d"
+              "d5bdbe3e-e4b5-4af1-b317-27e2f2b2388c"
             ],
             "format": "uuid",
             "type": "string"
@@ -10673,7 +10673,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "87e742fe-5530-44df-a988-8758bc133e5d"
+                  "d5bdbe3e-e4b5-4af1-b317-27e2f2b2388c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10711,7 +10711,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bc56223c-2304-4b8f-b7cc-d9f5c6741045"
+              "b65ed66a-7455-4dc8-8188-09a0aa9b3e2a"
             ],
             "format": "uuid",
             "type": "string"
@@ -10817,7 +10817,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bc56223c-2304-4b8f-b7cc-d9f5c6741045"
+                  "b65ed66a-7455-4dc8-8188-09a0aa9b3e2a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10855,7 +10855,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cc33c414-2420-4c59-b9e6-d7acc8d88737"
+              "98f74887-a069-45fd-a63a-2050ba442631"
             ],
             "format": "uuid",
             "type": "string"
@@ -10961,7 +10961,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cc33c414-2420-4c59-b9e6-d7acc8d88737"
+                  "98f74887-a069-45fd-a63a-2050ba442631"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -10999,7 +10999,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b0ba1e6a-b5cc-43cd-ad12-d4ad36e11153"
+              "f1e98f31-056f-4038-be20-95de92f1797a"
             ],
             "format": "uuid",
             "type": "string"
@@ -11250,7 +11250,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b0ba1e6a-b5cc-43cd-ad12-d4ad36e11153"
+                  "f1e98f31-056f-4038-be20-95de92f1797a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11288,7 +11288,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bd0cba8b-726f-4a7e-b8cf-987cb9e5b909"
+              "d34d525c-c750-4406-80be-fb5c359345dd"
             ],
             "format": "uuid",
             "type": "string"
@@ -11601,7 +11601,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bd0cba8b-726f-4a7e-b8cf-987cb9e5b909"
+                  "d34d525c-c750-4406-80be-fb5c359345dd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11639,7 +11639,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1667e560-4886-4d6c-9f4a-a957732d03c0"
+              "058f4239-9675-4e49-b54f-afd8e864bc35"
             ],
             "format": "uuid",
             "type": "string"
@@ -11745,7 +11745,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1667e560-4886-4d6c-9f4a-a957732d03c0"
+                  "058f4239-9675-4e49-b54f-afd8e864bc35"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11783,7 +11783,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "84ca0b90-172e-4c30-a73d-da4e2a24d009"
+              "63263442-7193-4f8f-9f9e-0d044809e94c"
             ],
             "format": "uuid",
             "type": "string"
@@ -11889,7 +11889,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "84ca0b90-172e-4c30-a73d-da4e2a24d009"
+                  "63263442-7193-4f8f-9f9e-0d044809e94c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -11927,7 +11927,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ee331310-7f17-4c7b-a111-c1335f0218ac"
+              "92eeaed8-a1fa-4600-88a7-1ef9912c7ebd"
             ],
             "format": "uuid",
             "type": "string"
@@ -12033,7 +12033,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ee331310-7f17-4c7b-a111-c1335f0218ac"
+                  "92eeaed8-a1fa-4600-88a7-1ef9912c7ebd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12071,7 +12071,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "33ddf9b0-26fa-4896-8929-9d6998095e29"
+              "c20727f6-cfa2-47b2-be69-88d037658bf5"
             ],
             "format": "uuid",
             "type": "string"
@@ -12322,7 +12322,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "33ddf9b0-26fa-4896-8929-9d6998095e29"
+                  "c20727f6-cfa2-47b2-be69-88d037658bf5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12360,7 +12360,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3d4d805e-6f12-44b6-a35a-e15ad9f6275b"
+              "77f2ff80-002b-422e-9a83-cf0827c0c94c"
             ],
             "format": "uuid",
             "type": "string"
@@ -12673,7 +12673,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3d4d805e-6f12-44b6-a35a-e15ad9f6275b"
+                  "77f2ff80-002b-422e-9a83-cf0827c0c94c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12711,7 +12711,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bebadfec-bf1d-4fcc-8648-3ff63ad2bfa0"
+              "248ccd4a-d9d3-4ef1-87e6-3c5d40bf8a5e"
             ],
             "format": "uuid",
             "type": "string"
@@ -12807,7 +12807,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bebadfec-bf1d-4fcc-8648-3ff63ad2bfa0"
+                  "248ccd4a-d9d3-4ef1-87e6-3c5d40bf8a5e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -12845,7 +12845,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0c10a1b8-ab35-4c0a-8fb3-c406fc1465fd"
+              "0c82b455-6eea-4762-b334-2867dde3f0b7"
             ],
             "format": "uuid",
             "type": "string"
@@ -12952,7 +12952,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0c10a1b8-ab35-4c0a-8fb3-c406fc1465fd"
+                  "0c82b455-6eea-4762-b334-2867dde3f0b7"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13110,7 +13110,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "58ff0121-442a-4de4-ab16-9ebbcb785121"
+              "f71e5f19-d84f-47e3-b0c9-a29659dc4e77"
             ],
             "format": "uuid",
             "type": "string"
@@ -13394,7 +13394,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "58ff0121-442a-4de4-ab16-9ebbcb785121"
+                  "f71e5f19-d84f-47e3-b0c9-a29659dc4e77"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13429,7 +13429,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "92e428a9-ddc0-48fc-889d-6643e4805446"
+              "2e773d86-3830-400d-ba0e-f57b6ba5d841"
             ],
             "format": "uuid",
             "type": "string"
@@ -13579,7 +13579,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "92e428a9-ddc0-48fc-889d-6643e4805446"
+                  "2e773d86-3830-400d-ba0e-f57b6ba5d841"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -13614,7 +13614,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1be71d59-32f5-4f6f-a6d4-493faea4bd87"
+              "b5c142a3-27e6-4426-bed0-a87ed9fee105"
             ],
             "format": "uuid",
             "type": "string"
@@ -14144,7 +14144,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1be71d59-32f5-4f6f-a6d4-493faea4bd87"
+                  "b5c142a3-27e6-4426-bed0-a87ed9fee105"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14179,7 +14179,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fa59c8a9-596c-4495-b3b0-95cd03b93c9b"
+              "29a211fe-8658-40ae-9ae7-cee33e714e1a"
             ],
             "format": "uuid",
             "type": "string"
@@ -14709,7 +14709,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fa59c8a9-596c-4495-b3b0-95cd03b93c9b"
+                  "29a211fe-8658-40ae-9ae7-cee33e714e1a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14744,7 +14744,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e497507e-0967-4c28-93a3-0ac75a20f501"
+              "49226d3e-c701-4c4e-b401-5e696debe2d6"
             ],
             "format": "uuid",
             "type": "string"
@@ -14929,7 +14929,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e497507e-0967-4c28-93a3-0ac75a20f501"
+                  "49226d3e-c701-4c4e-b401-5e696debe2d6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -14964,7 +14964,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9321b949-d449-4d24-9974-71234de0d16c"
+              "1c146bb5-b94a-4211-b27a-3e2f305429b5"
             ],
             "format": "uuid",
             "type": "string"
@@ -15522,7 +15522,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9321b949-d449-4d24-9974-71234de0d16c"
+                  "1c146bb5-b94a-4211-b27a-3e2f305429b5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -15577,7 +15577,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3358a8e6-c4ee-442a-90c5-2be05426e7d9"
+              "c92f380c-c289-4e00-b943-38d684750786"
             ],
             "format": "uuid",
             "type": "string"
@@ -16152,7 +16152,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3358a8e6-c4ee-442a-90c5-2be05426e7d9"
+                  "c92f380c-c289-4e00-b943-38d684750786"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -16208,7 +16208,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "35eff3cb-2df0-411a-9d3b-800055f2c743"
+              "a34a3d6a-455d-46b5-a1df-3e9bafab1292"
             ],
             "format": "uuid",
             "type": "string"
@@ -16750,7 +16750,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "35eff3cb-2df0-411a-9d3b-800055f2c743"
+                  "a34a3d6a-455d-46b5-a1df-3e9bafab1292"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -16785,7 +16785,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5a7f999f-3622-40a0-8e9a-46b6b261f5ca"
+              "1e41e553-59ec-42c3-a5bf-190a417004f2"
             ],
             "format": "uuid",
             "type": "string"
@@ -17353,7 +17353,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5a7f999f-3622-40a0-8e9a-46b6b261f5ca"
+                  "1e41e553-59ec-42c3-a5bf-190a417004f2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -17409,7 +17409,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "886bf87b-aff1-4dec-a74f-d6abfd68cf88"
+              "cdbd4df4-3742-40cb-b5af-baf7cc1958e3"
             ],
             "format": "uuid",
             "type": "string"
@@ -17762,7 +17762,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "886bf87b-aff1-4dec-a74f-d6abfd68cf88"
+                  "cdbd4df4-3742-40cb-b5af-baf7cc1958e3"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -17797,7 +17797,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f4471766-a9cb-4bef-9599-a8563efed1b8"
+              "eaecb839-769c-472f-8506-a9212de04867"
             ],
             "format": "uuid",
             "type": "string"
@@ -18567,7 +18567,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f4471766-a9cb-4bef-9599-a8563efed1b8"
+                  "eaecb839-769c-472f-8506-a9212de04867"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -18602,7 +18602,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "340fe1b6-f71a-4a43-a543-5c995cb76b2c"
+              "b9d427b4-b6d1-4426-b0bf-0ba82a5101ce"
             ],
             "format": "uuid",
             "type": "string"
@@ -18901,7 +18901,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "340fe1b6-f71a-4a43-a543-5c995cb76b2c"
+                  "b9d427b4-b6d1-4426-b0bf-0ba82a5101ce"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -18939,7 +18939,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "21729c68-7bee-40d1-ae76-3c19fc89428b"
+              "9eb7eade-0082-4b57-b6ec-d237d3b90811"
             ],
             "format": "uuid",
             "type": "string"
@@ -19238,7 +19238,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "21729c68-7bee-40d1-ae76-3c19fc89428b"
+                  "9eb7eade-0082-4b57-b6ec-d237d3b90811"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -19276,7 +19276,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c9506d93-1366-4e7e-a716-50ca3eefe3a6"
+              "69fb7fe2-33ec-4bca-9e9d-adfeccd12b1a"
             ],
             "format": "uuid",
             "type": "string"
@@ -19516,7 +19516,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c9506d93-1366-4e7e-a716-50ca3eefe3a6"
+                  "69fb7fe2-33ec-4bca-9e9d-adfeccd12b1a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -19763,7 +19763,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "239eb8ac-8e93-4036-9ab2-dddd58c1dcf4"
+              "54ada2cc-524b-4394-abbf-db21643dca20"
             ],
             "format": "uuid",
             "type": "string"
@@ -20003,7 +20003,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "239eb8ac-8e93-4036-9ab2-dddd58c1dcf4"
+                  "54ada2cc-524b-4394-abbf-db21643dca20"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -20250,7 +20250,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2d77a901-0d4f-4117-8f85-3c747710c660"
+              "85c70e5d-f432-47e3-af32-6e9f811be3e2"
             ],
             "format": "uuid",
             "type": "string"
@@ -20410,7 +20410,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2d77a901-0d4f-4117-8f85-3c747710c660"
+                  "85c70e5d-f432-47e3-af32-6e9f811be3e2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -20445,7 +20445,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "99702217-179f-4f6b-bcb1-7df599843b43"
+              "5f50fd61-2dca-4da8-a195-47f8d10c90b2"
             ],
             "format": "uuid",
             "type": "string"
@@ -20998,7 +20998,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "99702217-179f-4f6b-bcb1-7df599843b43"
+                  "5f50fd61-2dca-4da8-a195-47f8d10c90b2"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -21053,7 +21053,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3a8ec188-7dd4-4386-bd8b-34be074c7c9d"
+              "0cd6619d-ef0d-40a2-a0fb-288a961fadf6"
             ],
             "format": "uuid",
             "type": "string"
@@ -21454,7 +21454,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3a8ec188-7dd4-4386-bd8b-34be074c7c9d"
+                  "0cd6619d-ef0d-40a2-a0fb-288a961fadf6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -21492,7 +21492,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c90782cb-5368-4a49-bb5f-7d728b5b47e0"
+              "058b54c1-d7a2-46ef-8212-5b841ab06364"
             ],
             "format": "uuid",
             "type": "string"
@@ -22047,7 +22047,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c90782cb-5368-4a49-bb5f-7d728b5b47e0"
+                  "058b54c1-d7a2-46ef-8212-5b841ab06364"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -22103,7 +22103,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0900c900-dfae-49af-ae4f-c58f7dbe6106"
+              "fc466ace-2d55-4d63-8d7f-33097acd5153"
             ],
             "format": "uuid",
             "type": "string"
@@ -22631,7 +22631,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0900c900-dfae-49af-ae4f-c58f7dbe6106"
+                  "fc466ace-2d55-4d63-8d7f-33097acd5153"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -22666,7 +22666,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "31bf1048-940b-4326-a1c5-d9bd35e4cac3"
+              "b7150ed6-299c-469d-a320-4d1994375e10"
             ],
             "format": "uuid",
             "type": "string"
@@ -23220,7 +23220,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "31bf1048-940b-4326-a1c5-d9bd35e4cac3"
+                  "b7150ed6-299c-469d-a320-4d1994375e10"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23276,7 +23276,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7c3b83bc-220c-4316-bf67-0f06fffad608"
+              "55e8d3d1-0e52-443e-b978-57ba49deb58e"
             ],
             "format": "uuid",
             "type": "string"
@@ -23403,7 +23403,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7c3b83bc-220c-4316-bf67-0f06fffad608"
+                  "55e8d3d1-0e52-443e-b978-57ba49deb58e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23441,7 +23441,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1cbcc515-3c1f-429d-9f46-0ff5ad0b89d2"
+              "7aacd104-17a5-43e9-8741-8e6594d8715a"
             ],
             "format": "uuid",
             "type": "string"
@@ -23830,7 +23830,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1cbcc515-3c1f-429d-9f46-0ff5ad0b89d2"
+                  "7aacd104-17a5-43e9-8741-8e6594d8715a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -23905,7 +23905,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6b1b3e71-54b0-4cae-a4e4-276b5eeef56a"
+              "ea779ab5-7536-4a87-90d4-80c2024d5b1e"
             ],
             "format": "uuid",
             "type": "string"
@@ -24294,7 +24294,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6b1b3e71-54b0-4cae-a4e4-276b5eeef56a"
+                  "ea779ab5-7536-4a87-90d4-80c2024d5b1e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24369,7 +24369,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "da63d8d4-c692-423c-8520-60e55f6e75e1"
+              "9fabadcb-ef74-428e-976e-7fbb3c335cb1"
             ],
             "format": "uuid",
             "type": "string"
@@ -24707,7 +24707,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "da63d8d4-c692-423c-8520-60e55f6e75e1"
+                  "9fabadcb-ef74-428e-976e-7fbb3c335cb1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24745,7 +24745,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2bcf8de6-76b3-47f7-b207-0c9420fc6e84"
+              "1f4bef03-2d17-494c-81b2-6b3ac0a0a9d6"
             ],
             "format": "uuid",
             "type": "string"
@@ -24865,7 +24865,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2bcf8de6-76b3-47f7-b207-0c9420fc6e84"
+                  "1f4bef03-2d17-494c-81b2-6b3ac0a0a9d6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -24903,7 +24903,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1a8b70a9-6d4d-440d-bc8e-c73ea609658a"
+              "b3cb54f8-c9ed-407b-a11f-04ba06807181"
             ],
             "format": "uuid",
             "type": "string"
@@ -25016,7 +25016,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1a8b70a9-6d4d-440d-bc8e-c73ea609658a"
+                  "b3cb54f8-c9ed-407b-a11f-04ba06807181"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25051,7 +25051,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "59ba5bbb-a398-4e8c-b6ba-64e5e84b78e8"
+              "f5be1fbb-5a8d-4e37-9425-93372f9c7ab6"
             ],
             "format": "uuid",
             "type": "string"
@@ -25288,7 +25288,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "59ba5bbb-a398-4e8c-b6ba-64e5e84b78e8"
+                  "f5be1fbb-5a8d-4e37-9425-93372f9c7ab6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25323,7 +25323,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3442436f-e26f-4a43-b67b-3e485d51ec0a"
+              "61a1408d-2c47-47f6-ac72-f9adec18dd76"
             ],
             "format": "uuid",
             "type": "string"
@@ -25604,7 +25604,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3442436f-e26f-4a43-b67b-3e485d51ec0a"
+                  "61a1408d-2c47-47f6-ac72-f9adec18dd76"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25642,7 +25642,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8cdb01cd-260c-430f-ac7a-ddc828e8d9eb"
+              "c71efa66-1807-470a-aa1f-29609fefc8cc"
             ],
             "format": "uuid",
             "type": "string"
@@ -25782,7 +25782,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8cdb01cd-260c-430f-ac7a-ddc828e8d9eb"
+                  "c71efa66-1807-470a-aa1f-29609fefc8cc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -25817,7 +25817,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ec4deae9-0819-4399-adbc-20a100cbf958"
+              "cf247288-3ea1-48f6-92cf-5ea58e0a3b35"
             ],
             "format": "uuid",
             "type": "string"
@@ -26010,7 +26010,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ec4deae9-0819-4399-adbc-20a100cbf958"
+                  "cf247288-3ea1-48f6-92cf-5ea58e0a3b35"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26048,7 +26048,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "166fce9d-90c1-4e46-9076-acd623cf4f87"
+              "2474cca1-2d26-420b-9569-32dd913d52fc"
             ],
             "format": "uuid",
             "type": "string"
@@ -26161,7 +26161,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "166fce9d-90c1-4e46-9076-acd623cf4f87"
+                  "2474cca1-2d26-420b-9569-32dd913d52fc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26196,7 +26196,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c719346b-1dba-4faf-9072-6ec09ddbc440"
+              "9da22fd3-83d6-4946-87d4-b4fb0e50d019"
             ],
             "format": "uuid",
             "type": "string"
@@ -26628,7 +26628,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c719346b-1dba-4faf-9072-6ec09ddbc440"
+                  "9da22fd3-83d6-4946-87d4-b4fb0e50d019"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26666,7 +26666,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0605bf40-eea1-4d1e-8cdf-c473286bb2ee"
+              "e781bc37-a830-49eb-af6a-622f81c4350a"
             ],
             "format": "uuid",
             "type": "string"
@@ -26779,7 +26779,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0605bf40-eea1-4d1e-8cdf-c473286bb2ee"
+                  "e781bc37-a830-49eb-af6a-622f81c4350a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26814,7 +26814,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0d92b68f-4c4a-4972-aa12-490fba1b6fab"
+              "0baa1bee-bace-4720-b371-9d95dd03a37b"
             ],
             "format": "uuid",
             "type": "string"
@@ -26960,7 +26960,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0d92b68f-4c4a-4972-aa12-490fba1b6fab"
+                  "0baa1bee-bace-4720-b371-9d95dd03a37b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -26998,7 +26998,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "aab643f2-57d2-40a8-a95b-ed6bbe25ced9"
+              "71d702d3-1cec-422c-8c25-709ad20a98b8"
             ],
             "format": "uuid",
             "type": "string"
@@ -27168,7 +27168,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "aab643f2-57d2-40a8-a95b-ed6bbe25ced9"
+                  "71d702d3-1cec-422c-8c25-709ad20a98b8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27203,7 +27203,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b62af446-31e0-4123-916d-8841c7bb02ed"
+              "6e2b80af-c8bc-4b8d-8628-a8b45d72f75d"
             ],
             "format": "uuid",
             "type": "string"
@@ -27652,7 +27652,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b62af446-31e0-4123-916d-8841c7bb02ed"
+                  "6e2b80af-c8bc-4b8d-8628-a8b45d72f75d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27733,7 +27733,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c78954c3-62c2-4932-8abd-adcf0d281d40"
+              "cd3e513e-f76a-48ec-be6f-1f229a1e0f63"
             ],
             "format": "uuid",
             "type": "string"
@@ -27794,7 +27794,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c78954c3-62c2-4932-8abd-adcf0d281d40"
+                  "cd3e513e-f76a-48ec-be6f-1f229a1e0f63"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -27829,7 +27829,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e278c676-4118-4542-a8c1-c6b6162cd6fe"
+              "0e7422ff-bae3-4ab5-ac5c-0cd84419a79c"
             ],
             "format": "uuid",
             "type": "string"
@@ -28010,7 +28010,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e278c676-4118-4542-a8c1-c6b6162cd6fe"
+                  "0e7422ff-bae3-4ab5-ac5c-0cd84419a79c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28045,7 +28045,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b98b5a33-5503-45b6-8d0f-063e20a1e06e"
+              "be9fc6ca-2d04-444a-a5d0-eae98ea99628"
             ],
             "format": "uuid",
             "type": "string"
@@ -28206,7 +28206,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b98b5a33-5503-45b6-8d0f-063e20a1e06e"
+                  "be9fc6ca-2d04-444a-a5d0-eae98ea99628"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28241,7 +28241,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "78f6f982-2d39-496e-9516-cb92091e97ec"
+              "9afb1cfd-3f58-4bfe-a68e-b2591dcd83c0"
             ],
             "format": "uuid",
             "type": "string"
@@ -28608,7 +28608,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "78f6f982-2d39-496e-9516-cb92091e97ec"
+                  "9afb1cfd-3f58-4bfe-a68e-b2591dcd83c0"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -28646,7 +28646,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3ae21606-0e38-4719-ba4b-76eddd4b68f9"
+              "22261d9d-f5db-492b-afd2-e4cb7b2806aa"
             ],
             "format": "uuid",
             "type": "string"
@@ -29119,7 +29119,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3ae21606-0e38-4719-ba4b-76eddd4b68f9"
+                  "22261d9d-f5db-492b-afd2-e4cb7b2806aa"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29178,7 +29178,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8fe2df5d-bf8b-494e-bc7f-0ddb0943632d"
+              "8ba91331-3846-4566-829d-adcd675579f6"
             ],
             "format": "uuid",
             "type": "string"
@@ -29668,7 +29668,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8fe2df5d-bf8b-494e-bc7f-0ddb0943632d"
+                  "8ba91331-3846-4566-829d-adcd675579f6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -29706,7 +29706,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7718b4c6-c63d-4b06-86d1-b6c51e0280b5"
+              "62627d48-7415-4820-b5d2-e9d0bb9401c8"
             ],
             "format": "uuid",
             "type": "string"
@@ -30366,7 +30366,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7718b4c6-c63d-4b06-86d1-b6c51e0280b5"
+                  "62627d48-7415-4820-b5d2-e9d0bb9401c8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -30424,7 +30424,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ebb48f44-c03e-445f-9677-25cdb1131535"
+              "a04ea9df-5617-4d4c-8488-d44909e28ded"
             ],
             "format": "uuid",
             "type": "string"
@@ -30623,7 +30623,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ebb48f44-c03e-445f-9677-25cdb1131535"
+                  "a04ea9df-5617-4d4c-8488-d44909e28ded"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -30661,7 +30661,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0a5e97bb-f934-4f0a-b744-24f7159f55cb"
+              "35316e2a-6e07-442c-ac77-eb82a53f1bb5"
             ],
             "format": "uuid",
             "type": "string"
@@ -31048,7 +31048,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0a5e97bb-f934-4f0a-b744-24f7159f55cb"
+                  "35316e2a-6e07-442c-ac77-eb82a53f1bb5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -31083,7 +31083,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "868cdf40-24e7-4ff4-b375-b7a2c42a9c92"
+              "9e39bda4-12d4-4793-a7b3-53086fec4808"
             ],
             "format": "uuid",
             "type": "string"
@@ -31352,7 +31352,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "868cdf40-24e7-4ff4-b375-b7a2c42a9c92"
+                  "9e39bda4-12d4-4793-a7b3-53086fec4808"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -31390,7 +31390,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a5124a20-f25b-4f77-a973-401b9229fc0f"
+              "20220a98-c09f-4bfd-b7ae-63afde93d230"
             ],
             "format": "uuid",
             "type": "string"
@@ -31935,7 +31935,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a5124a20-f25b-4f77-a973-401b9229fc0f"
+                  "20220a98-c09f-4bfd-b7ae-63afde93d230"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -31974,7 +31974,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8ae24427-8b25-4dca-b54c-48896396d476"
+              "39d5bdb1-b7b4-470e-a12a-83a46d9da073"
             ],
             "format": "uuid",
             "type": "string"
@@ -32279,7 +32279,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8ae24427-8b25-4dca-b54c-48896396d476"
+                  "39d5bdb1-b7b4-470e-a12a-83a46d9da073"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32317,7 +32317,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3d23e974-e4b0-422d-945b-646fa3c0f5d2"
+              "41faddbb-23f7-40bd-a9c5-af6dee6fb761"
             ],
             "format": "uuid",
             "type": "string"
@@ -32407,7 +32407,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3d23e974-e4b0-422d-945b-646fa3c0f5d2"
+                  "41faddbb-23f7-40bd-a9c5-af6dee6fb761"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32442,7 +32442,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3b30f2ce-686d-4530-9160-3179b97c1816"
+              "4d2b9a01-4791-4c6d-b5e2-8ea271262fff"
             ],
             "format": "uuid",
             "type": "string"
@@ -32852,7 +32852,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3b30f2ce-686d-4530-9160-3179b97c1816"
+                  "4d2b9a01-4791-4c6d-b5e2-8ea271262fff"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -32887,7 +32887,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f3074595-966f-4360-861b-3bbb56096079"
+              "4ff1d7f5-cd17-4ec3-bd9d-07b26391b246"
             ],
             "format": "uuid",
             "type": "string"
@@ -33286,7 +33286,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f3074595-966f-4360-861b-3bbb56096079"
+                  "4ff1d7f5-cd17-4ec3-bd9d-07b26391b246"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -33321,7 +33321,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "847c75ce-aad6-493b-adaa-262ab6663c56"
+              "92ef325f-464e-4663-b4b3-63bd74f98e99"
             ],
             "format": "uuid",
             "type": "string"
@@ -33686,7 +33686,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "847c75ce-aad6-493b-adaa-262ab6663c56"
+                  "92ef325f-464e-4663-b4b3-63bd74f98e99"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -33721,7 +33721,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7242a420-eadd-4151-9972-4e22902f8cf5"
+              "1394bc84-cded-40ba-be60-81e7c8fe0150"
             ],
             "format": "uuid",
             "type": "string"
@@ -34016,7 +34016,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7242a420-eadd-4151-9972-4e22902f8cf5"
+                  "1394bc84-cded-40ba-be60-81e7c8fe0150"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34054,7 +34054,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "409cd146-8f06-434a-8a65-96ba0f132501"
+              "fa2258d5-0336-4a07-802d-9189e38672ec"
             ],
             "format": "uuid",
             "type": "string"
@@ -34263,7 +34263,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "409cd146-8f06-434a-8a65-96ba0f132501"
+                  "fa2258d5-0336-4a07-802d-9189e38672ec"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34298,7 +34298,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "745ac941-7980-49e2-98bd-07672a2212e0"
+              "9051ecb9-24ff-4c16-a8a4-a267f902cbd9"
             ],
             "format": "uuid",
             "type": "string"
@@ -34433,7 +34433,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "745ac941-7980-49e2-98bd-07672a2212e0"
+                  "9051ecb9-24ff-4c16-a8a4-a267f902cbd9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34468,7 +34468,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4f825089-29f3-4541-bf92-a651b0b4331b"
+              "79dc25c5-4ce1-415c-b4fe-803334a75b5e"
             ],
             "format": "uuid",
             "type": "string"
@@ -34891,7 +34891,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4f825089-29f3-4541-bf92-a651b0b4331b"
+                  "79dc25c5-4ce1-415c-b4fe-803334a75b5e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -34929,7 +34929,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2684e71d-e971-4770-b8cf-7139fa5ba51b"
+              "25717479-f9d6-4907-aeb0-e5ba0070540a"
             ],
             "format": "uuid",
             "type": "string"
@@ -35532,7 +35532,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2684e71d-e971-4770-b8cf-7139fa5ba51b"
+                  "25717479-f9d6-4907-aeb0-e5ba0070540a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -35570,7 +35570,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ec012eb6-7093-4d91-b495-2856ab5daffb"
+              "08696c54-bfc9-480c-b97d-4a326bc70be6"
             ],
             "format": "uuid",
             "type": "string"
@@ -36193,7 +36193,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ec012eb6-7093-4d91-b495-2856ab5daffb"
+                  "08696c54-bfc9-480c-b97d-4a326bc70be6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -36228,7 +36228,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7a825d18-f522-4644-9fd4-e80cb517fa19"
+              "e500fdfc-aa31-40dc-8ca7-4cd7a598b8ca"
             ],
             "format": "uuid",
             "type": "string"
@@ -37047,7 +37047,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7a825d18-f522-4644-9fd4-e80cb517fa19"
+                  "e500fdfc-aa31-40dc-8ca7-4cd7a598b8ca"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -37082,7 +37082,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8661584e-2d30-4598-9d54-6641cf205306"
+              "db1a9b19-bb61-45e0-9b03-e6870cf10298"
             ],
             "format": "uuid",
             "type": "string"
@@ -37247,7 +37247,7 @@ const manifest = {
                             "positions": {
                               "description": "Positions within this copy trading mirror",
                               "items": {
-                                "$ref": "#/$defs/TradingRealApi_Position"
+                                "$ref": "#/$defs/TradingDemoApi_Position"
                               },
                               "type": "array"
                             },
@@ -37373,7 +37373,7 @@ const manifest = {
                       "positions": {
                         "description": "List of currently open trading positions",
                         "items": {
-                          "$ref": "#/$defs/TradingRealApi_Position"
+                          "$ref": "#/$defs/TradingDemoApi_Position"
                         },
                         "type": "array"
                       },
@@ -37390,7 +37390,7 @@ const manifest = {
                 },
                 "type": "object"
               },
-              "TradingRealApi_Position": {
+              "TradingDemoApi_Position": {
                 "description": "Individual position details",
                 "properties": {
                   "CID": {
@@ -37607,7 +37607,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8661584e-2d30-4598-9d54-6641cf205306"
+                  "db1a9b19-bb61-45e0-9b03-e6870cf10298"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -37642,7 +37642,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ddc513d9-7ba6-41c4-b9c0-f056bfcec7e4"
+              "5279916e-2c1e-46d9-90ef-1921caef20e1"
             ],
             "format": "uuid",
             "type": "string"
@@ -38590,7 +38590,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ddc513d9-7ba6-41c4-b9c0-f056bfcec7e4"
+                  "5279916e-2c1e-46d9-90ef-1921caef20e1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -38635,7 +38635,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "df9ebe6b-52ce-4a1b-b1d9-d0dc0ff6564a"
+              "e0667104-7e68-4630-ae6b-118d010f0834"
             ],
             "format": "uuid",
             "type": "string"
@@ -39258,7 +39258,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "df9ebe6b-52ce-4a1b-b1d9-d0dc0ff6564a"
+                  "e0667104-7e68-4630-ae6b-118d010f0834"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -39293,7 +39293,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5f58d646-ac5c-4a87-9c5e-80fbdc31dcae"
+              "e3795d20-fdf7-4b79-bf46-974655431311"
             ],
             "format": "uuid",
             "type": "string"
@@ -39458,7 +39458,7 @@ const manifest = {
                             "positions": {
                               "description": "Positions within this copy trading mirror",
                               "items": {
-                                "$ref": "#/$defs/TradingRealApi_Position"
+                                "$ref": "#/$defs/TradingDemoApi_Position"
                               },
                               "type": "array"
                             },
@@ -39584,7 +39584,7 @@ const manifest = {
                       "positions": {
                         "description": "List of currently open trading positions",
                         "items": {
-                          "$ref": "#/$defs/TradingRealApi_Position"
+                          "$ref": "#/$defs/TradingDemoApi_Position"
                         },
                         "type": "array"
                       },
@@ -39601,7 +39601,7 @@ const manifest = {
                 },
                 "type": "object"
               },
-              "TradingRealApi_Position": {
+              "TradingDemoApi_Position": {
                 "description": "Individual position details",
                 "properties": {
                   "CID": {
@@ -39818,7 +39818,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5f58d646-ac5c-4a87-9c5e-80fbdc31dcae"
+                  "e3795d20-fdf7-4b79-bf46-974655431311"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -39853,7 +39853,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d775c230-7431-494e-a0af-5298ac702b7f"
+              "286288c2-d78e-4523-ab48-4209fdd0a0aa"
             ],
             "format": "uuid",
             "type": "string"
@@ -40801,7 +40801,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d775c230-7431-494e-a0af-5298ac702b7f"
+                  "286288c2-d78e-4523-ab48-4209fdd0a0aa"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -40846,7 +40846,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7213ac66-aa9b-42c9-801c-f201c3ffd4f6"
+              "50d527fc-a99c-4d7d-9a3b-0fb9ed13ac4e"
             ],
             "format": "uuid",
             "type": "string"
@@ -41269,7 +41269,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7213ac66-aa9b-42c9-801c-f201c3ffd4f6"
+                  "50d527fc-a99c-4d7d-9a3b-0fb9ed13ac4e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -41307,7 +41307,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3e3aac23-b930-4634-aad6-9c883d9052e1"
+              "4def2b86-386c-4d5b-9b87-085bbe964552"
             ],
             "format": "uuid",
             "type": "string"
@@ -41910,7 +41910,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3e3aac23-b930-4634-aad6-9c883d9052e1"
+                  "4def2b86-386c-4d5b-9b87-085bbe964552"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -41948,7 +41948,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "49b57d9c-07c5-4f0a-842f-61aaf5f7a921"
+              "543eb97b-6934-43d5-a680-a7fdc3e16af4"
             ],
             "format": "uuid",
             "type": "string"
@@ -42767,7 +42767,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "49b57d9c-07c5-4f0a-842f-61aaf5f7a921"
+                  "543eb97b-6934-43d5-a680-a7fdc3e16af4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -42802,7 +42802,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1d054b34-6faa-485f-be66-bb898d0503d6"
+              "e6d31376-6f08-463d-afd7-a7e794a911fc"
             ],
             "format": "uuid",
             "type": "string"
@@ -43041,7 +43041,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1d054b34-6faa-485f-be66-bb898d0503d6"
+                  "e6d31376-6f08-463d-afd7-a7e794a911fc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43079,7 +43079,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "6afea3f4-7e29-4932-b297-655517d036ac"
+              "f90157ff-c84d-4340-ab8e-950dbf2d825f"
             ],
             "format": "uuid",
             "type": "string"
@@ -43318,7 +43318,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "6afea3f4-7e29-4932-b297-655517d036ac"
+                  "f90157ff-c84d-4340-ab8e-950dbf2d825f"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43356,7 +43356,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d5d27dc8-f13a-4f86-80fb-565d3e993e6b"
+              "fafb5528-af08-450f-b988-8c1e3367a378"
             ],
             "format": "uuid",
             "type": "string"
@@ -43603,7 +43603,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d5d27dc8-f13a-4f86-80fb-565d3e993e6b"
+                  "fafb5528-af08-450f-b988-8c1e3367a378"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43652,7 +43652,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5c73aa88-7df5-4633-9596-6841e80c885a"
+              "894c786c-26aa-492f-b2a3-3bab78f1a209"
             ],
             "format": "uuid",
             "type": "string"
@@ -43907,7 +43907,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5c73aa88-7df5-4633-9596-6841e80c885a"
+                  "894c786c-26aa-492f-b2a3-3bab78f1a209"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -43945,7 +43945,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fad52d01-205c-43ef-b048-936c7e19f031"
+              "54748dd9-df57-42b8-9f4c-51af2b01ca3c"
             ],
             "format": "uuid",
             "type": "string"
@@ -44064,7 +44064,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fad52d01-205c-43ef-b048-936c7e19f031"
+                  "54748dd9-df57-42b8-9f4c-51af2b01ca3c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -44099,7 +44099,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "b8dd87ba-c7ba-4b1c-92f4-a651fad2715b"
+              "667bc62e-c737-459e-8ef4-6b34152a6c4d"
             ],
             "format": "uuid",
             "type": "string"
@@ -44216,7 +44216,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "b8dd87ba-c7ba-4b1c-92f4-a651fad2715b"
+                  "667bc62e-c737-459e-8ef4-6b34152a6c4d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -44251,7 +44251,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1e664d56-2e20-4bb6-8e7c-ec9269ece72f"
+              "c67a4127-55ca-4126-a310-eccaf3d3ca9c"
             ],
             "format": "uuid",
             "type": "string"
@@ -44356,7 +44356,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1e664d56-2e20-4bb6-8e7c-ec9269ece72f"
+                  "c67a4127-55ca-4126-a310-eccaf3d3ca9c"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -44391,7 +44391,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f12b07da-7184-4207-b483-21f35c31e3e6"
+              "7f3efa15-614f-40ee-8e1a-6f2ee1d4d618"
             ],
             "format": "uuid",
             "type": "string"
@@ -44938,7 +44938,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f12b07da-7184-4207-b483-21f35c31e3e6"
+                  "7f3efa15-614f-40ee-8e1a-6f2ee1d4d618"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -44973,7 +44973,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5d2033fd-a8e2-4553-96e1-26a2ca66ba83"
+              "21cedca9-9c4f-468f-94c0-5cee7eb0c314"
             ],
             "format": "uuid",
             "type": "string"
@@ -45177,7 +45177,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5d2033fd-a8e2-4553-96e1-26a2ca66ba83"
+                  "21cedca9-9c4f-468f-94c0-5cee7eb0c314"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45216,7 +45216,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "c2d31b47-4d53-4a89-a856-737ce8306b75"
+              "7407297e-d4c6-4351-ba31-0d5f36b96da6"
             ],
             "format": "uuid",
             "type": "string"
@@ -45345,7 +45345,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "c2d31b47-4d53-4a89-a856-737ce8306b75"
+                  "7407297e-d4c6-4351-ba31-0d5f36b96da6"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45383,7 +45383,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "345e807f-7347-4db8-ae25-c11e141f41d1"
+              "05532f3c-cca0-4d25-81c2-cf5e9669cbc4"
             ],
             "format": "uuid",
             "type": "string"
@@ -45690,7 +45690,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "345e807f-7347-4db8-ae25-c11e141f41d1"
+                  "05532f3c-cca0-4d25-81c2-cf5e9669cbc4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -45728,7 +45728,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "adecbced-1c18-4828-8b0a-b3be9859b52b"
+              "44269cb0-50d2-4a96-8635-8d67d6d6fcb5"
             ],
             "format": "uuid",
             "type": "string"
@@ -46060,7 +46060,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "adecbced-1c18-4828-8b0a-b3be9859b52b"
+                  "44269cb0-50d2-4a96-8635-8d67d6d6fcb5"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46099,7 +46099,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "845dca8e-af6a-41e3-a184-14c1fb9238c6"
+              "a84c6d9e-203e-4adb-83f0-8bab518ac613"
             ],
             "format": "uuid",
             "type": "string"
@@ -46833,7 +46833,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "845dca8e-af6a-41e3-a184-14c1fb9238c6"
+                  "a84c6d9e-203e-4adb-83f0-8bab518ac613"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -46871,7 +46871,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2e4ff368-fef4-4510-97ce-fc2cd23ae24e"
+              "817f990d-4869-4b62-a7d6-47b12586cefa"
             ],
             "format": "uuid",
             "type": "string"
@@ -47351,7 +47351,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2e4ff368-fef4-4510-97ce-fc2cd23ae24e"
+                  "817f990d-4869-4b62-a7d6-47b12586cefa"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47386,7 +47386,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "f967573e-5c27-4217-9ffb-055238c7dc9e"
+              "a0808a3e-f776-40f0-b268-b6ba25cbe4d4"
             ],
             "format": "uuid",
             "type": "string"
@@ -47859,7 +47859,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "f967573e-5c27-4217-9ffb-055238c7dc9e"
+                  "a0808a3e-f776-40f0-b268-b6ba25cbe4d4"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -47897,7 +47897,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "45cee41a-96ff-4a5e-80f9-0396e3e1c45a"
+              "7418ea13-2472-4a13-95c5-e11ec48de744"
             ],
             "format": "uuid",
             "type": "string"
@@ -48141,7 +48141,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "45cee41a-96ff-4a5e-80f9-0396e3e1c45a"
+                  "7418ea13-2472-4a13-95c5-e11ec48de744"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -48176,7 +48176,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "2ab6993d-c9e8-424a-89b2-30823da0cfa4"
+              "72664dd6-7259-499a-a90b-5aeb2b354326"
             ],
             "format": "uuid",
             "type": "string"
@@ -48624,7 +48624,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "2ab6993d-c9e8-424a-89b2-30823da0cfa4"
+                  "72664dd6-7259-499a-a90b-5aeb2b354326"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -48662,7 +48662,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "27a45bfd-abaa-450d-9a77-7145c1f35636"
+              "ec97cce3-55a0-4b71-8ecb-82d3643d156a"
             ],
             "format": "uuid",
             "type": "string"
@@ -49062,7 +49062,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "27a45bfd-abaa-450d-9a77-7145c1f35636"
+                  "ec97cce3-55a0-4b71-8ecb-82d3643d156a"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -49100,7 +49100,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4b17af51-359a-4f6b-bcca-c23201eaf1d9"
+              "5ff0eefd-cf71-4af2-9e60-dcdfc4634bfc"
             ],
             "format": "uuid",
             "type": "string"
@@ -50528,7 +50528,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4b17af51-359a-4f6b-bcca-c23201eaf1d9"
+                  "5ff0eefd-cf71-4af2-9e60-dcdfc4634bfc"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -50655,7 +50655,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d6db9db5-5759-4501-ae4e-6dbc2003155f"
+              "c5847fb7-27f5-40a3-b32b-8aa9beb5d315"
             ],
             "format": "uuid",
             "type": "string"
@@ -51151,7 +51151,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d6db9db5-5759-4501-ae4e-6dbc2003155f"
+                  "c5847fb7-27f5-40a3-b32b-8aa9beb5d315"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51189,7 +51189,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "a9d035cf-656f-4a79-8636-c3ecb83da0d0"
+              "06a80637-6c77-431a-ba4b-248e49d989de"
             ],
             "format": "uuid",
             "type": "string"
@@ -51307,7 +51307,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "a9d035cf-656f-4a79-8636-c3ecb83da0d0"
+                  "06a80637-6c77-431a-ba4b-248e49d989de"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51342,7 +51342,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8bbe9388-63ea-4a19-ac34-a9fe030d2982"
+              "4bf6b985-c058-481f-8c61-3c96285cde71"
             ],
             "format": "uuid",
             "type": "string"
@@ -51552,7 +51552,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8bbe9388-63ea-4a19-ac34-a9fe030d2982"
+                  "4bf6b985-c058-481f-8c61-3c96285cde71"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51587,7 +51587,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "fc3027ab-c703-4a99-88ca-3c1f86532aae"
+              "4908fcc0-3d51-4b7c-b78a-43f6efecc00b"
             ],
             "format": "uuid",
             "type": "string"
@@ -51736,7 +51736,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "fc3027ab-c703-4a99-88ca-3c1f86532aae"
+                  "4908fcc0-3d51-4b7c-b78a-43f6efecc00b"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -51771,7 +51771,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "99951478-9a0f-48ce-b3cd-f13306ac7afc"
+              "36b29be4-4421-43b9-87ee-4d936edc901d"
             ],
             "format": "uuid",
             "type": "string"
@@ -52024,7 +52024,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "99951478-9a0f-48ce-b3cd-f13306ac7afc"
+                  "36b29be4-4421-43b9-87ee-4d936edc901d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -52062,7 +52062,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ea199b60-450a-42c4-8282-c8cc9bcc53ca"
+              "a7903eaa-be48-457c-b374-52adbab11572"
             ],
             "format": "uuid",
             "type": "string"
@@ -52124,7 +52124,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ea199b60-450a-42c4-8282-c8cc9bcc53ca"
+                  "a7903eaa-be48-457c-b374-52adbab11572"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -52159,7 +52159,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9b82bf69-34a9-4647-8878-20b2ca2f2ad8"
+              "d459cfa1-0660-4d89-9436-ad62f3b16927"
             ],
             "format": "uuid",
             "type": "string"
@@ -52592,7 +52592,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9b82bf69-34a9-4647-8878-20b2ca2f2ad8"
+                  "d459cfa1-0660-4d89-9436-ad62f3b16927"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -52654,7 +52654,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ef50dd05-1250-4dd7-bf87-42da380f0a12"
+              "0966bdb4-1e71-4057-8e5d-c7b8982634d1"
             ],
             "format": "uuid",
             "type": "string"
@@ -53061,7 +53061,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ef50dd05-1250-4dd7-bf87-42da380f0a12"
+                  "0966bdb4-1e71-4057-8e5d-c7b8982634d1"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -53215,7 +53215,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "e9abdbd4-9bdc-4f98-8e94-7b717a338d44"
+              "71c3faff-b01b-45e2-99e0-ff1cbaa06f35"
             ],
             "format": "uuid",
             "type": "string"
@@ -53622,7 +53622,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "e9abdbd4-9bdc-4f98-8e94-7b717a338d44"
+                  "71c3faff-b01b-45e2-99e0-ff1cbaa06f35"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -53776,7 +53776,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "85fdb4a0-912a-4f43-b460-7bfcfb1fad58"
+              "f29277b2-57a0-47d7-854e-04ce224a61ce"
             ],
             "format": "uuid",
             "type": "string"
@@ -53895,7 +53895,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "85fdb4a0-912a-4f43-b460-7bfcfb1fad58"
+                  "f29277b2-57a0-47d7-854e-04ce224a61ce"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54019,7 +54019,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "13ca82f3-6379-44e8-82b1-7f37325cefd8"
+              "50b756ea-b66e-45da-b6a6-bf92cb1ab022"
             ],
             "format": "uuid",
             "type": "string"
@@ -54488,7 +54488,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "13ca82f3-6379-44e8-82b1-7f37325cefd8"
+                  "50b756ea-b66e-45da-b6a6-bf92cb1ab022"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -54557,7 +54557,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "518f9849-4203-410e-8e1e-68d9ef7c2988"
+              "45a9323e-44cb-4d69-8799-cf647bca5b52"
             ],
             "format": "uuid",
             "type": "string"
@@ -55024,7 +55024,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "518f9849-4203-410e-8e1e-68d9ef7c2988"
+                  "45a9323e-44cb-4d69-8799-cf647bca5b52"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55062,7 +55062,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "d877bb3a-1a19-4f7f-b8f2-1363d6e7e227"
+              "d2834d55-ef2a-4cd1-9095-13a58dcee266"
             ],
             "format": "uuid",
             "type": "string"
@@ -55169,7 +55169,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "d877bb3a-1a19-4f7f-b8f2-1363d6e7e227"
+                  "d2834d55-ef2a-4cd1-9095-13a58dcee266"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55327,7 +55327,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "5fb7ada9-644f-42bf-9f4a-cd29edfa8577"
+              "09b32e86-2fd9-4b22-b0da-cac7ee9be70e"
             ],
             "format": "uuid",
             "type": "string"
@@ -55721,7 +55721,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "5fb7ada9-644f-42bf-9f4a-cd29edfa8577"
+                  "09b32e86-2fd9-4b22-b0da-cac7ee9be70e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -55878,7 +55878,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "1bde457d-d8a5-4365-b9ac-f87ef1ef7d53"
+              "609e817c-4001-416c-9c8a-c59ff8fcca0d"
             ],
             "format": "uuid",
             "type": "string"
@@ -56333,7 +56333,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "1bde457d-d8a5-4365-b9ac-f87ef1ef7d53"
+                  "609e817c-4001-416c-9c8a-c59ff8fcca0d"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56371,7 +56371,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "7a09d496-6004-4a6e-8d4d-ff9a93dc4f37"
+              "32670d90-a228-40c3-bb3a-6e63606fca90"
             ],
             "format": "uuid",
             "type": "string"
@@ -56495,7 +56495,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "7a09d496-6004-4a6e-8d4d-ff9a93dc4f37"
+                  "32670d90-a228-40c3-bb3a-6e63606fca90"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56534,7 +56534,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "3b6d1018-3cf6-4afc-a3f2-45dc91be1d81"
+              "94deccdd-fe27-46a1-94c7-83ebd8147d95"
             ],
             "format": "uuid",
             "type": "string"
@@ -56641,7 +56641,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "3b6d1018-3cf6-4afc-a3f2-45dc91be1d81"
+                  "94deccdd-fe27-46a1-94c7-83ebd8147d95"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56799,7 +56799,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ecc6504c-ee8c-4784-b842-83b1cc942174"
+              "42e18392-b56b-467d-9fef-14a516a83598"
             ],
             "format": "uuid",
             "type": "string"
@@ -56929,7 +56929,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ecc6504c-ee8c-4784-b842-83b1cc942174"
+                  "42e18392-b56b-467d-9fef-14a516a83598"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -56968,7 +56968,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "9041156b-5340-430d-8611-0b6846fe10d6"
+              "6c05c038-7b6f-4fd9-a433-af1fae021ddd"
             ],
             "format": "uuid",
             "type": "string"
@@ -57064,7 +57064,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "9041156b-5340-430d-8611-0b6846fe10d6"
+                  "6c05c038-7b6f-4fd9-a433-af1fae021ddd"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57102,7 +57102,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "83dbcfc8-2a4a-4ccd-b530-30c30f173d29"
+              "bc371625-05fc-44f5-96e8-2e8d1fe9bc21"
             ],
             "format": "uuid",
             "type": "string"
@@ -57330,7 +57330,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "83dbcfc8-2a4a-4ccd-b530-30c30f173d29"
+                  "bc371625-05fc-44f5-96e8-2e8d1fe9bc21"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57416,7 +57416,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "8931d1d0-9f9c-4e3a-a2de-f99f79f22f38"
+              "6dc96ad0-d3e2-4726-b98b-8adf4199ff61"
             ],
             "format": "uuid",
             "type": "string"
@@ -57644,7 +57644,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "8931d1d0-9f9c-4e3a-a2de-f99f79f22f38"
+                  "6dc96ad0-d3e2-4726-b98b-8adf4199ff61"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57730,7 +57730,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "4c208138-2462-44fc-825d-444a7fc8b404"
+              "3464e763-9f32-489f-9c0d-4c2d5957ec17"
             ],
             "format": "uuid",
             "type": "string"
@@ -57868,7 +57868,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "4c208138-2462-44fc-825d-444a7fc8b404"
+                  "3464e763-9f32-489f-9c0d-4c2d5957ec17"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -57906,7 +57906,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "ca3e314a-a8f4-4092-a026-17b3471d1786"
+              "3a0f4801-a275-42a1-9f34-ee9ac8be8c9e"
             ],
             "format": "uuid",
             "type": "string"
@@ -58227,7 +58227,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "ca3e314a-a8f4-4092-a026-17b3471d1786"
+                  "3a0f4801-a275-42a1-9f34-ee9ac8be8c9e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58265,7 +58265,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "bf038804-2378-4a5b-a38d-d92fc25d9ee4"
+              "35d76ae6-215d-4884-af0b-00d226b3178e"
             ],
             "format": "uuid",
             "type": "string"
@@ -58475,7 +58475,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "bf038804-2378-4a5b-a38d-d92fc25d9ee4"
+                  "35d76ae6-215d-4884-af0b-00d226b3178e"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58571,7 +58571,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "676f5e1a-02c6-4827-84ae-2b4e57b35a11"
+              "c6b32779-9c38-48eb-b508-5b93ffcc15b8"
             ],
             "format": "uuid",
             "type": "string"
@@ -58797,7 +58797,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "676f5e1a-02c6-4827-84ae-2b4e57b35a11"
+                  "c6b32779-9c38-48eb-b508-5b93ffcc15b8"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -58879,7 +58879,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "30c577e1-31f2-4b45-b221-cb846810725a"
+              "22cd702c-0749-40f1-a6a3-2f7670c76809"
             ],
             "format": "uuid",
             "type": "string"
@@ -59143,7 +59143,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "30c577e1-31f2-4b45-b221-cb846810725a"
+                  "22cd702c-0749-40f1-a6a3-2f7670c76809"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59248,7 +59248,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cb558f01-f79b-4414-929c-7ffff1d9dd31"
+              "322f6550-8d1e-4fe8-827f-1d3e4163e280"
             ],
             "format": "uuid",
             "type": "string"
@@ -59563,7 +59563,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cb558f01-f79b-4414-929c-7ffff1d9dd31"
+                  "322f6550-8d1e-4fe8-827f-1d3e4163e280"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -59656,7 +59656,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "cf30ac2d-b236-4bbe-b871-8a6a26530209"
+              "79204a2a-9b79-453b-870a-77d64aaa5bf9"
             ],
             "format": "uuid",
             "type": "string"
@@ -59971,7 +59971,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "cf30ac2d-b236-4bbe-b871-8a6a26530209"
+                  "79204a2a-9b79-453b-870a-77d64aaa5bf9"
                 ],
                 "format": "uuid",
                 "type": "string"
@@ -60064,7 +60064,7 @@ const manifest = {
           "allowEmptyValue": false,
           "schema": {
             "examples": [
-              "0508d953-c213-45c0-9d73-22695866bdfb"
+              "e544752c-e1a9-4e1c-8eb8-efef6967d6d6"
             ],
             "format": "uuid",
             "type": "string"
@@ -60284,7 +60284,7 @@ const manifest = {
             "properties": {
               "x-request-id": {
                 "examples": [
-                  "0508d953-c213-45c0-9d73-22695866bdfb"
+                  "e544752c-e1a9-4e1c-8eb8-efef6967d6d6"
                 ],
                 "format": "uuid",
                 "type": "string"

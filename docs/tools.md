@@ -1,6 +1,6 @@
 # Tool reference
 
-This file is generated from eToro Swagger UI **v1.421.0** (canonical SHA-256 `21c18894c1c27f5d81c2abc7bccca0b791c916d4b0584f61947bd2b071266ba1`). Do not edit it directly; run `npm run generate`.
+This file is generated from eToro Swagger UI **v1.424.0** (canonical SHA-256 `8bc7c6b89d28620adce6530490668391d3c756c4f3b2b40b6e9ba7154bfc652c`). Do not edit it directly; run `npm run generate`.
 
 The catalog contains **159 tools** in **26 toolsets**. All toolsets are disabled by default; enable toolsets or individual tools through configuration. See the README quick look for a sample configuration.
 

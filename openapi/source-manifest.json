@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-11-24T12:06:08.592Z",
+  "retrievedAt": "2026-11-26T16:33:28.546Z",
   "sources": {
     "swagger": {
       "id": "swagger",
       "file": "etoro.swagger.json",
       "url": "https://public-api.etoro.com/swagger/swagger.json",
-      "apiVersion": "v1.421.0",
+      "apiVersion": "v1.424.0",
       "openApiVersion": "3.0.1",
       "operations": 159,
-      "rawSha256": "effa610ee2f651f0f5895c2426efd6edea801c669e965390ec66dff37a3e9211",
-      "canonicalSha256": "21c18894c1c27f5d81c2abc7bccca0b791c916d4b0584f61947bd2b071266ba1"
+      "rawSha256": "4e60d33c73e2971ed2550d2d6edb33bf6a4fb09b34cffb90e4513ec6d26484d8",
+      "canonicalSha256": "8bc7c6b89d28620adce6530490668391d3c756c4f3b2b40b6e9ba7154bfc652c"
     },
     "core": {
       "id": "core",
       "file": "etoro.core.json",
       "url": "https://api-portal.etoro.com/api-reference/openapi.json",
-      "apiVersion": "v1.421.0",
+      "apiVersion": "v1.424.0",
       "openApiVersion": "3.0.1",
       "operations": 144,
-      "rawSha256": "b173cd5a75c6f2833a0f32dcbf7c65364a8b9229e315956f1c27d246c01f4bd3",
-      "canonicalSha256": "ba84b04e3631490757d3abfd43527a64ee09a3fcfd395b2ef7f6fc998a0a829f"
+      "rawSha256": "421e1cc5b3ceeaa94ec3bbe5f0912506a5e7980946adc113ac98764a2a3a62a8",
+      "canonicalSha256": "f2aec98e03447861494adae0d5c80bd9170eb4a5ef1832360f2e9686c222b475"
     },
     "deprecated": {
       "id": "deprecated",
       "file": "etoro.deprecated.json",
       "url": "https://api-portal.etoro.com/api-reference/deprecated-openapi.json",
-      "apiVersion": "v1.421.0",
+      "apiVersion": "v1.424.0",
       "openApiVersion": "3.0.1",
       "operations": 15,
-      "rawSha256": "ab951185a8732c6279930abad7e4c0be98292c729c014c827519463b2f663412",
-      "canonicalSha256": "9c7f478ae194e991388567be1af42586996e1afe9b5c24898bcf6b2d4e1292b4"
+      "rawSha256": "bce826d4dbe98d00ceb1d253e0fffa2c35a0102edfc828c0984305377f1e2142",
+      "canonicalSha256": "701fe5c4a4467b2d7d6229f30839c46b0f4b91985d7a51b1bb313517c4f28dc7"
     }
   }
 }

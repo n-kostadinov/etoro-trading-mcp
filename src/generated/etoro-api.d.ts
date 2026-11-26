@@ -8550,7 +8550,7 @@ export interface components {
                     /** @description Indication if the mirror is in closure process */
                     pendingForClosure?: boolean;
                     /** @description Positions within this copy trading mirror */
-                    positions?: components["schemas"]["TradingRealApi_Position"][];
+                    positions?: components["schemas"]["TradingDemoApi_Position"][];
                     /**
                      * Format: date-time
                      * @description Date and time when the mirror trading was initiated
@@ -8631,7 +8631,7 @@ export interface components {
                 /** @description Active orders to open positions */
                 ordersForOpen?: Record<string, never>[];
                 /** @description List of currently open trading positions */
-                positions?: components["schemas"]["TradingRealApi_Position"][];
+                positions?: components["schemas"]["TradingDemoApi_Position"][];
                 /** @description Obsolete */
                 stockOrders?: Record<string, never>[];
             };
