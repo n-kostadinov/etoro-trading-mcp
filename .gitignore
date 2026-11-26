@@ -21,3 +21,4 @@ artifacts/
 .DS_Store
 Thumbs.db
 plan/
+.agents
