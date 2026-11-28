@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-11-26T16:33:28.546Z",
+  "retrievedAt": "2026-11-28T07:51:44.451Z",
   "sources": {
     "swagger": {
       "id": "swagger",
       "file": "etoro.swagger.json",
       "url": "https://public-api.etoro.com/swagger/swagger.json",
-      "apiVersion": "v1.424.0",
+      "apiVersion": "v1.427.0",
       "openApiVersion": "3.0.1",
       "operations": 159,
-      "rawSha256": "4e60d33c73e2971ed2550d2d6edb33bf6a4fb09b34cffb90e4513ec6d26484d8",
-      "canonicalSha256": "8bc7c6b89d28620adce6530490668391d3c756c4f3b2b40b6e9ba7154bfc652c"
+      "rawSha256": "489966d9766990f949fe075474a4e5a5c1ee49ca6cefcccb1e475399d888811f",
+      "canonicalSha256": "772583956fb6b574ffff4b054045b55450f1f84a26d8156f2b62fa42b439b654"
     },
     "core": {
       "id": "core",
       "file": "etoro.core.json",
       "url": "https://api-portal.etoro.com/api-reference/openapi.json",
-      "apiVersion": "v1.424.0",
+      "apiVersion": "v1.427.0",
       "openApiVersion": "3.0.1",
       "operations": 144,
-      "rawSha256": "421e1cc5b3ceeaa94ec3bbe5f0912506a5e7980946adc113ac98764a2a3a62a8",
-      "canonicalSha256": "f2aec98e03447861494adae0d5c80bd9170eb4a5ef1832360f2e9686c222b475"
+      "rawSha256": "e57ec563efa6e9a146d3360298031f13eea6cda53c78144746e2f2c6e7b2cde1",
+      "canonicalSha256": "bde997a27325c938a24580c0084d67ef06f11a68b9d249693970409c167969f3"
     },
     "deprecated": {
       "id": "deprecated",
       "file": "etoro.deprecated.json",
       "url": "https://api-portal.etoro.com/api-reference/deprecated-openapi.json",
-      "apiVersion": "v1.424.0",
+      "apiVersion": "v1.427.0",
       "openApiVersion": "3.0.1",
       "operations": 15,
-      "rawSha256": "bce826d4dbe98d00ceb1d253e0fffa2c35a0102edfc828c0984305377f1e2142",
-      "canonicalSha256": "701fe5c4a4467b2d7d6229f30839c46b0f4b91985d7a51b1bb313517c4f28dc7"
+      "rawSha256": "66faf4ff1111264cf3a019444ffbe64db35ee2c3e62708df970bd262a335a4d6",
+      "canonicalSha256": "a81a2a5f6c059019c1afaa1713873efb9868280c92c8dbcdf4290b7f9f077414"
     }
   }
 }
