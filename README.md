@@ -128,7 +128,7 @@ npx -y etoro-trading-mcp@1.6.0 config validate     # effective settings and warn
 
 This is an independent, unofficial project. It is not affiliated with, endorsed by, or sponsored by eToro. eToro names and trademarks belong to eToro. Nothing in this repository is investment advice. Demo trading uses virtual funds; real trading can lose real money and requires two explicit opt-ins.
 
-Current release: **1.6.0**, generated from eToro Swagger UI **v1.424.0**. A daily job fails loudly when eToro's published API changes; applying the update and cutting a release is always a manual, reviewed step.
+Current release: **1.6.0**, generated from eToro Swagger UI **v1.427.0**. A daily job fails loudly when eToro's published API changes; applying the update and cutting a release is always a manual, reviewed step.
 
 ## Contribute
 
